@@ -30,7 +30,7 @@ export const NewsSec = () => {
   const fetchNews = async () => {
     try {
       const response = await fetch(
-        `${baseAPI}news?X-Localization=${activeLang.localization}&page=${current}&per_page=7`
+        `${baseAPI}news?X-Localization=${activeLang.localization}&page=${current}&per_page=6`
       );
 
       if (!response.ok) {
