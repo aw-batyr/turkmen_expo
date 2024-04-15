@@ -29,8 +29,6 @@ export const Video = () => {
       autoPlay
       src="https://turkmenexpo.com/app/storage/app/media/video/video.mp4"
       typeof="video/mp4"
-    >
-      Video
-    </video>
+    ></video>
   );
 };
