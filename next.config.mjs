@@ -3,7 +3,7 @@
 // const nextConfig = { distDir: 'build' };
 const nextConfig = {
   images: { unoptimized: true },
-  // distDir: "build",
+  distDir: 'build',
 };
 
 export default nextConfig;
