@@ -1,25 +1,25 @@
-'use client';
+"use client";
 
-import React from 'react';
-import clsx from 'clsx';
-import Link from 'next/link';
-import Image from 'next/image';
-import { v4 } from 'uuid';
-import { usePathname } from 'next/navigation';
-import { AnimatePresence } from 'framer-motion';
+import React from "react";
+import clsx from "clsx";
+import Link from "next/link";
+import Image from "next/image";
+import { v4 } from "uuid";
+import { usePathname } from "next/navigation";
+import { AnimatePresence } from "framer-motion";
 
-import logo from '@/public/assets/icons/header/logo.svg';
-import burger from '@/public/assets/icons/header/burger.svg';
-import search from '@/public/assets/icons/header/search.svg';
-import searchMob from '@/public/assets/icons/header/mob-search.svg';
+import logo from "@/public/assets/icons/header/logo.svg";
+import burger from "@/public/assets/icons/header/burger.svg";
+import search from "@/public/assets/icons/header/search.svg";
+import searchMob from "@/public/assets/icons/header/mob-search.svg";
 
-import { LangMenu } from '../ui/LangMenu';
-import { Input } from '../home/Input';
-import { headerMenu, headerMenu2 } from '@/lib/database/pathnames';
-import { BurgerMenu } from '../ui/BurgerMenu';
-import { useAppDispatch, useAppSelector } from '@/redux/hooks';
-import { selectHeader, setShowInput } from '@/redux/slices/headerSlice';
-import { selectBurger, setBurgerMenu } from '@/redux/slices/burgerSlice';
+import { LangMenu } from "../ui/LangMenu";
+import { Input } from "../home/Input";
+import { headerMenu, headerMenu2 } from "@/lib/database/pathnames";
+import { BurgerMenu } from "../ui/BurgerMenu";
+import { useAppDispatch, useAppSelector } from "@/redux/hooks";
+import { selectHeader, setShowInput } from "@/redux/slices/headerSlice";
+import { selectBurger, setBurgerMenu } from "@/redux/slices/burgerSlice";
 
 export const Header = () => {
   const pathname = usePathname();
@@ -43,11 +43,12 @@ export const Header = () => {
 
       <header
         className={clsx(
-          'bg-bgWhite tab:hidden flex items-center justify-between px-4 py-6 h-[80px] sticky z-[10000]',
+          "bg-bgWhite tab:hidden flex items-center justify-between px-4 py-6 h-[80px] sticky z-[10000]",
           {
-            'fixed w-full top-0': burgerMenu,
-          },
-        )}>
+            "fixed w-full top-0": burgerMenu,
+          }
+        )}
+      >
         <Image
           src={searchMob}
           height={32}
@@ -58,8 +59,14 @@ export const Header = () => {
         />
         <AnimatePresence>{showInput && <Input mob />}</AnimatePresence>
 
-        <Link onClick={() => dispatch(setBurgerMenu(false))} href={'/'}>
-          <Image src={logo} height={24} width={160} alt="лого" className="cursor-pointer" />
+        <Link onClick={() => dispatch(setBurgerMenu(false))} href={"/"}>
+          <Image
+            src={logo}
+            height={24}
+            width={160}
+            alt="лого"
+            className="cursor-pointer"
+          />
         </Link>
 
         <Image
@@ -86,11 +93,16 @@ export const Header = () => {
                   <Link
                     key={v4()}
                     href={item.link}
-                    className={clsx('leading-[130%] relative hover:transition-all', {
-                      'link-border-bottom cursor-default hover:after:bg-green':
-                        item.link === pathname,
-                      'hover:link-border-bottom hover:after:bg-[#738799]': item.link === item.link,
-                    })}>
+                    className={clsx(
+                      "leading-[130%] relative hover:transition-all",
+                      {
+                        "link-border-bottom cursor-default hover:after:bg-green":
+                          item.link === pathname,
+                        "hover:link-border-bottom hover:after:bg-[#738799]":
+                          item.link === item.link,
+                      }
+                    )}
+                  >
                     {item.title}
                   </Link>
                 ))}
