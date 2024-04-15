@@ -11,7 +11,10 @@ import { LayoutWithSidebar } from '../page/LayoutWithSidebar';
 export const MembersSec = () => {
   return (
     <div className="flex flex-col">
-      <LayoutWithSidebar title="Информация для участников" sortBy="members">
+      <LayoutWithSidebar
+        title="Информация для участников"
+        second="Информация для участников"
+        path="/members">
         <p className="text-p">
           В распоряжении компании имеются возможности размещения и застройки полностью оборудованных
           павильонов общей площадью 1200 кв.м. которые соответствуют современным стандартам. В
