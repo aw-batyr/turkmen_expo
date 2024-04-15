@@ -21,6 +21,8 @@ import { baseAPI } from "@/lib/API";
 export const NewsSec = () => {
   const menu = ["Новости", "СМИ о нас"];
   const [current, setCurrent] = React.useState<number>(1);
+  const [perPage, setPerPage] = React.useState<number>(6);
+  const [totalNews, setTotalNews] = React.useState<number>(0);
 
   const [grid, setGrid] = React.useState(true);
   const [newsData, setNewsData] = React.useState<NewsData>();
@@ -30,15 +32,16 @@ export const NewsSec = () => {
   const fetchNews = async () => {
     try {
       const response = await fetch(
-        `${baseAPI}news?X-Localization=${activeLang.localization}&page=${current}&per_page=6`
+        `${baseAPI}news?X-Localization=${activeLang.localization}&page=${current}&per_page=${perPage}`
       );
 
       if (!response.ok) {
         throw new Error(`Fetch failed with status ${response.status}`);
       }
 
-      const data = await response.json();
+      const data: NewsData = await response.json();
       setNewsData(data);
+      setTotalNews(data.meta.total);
     } catch (error) {
       console.error("Fetch error:", error);
     }
@@ -46,7 +49,11 @@ export const NewsSec = () => {
 
   React.useEffect(() => {
     fetchNews();
-  }, [current]);
+  }, [current, perPage]);
+
+  const handleOnClickButton = () => {
+    setPerPage((prev) => prev + 6);
+  };
 
   return (
     <div className="flex flex-col">
@@ -97,8 +104,10 @@ export const NewsSec = () => {
       </div>
 
       <div className="hidden sm:flex flex-col gap-6 w-full max-w-[180px] mx-auto justify-center">
-        {newsData && newsData.data.length > 7 && (
-          <BorderBtn text={"Показать ещё"} />
+        {newsData && totalNews < perPage && perPage >= totalNews && (
+          <div onClick={handleOnClickButton}>
+            <BorderBtn text={"Показать ещё"} />
+          </div>
         )}
         {newsData?.meta ? (
           <Pagination
