@@ -1,6 +1,6 @@
-import React from 'react';
-import Image from 'next/image';
-import Link from 'next/link';
+import React from "react";
+import Image from "next/image";
+import Link from "next/link";
 
 interface Props {
   img: string;
@@ -22,8 +22,10 @@ export const NewsCard = ({ img, title, date, id, mobile = false }: Props) => {
           alt="photo"
           className="h-[160px] w-full object-cover"
         />
-        <div className="p-[25px] h-[137px]">
-          <p className="text-extraSm leading-[125%] text-gray mb-[10px]">{date}</p>
+        <div className="p-[25px] h-full sm:h-[137px]">
+          <p className="text-extraSm leading-[125%] text-gray mb-[10px]">
+            {date}
+          </p>
           <p className="text-green font-bold leading-[125%] sm:text-[16px] text-[21px] news-text">
             {title}
           </p>
