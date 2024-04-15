@@ -1,9 +1,9 @@
-import { Events } from "@/components/home/Events";
-import { News } from "@/components/home/News";
-import { Services } from "@/components/home/Services";
-import { Partners } from "@/components/home/Partners";
-import Slider from "@/components/home/Slider";
-import { Video } from "@/components/home/Video";
+import { Events } from '@/components/home/Events';
+import { News } from '@/components/home/News';
+import { Services } from '@/components/home/Services';
+import { Partners } from '@/components/home/Partners';
+import Slider from '@/components/home/Slider';
+import { Video } from '@/components/home/Video';
 
 const Home = () => {
   return (
@@ -20,11 +20,11 @@ const Home = () => {
         <News />
       </section>
 
-      <section className="section-mb">
+      <section className="section-mb ">
         <Video />
       </section>
 
-      <section className="section-mb">
+      <section className="section-mb ">
         <Services />
       </section>
 

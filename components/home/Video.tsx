@@ -1,15 +1,13 @@
-"use client";
+'use client';
 
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState } from 'react';
 
 export const Video = () => {
   const [video, setVideo] = useState();
 
   const fetchVideo = async () => {
     try {
-      const res = await fetch(
-        `https://turkmenexpo.com/app/storage/app/media/video/video.mp4`
-      );
+      const res = await fetch(`https://turkmenexpo.com/app/storage/app/media/video/video.mp4`);
 
       const data = await res.json();
       console.log(data);
@@ -25,10 +23,9 @@ export const Video = () => {
 
   return (
     <video
-      className="w-full mx-auto"
+      className="w-full mx-auto "
       autoPlay
       src="https://turkmenexpo.com/app/storage/app/media/video/video.mp4"
-      typeof="video/mp4"
-    ></video>
+      typeof="video/mp4"></video>
   );
 };
