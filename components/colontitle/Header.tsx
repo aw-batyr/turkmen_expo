@@ -77,8 +77,7 @@ export const Header = () => {
           className="cursor-pointer"
           onClick={toggleMenu}
         />
-
-        {burgerMenu && <BurgerMenu />}
+        <AnimatePresence>{burgerMenu && <BurgerMenu />}</AnimatePresence>
       </header>
 
       {/* Desktop */}
