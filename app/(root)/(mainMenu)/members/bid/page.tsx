@@ -10,7 +10,7 @@ const Bid = () => {
         title="Онлайн-заявка для участников"
         second="Информация для участников"
         path="/members"
-        third="Онлайн-заявка для участников"
+        third="Онлайн-заявка"
       >
         <FormSec />
       </LayoutWithSidebar>
