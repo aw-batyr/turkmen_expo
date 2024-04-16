@@ -14,6 +14,7 @@ import { selectHeader } from "@/redux/slices/headerSlice";
 import { RadioDataType } from "@/lib/types/FaqData.type";
 import { Select } from "./Select";
 import { BreadCrumbs } from "../ui/BreadCrumbs";
+import { AnimatePresence } from "framer-motion";
 
 export const radio = [
   { name: "Все", id: "all" },
@@ -62,13 +63,15 @@ export const FaqSec = () => {
       <BreadCrumbs second="FAQ" />
       <Title text="«Вопросы-ответы»" />
       <div className="flex items-center sm:mt-6 mt-10 sm:gap-[20px] gap-10 mb-[48px]">
-        <Radio
-          nofilter
-          id={currentRadio}
-          active={currentRadio === 0}
-          changeRadio={changeRadio}
-          text={"Все"}
-        />
+        <AnimatePresence>
+          <Radio
+            nofilter
+            id={currentRadio}
+            active={currentRadio === 0}
+            changeRadio={changeRadio}
+            text={"Все"}
+          />
+        </AnimatePresence>
         {radioData?.data.map((item) => (
           <div key={v4()}>
             <Radio
