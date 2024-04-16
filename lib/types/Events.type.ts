@@ -11,10 +11,11 @@ export interface Data {
   starts_at: string;
   ends_at: string;
   images: Image[];
-  web_site: null;
-  location: null;
-  timing: any[];
-  event_topic: null;
+  background_images: any[];
+  web_site: string;
+  location: string;
+  timing: Timing[];
+  event_topic: string;
 }
 
 export interface Image {
@@ -27,9 +28,18 @@ export interface Image {
 
 export interface Organizer {
   name: string;
-  address: null;
-  phones: null;
-  fax: null;
-  email: null;
-  web_site: null;
+  address: string;
+  phones: Phone[];
+  fax: string;
+  email: string;
+  web_site: string;
+}
+
+export interface Phone {
+  phone: string;
+}
+
+export interface Timing {
+  string: string;
+  time: string;
 }
