@@ -51,12 +51,9 @@ const Event = ({ params }: { params: { id: string } }) => {
     const parts = date.split("-");
     const formattedDate = `${parts[2]}.${parts[1]}.${parts[0]}`;
 
-    console.log(parts);
-
     return formattedDate;
   };
 
-  console.log(eventsData);
   return (
     <div>
       <div className="container">
@@ -130,42 +127,68 @@ const Event = ({ params }: { params: { id: string } }) => {
 
         <div className="container mt-[60px] section-mb">
           <div className="flex flex-col gap-10 md:gap-[60px]">
-            {fullEventData
-              .filter((item) => item.arrangement)
-              .map((item) => (
-                <div key={v4()}>
-                  <p className="mb-[40px] leading-[115%] sm:leading-[100%] text-[21px] font-semibold">
-                    {item.title}
-                  </p>
-                  <div className="flex flex-col sm:flex-row gap-[20px]">
-                    {item.info?.map((text) => (
-                      <div
-                        key={v4()}
-                        className="w-full max-w-[290px] flex flex-col gap-[20px]"
-                      >
-                        <h3 className="leading-[120%] text-[18px] font-semibold">
-                          {text.title}
-                        </h3>
-                        <div className="leading-[130%]">
-                          <p className="text-gray4">{text.date}</p>
-                          <p className="text-gray">{text.time}</p>
-                        </div>
-                        <div className="leading-[130%]">
-                          <p className="text-gray4">{text.date2}</p>
-                          <p className="text-gray">{text.time2}</p>
-                        </div>
-                      </div>
-                    ))}
+            {eventsData && (
+              <div>
+                <p className="mb-[40px] leading-[115%] sm:leading-[100%] text-[21px] font-semibold">
+                  Сроки проведения
+                </p>
+                <div className="flex flex-col sm:flex-row gap-[20px]">
+                  <div className="w-full max-w-[290px] flex flex-col gap-[20px]">
+                    <h3 className="leading-[120%] text-[18px] font-semibold">
+                      Даты проведения
+                    </h3>
+                    <div className="leading-[130%]">
+                      <p className="text-gray4">
+                        {formatDate(eventsData.data.starts_at)}
+                      </p>
+                    </div>
+                    <div className="leading-[130%]">
+                      <p className="text-gray4">
+                        {formatDate(eventsData.data.ends_at)}
+                      </p>
+                    </div>
+                  </div>
+
+                  <div className="w-full max-w-[290px] flex flex-col gap-[20px]">
+                    <h3 className="leading-[120%] text-[18px] font-semibold">
+                      Монтаж
+                    </h3>
+                    <div className="leading-[130%]">
+                      <p className="text-gray4">
+                        {formatDate(eventsData.data.starts_at)}
+                      </p>
+                    </div>
+                  </div>
+
+                  <div className="w-full max-w-[290px] flex flex-col gap-[20px]">
+                    <h3 className="leading-[120%] text-[18px] font-semibold">
+                      Демонтаж
+                    </h3>
+                    <div className="leading-[130%]">
+                      <p className="text-gray4">
+                        {formatDate(eventsData.data.ends_at)}
+                      </p>
+                    </div>
+                  </div>
+
+                  <div className="w-full max-w-[290px] flex flex-col gap-[20px]">
+                    <h3 className="leading-[120%] text-[18px] font-semibold">
+                      Место проведения
+                    </h3>
+                    <div className="leading-[130%]">
+                      <p className="text-gray4">{eventsData.data.location}</p>
+                    </div>
                   </div>
                 </div>
-              ))}
+              </div>
+            )}
 
-            <div className="flex flex-col gap-[33px]">
+            {/* <div className="flex flex-col gap-[33px]">
               {fullEventData
                 .filter((item) => item.theme)
                 .map((obj) => (
                   <div key={v4()}>
-                    <h3 className="text-[21px] leading-[100%] font-semibold">
+                    <h3 className="text-[21px] mb-10 leading-[100%] font-semibold">
                       {obj.title}
                     </h3>
                     {obj.info?.map((text) => (
@@ -199,27 +222,26 @@ const Event = ({ params }: { params: { id: string } }) => {
                     ))}
                   </div>
                 ))}
-            </div>
+            </div> */}
 
             <hr className="border-navyBlue hidden sm:block" />
-
-            <div>
-              {fullEventData
-                .filter((item) => item.address)
-                .map((obj) => (
-                  <div className="flex flex-col gap-[10px]" key={v4()}>
-                    <h3 className="text-21 mb-[10px]">{obj.title}</h3>
-                    <h4 className="text-gray leading-[130%]">{obj.place}</h4>
-                    <div className="leading-[150%] sm:leading-[130%]">
-                      <p>{obj.phone}</p>
-                      <p>{obj.phone2}</p>
-                      <p>{obj.faks}</p>
-                      <p>{obj.email}</p>
-                      <p>{obj.url}</p>
-                    </div>
+            {eventsData ? (
+              <div>
+                <div className="flex flex-col gap-[10px]" key={v4()}>
+                  <h3 className="text-21 mb-[10px]">Организатор</h3>
+                  <h4 className="text-gray leading-[130%]">
+                    {eventsData.data.organizer.name}
+                  </h4>
+                  <div className="leading-[150%] sm:leading-[130%]">
+                    <p>{eventsData.data.organizer.address}</p>
+                    <p>{eventsData.data.organizer.phones[0].phone}</p>
+                    <p>Факс {eventsData.data.organizer.fax}</p>
+                    <p>Email: {eventsData.data.organizer.email}</p>
+                    <p>{eventsData.data.organizer.web_site}</p>
                   </div>
-                ))}
-            </div>
+                </div>
+              </div>
+            ) : null}
           </div>
         </div>
       </div>
