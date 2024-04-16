@@ -1,12 +1,42 @@
-import React from "react";
+"use client";
+
+import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import { GoogleMap, LoadScript, Marker } from "@react-google-maps/api";
 
 import mapImg from "@/public/assets/images/map.png";
 import { Title } from "@/components/home/Title";
 import { BreadCrumbs } from "@/components/ui/BreadCrumbs";
+import { useAppSelector } from "@/redux/hooks";
+import { selectHeader } from "@/redux/slices/headerSlice";
+import { baseAPI } from "@/lib/API";
 
 const Contacts = () => {
+  const [contactsData, setContactsData] = useState<any>();
+  const { activeLang } = useAppSelector(selectHeader);
+
+  // const fecthContactsData = async () => {
+  //   try {
+  //     const res = await fetch(
+  //       `${baseAPI}settings/about_us?X-Localization=${activeLang.localization}`
+  //     );
+
+  //     if (!res.ok) {
+  //       throw new Error("Error");
+  //     }
+
+  //     const data = await res.json();
+
+  //     setContactsData(data);
+  //   } catch (error) {
+  //     console.error(error);
+  //   }
+  // };
+
+  // useEffect(() => {
+  //   fecthContactsData();
+  // }, []);
+
   return (
     <div className="bg-blueBg h-full">
       <div className="container flex flex-col items-start">
