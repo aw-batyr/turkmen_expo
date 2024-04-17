@@ -4,7 +4,7 @@ export interface FaqDataType {
 
 export interface Datum {
   header: string;
-  faq_items: FAQItem[];
+  faq_items: FAQItem;
 }
 
 export interface FAQItem {
@@ -13,10 +13,10 @@ export interface FAQItem {
 }
 
 export interface RadioDataType {
-  data: Datum[];
+  data: Datu[];
 }
 
-export interface Datum {
+export interface Datu {
   id: number;
   name: string;
 }

@@ -7,11 +7,10 @@ import { useAppDispatch, useAppSelector } from "@/redux/hooks";
 
 import { Radio } from "../ui/Radio";
 import { selectFaq, setFaqTitle } from "@/redux/slices/faqSlice";
-import { Pathnames } from "../page/Pathnames";
 import { Title } from "../home/Title";
 import { baseAPI } from "@/lib/API";
 import { selectHeader } from "@/redux/slices/headerSlice";
-import { RadioDataType } from "@/lib/types/FaqData.type";
+import { FaqDataType, RadioDataType } from "@/lib/types/FaqData.type";
 import { Select } from "./Select";
 import { BreadCrumbs } from "../ui/BreadCrumbs";
 import { AnimatePresence } from "framer-motion";
@@ -23,9 +22,12 @@ export const radio = [
 ];
 
 export const FaqSec = () => {
+  const [faqData, setFaqData] = useState<FaqDataType>();
+
   const [currentRadio, setCurrentRadio] = useState(0);
   const [radioData, setRadioData] = useState<RadioDataType>();
   const { activeLang } = useAppSelector(selectHeader);
+
   const fetchFaqRadio = async () => {
     try {
       const res = await fetch(
@@ -40,9 +42,27 @@ export const FaqSec = () => {
     }
   };
 
+  const fetchFaq = async () => {
+    try {
+      const res = await fetch(
+        `${baseAPI}faq-headers?X-Localization=${activeLang.localization}${
+          currentRadio !== 0 ? `&faq_user_group_id=${currentRadio}` : ""
+        }`
+      );
+
+      const data = await res.json();
+
+      setFaqData(data);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
   useEffect(() => {
+    fetchFaq();
     fetchFaqRadio();
-  }, []);
+    setOpenTitles([]);
+  }, [currentRadio, activeLang]);
 
   const dispatch = useAppDispatch();
   const { faqTitle } = useAppSelector(selectFaq);
@@ -51,12 +71,15 @@ export const FaqSec = () => {
     setCurrentRadio(id);
   };
 
-  const onTitle = (name: string) => {
-    if (faqTitle === name) dispatch(setFaqTitle(""));
-    else dispatch(setFaqTitle(name));
-  };
+  const [openTitles, setOpenTitles] = useState<string[]>([]);
 
-  console.log(currentRadio);
+  const onTitle = (name: string) => {
+    if (openTitles.includes(name)) {
+      setOpenTitles(openTitles.filter((item) => item !== name));
+    } else {
+      setOpenTitles((prev) => [...prev, name]);
+    }
+  };
 
   return (
     <div className="container flex flex-col items-start pt-[20px] section-mb">
@@ -83,7 +106,17 @@ export const FaqSec = () => {
           </div>
         ))}
       </div>
-      <Select currentRadio={currentRadio} />
+      {faqData
+        ? faqData.data.map((obj) => (
+            <Select
+              key={v4()}
+              {...obj}
+              faqItems={obj.faq_items}
+              openTitles={openTitles}
+              onTitle={onTitle}
+            />
+          ))
+        : null}
     </div>
   );
 };
