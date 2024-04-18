@@ -1,15 +1,15 @@
-"use client";
+'use client';
 
-import React, { useEffect, useState } from "react";
-import Image from "next/image";
-import { GoogleMap, LoadScript, Marker } from "@react-google-maps/api";
+import React, { useEffect, useState } from 'react';
+import Image from 'next/image';
+import { GoogleMap, LoadScript, Marker } from '@react-google-maps/api';
 
-import mapImg from "@/public/assets/images/map.png";
-import { Title } from "@/components/home/Title";
-import { BreadCrumbs } from "@/components/ui/BreadCrumbs";
-import { useAppSelector } from "@/redux/hooks";
-import { selectHeader } from "@/redux/slices/headerSlice";
-import { baseAPI } from "@/lib/API";
+import mapImg from '@/public/assets/images/map.png';
+import { Title } from '@/components/home/Title';
+import { BreadCrumbs } from '@/components/ui/BreadCrumbs';
+import { useAppSelector } from '@/redux/hooks';
+import { selectHeader } from '@/redux/slices/headerSlice';
+import { baseAPI } from '@/lib/API';
 
 const Contacts = () => {
   const [contactsData, setContactsData] = useState<any>();
@@ -59,14 +59,13 @@ const Contacts = () => {
           </div>
         </div>
       </div>
-      <div className="relative w-full google-map">
+      <div className="relative w-full h-[728px] google-map">
         <iframe
           src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3148.67827952586!2d58.29659607507902!3d37.8912058554459!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3f7003944259cb1d%3A0xafc893357e4b0d2!2z0KLQvtGA0LPQvtCy0L4t0L_RgNC-0LzRi9GI0LvQtdC90L3QsNGPINC_0LDQu9Cw0YLQsCDQotGD0YDQutC80LXQvdC40YHRgtCw0L3QsA!5e0!3m2!1sru!2s!4v1713164734635!5m2!1sru!2s"
           className="absolute inset-0 w-full h-full"
           style={{ border: 0 }}
           allowFullScreen
-          loading="lazy"
-        ></iframe>
+          loading="lazy"></iframe>
       </div>
       <div className="container section-mb">{/* <ContactsSec /> */}</div>
     </div>
