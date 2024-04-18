@@ -1,24 +1,24 @@
-"use client";
+'use client';
 
-import React, { useEffect, useState } from "react";
-import { v4 } from "uuid";
+import React, { useEffect, useState } from 'react';
+import { v4 } from 'uuid';
 
-import { useAppDispatch, useAppSelector } from "@/redux/hooks";
+import { useAppDispatch, useAppSelector } from '@/redux/hooks';
 
-import { Radio } from "../ui/Radio";
-import { selectFaq, setFaqTitle } from "@/redux/slices/faqSlice";
-import { Title } from "../home/Title";
-import { baseAPI } from "@/lib/API";
-import { selectHeader } from "@/redux/slices/headerSlice";
-import { FaqDataType, RadioDataType } from "@/lib/types/FaqData.type";
-import { Select } from "./Select";
-import { BreadCrumbs } from "../ui/BreadCrumbs";
-import { AnimatePresence } from "framer-motion";
+import { Radio } from '../ui/Radio';
+import { selectFaq, setFaqTitle } from '@/redux/slices/faqSlice';
+import { Title } from '../home/Title';
+import { baseAPI } from '@/lib/API';
+import { selectHeader } from '@/redux/slices/headerSlice';
+import { FaqDataType, RadioDataType } from '@/lib/types/FaqData.type';
+import { Select } from './Select';
+import { BreadCrumbs } from '../ui/BreadCrumbs';
+import { AnimatePresence } from 'framer-motion';
 
 export const radio = [
-  { name: "Все", id: "all" },
-  { name: "Посетителям", id: "visitors" },
-  { name: "Участникам", id: "members" },
+  { name: 'Все', id: 'all' },
+  { name: 'Посетителям', id: 'visitors' },
+  { name: 'Участникам', id: 'members' },
 ];
 
 export const FaqSec = () => {
@@ -31,7 +31,7 @@ export const FaqSec = () => {
   const fetchFaqRadio = async () => {
     try {
       const res = await fetch(
-        `${baseAPI}faq-user-groups?X-Localization=${activeLang.localization}&`
+        `${baseAPI}faq-user-groups?X-Localization=${activeLang.localization}&`,
       );
 
       const data = await res.json();
@@ -46,8 +46,8 @@ export const FaqSec = () => {
     try {
       const res = await fetch(
         `${baseAPI}faq-headers?X-Localization=${activeLang.localization}${
-          currentRadio !== 0 ? `&faq_user_group_id=${currentRadio}` : ""
-        }`
+          currentRadio !== 0 ? `&faq_user_group_id=${currentRadio}` : ''
+        }`,
       );
 
       const data = await res.json();
@@ -86,15 +86,13 @@ export const FaqSec = () => {
       <BreadCrumbs second="FAQ" />
       <Title text="«Вопросы-ответы»" />
       <div className="flex items-center sm:mt-6 mt-10 sm:gap-[20px] gap-10 mb-[48px]">
-        <AnimatePresence>
-          <Radio
-            nofilter
-            id={currentRadio}
-            active={currentRadio === 0}
-            changeRadio={changeRadio}
-            text={"Все"}
-          />
-        </AnimatePresence>
+        <Radio
+          nofilter
+          id={currentRadio}
+          active={currentRadio === 0}
+          changeRadio={changeRadio}
+          text={'Все'}
+        />
         {radioData?.data.map((item) => (
           <div key={v4()}>
             <Radio
