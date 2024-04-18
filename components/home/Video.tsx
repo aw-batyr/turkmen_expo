@@ -1,10 +1,10 @@
-'use client';
+"use client";
 
-import Image from 'next/image';
-import { useState } from 'react';
+import Image from "next/image";
+import { useState } from "react";
 
-import vid from '@/public/assets/images/video.png';
-import clsx from 'clsx';
+import clsx from "clsx";
+import vid from "@/public/assets/images/video.png";
 
 export const Video = () => {
   const [loading, setLoading] = useState(true);
@@ -13,20 +13,17 @@ export const Video = () => {
 
   return (
     <div className="relative">
-      {loading && (
-        <Image
-          src={vid}
-          alt="video"
-          className="absolute top-0 bottom-0 w-full h-[565px] object-cover mx-auto"
-          onLoad={() => setLoading(false)}
-        />
-      )}
       <video
-        className={clsx('w-full h-[565px] object-cover mx-auto', {})}
+        className={clsx(
+          "w-full lg:h-[565px] sm:h-[375px] h-[250px] object-cover mx-auto",
+          {}
+        )}
         autoPlay
+        loop
+        muted
+        poster={"/assets/images/video.png"}
         src="/assets/video.mp4"
-        onLoad={() => setLoading(false)}
-        onLoadedData={() => setLoading(false)}></video>
+      ></video>
     </div>
   );
 };
