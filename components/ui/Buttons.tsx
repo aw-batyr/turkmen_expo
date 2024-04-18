@@ -37,7 +37,10 @@ interface BorderProps {
 export const BorderBtn = ({ onEventBtn, text, mt, px }: BorderProps) => {
   return (
     <button
-      className={`mt-[${mt} border-btn py-[17px] ${px ? 'px-[43px]' : 'px-[17px]'}`}
+      className={clsx(`mt-[${mt}] border-btn py-[17px]`, {
+        'px-[43px]': px,
+        'px-[17px]': !px,
+      })}
       onClick={onEventBtn}>
       {text}
     </button>
