@@ -1,7 +1,7 @@
 'use client';
 
 import Link from 'next/link';
-import Image from 'next/image';
+import Image, { StaticImageData } from 'next/image';
 import { useEffect, useRef, useState } from 'react';
 import { v4 } from 'uuid';
 import { motion } from 'framer-motion';
@@ -21,6 +21,13 @@ import {
 } from '@/redux/slices/burgerSlice';
 import { selectHeader, setActiveLang } from '@/redux/slices/headerSlice';
 import clsx from 'clsx';
+import { lang } from './LangMenu';
+
+interface flagTypes {
+  name?: string;
+  flag?: StaticImageData;
+  id: string;
+}
 
 export const flags = [
   { name: 'Tm', flag: tm, id: 'tm' },
@@ -31,7 +38,7 @@ export const flags = [
 export const BurgerMenu = () => {
   const dispatch = useAppDispatch();
   const { burgerDrop, footerDrop } = useAppSelector(selectBurger);
-  const { showInput } = useAppSelector(selectHeader);
+  const { showInput, activeLang } = useAppSelector(selectHeader);
   const burgerRef = useRef<HTMLDivElement>(null);
 
   const [headerDrop, setHeaderDrop] = useState(false);
@@ -60,7 +67,7 @@ export const BurgerMenu = () => {
     };
   }, []);
 
-  console.log(burgerRef);
+  console.log(activeLang);
 
   return (
     <motion.div
@@ -154,13 +161,20 @@ export const BurgerMenu = () => {
       </div>
 
       <div className="flex mx-auto items-center gap-10 mb-[60px]">
-        {flags.map((item) => (
+        {lang.map((item) => (
           <div
-            // onClick={() => dispatch(setActiveLang())}
+            onClick={() => dispatch(setActiveLang(item))}
             key={v4()}
             className="flex items-center gap-[10px] cursor-pointer">
-            <p className="leading-[140%]">{item.name}</p>
-            <Image src={item.flag} alt="флаг" />
+            <p className="leading-[140%]">{item.title}</p>
+            <Image
+              src={
+                (item.localization === 'ru' && ru) ||
+                (item.localization === 'en' && en) ||
+                (item.localization === 'tm' && tm)
+              }
+              alt="флаг"
+            />
           </div>
         ))}
       </div>
