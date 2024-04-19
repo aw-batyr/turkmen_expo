@@ -12,6 +12,8 @@ import { selectInput, setInputStatus } from '@/redux/slices/inputSlice';
 import { v4 } from 'uuid';
 import { selectHeader, setShowInput } from '@/redux/slices/headerSlice';
 import { easeOut } from 'framer-motion/dom';
+import clsx from 'clsx';
+import { selectBurger } from '@/redux/slices/burgerSlice';
 
 export const inputRadio = [
   { name: 'Везде', id: 'all' },
@@ -35,6 +37,7 @@ export const Input = ({ mob = false }: { mob?: boolean }) => {
 
   const dispatch = useAppDispatch();
   const { inputStatus } = useAppSelector(selectInput);
+  const { burgerMenu } = useAppSelector(selectBurger);
 
   const setStatus = (name: string) => {
     dispatch(setInputStatus(name));
@@ -55,9 +58,11 @@ export const Input = ({ mob = false }: { mob?: boolean }) => {
         duration: 0.3,
         ease: easeOut,
       }}
-      className={`${
-        mob ? 'fixed top-[74px] bottom-0' : 'absolute bottom-0'
-      } left-0 w-full min-h-svh z-[1000] overflow-y-auto bg-blueBg`}>
+      className={clsx('left-0 w-full min-h-svh z-[1000] overflow-y-auto bg-blueBg', {
+        'fixed top-[74px] bottom-0': mob,
+        'absolute bottom-0': !mob,
+        hidden: burgerMenu,
+      })}>
       <div className="container">
         <div className="w-full flex justify-end mt-[40px]">
           <Image

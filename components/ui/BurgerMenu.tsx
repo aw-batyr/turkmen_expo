@@ -2,7 +2,7 @@
 
 import Link from 'next/link';
 import Image from 'next/image';
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { v4 } from 'uuid';
 import { motion } from 'framer-motion';
 import ru from '@/public/assets/icons/header/ru.svg';
@@ -19,6 +19,8 @@ import {
   setBurgerMenu,
   setFooterDrop,
 } from '@/redux/slices/burgerSlice';
+import { selectHeader, setActiveLang } from '@/redux/slices/headerSlice';
+import clsx from 'clsx';
 
 export const flags = [
   { name: 'Tm', flag: tm, id: 'tm' },
@@ -29,6 +31,8 @@ export const flags = [
 export const BurgerMenu = () => {
   const dispatch = useAppDispatch();
   const { burgerDrop, footerDrop } = useAppSelector(selectBurger);
+  const { showInput } = useAppSelector(selectHeader);
+  const burgerRef = useRef<HTMLDivElement>(null);
 
   const [headerDrop, setHeaderDrop] = useState(false);
   const [bottom, setBottom] = useState(false);
@@ -56,8 +60,11 @@ export const BurgerMenu = () => {
     };
   }, []);
 
+  console.log(burgerRef);
+
   return (
     <motion.div
+      ref={burgerRef}
       initial={{ x: '100%' }}
       animate={{ x: 0 }}
       transition={{
@@ -67,7 +74,12 @@ export const BurgerMenu = () => {
       exit={{
         x: '100%',
       }}
-      className="bg-green overflow-auto fixed w-full z-[900] top-[74px] bottom-0 left-0 min-h-[100vh] h-full px-4 py-10 flex flex-col gap-10 overflow-y-auto">
+      className={clsx(
+        'bg-green overflow-auto fixed w-full z-[900] top-[74px] bottom-0 left-0 min-h-[100vh] h-full px-4 py-10 flex flex-col gap-10 overflow-y-auto',
+        {
+          hidden: showInput,
+        },
+      )}>
       <div className="flex flex-col gap-5">
         {burgerMenuData
           .filter((obj) => obj.first)
@@ -143,7 +155,10 @@ export const BurgerMenu = () => {
 
       <div className="flex mx-auto items-center gap-10 mb-[60px]">
         {flags.map((item) => (
-          <div key={v4()} className="flex items-center gap-[10px] cursor-pointer">
+          <div
+            // onClick={() => dispatch(setActiveLang())}
+            key={v4()}
+            className="flex items-center gap-[10px] cursor-pointer">
             <p className="leading-[140%]">{item.name}</p>
             <Image src={item.flag} alt="флаг" />
           </div>
