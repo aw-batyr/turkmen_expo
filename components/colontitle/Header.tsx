@@ -58,7 +58,12 @@ export const Header = () => {
         />
         <AnimatePresence>{showInput && <Input mob />}</AnimatePresence>
 
-        <Link onClick={() => dispatch(setBurgerMenu(false))} href={'/'}>
+        <Link
+          onClick={() => {
+            dispatch(setBurgerMenu(false));
+            dispatch(setShowInput(false));
+          }}
+          href={'/'}>
           <Image src={logo} height={24} width={160} alt="лого" className="cursor-pointer" />
         </Link>
 
