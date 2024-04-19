@@ -4,7 +4,7 @@ export interface FaqDataType {
 
 export interface Datum {
   header: string;
-  faq_items: FAQItem;
+  faq_items: FAQItem[];
 }
 
 export interface FAQItem {

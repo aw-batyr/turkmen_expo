@@ -43,7 +43,7 @@ export const Header = () => {
 
       <header
         className={clsx(
-          'bg-bgWhite tab:hidden flex items-center justify-between px-4 py-6 h-[80px] sticky z-[10000]',
+          'bg-bgWhite tab:hidden flex items-center justify-between px-4 py-6 h-[80px] sticky z-[2000]',
           {
             'fixed w-full top-0': burgerMenu,
           },

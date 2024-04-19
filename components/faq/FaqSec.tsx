@@ -50,7 +50,7 @@ export const FaqSec = () => {
         }`,
       );
 
-      const data = await res.json();
+      const data: FaqDataType = await res.json();
 
       setFaqData(data);
     } catch (error) {
@@ -61,7 +61,6 @@ export const FaqSec = () => {
   useEffect(() => {
     fetchFaq();
     fetchFaqRadio();
-    setOpenTitles([]);
   }, [currentRadio, activeLang]);
 
   const dispatch = useAppDispatch();
@@ -71,15 +70,7 @@ export const FaqSec = () => {
     setCurrentRadio(id);
   };
 
-  const [openTitles, setOpenTitles] = useState<string[]>([]);
-
-  const onTitle = (name: string) => {
-    if (openTitles.includes(name)) {
-      setOpenTitles(openTitles.filter((item) => item !== name));
-    } else {
-      setOpenTitles((prev) => [...prev, name]);
-    }
-  };
+  console.log('faqSec');
 
   return (
     <div className="container flex flex-col items-start pt-[20px] section-mb">
@@ -93,26 +84,22 @@ export const FaqSec = () => {
           changeRadio={changeRadio}
           text={'Все'}
         />
-        {radioData?.data.map((item) => (
-          <div key={v4()}>
-            <Radio
-              id={item.id}
-              active={currentRadio === item.id}
-              changeRadio={changeRadio}
-              text={item.name}
-            />
-          </div>
-        ))}
+        {radioData
+          ? radioData.data.map((item) => (
+              <div key={v4()}>
+                <Radio
+                  id={item.id}
+                  active={currentRadio === item.id}
+                  changeRadio={changeRadio}
+                  text={item.name}
+                />
+              </div>
+            ))
+          : null}
       </div>
       {faqData
         ? faqData.data.map((obj) => (
-            <Select
-              key={v4()}
-              {...obj}
-              faqItems={obj.faq_items}
-              openTitles={openTitles}
-              onTitle={onTitle}
-            />
+            <Select key={v4()} faqItems={obj.faq_items} header={obj.header} />
           ))
         : null}
     </div>

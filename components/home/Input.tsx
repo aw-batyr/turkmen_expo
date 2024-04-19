@@ -49,7 +49,7 @@ export const Input = ({ mob = false }: { mob?: boolean }) => {
         y: '-100%',
       }}
       animate={{
-        y: '0',
+        y: 0,
       }}
       exit={{
         y: '-100%',
