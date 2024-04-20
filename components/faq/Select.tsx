@@ -60,11 +60,11 @@ export const Select = ({ header, faqItems }: IProps) => {
           {openTitles.includes(header || '') &&
             faqItems.map((item) => (
               <motion.div
-                initial={{ y: '-30px' }}
-                animate={{ y: '0px' }}
-                exit={{ y: '-30px' }}
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
                 key={v4()}
-                className="text-gray4 sm:px-[40px] px-0 first-of-type:pt-[30px] last-of-type:pb-[30px] flex flex-col items-start gap-y-[16px] leading-[1.5]">
+                className="text-gray4 sm:px-[40px] px-0 first-of-type:pt-[30px] last-of-type:pb-[30px] flex flex-col items-start leading-[1.5]">
                 <AnimatePresence>
                   <PlusDrop answer={item.answer} question={item.question} />
                 </AnimatePresence>
