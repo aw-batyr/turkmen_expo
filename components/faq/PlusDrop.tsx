@@ -30,18 +30,16 @@ export const PlusDrop = ({ question, answer }: Props) => {
   };
 
   return (
-    <>
+    <div className="w-full">
       <div
         onClick={() => dispatch(setFaqInfo(''))}
         className="flex items-center gap-x-[10px] cursor-pointer">
-        <motion.div>
-          <Image
-            src={openItems.includes(question || '') ? minus : add}
-            width={20}
-            height={20}
-            alt="button"
-          />
-        </motion.div>
+        <Image
+          src={openItems.includes(question || '') ? minus : add}
+          width={20}
+          height={20}
+          alt="button"
+        />
         <h4
           onClick={() => {
             question && onText(question);
@@ -53,12 +51,16 @@ export const PlusDrop = ({ question, answer }: Props) => {
 
       <div className="md:ml-[30px] ml-0">
         {openItems.includes(question || '') && (
-          <div>
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="mt-4">
             <p>{answer}</p>
-          </div>
+          </motion.div>
         )}
       </div>
-    </>
+    </div>
   );
 };
 
