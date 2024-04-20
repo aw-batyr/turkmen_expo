@@ -3,17 +3,15 @@
 import React, { useEffect, useState } from 'react';
 import { v4 } from 'uuid';
 
-import { useAppDispatch, useAppSelector } from '@/redux/hooks';
+import { useAppSelector } from '@/redux/hooks';
 
 import { Radio } from '../ui/Radio';
-import { selectFaq, setFaqTitle } from '@/redux/slices/faqSlice';
 import { Title } from '../home/Title';
 import { baseAPI } from '@/lib/API';
 import { selectHeader } from '@/redux/slices/headerSlice';
 import { FaqDataType, RadioDataType } from '@/lib/types/FaqData.type';
 import { Select } from './Select';
 import { BreadCrumbs } from '../ui/BreadCrumbs';
-import { AnimatePresence } from 'framer-motion';
 
 export const radio = [
   { name: 'Все', id: 'all' },
@@ -62,9 +60,6 @@ export const FaqSec = () => {
     fetchFaq();
     fetchFaqRadio();
   }, [currentRadio, activeLang]);
-
-  const dispatch = useAppDispatch();
-  const { faqTitle } = useAppSelector(selectFaq);
 
   const changeRadio = (id: number) => {
     setCurrentRadio(id);
