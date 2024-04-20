@@ -1,18 +1,18 @@
-"use client";
-import React from "react";
-import Image from "next/image";
+'use client';
+import React from 'react';
+import Image from 'next/image';
 
-import { Title } from "@/components/home/Title";
-import { BorderBtn } from "@/components/ui/Buttons";
+import { Title } from '@/components/home/Title';
+import { BorderBtn } from '@/components/ui/Buttons';
 
-import message from "@/public/assets/icons/news/message.svg";
-import img from "@/public/assets/images/news/1.png";
-import { useAppSelector } from "@/redux/hooks";
-import { selectHeader } from "@/redux/slices/headerSlice";
-import { baseAPI } from "@/lib/API";
-import { NewsPageType } from "@/lib/types/NewsPage.type";
-import Link from "next/link";
-import { BreadCrumbs } from "@/components/ui/BreadCrumbs";
+import message from '@/public/assets/icons/news/message.svg';
+import img from '@/public/assets/images/news/1.png';
+import { useAppSelector } from '@/redux/hooks';
+import { selectHeader } from '@/redux/slices/headerSlice';
+import { baseAPI } from '@/lib/API';
+import { NewsPageType } from '@/lib/types/NewsPage.type';
+import Link from 'next/link';
+import { BreadCrumbs } from '@/components/ui/BreadCrumbs';
 
 const page = ({ params }: { params: { id: string } }) => {
   const { activeLang } = useAppSelector(selectHeader);
@@ -21,11 +21,11 @@ const page = ({ params }: { params: { id: string } }) => {
   const fetchData = async () => {
     try {
       const response = await fetch(
-        `${baseAPI}news/${params.id}?X-Localization=${activeLang.localization}`
+        `${baseAPI}news/${params.id}?X-Localization=${activeLang.localization}`,
       );
 
       if (!response.ok) {
-        throw new Error("error");
+        throw new Error('error');
       }
 
       const data = await response.json();
