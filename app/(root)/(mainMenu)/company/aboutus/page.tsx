@@ -4,19 +4,23 @@ import React, { useEffect, useState } from 'react';
 import Image from 'next/image';
 
 import aboutImg from '@/public/assets/images/about.png';
-import { aboutData } from '@/lib/database/about';
 import { v4 } from 'uuid';
 import { LayoutWithSidebar } from '@/components/page/LayoutWithSidebar';
 import { baseAPI } from '@/lib/API';
-import { useAppSelector } from '@/redux/hooks';
+import { useAppDispatch, useAppSelector } from '@/redux/hooks';
 import { selectHeader } from '@/redux/slices/headerSlice';
+import { fetchAbout } from '@/redux/slices/aboutus';
+import { Chela_One } from 'next/font/google';
 
 const About = () => {
+  const dispatch = useAppDispatch();
   const [aboutDatas, setAboutData] = useState<string>();
   const { activeLang } = useAppSelector(selectHeader);
 
+  const aboutData = useAppSelector((state) => state.aboutSlice.aboutData);
   const fecthAboutData = async () => {
     try {
+      dispatch(fetchAbout({ activeLang }));
       const res = await fetch(
         `${baseAPI}settings/about_us?X-Localization=${activeLang.localization}`,
       );
@@ -35,9 +39,9 @@ const About = () => {
 
   useEffect(() => {
     fecthAboutData();
-  }, []);
 
-  console.log(aboutDatas);
+    // dispatch(fetchAbout({ activeLang }));
+  }, [activeLang.localization]);
 
   return (
     <LayoutWithSidebar second="Коротко о нас" title="Коротко о нас">
