@@ -1,42 +1,44 @@
-'use client';
+"use client";
 
-import React, { useEffect, useState } from 'react';
-import Image from 'next/image';
-import { GoogleMap, LoadScript, Marker } from '@react-google-maps/api';
+import React, { useEffect, useState } from "react";
+import Image from "next/image";
+import { GoogleMap, LoadScript, Marker } from "@react-google-maps/api";
 
-import mapImg from '@/public/assets/images/map.png';
-import { Title } from '@/components/home/Title';
-import { BreadCrumbs } from '@/components/ui/BreadCrumbs';
-import { useAppSelector } from '@/redux/hooks';
-import { selectHeader } from '@/redux/slices/headerSlice';
-import { baseAPI } from '@/lib/API';
-import { ContactsSec } from '@/components/contacts/ContactsSec';
+import mapImg from "@/public/assets/images/map.png";
+import { Title } from "@/components/home/Title";
+import { BreadCrumbs } from "@/components/ui/BreadCrumbs";
+import { useAppSelector } from "@/redux/hooks";
+import { selectHeader } from "@/redux/slices/headerSlice";
+import { baseAPI } from "@/lib/API";
+import { ContactsSec } from "@/components/contacts/ContactsSec";
+import { v4 } from "uuid";
+import { ContactsDataType } from "@/lib/types/Contacts.type";
 
 const Contacts = () => {
-  const [contactsData, setContactsData] = useState<any>();
+  const [contactsData, setContactsData] = useState<ContactsDataType>();
   const { activeLang } = useAppSelector(selectHeader);
 
-  // const fecthContactsData = async () => {
-  //   try {
-  //     const res = await fetch(
-  //       `${baseAPI}settings/about_us?X-Localization=${activeLang.localization}`
-  //     );
+  const fecthContactsData = async () => {
+    try {
+      const res = await fetch(
+        `${baseAPI}settings/about_us?X-Localization=${activeLang.localization}`
+      );
 
-  //     if (!res.ok) {
-  //       throw new Error("Error");
-  //     }
+      if (!res.ok) {
+        throw new Error("Error");
+      }
 
-  //     const data = await res.json();
+      const data = await res.json();
 
-  //     setContactsData(data);
-  //   } catch (error) {
-  //     console.error(error);
-  //   }
-  // };
+      setContactsData(data);
+    } catch (error) {
+      console.error(error);
+    }
+  };
 
-  // useEffect(() => {
-  //   fecthContactsData();
-  // }, []);
+  useEffect(() => {
+    fecthContactsData();
+  }, []);
 
   return (
     <div className="bg-blueBg h-full">
@@ -47,18 +49,27 @@ const Contacts = () => {
         <div className="sm:mb-[48px] mb-10">
           <Title text="Контакты" />
         </div>
-        <div className="">
-          <p className="text-[21px] mb-[24px] sm:leading-[100%] sm:font-normal font-semibold leading-[115%]">
-            Адрес:
-          </p>
-          <div className="sm:leading-[1.7] sm:text-[16px] text-[14px] leading-[140%] sm:mb-[48px] mb-10">
-            744000, г. Ашхабад, просп. Битарап Туркменистан, 183 <br />
-            Тел.: <span className="text-green">+99362006200</span>,
-            <span className="text-green"> +993 (12) 45-41-11</span>
-            <br />
-            E-mail: <span className="text-green">info@turkmenexpo.com</span>
-          </div>
-        </div>
+        {contactsData
+          ? contactsData.data.map((item) => (
+              <div
+                className="py-10 sm:py-[30px] border-b-[1px] border-navyBlue5 w-full"
+                key={v4()}
+              >
+                <h4 className="leading-[120%] sm:leading-[100%] text-[16px] sm:text-[21px] mb-6">
+                  {item.header}
+                </h4>
+                <div className="text-gray4 sm:text-bgWhite flex flex-col items-start leading-[150%] text-[14px] sm:text-[16px]">
+                  {item.services.map((service) => (
+                    <>
+                      <p>{service.phone}</p>
+                      <p>{service.email}</p>
+                      <p>{service.web_site}</p>
+                    </>
+                  ))}
+                </div>
+              </div>
+            ))
+          : null}
       </div>
       <div className="relative w-full h-[728px] mb-12 google-map">
         <iframe
@@ -69,9 +80,7 @@ const Contacts = () => {
           loading="lazy"
         />
       </div>
-      <div className="container section-mb">
-        <ContactsSec />
-      </div>
+      <div className="container section-mb">{/* <ContactsSec /> */}</div>
     </div>
   );
 };
