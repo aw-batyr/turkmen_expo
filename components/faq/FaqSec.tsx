@@ -1,22 +1,22 @@
-'use client';
+"use client";
 
-import React, { useEffect, useState } from 'react';
-import { v4 } from 'uuid';
+import React, { useEffect, useState } from "react";
+import { v4 } from "uuid";
 
-import { useAppSelector } from '@/redux/hooks';
+import { useAppSelector } from "@/redux/hooks";
 
-import { Radio } from '../ui/Radio';
-import { Title } from '../home/Title';
-import { baseAPI } from '@/lib/API';
-import { selectHeader } from '@/redux/slices/headerSlice';
-import { FaqDataType, RadioDataType } from '@/lib/types/FaqData.type';
-import { Select } from './Select';
-import { BreadCrumbs } from '../ui/BreadCrumbs';
+import { Radio } from "../ui/Radio";
+import { Title } from "../home/Title";
+import { baseAPI } from "@/lib/API";
+import { selectHeader } from "@/redux/slices/headerSlice";
+import { FaqDataType, RadioDataType } from "@/lib/types/FaqData.type";
+import { Select } from "./Select";
+import { BreadCrumbs } from "../ui/BreadCrumbs";
 
 export const radio = [
-  { name: 'Все', id: 'all' },
-  { name: 'Посетителям', id: 'visitors' },
-  { name: 'Участникам', id: 'members' },
+  { name: "Все", id: "all" },
+  { name: "Посетителям", id: "visitors" },
+  { name: "Участникам", id: "members" },
 ];
 
 export const FaqSec = () => {
@@ -29,7 +29,7 @@ export const FaqSec = () => {
   const fetchFaqRadio = async () => {
     try {
       const res = await fetch(
-        `${baseAPI}faq-user-groups?X-Localization=${activeLang.localization}&`,
+        `${baseAPI}faq-user-groups?X-Localization=${activeLang.localization}&`
       );
 
       const data = await res.json();
@@ -44,8 +44,8 @@ export const FaqSec = () => {
     try {
       const res = await fetch(
         `${baseAPI}faq-headers?X-Localization=${activeLang.localization}${
-          currentRadio !== 0 ? `&faq_user_group_id=${currentRadio}` : ''
-        }`,
+          currentRadio !== 0 ? `&faq_user_group_id=${currentRadio}` : ""
+        }`
       );
 
       const data: FaqDataType = await res.json();
@@ -65,8 +65,6 @@ export const FaqSec = () => {
     setCurrentRadio(id);
   };
 
-  console.log('faqSec');
-
   return (
     <div className="container flex flex-col items-start pt-[20px] section-mb">
       <BreadCrumbs second="FAQ" />
@@ -77,7 +75,7 @@ export const FaqSec = () => {
           id={currentRadio}
           active={currentRadio === 0}
           changeRadio={changeRadio}
-          text={'Все'}
+          text={"Все"}
         />
         {radioData
           ? radioData.data.map((item) => (
