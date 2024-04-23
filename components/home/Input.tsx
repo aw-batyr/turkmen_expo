@@ -1,37 +1,37 @@
-'use client';
-import React, { useEffect } from 'react';
-import Image from 'next/image';
-import { AnimatePresence, easeInOut, motion } from 'framer-motion';
+"use client";
+import React, { useEffect } from "react";
+import Image from "next/image";
+import { AnimatePresence, easeInOut, motion } from "framer-motion";
 
-import { useAppDispatch, useAppSelector } from '@/redux/hooks';
-import close from '@/public/assets/icons/home/close-input.svg';
+import { useAppDispatch, useAppSelector } from "@/redux/hooks";
+import close from "@/public/assets/icons/home/close-input.svg";
 
-import { Radio } from '../bid/InputTypes';
-import { SimpleGreenBtn } from '../ui/Buttons';
-import { selectInput, setInputStatus } from '@/redux/slices/inputSlice';
-import { v4 } from 'uuid';
-import { selectHeader, setShowInput } from '@/redux/slices/headerSlice';
-import { easeOut } from 'framer-motion/dom';
-import clsx from 'clsx';
-import { selectBurger } from '@/redux/slices/burgerSlice';
+import { Radio } from "../bid/InputTypes";
+import { SimpleGreenBtn } from "../ui/Buttons";
+import { selectInput, setInputStatus } from "@/redux/slices/inputSlice";
+import { v4 } from "uuid";
+import { selectHeader, setShowInput } from "@/redux/slices/headerSlice";
+import { easeOut } from "framer-motion/dom";
+import clsx from "clsx";
+import { selectBurger } from "@/redux/slices/burgerSlice";
 
 export const inputRadio = [
-  { name: 'Везде', id: 'all' },
-  { name: 'В событиях', id: 'events' },
-  { name: 'В новостях', id: 'news' },
+  { name: "Везде", id: "all" },
+  { name: "В событиях", id: "events" },
+  { name: "В новостях", id: "news" },
 ];
 
 export const Input = ({ mob = false }: { mob?: boolean }) => {
-  const main = document.querySelector('.main');
-  const wrapper = document.querySelector('.wrapper');
+  const main = document.querySelector(".main");
+  const wrapper = document.querySelector(".wrapper");
 
   useEffect(() => {
-    main?.classList.add('overflow-hidden');
-    wrapper?.classList.add('overflow-hidden');
+    main?.classList.add("overflow-hidden");
+    wrapper?.classList.add("overflow-hidden");
 
     return () => {
-      main?.classList.remove('overflow-hidden');
-      wrapper?.classList.remove('overflow-hidden');
+      main?.classList.remove("overflow-hidden");
+      wrapper?.classList.remove("overflow-hidden");
     };
   }, []);
 
@@ -46,23 +46,27 @@ export const Input = ({ mob = false }: { mob?: boolean }) => {
   return (
     <motion.div
       initial={{
-        y: '-100%',
+        y: "-100%",
       }}
       animate={{
         y: 0,
       }}
       exit={{
-        y: '-100%',
+        y: "-100%",
       }}
       transition={{
         duration: 0.3,
         ease: easeOut,
       }}
-      className={clsx('left-0 w-full min-h-svh z-10 overflow-y-auto bg-blueBg', {
-        'fixed top-[74px] bottom-0': mob,
-        'absolute bottom-0': !mob,
-        hidden: burgerMenu,
-      })}>
+      className={clsx(
+        "left-0 w-full min-h-svh z-20 overflow-y-auto bg-blueBg",
+        {
+          "fixed top-[74px] bottom-0": mob,
+          "absolute bottom-0": !mob,
+          hidden: burgerMenu,
+        }
+      )}
+    >
       <div className="container">
         <div className="w-full flex justify-end mt-[40px]">
           <Image
@@ -72,7 +76,9 @@ export const Input = ({ mob = false }: { mob?: boolean }) => {
             src={close}
           />
         </div>
-        <div className={`flex flex-col mt-[10vw] items-center w-full max-w-[566px] mx-auto`}>
+        <div
+          className={`flex flex-col mt-[10vw] items-center w-full max-w-[566px] mx-auto`}
+        >
           <div className="w-full mb-[24px]">
             <input
               type="search"
@@ -85,13 +91,14 @@ export const Input = ({ mob = false }: { mob?: boolean }) => {
               <div
                 onClick={() => setStatus(item.id)}
                 className="flex cursor-pointer items-center gap-[10px]"
-                key={v4()}>
+                key={v4()}
+              >
                 <Radio fill={inputStatus === item.id} />
                 <p>{item.name}</p>
               </div>
             ))}
           </div>
-          <SimpleGreenBtn text={'Найти'} />
+          <SimpleGreenBtn text={"Найти"} />
         </div>
       </div>
     </motion.div>
