@@ -58,7 +58,7 @@ export const Input = ({ mob = false }: { mob?: boolean }) => {
         duration: 0.3,
         ease: easeOut,
       }}
-      className={clsx('left-0 w-full min-h-svh z-[1000] overflow-y-auto bg-blueBg', {
+      className={clsx('left-0 w-full min-h-svh z-10 overflow-y-auto bg-blueBg', {
         'fixed top-[74px] bottom-0': mob,
         'absolute bottom-0': !mob,
         hidden: burgerMenu,

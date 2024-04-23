@@ -43,7 +43,7 @@ export const Header = () => {
 
       <header
         className={clsx(
-          'bg-bgWhite tab:hidden flex items-center justify-between px-4 py-6 h-[80px] sticky z-[2000]',
+          'bg-bgWhite tab:hidden flex items-center justify-between z-50 px-4 py-6 h-[80px] sticky ',
           {
             'fixed w-full top-0': burgerMenu,
           },
@@ -56,7 +56,6 @@ export const Header = () => {
           className="cursor-pointer"
           onClick={onSearch}
         />
-        <AnimatePresence>{showInput && <Input mob />}</AnimatePresence>
 
         <Link
           onClick={() => {
@@ -78,9 +77,17 @@ export const Header = () => {
         <AnimatePresence>{burgerMenu && <BurgerMenu />}</AnimatePresence>
       </header>
 
+      <AnimatePresence>
+        {showInput && (
+          <div className="absolute w-full top-0 left-0">
+            <Input mob />
+          </div>
+        )}
+      </AnimatePresence>
+
       {/* Desktop */}
 
-      <header className="hidden tab:flex flex-col">
+      <header className="hidden relative z-[3000] tab:flex flex-col">
         <div className="flex items-center bg-darkBlue text-white py-[12px] font-regular text-extraSm">
           <div className="container flex items-center justify-between">
             <p className="text-extraSm">Тел.: +99362006200</p>
@@ -111,7 +118,13 @@ export const Header = () => {
                   onClick={() => dispatch(setShowInput(true))}
                   className="cursor-pointer"
                 />
-                <AnimatePresence>{showInput && <Input />}</AnimatePresence>
+                <AnimatePresence>
+                  {showInput && (
+                    <div className="absolute h-[100vh] w-full z-[2500] top-0 left-0">
+                      <Input />
+                    </div>
+                  )}
+                </AnimatePresence>
               </div>
             </div>
           </div>

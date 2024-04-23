@@ -56,15 +56,15 @@ export const BurgerMenu = () => {
   };
 
   useEffect(() => {
-    main?.classList.add('overflow-hidden');
-    wrapper?.classList.add('overflow-hidden');
+    // main?.classList.add('overflow-hidden');
+    // wrapper?.classList.add('overflow-hidden');
     dispatch(setBurgerDrop(''));
     dispatch(setFooterDrop(''));
 
-    return () => {
-      main?.classList.remove('overflow-hidden');
-      wrapper?.classList.remove('overflow-hidden');
-    };
+    // return () => {
+    //   main?.classList.remove('overflow-hidden');
+    //   wrapper?.classList.remove('overflow-hidden');
+    // };
   }, []);
 
   console.log(activeLang);
