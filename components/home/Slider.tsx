@@ -1,6 +1,6 @@
 'use client';
 
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { v4 } from 'uuid';
@@ -21,6 +21,8 @@ export default () => {
   const [mediumBannersData, setMediumBannersData] = React.useState<SliderTypes>();
   const { activeLang } = useAppSelector(selectHeader);
   const progressCircle = React.useRef<SVGSVGElement>(null);
+
+  const [bannersTotal, setBannersTotal] = useState<number>();
 
   const onAutoplayTimeLeft = (s: SwiperCore, time: number, progress: number) => {
     if (progressCircle.current && progressCircle.current) {
@@ -85,126 +87,122 @@ export default () => {
   return (
     <>
       <div className="hidden min-[1250px]:block">
-        <Swiper
-          modules={[Pagination, Autoplay, Navigation]}
-          slidesPerView={1}
-          pagination={{ type: 'fraction' }}
-          onAutoplayTimeLeft={onAutoplayTimeLeft}
-          // loop
-          speed={1500}
-          autoplay={{ delay: 10000 }}>
-          {bannersData
-            ? bannersData.data.banner_items.map((item) => (
-                <SwiperSlide key={v4()}>
-                  <Link href={''}>
-                    <div className="">
-                      <Image
-                        src={item.image}
-                        alt="Баннер"
-                        width={1920}
-                        height={490}
-                        className="h-[490px] object-cover object-center w-[1920px]"
-                      />
-                    </div>
-                  </Link>
-                </SwiperSlide>
-              ))
-            : null}
+        <div className="relative z-10 h-fit pb-5 md:pb-0">
+          <Swiper
+            modules={[Pagination, Autoplay, Navigation]}
+            slidesPerView={1}
+            pagination={{ type: 'fraction' }}
+            onAutoplayTimeLeft={onAutoplayTimeLeft}
+            // loop
+            speed={1500}
+            autoplay={{ delay: 10000 }}>
+            {bannersData
+              ? bannersData.data.banner_items.map((item) => (
+                  <SwiperSlide key={v4()}>
+                    <Link href={''}>
+                      <div className="">
+                        <Image
+                          src={item.image}
+                          alt="Баннер"
+                          width={1920}
+                          height={490}
+                          className="h-[490px] object-cover object-center w-[1920px]"
+                        />
+                      </div>
+                    </Link>
+                  </SwiperSlide>
+                ))
+              : null}
 
-          <div className="container">
-            <div className="relative swiper-pagination swiper-pagination-horizontal swiper-pagination-fraction">
-              <div
-                className="absolute right-0 bottom-0 autoplay-progress bg-bgWhite rounded-full"
-                slot="container-end">
-                <svg ref={progressCircle}>
-                  <line viewBox="0 0 63 5" x1={0} x2={63}></line>
-                </svg>
+            <div className="container absolute right-0 bottom-[25px] swiper-pagination swiper-pagination-horizontal">
+              <div className="swiper-pagination-fraction items-center justify-end gap-4">
+                <div className="autoplay-progress w-[200px] flex items-center gap-5 bg-bgWhite rounded-full">
+                  <svg ref={progressCircle}>
+                    <line viewBox="0 0 63 5" x1={0} x2={63} />
+                  </svg>
+                </div>
               </div>
             </div>
-          </div>
-        </Swiper>
+          </Swiper>
+        </div>
       </div>
 
       <div className="hidden md:block min-[1250px]:hidden">
-        <Swiper
-          modules={[Pagination, Autoplay, Navigation]}
-          slidesPerView={1}
-          pagination={{ type: 'fraction' }}
-          onAutoplayTimeLeft={onAutoplayTimeLeft}
-          // loop
-          speed={1500}
-          autoplay={{ delay: 10000 }}>
-          {mediumBannersData
-            ? mediumBannersData.data.banner_items.map((item) => (
-                <SwiperSlide key={v4()}>
-                  <Link href={''}>
-                    <div className="">
-                      <Image
-                        src={item.image}
-                        alt="Баннер"
-                        width={1920}
-                        height={490}
-                        className="h-[490px] object-cover object-center w-[1920px]"
-                      />
-                    </div>
-                  </Link>
-                </SwiperSlide>
-              ))
-            : null}
+        <div className="relative z-10 h-fit pb-5 md:pb-0">
+          <Swiper
+            modules={[Pagination, Autoplay, Navigation]}
+            slidesPerView={1}
+            pagination={{ type: 'fraction' }}
+            onAutoplayTimeLeft={onAutoplayTimeLeft}
+            // loop
+            speed={1500}
+            autoplay={{ delay: 10000 }}>
+            {mediumBannersData
+              ? mediumBannersData.data.banner_items.map((item) => (
+                  <SwiperSlide key={v4()}>
+                    <Link href={''}>
+                      <div className="">
+                        <Image
+                          src={item.image}
+                          alt="Баннер"
+                          width={1920}
+                          height={490}
+                          className="h-[490px] object-cover object-center w-[1920px]"
+                        />
+                      </div>
+                    </Link>
+                  </SwiperSlide>
+                ))
+              : null}
 
-          <div className="container">
-            <div className="relative swiper-pagination swiper-pagination-horizontal swiper-pagination-fraction">
-              <div
-                className="absolute right-0 bottom-0 autoplay-progress bg-bgWhite rounded-full"
-                slot="container-end">
+            <div className="container absolute right-0 bottom-[25px] swiper-pagination swiper-pagination-horizontal swiper-pagination-fraction">
+              <div className="absolute right-0 bottom-0 autoplay-progress bg-bgWhite rounded-full">
                 <svg ref={progressCircle}>
                   <line viewBox="0 0 63 5" x1={0} x2={63}></line>
                 </svg>
               </div>
             </div>
-          </div>
-        </Swiper>
+          </Swiper>
+        </div>
       </div>
 
       <div className="block md:hidden">
-        <Swiper
-          modules={[Pagination, Autoplay, Navigation]}
-          slidesPerView={1}
-          pagination={{ type: 'fraction' }}
-          onAutoplayTimeLeft={onAutoplayTimeLeft}
-          // loop
-          speed={1500}
-          autoplay={{ delay: 10000 }}>
-          {smallBannersData
-            ? smallBannersData.data.banner_items.map((item) => (
-                <SwiperSlide key={v4()}>
-                  <Link href={''}>
-                    <div className="">
-                      <Image
-                        src={item.image}
-                        alt="Баннер"
-                        width={1920}
-                        height={490}
-                        className="h-[490px] object-cover object-center w-[1920px]"
-                      />
-                    </div>
-                  </Link>
-                </SwiperSlide>
-              ))
-            : null}
+        <div className="relative z-10 h-fit pb-5 md:pb-0">
+          <Swiper
+            modules={[Pagination, Autoplay, Navigation]}
+            slidesPerView={1}
+            pagination={{ type: 'fraction' }}
+            onAutoplayTimeLeft={onAutoplayTimeLeft}
+            // loop
+            speed={1500}
+            autoplay={{ delay: 10000 }}>
+            {smallBannersData
+              ? smallBannersData.data.banner_items.map((item) => (
+                  <SwiperSlide key={v4()}>
+                    <Link href={''}>
+                      <div className="">
+                        <Image
+                          src={item.image}
+                          alt="Баннер"
+                          width={1920}
+                          height={490}
+                          className="h-[490px] object-cover object-center w-[1920px]"
+                        />
+                      </div>
+                    </Link>
+                  </SwiperSlide>
+                ))
+              : null}
 
-          <div className="container">
-            <div className="relative swiper-pagination swiper-pagination-horizontal swiper-pagination-fraction">
-              <div
-                className="absolute right-0 bottom-0 autoplay-progress bg-bgWhite rounded-full"
-                slot="container-end">
+            <div className="container absolute right-0 bottom-[25px] swiper-pagination swiper-pagination-horizontal swiper-pagination-fraction">
+              <div className="absolute right-0 bottom-0 autoplay-progress bg-bgWhite rounded-full">
                 <svg ref={progressCircle}>
                   <line viewBox="0 0 63 5" x1={0} x2={63}></line>
                 </svg>
               </div>
             </div>
-          </div>
-        </Swiper>
+          </Swiper>
+        </div>
       </div>
     </>
   );

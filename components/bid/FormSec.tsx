@@ -1,32 +1,25 @@
-"use client";
+'use client';
 
-import React from "react";
-import { z } from "zod";
-import { v4 } from "uuid";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { useForm, SubmitHandler, FormProvider } from "react-hook-form";
-import { motion } from "framer-motion";
-import { useAppSelector, useAppDispatch } from "@/redux/hooks";
+import React from 'react';
+import { z } from 'zod';
+import { v4 } from 'uuid';
+import { zodResolver } from '@hookform/resolvers/zod';
+import { useForm, SubmitHandler, FormProvider } from 'react-hook-form';
+import { motion } from 'framer-motion';
+import { useAppSelector, useAppDispatch } from '@/redux/hooks';
 
-import { BidDrop } from "../ui/Dropdown";
-import {
-  selectBid,
-  setBidStatus,
-  setRadioStatus,
-} from "@/redux/slices/bidSlice";
-import { BidRadio } from "./BidRadio";
+import { BidDrop } from '../ui/Dropdown';
+import { selectBid, setBidStatus, setRadioStatus } from '@/redux/slices/bidSlice';
+import { BidRadio } from './BidRadio';
 
 export const formRadio = [
-  { name: "Оборудованная", id: "equipped" },
-  { name: "Необорудованная", id: "unequipped" },
+  { name: 'Оборудованная', id: 'equipped' },
+  { name: 'Необорудованная', id: 'unequipped' },
 ];
 
-export const phoneMail = ["телефон", "E-mail"];
+export const phoneMail = ['телефон', 'E-mail'];
 
-export const exhibitions = [
-  "ВЫСТАВКА-ЯРМАРКА «ВСЕ ДЛЯ ДЕТЕЙ»",
-  "ВЫСТАВКА-ЯРМАРКА «ВСЕ ДЛЯ ДЕТЕЙ»",
-];
+export const exhibitions = ['ВЫСТАВКА-ЯРМАРКА «ВСЕ ДЛЯ ДЕТЕЙ»', 'ВЫСТАВКА-ЯРМАРКА «ВСЕ ДЛЯ ДЕТЕЙ»'];
 
 const schema = z.object({
   company: z.string().nonempty(),
@@ -66,8 +59,7 @@ export const FormSec = () => {
     <FormProvider {...methods}>
       <form
         className="w-full max-w-[538px] tab:mx-0 mx-auto"
-        onSubmit={methods.handleSubmit(submitData)}
-      >
+        onSubmit={methods.handleSubmit(submitData)}>
         <div className="flex flex-col w-full">
           <BidDrop
             name="Название выставки"
@@ -81,24 +73,14 @@ export const FormSec = () => {
             Название компании
             <span className="text-lightRed">*</span>
           </label>
-          <input
-            {...methods.register("company")}
-            type="text"
-            id="name"
-            className="bid-input"
-          />
+          <input {...methods.register('company')} type="text" id="name" className="bid-input" />
         </div>
         <div className="flex flex-col items-start md:gap-6 gap-5">
           <div className="flex flex-col w-full">
             <label htmlFor="siteUrl" className="mb-[15px] leading-[130%]">
               Сайт
             </label>
-            <input
-              {...methods.register("site")}
-              type="text"
-              id="siteUrl"
-              className="bid-input"
-            />
+            <input {...methods.register('site')} type="text" id="siteUrl" className="bid-input" />
           </div>
 
           <div className="flex flex-col w-full">
@@ -106,20 +88,14 @@ export const FormSec = () => {
               Телефон
               <span className="text-lightRed">*</span>
             </label>
-            <input
-              {...methods.register("phone")}
-              type="text"
-              id="phone"
-              className="bid-input"
-            />
+            <input {...methods.register('phone')} type="text" id="phone" className="bid-input" />
           </div>
 
           <div className="flex flex-col w-full">
             <label
-              {...methods.register("email")}
+              {...methods.register('email')}
               htmlFor="email"
-              className="mb-[15px] leading-[130%]"
-            >
+              className="mb-[15px] leading-[130%]">
               E-mail
               <span className="text-lightRed">*</span>
             </label>
@@ -130,12 +106,7 @@ export const FormSec = () => {
             <label htmlFor="space" className="mb-[15px] leading-[130%]">
               Требуемая площадь, м2
             </label>
-            <input
-              {...methods.register("space")}
-              type="text"
-              id="space"
-              className="bid-input"
-            />
+            <input {...methods.register('space')} type="text" id="space" className="bid-input" />
           </div>
 
           <div className="flex flex-col w-full">
@@ -143,7 +114,7 @@ export const FormSec = () => {
               Демонстрируемая продукция / оборудование / услуги
             </label>
             <textarea
-              {...methods.register("area")}
+              {...methods.register('area')}
               className="bid-input"
               name="area"
               id="area"
@@ -157,19 +128,11 @@ export const FormSec = () => {
               Контактное лицо (Ф.И.О)
               <span className="text-lightRed">*</span>
             </label>
-            <input
-              {...methods.register("bio")}
-              type="text"
-              id="person"
-              className="bid-input"
-            />
+            <input {...methods.register('bio')} type="text" id="person" className="bid-input" />
           </div>
 
           <div className="w-full hidden md:block">
-            <BidDrop
-              name="Предпочтительный способ ответа"
-              dropInfo={phoneMail}
-            />
+            <BidDrop name="Предпочтительный способ ответа" dropInfo={phoneMail} />
           </div>
 
           <div className="flex flex-col gap-4 md:mb-0 mb-5">
@@ -180,12 +143,7 @@ export const FormSec = () => {
             </div>
             <div className="flex flex-col gap-4 mb-4 md:gap-5">
               {formRadio.map((item) => (
-                <BidRadio
-                  key={v4()}
-                  text={item.name}
-                  id={item.id}
-                  onRadio={changeRadio}
-                />
+                <BidRadio key={v4()} text={item.name} id={item.id} onRadio={changeRadio} />
               ))}
             </div>
           </div>
@@ -193,11 +151,10 @@ export const FormSec = () => {
           <div>
             <div
               onClick={() => dispatch(setBidStatus(!bidStatus))}
-              className="flex items-center gap-[10px]"
-            >
+              className="flex items-center gap-[10px]">
               <label className="cursor-pointer flex gap-[10px] leading-[125%] text-extraSm">
-                <input
-                  {...methods.register("checkbox")}
+                <motion.input
+                  {...methods.register('checkbox')}
                   type="checkbox"
                   name="agree"
                   className="input-check"
@@ -210,8 +167,7 @@ export const FormSec = () => {
 
           <button
             type="submit"
-            className="py-[17px] w-full bg-green hover:bg-lightGreen transition-all rounded-[2px]"
-          >
+            className="py-[17px] w-full bg-green hover:bg-lightGreen transition-all rounded-[2px]">
             Отправить
           </button>
         </div>
