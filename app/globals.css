@@ -18,7 +18,7 @@ body {
 }
 
 .main-abs-bg::before {
-  content: '';
+  content: "";
   position: absolute;
   left: 100%;
   width: 100vw;
@@ -57,8 +57,8 @@ body {
 }
 
 .input-check:checked + .span-check::before {
-  content: '';
-  background-image: url('../public/assets/icons/check.svg');
+  content: "";
+  background-image: url("../public/assets/icons/check.svg");
   background-size: 8px 8px;
   position: absolute;
   left: 50%;
@@ -87,7 +87,7 @@ body {
 }
 
 .radio-input:checked + .radio-span::before {
-  content: '';
+  content: "";
   position: absolute;
   left: 50%;
   top: 50%;
@@ -213,12 +213,16 @@ p img {
   }
 
   .swiper-horizontal > .swiper-pagination-bullets .swiper-pagination-bullet,
-  .swiper-pagination-horizontal.swiper-pagination-bullets .swiper-pagination-bullet {
+  .swiper-pagination-horizontal.swiper-pagination-bullets
+    .swiper-pagination-bullet {
     @apply w-[6px] h-[6px] bg-gray;
   }
 
-  .swiper-horizontal > .swiper-pagination-bullets .swiper-pagination-bullet-active,
-  .swiper-pagination-horizontal.swiper-pagination-bullets .swiper-pagination-bullet-active {
+  .swiper-horizontal
+    > .swiper-pagination-bullets
+    .swiper-pagination-bullet-active,
+  .swiper-pagination-horizontal.swiper-pagination-bullets
+    .swiper-pagination-bullet-active {
     @apply h-3 w-3 bg-green translate-y-[1.7px];
   }
 
@@ -230,12 +234,16 @@ p img {
     @apply w-[1000px] p-0 mb-6 h-full !important;
   }
 
-  .select-inner h3 {
-    @apply text-[18px] mb-3 font-semibold leading-[150%];
+  .select-inner h3:not(:first-child) {
+    @apply text-[18px] mb-2 mt-5 font-semibold leading-[150%];
+  }
+
+  .select-inner h3:first-child {
+    @apply text-[18px] font-semibold mb-2 leading-[150%];
   }
 
   .select-inner p {
-    @apply mb-6 leading-[150%];
+    @apply leading-[150%] mb-4;
   }
 
   .select-inner ul {
@@ -244,10 +252,6 @@ p img {
 
   .select-inner li {
     @apply relative list-disc mb-1;
-  }
-
-  .select-inner ul li u {
-    @apply mt-6;
   }
 
   .select-inner ul li em {
@@ -267,7 +271,7 @@ p img {
   }
 
   .select-inner u {
-    @apply block mb-3;
+    @apply block mb-3 mt-5;
   }
 
   .event-topic p {
