@@ -74,14 +74,36 @@ export const Header = () => {
           />
         </Link>
 
-        <Image
-          src={burger}
-          height={32}
-          width={32}
-          alt="меню"
-          className="cursor-pointer"
+        <div
           onClick={toggleMenu}
-        />
+          className="cursor-pointer h-8 w-8 flex flex-col p-1 justify-between items-center"
+        >
+          <span
+            className={clsx(
+              "block transition-all rounded-full bg-green w-6 h-[2px]",
+              {
+                "rotate-[45deg] translate-y-[9px]": burgerMenu,
+              }
+            )}
+          />
+          <span
+            className={clsx(
+              "block transition-all rounded-full bg-green w-6 h-[2px]",
+              {
+                "opacity-0 hidden": burgerMenu,
+              }
+            )}
+          />
+          <span
+            className={clsx(
+              "block transition-all duration-300 rounded-full bg-green w-6 h-[2px]",
+              {
+                "rotate-[-45deg] translate-y-[-10px]": burgerMenu,
+              }
+            )}
+          />
+        </div>
+
         <AnimatePresence>{burgerMenu && <BurgerMenu />}</AnimatePresence>
       </header>
 
