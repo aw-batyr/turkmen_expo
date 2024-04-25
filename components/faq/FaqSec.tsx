@@ -106,7 +106,13 @@ export const FaqSec = () => {
             ))
           : null}
       </div>
-      {data ? data.map((obj) => <Select {...obj} key={v4()} />) : null}
+      {data
+        ? data.map((obj) => (
+            // <AnimatePresence>
+            <Select {...obj} key={v4()} />
+            // </AnimatePresence>
+          ))
+        : null}
     </div>
   );
 };
