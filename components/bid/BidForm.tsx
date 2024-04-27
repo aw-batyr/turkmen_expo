@@ -1,53 +1,69 @@
-import React from "react";
+import React, { useEffect } from "react";
+import { useFormContext } from "react-hook-form";
 
-interface Props {
-  text: string;
-  name: "title" | "sitename" | "person" | "phone" | "email" | "space";
-  star?: boolean;
+interface IProps {
+  label: string;
+  name:
+    | "event_id"
+    | "web_site"
+    | "contact_person"
+    | "phone"
+    | "email"
+    | "what_demonstrated"
+    | "area";
+  required?: boolean;
   type?: string;
-  area?: boolean;
+  textArea?: boolean;
+  htmlfor:
+    | "event_id"
+    | "web_site"
+    | "contact_person"
+    | "phone"
+    | "email"
+    | "what_demonstrated"
+    | "required_area";
 }
 
-type FormProps = {
-  title: string;
-  sitename: string;
-  phone: string;
-  email: string;
-  space: string;
-  person: string;
-};
-
 export const BidForm = ({
-  text = "",
-  star = false,
+  label,
+  required = false,
   type = "text",
-  name = "title",
-  area = false,
-}: Props) => {
+  textArea = false,
+  name,
+  htmlfor,
+}: IProps) => {
+  const { setValue } = useFormContext();
+
+  useEffect(() => {
+    setValue(name, name);
+  }, []);
+
   return (
-    <div className="">
-      {area ? (
-        <>
-          <label htmlFor="area">{text}</label>
+    <div>
+      {textArea ? (
+        <div className="flex w-full flex-col gap-[15px] items-start">
+          <label htmlFor={htmlfor}>{label}</label>
           <textarea
-            className="bid-input"
-            name="Демонстрируемая продукция / оборудование / услуги"
-            id="area"
+            className="bid-input w-full"
+            name={name}
             cols={30}
             rows={5}
           />
-        </>
+        </div>
       ) : (
-        <div className="flex flex-col items-start">
-          <label htmlFor="name" className="mb-[15px]">
-            {text}
-            {star && <span className="text-lightRed">*</span>}
+        <div className="flex w-full gap-[15px] flex-col items-start">
+          <label htmlFor={htmlfor}>
+            {label}
+            {required && <span className="text-lightRed">*</span>}
           </label>
           <input
-            defaultValue={"test"}
+            onChange={(data) => {
+              if (data) {
+                setValue(name, data);
+              }
+            }}
             type={type}
-            id="name"
-            className="bid-input"
+            className="bid-input w-full"
           />
         </div>
       )}

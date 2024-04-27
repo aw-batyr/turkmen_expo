@@ -243,7 +243,7 @@ p img {
   }
 
   .select-inner p {
-    @apply leading-[150%] mb-4;
+    @apply leading-[150%] mb-6;
   }
 
   .select-inner ul {

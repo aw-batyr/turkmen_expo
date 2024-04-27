@@ -26,7 +26,7 @@ export const BidDrop = ({ dropInfo, value, name, required = false }: Props) => {
   const onOption = (name: string) => {
     setActive(false);
     setTitle(name);
-    setValue(dropInfo === exhibitions ? "event" : "contact", name);
+    setValue(dropInfo === exhibitions ? "event_id" : "response_method", name);
   };
 
   React.useEffect(() => {
@@ -42,8 +42,8 @@ export const BidDrop = ({ dropInfo, value, name, required = false }: Props) => {
   }, []);
 
   return (
-    <>
-      <div className="mb-[12px] leading-[130%]">
+    <div className="flex flex-col w-full">
+      <div className="mb-[15px] leading-[130%]">
         {name}
         {required && <span className="text-lightRed">*</span>}
       </div>
@@ -52,7 +52,7 @@ export const BidDrop = ({ dropInfo, value, name, required = false }: Props) => {
         onClick={() => {
           setActive(!active);
         }}
-        className="h-[43px] flex cursor-pointer items-center justify-between bid-drop py-[15px] mb-[10px]"
+        className="h-[43px] flex cursor-pointer items-center justify-between bid-drop py-[15px]"
       >
         <div>
           <div>{title}</div>
@@ -101,6 +101,6 @@ export const BidDrop = ({ dropInfo, value, name, required = false }: Props) => {
           )}
         </AnimatePresence>
       </div>
-    </>
+    </div>
   );
 };

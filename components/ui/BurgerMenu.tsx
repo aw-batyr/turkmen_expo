@@ -67,8 +67,6 @@ export const BurgerMenu = () => {
     };
   }, []);
 
-  console.log(activeLang);
-
   return (
     <motion.div
       ref={burgerRef}

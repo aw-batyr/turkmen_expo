@@ -41,45 +41,46 @@ export const Select = ({ title, content }: IProps) => {
 
   return (
     <motion.div className="w-full">
-      <div className="w-full">
+      <motion.div
+        onClick={() => onTitle(title)}
+        className={clsx(
+          "w-full flex items-center justify-between border-y-[1px] border-y-navyBlue cursor-pointer",
+          {
+            "border-t-navyBlue5": faqTitle === title,
+          }
+        )}
+      >
+        <h2 className="sm:text-[21px] text-[16px] sm:leading-[100%] leading-[120%] sm:font-semibold font-[400] py-4 sm:py-5">
+          {title}
+        </h2>
+        <Image
+          src={openIcon}
+          alt="arrow"
+          className={clsx("rotate-[180deg] transition-all gap-4", {
+            "rotate-[360deg]": openTitles.includes(title || ""),
+          })}
+        />
+      </motion.div>
+      <div className="flex flex-col w-full max-w-[1000px]">
         <AnimatePresence>
-          <motion.div
-            onClick={() => onTitle(title)}
-            className={clsx(
-              "w-full flex items-center justify-between border-y-[1px] border-y-navyBlue cursor-pointer",
-              {
-                "border-t-navyBlue5": faqTitle === title,
-              }
-            )}
-          >
-            <h2 className="sm:text-[21px] text-[16px] sm:leading-[100%] leading-[120%] sm:font-semibold font-[400] py-4 sm:py-5">
-              {title}
-            </h2>
-            <Image
-              src={openIcon}
-              alt="arrow"
-              className={clsx("rotate-[180deg] transition-all gap-4", {
-                "rotate-[360deg]": openTitles.includes(title || ""),
-              })}
-            />
-          </motion.div>
-        </AnimatePresence>
-        <motion.div className="flex flex-col gap-y-[20px] w-full max-w-[1000px]">
           {openTitles.includes(title || "") && (
-            <AnimatePresence>
-              <motion.div
-                initial={{ scale: 0 }}
-                animate={{ scale: [0.5, 1] }}
-                exit={{ scale: 0 }}
-                transition={{ duration: 0.3 }}
-                className="select-inner py-10"
-                dangerouslySetInnerHTML={{
-                  __html: content,
-                }}
-              />
-            </AnimatePresence>
+            <motion.div
+              initial={{
+                opacity: 0,
+              }}
+              animate={{
+                opacity: 1,
+              }}
+              exit={{
+                opacity: 0,
+              }}
+              className="select-inner py-10"
+              dangerouslySetInnerHTML={{
+                __html: content,
+              }}
+            />
           )}
-        </motion.div>
+        </AnimatePresence>
       </div>
     </motion.div>
   );
