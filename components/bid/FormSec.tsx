@@ -1,51 +1,58 @@
-'use client';
+"use client";
 
-import React from 'react';
-import { z } from 'zod';
-import { v4 } from 'uuid';
-import { zodResolver } from '@hookform/resolvers/zod';
-import { useForm, SubmitHandler, FormProvider } from 'react-hook-form';
-import { AnimatePresence, motion } from 'framer-motion';
-import { useAppSelector, useAppDispatch } from '@/redux/hooks';
+import React from "react";
+import { z } from "zod";
+import { v4 } from "uuid";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { useForm, SubmitHandler } from "react-hook-form";
+import { AnimatePresence, motion } from "framer-motion";
+import { useAppSelector, useAppDispatch } from "@/redux/hooks";
 
-import { BidDrop } from '../ui/Dropdown';
-import { selectBid, setBidStatus, setRadioStatus } from '@/redux/slices/bidSlice';
-import { BidRadio } from './BidRadio';
-import { text } from 'stream/consumers';
-import { BidForm } from './BidForm';
+import { BidDrop } from "../ui/Dropdown";
+import {
+  selectBid,
+  setBidStatus,
+  setRadioStatus,
+} from "@/redux/slices/bidSlice";
+import { BidRadio } from "./BidRadio";
+import { text } from "stream/consumers";
+import { BidForm } from "./BidForm";
 
-export const exhibitions = ['ВЫСТАВКА-ЯРМАРКА «ВСЕ ДЛЯ ДЕТЕЙ»', 'ВЫСТАВКА-ЯРМАРКА «ВСЕ ДЛЯ ДЕТЕЙ»'];
+export const exhibitions = [
+  "ВЫСТАВКА-ЯРМАРКА «ВСЕ ДЛЯ ДЕТЕЙ»",
+  "ВЫСТАВКА-ЯРМАРКА «ВСЕ ДЛЯ ДЕТЕЙ»",
+];
 
 export const bidData = [
   {
-    name: 'event_id',
-    label: 'Название выставки',
+    name: "event_id",
+    label: "Название выставки",
     required: true,
     dropInfo: exhibitions,
-    value: 'Выберите мероприятие',
+    value: "Выберите мероприятие",
   },
 
   {
-    name: 'company_name',
-    label: 'Название компании',
+    name: "company_name",
+    label: "Название компании",
     required: true,
-    type: 'text',
+    type: "text",
   },
 
   {
-    label: '',
+    label: "",
     required: true,
     dropInfo: exhibitions,
-    value: 'Выберите мероприятие',
+    value: "Выберите мероприятие",
   },
 ];
 
 export const formRadio = [
-  { name: 'Оборудованная', id: 'equipped' },
-  { name: 'Необорудованная', id: 'unequipped' },
+  { name: "Оборудованная", id: "equipped" },
+  { name: "Необорудованная", id: "unequipped" },
 ];
 
-export const phoneMail = ['телефон', 'E-mail'];
+export const phoneMail = ["телефон", "E-mail"];
 
 const schema = z.object({
   event_id: z.number(),
@@ -54,9 +61,11 @@ const schema = z.object({
   web_site: z.string().optional(),
   email: z.string().email(),
   space: z.string().optional(),
-  area: z.string().optional(),
+  required_area: z.string().optional(),
   contact_person: z.string(),
   area_is_equipped: z.boolean(),
+  what_demonstrated: z.string(),
+  response_method: z.number(),
   checkbox: z.boolean(),
 });
 
@@ -70,7 +79,11 @@ export const FormSec = () => {
     dispatch(setRadioStatus(name));
   };
 
-  const methods = useForm<FormFields>({
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<FormFields>({
     resolver: zodResolver(schema),
   });
 
@@ -83,91 +96,127 @@ export const FormSec = () => {
   };
 
   return (
-    <FormProvider {...methods}>
-      <form
-        className="w-full max-w-[538px] tab:mx-0 mx-auto"
-        onSubmit={methods.handleSubmit(submitData)}>
-        <div className="flex flex-col gap-5 w-full">
-          <BidDrop
-            name="Название выставки"
-            required
-            dropInfo={exhibitions}
-            value="Выберите мероприятие из списка"
-          />
+    <form
+      className="w-full max-w-[538px] tab:mx-0 mx-auto"
+      onSubmit={handleSubmit(submitData)}
+    >
+      <div className="flex flex-col gap-5 w-full">
+        <BidDrop
+          event
+          {...register("event_id")}
+          name="Название выставки"
+          required
+          value="Выберите мероприятие из списка"
+        />
 
-          <BidForm htmlfor={'event_id'} label={'Название компании'} name={'event_id'} required />
+        <BidForm
+          {...register("company_name")}
+          htmlfor={"company_name"}
+          label={"Название компании"}
+          name={"company_name"}
+          required
+        />
 
-          <BidForm htmlfor={'web_site'} label={'Название сайта'} name={'web_site'} />
+        <BidForm
+          {...register("company_name")}
+          htmlfor={"web_site"}
+          label={"Название сайта"}
+          name={"web_site"}
+        />
 
-          <BidForm
-            {...methods.register('phone')}
-            htmlfor={'phone'}
-            label={'Телефон'}
-            name={'phone'}
-            type="tel"
-            required
-          />
+        <BidForm
+          {...register("phone")}
+          htmlfor={"phone"}
+          label={"Телефон"}
+          name={"phone"}
+          type="tel"
+          required
+        />
 
-          <BidForm htmlfor={'email'} label={'E-mail'} name={'email'} required />
+        <BidForm
+          {...register("email")}
+          htmlfor={"email"}
+          label={"E-mail"}
+          name={"email"}
+          required
+        />
 
-          <BidForm
-            htmlfor={'what_demonstrated'}
-            label={'Демонстрируемая продукция / оборудование / услуги'}
-            name={'what_demonstrated'}
-            textArea
-          />
+        <BidForm
+          {...register("what_demonstrated")}
+          htmlfor={"what_demonstrated"}
+          label={"Демонстрируемая продукция / оборудование / услуги"}
+          name={"what_demonstrated"}
+          textArea
+        />
 
-          <BidForm
-            htmlfor={'contact_person'}
-            label={'Контактное лицо (Ф.И.О)'}
-            name={'contact_person'}
-            required
-          />
+        <BidForm
+          {...register("contact_person")}
+          htmlfor={"contact_person"}
+          label={"Контактное лицо (Ф.И.О)"}
+          name={"contact_person"}
+          required
+        />
 
-          <BidForm htmlfor={'required_area'} label={'Требуемая площадь 2м'} name={'email'} />
+        <BidForm
+          {...register("required_area")}
+          htmlfor={"required_area"}
+          label={"Требуемая площадь 2м"}
+          name={"required_area"}
+        />
 
-          <BidDrop name="Предпочтительный способ ответа" dropInfo={phoneMail} />
+        <BidDrop
+          method
+          {...register("response_method")}
+          name="Предпочтительный способ ответа"
+          dropInfo={phoneMail}
+        />
 
-          <div className="flex flex-col items-start md:gap-6 gap-5">
-            <div className="flex flex-col gap-4 md:mb-0 mb-5">
-              <div className="flex flex-col mb-0 md:mb-[24px] gap-5">
-                <h4 className="leading-[130%]">
-                  Экспозиционная площадь<span className="text-lightRed">*</span>
-                </h4>
-              </div>
-              <div className="flex flex-col gap-4 mb-4 md:gap-5">
-                {formRadio.map((item) => (
-                  <BidRadio key={v4()} text={item.name} id={item.id} onRadio={changeRadio} />
-                ))}
-              </div>
+        <div className="flex flex-col items-start md:gap-6 gap-5">
+          <div className="flex flex-col gap-4 md:mb-0 mb-5">
+            <div className="flex flex-col mb-0 md:mb-[24px] gap-5">
+              <h4 className="leading-[130%]">
+                Экспозиционная площадь<span className="text-lightRed">*</span>
+              </h4>
             </div>
-
-            <div>
-              <div
-                onClick={() => dispatch(setBidStatus(!bidStatus))}
-                className="flex items-center gap-[10px]">
-                <label className="cursor-pointer flex gap-[10px] leading-[125%] text-extraSm">
-                  <input
-                    {...methods.register('checkbox')}
-                    type="checkbox"
-                    name="agree"
-                    className="input-check"
-                  />
-                  <motion.span className="span-check"></motion.span>
-                  Даю согласие на обработку своих данных
-                </label>
-              </div>
+            <div className="flex flex-col gap-4 mb-4 md:gap-5">
+              {formRadio.map((item) => (
+                <BidRadio
+                  key={v4()}
+                  text={item.name}
+                  id={item.id}
+                  onRadio={changeRadio}
+                />
+              ))}
             </div>
-
-            <button
-              type="submit"
-              className="py-[17px] w-full bg-green hover:bg-lightGreen transition-all rounded-[2px]">
-              Отправить
-            </button>
           </div>
+
+          <div>
+            <div
+              onClick={() => dispatch(setBidStatus(!bidStatus))}
+              className="flex items-center gap-[10px]"
+            >
+              <label className="cursor-pointer flex gap-[10px] leading-[125%] text-extraSm">
+                <input
+                  {...register("checkbox")}
+                  type="checkbox"
+                  name="agree"
+                  className="input-check"
+                />
+                <motion.span className="span-check"></motion.span>
+                Даю согласие на обработку своих данных
+              </label>
+            </div>
+          </div>
+
+          <button
+            type="submit"
+            className="py-[17px] w-full bg-green hover:bg-lightGreen transition-all rounded-[2px]"
+          >
+            Отправить
+          </button>
         </div>
-      </form>
-    </FormProvider>
+      </div>
+    </form>
   );
 };
 

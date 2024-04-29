@@ -1,5 +1,5 @@
 export interface EventType {
-  data: Data;
+  data: Data[];
 }
 
 export interface Data {

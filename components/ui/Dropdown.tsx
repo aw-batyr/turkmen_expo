@@ -1,33 +1,39 @@
 "use client";
 
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import clsx from "clsx";
 import { v4 } from "uuid";
 import { motion, AnimatePresence } from "framer-motion";
-import { useFormContext } from "react-hook-form";
 
 import drop from "@/public/assets/icons/form-drop-icon.svg";
 import { exhibitions } from "../bid/FormSec";
+import { baseAPI } from "@/lib/API";
+import { useAppSelector } from "@/redux/hooks";
+import { selectHeader } from "@/redux/slices/headerSlice";
+import { EventType } from "@/lib/types/EventsType";
 
 interface Props {
   dropInfo: string[];
   value?: string;
   required?: boolean;
+  event?: boolean;
+  method?: boolean;
   name: string;
 }
 
-export const BidDrop = ({ dropInfo, value, name, required = false }: Props) => {
-  const { setValue } = useFormContext();
+export const BidDrop = ({
+  dropInfo,
+  value,
+  name,
+  required = false,
+  method = false,
+  event = false,
+}: Props) => {
+  const { activeLang } = useAppSelector(selectHeader);
   const [title, setTitle] = React.useState(value);
   const [active, setActive] = React.useState(false);
   const dropRef = React.useRef<HTMLDivElement>(null);
-
-  const onOption = (name: string) => {
-    setActive(false);
-    setTitle(name);
-    setValue(dropInfo === exhibitions ? "event_id" : "response_method", name);
-  };
 
   React.useEffect(() => {
     const handleClick = (e: MouseEvent) => {
@@ -41,8 +47,37 @@ export const BidDrop = ({ dropInfo, value, name, required = false }: Props) => {
     return () => document.removeEventListener("click", handleClick);
   }, []);
 
+  const [titles, setTitles] = useState<EventType>();
+
+  const fetchTitles = async () => {
+    try {
+      const res = await fetch(
+        `${baseAPI}expoevents?${activeLang.localization}`
+      );
+
+      if (!res.ok) {
+        throw new Error("Error");
+      }
+
+      const data = await res.json();
+
+      setTitles(data);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  React.useEffect(() => {
+    fetchTitles();
+  }, []);
+
+  const onOption = (name: string) => {
+    setActive(false);
+    setTitle(name);
+  };
+
   return (
-    <div className="flex flex-col w-full">
+    <div className="flex flex-col">
       <div className="mb-[15px] leading-[130%]">
         {name}
         {required && <span className="text-lightRed">*</span>}
@@ -79,24 +114,28 @@ export const BidDrop = ({ dropInfo, value, name, required = false }: Props) => {
                 opacity: 0,
               }}
               transition={{
-                duration: 0.1,
+                duration: 0.25,
               }}
               className="bg-navyBlue3 rounded-sm flex flex-col absolute w-full shadow-sm"
             >
-              {dropInfo.map((item) => (
-                <div
-                  key={v4()}
-                  onClick={() => onOption(item)}
-                  className={clsx(
-                    "cursor-pointer py-[15px] px-[12px] text-[14px] font-regular leading-[125%] transition-all",
-                    {
-                      "hover:bg-green rounded-sm": item === item,
-                    }
-                  )}
-                >
-                  {item}
-                </div>
-              ))}
+              {event
+                ? titles
+                  ? titles.data.map((item) => (
+                      <div
+                        key={v4()}
+                        onClick={() => onOption(item.title)}
+                        className={clsx(
+                          "cursor-pointer py-[15px] px-[12px] text-[14px] font-regular leading-[125%] transition-all",
+                          {
+                            "hover:bg-green rounded-sm": item === item,
+                          }
+                        )}
+                      >
+                        {item.title}
+                      </div>
+                    ))
+                  : null
+                : ""}
             </motion.div>
           )}
         </AnimatePresence>

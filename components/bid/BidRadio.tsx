@@ -2,8 +2,6 @@
 
 import React from "react";
 
-import { useFormContext } from "react-hook-form";
-
 import { useAppSelector } from "@/redux/hooks";
 import { selectBid } from "@/redux/slices/bidSlice";
 import { motion, AnimatePresence } from "framer-motion";
@@ -16,12 +14,11 @@ interface Props {
 
 export const BidRadio = ({ text, id, onRadio }: Props) => {
   const { radioStatus } = useAppSelector(selectBid);
-  const { setValue } = useFormContext();
 
   return (
     <div
       onClick={() => {
-        onRadio(id), setValue("area_is_equipped", id);
+        onRadio(id);
       }}
       className="flex items-center gap-[10px] cursor-pointer"
     >
