@@ -56,13 +56,13 @@ export const phoneMail = ["телефон", "E-mail"];
 
 const schema = z.object({
   event_id: z.number(),
-  company_name: z.string().nonempty(),
+  company_name: z.string(),
   phone: z.string(),
   web_site: z.string().optional(),
   email: z.string().email(),
   space: z.string().optional(),
   area: z.string().optional(),
-  contact_person: z.string().nonempty(),
+  contact_person: z.string(),
   area_is_equipped: z.boolean(),
   checkbox: z.boolean(),
 });

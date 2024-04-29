@@ -34,10 +34,6 @@ export const BidForm = ({
 }: IProps) => {
   const { setValue } = useFormContext();
 
-  useEffect(() => {
-    setValue(name, name);
-  }, []);
-
   return (
     <div>
       {textArea ? (
@@ -48,6 +44,11 @@ export const BidForm = ({
             name={name}
             cols={30}
             rows={5}
+            onChange={(e) => {
+              if (e.target.value) {
+                setValue(name, e.target.value);
+              }
+            }}
           />
         </div>
       ) : (
@@ -57,9 +58,9 @@ export const BidForm = ({
             {required && <span className="text-lightRed">*</span>}
           </label>
           <input
-            onChange={(data) => {
-              if (data) {
-                setValue(name, data);
+            onChange={(e) => {
+              if (e.target.value) {
+                setValue(name, e.target.value);
               }
             }}
             type={type}
