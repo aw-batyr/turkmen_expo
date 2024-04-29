@@ -1,58 +1,51 @@
-"use client";
+'use client';
 
-import React from "react";
-import { z } from "zod";
-import { v4 } from "uuid";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { useForm, SubmitHandler, FormProvider } from "react-hook-form";
-import { AnimatePresence, motion } from "framer-motion";
-import { useAppSelector, useAppDispatch } from "@/redux/hooks";
+import React from 'react';
+import { z } from 'zod';
+import { v4 } from 'uuid';
+import { zodResolver } from '@hookform/resolvers/zod';
+import { useForm, SubmitHandler, FormProvider } from 'react-hook-form';
+import { AnimatePresence, motion } from 'framer-motion';
+import { useAppSelector, useAppDispatch } from '@/redux/hooks';
 
-import { BidDrop } from "../ui/Dropdown";
-import {
-  selectBid,
-  setBidStatus,
-  setRadioStatus,
-} from "@/redux/slices/bidSlice";
-import { BidRadio } from "./BidRadio";
-import { text } from "stream/consumers";
-import { BidForm } from "./BidForm";
+import { BidDrop } from '../ui/Dropdown';
+import { selectBid, setBidStatus, setRadioStatus } from '@/redux/slices/bidSlice';
+import { BidRadio } from './BidRadio';
+import { text } from 'stream/consumers';
+import { BidForm } from './BidForm';
 
-export const exhibitions = [
-  "ВЫСТАВКА-ЯРМАРКА «ВСЕ ДЛЯ ДЕТЕЙ»",
-  "ВЫСТАВКА-ЯРМАРКА «ВСЕ ДЛЯ ДЕТЕЙ»",
-];
+export const exhibitions = ['ВЫСТАВКА-ЯРМАРКА «ВСЕ ДЛЯ ДЕТЕЙ»', 'ВЫСТАВКА-ЯРМАРКА «ВСЕ ДЛЯ ДЕТЕЙ»'];
 
 export const bidData = [
   {
-    name: "event_id",
-    label: "Название выставки",
+    name: 'event_id',
+    label: 'Название выставки',
     required: true,
     dropInfo: exhibitions,
-    value: "Выберите мероприятие",
+    value: 'Выберите мероприятие',
   },
 
   {
-    name: "company_name",
-    label: "Название компании",
+    name: 'company_name',
+    label: 'Название компании',
     required: true,
-    type: "text",
+    type: 'text',
   },
 
   {
-    label: "",
+    label: '',
     required: true,
     dropInfo: exhibitions,
-    value: "Выберите мероприятие",
+    value: 'Выберите мероприятие',
   },
 ];
 
 export const formRadio = [
-  { name: "Оборудованная", id: "equipped" },
-  { name: "Необорудованная", id: "unequipped" },
+  { name: 'Оборудованная', id: 'equipped' },
+  { name: 'Необорудованная', id: 'unequipped' },
 ];
 
-export const phoneMail = ["телефон", "E-mail"];
+export const phoneMail = ['телефон', 'E-mail'];
 
 const schema = z.object({
   event_id: z.number(),
@@ -93,8 +86,7 @@ export const FormSec = () => {
     <FormProvider {...methods}>
       <form
         className="w-full max-w-[538px] tab:mx-0 mx-auto"
-        onSubmit={methods.handleSubmit(submitData)}
-      >
+        onSubmit={methods.handleSubmit(submitData)}>
         <div className="flex flex-col gap-5 w-full">
           <BidDrop
             name="Название выставки"
@@ -103,48 +95,36 @@ export const FormSec = () => {
             value="Выберите мероприятие из списка"
           />
 
-          <BidForm
-            htmlfor={"event_id"}
-            label={"Название компании"}
-            name={"event_id"}
-            required
-          />
+          <BidForm htmlfor={'event_id'} label={'Название компании'} name={'event_id'} required />
+
+          <BidForm htmlfor={'web_site'} label={'Название сайта'} name={'web_site'} />
 
           <BidForm
-            htmlfor={"web_site"}
-            label={"Название сайта"}
-            name={"web_site"}
-          />
-
-          <BidForm
-            htmlfor={"phone"}
-            label={"Телефон"}
-            name={"phone"}
+            {...methods.register('phone')}
+            htmlfor={'phone'}
+            label={'Телефон'}
+            name={'phone'}
             type="tel"
             required
           />
 
-          <BidForm htmlfor={"email"} label={"E-mail"} name={"email"} required />
+          <BidForm htmlfor={'email'} label={'E-mail'} name={'email'} required />
 
           <BidForm
-            htmlfor={"what_demonstrated"}
-            label={"Демонстрируемая продукция / оборудование / услуги"}
-            name={"what_demonstrated"}
+            htmlfor={'what_demonstrated'}
+            label={'Демонстрируемая продукция / оборудование / услуги'}
+            name={'what_demonstrated'}
             textArea
           />
 
           <BidForm
-            htmlfor={"contact_person"}
-            label={"Контактное лицо (Ф.И.О)"}
-            name={"contact_person"}
+            htmlfor={'contact_person'}
+            label={'Контактное лицо (Ф.И.О)'}
+            name={'contact_person'}
             required
           />
 
-          <BidForm
-            htmlfor={"required_area"}
-            label={"Требуемая площадь 2м"}
-            name={"email"}
-          />
+          <BidForm htmlfor={'required_area'} label={'Требуемая площадь 2м'} name={'email'} />
 
           <BidDrop name="Предпочтительный способ ответа" dropInfo={phoneMail} />
 
@@ -157,12 +137,7 @@ export const FormSec = () => {
               </div>
               <div className="flex flex-col gap-4 mb-4 md:gap-5">
                 {formRadio.map((item) => (
-                  <BidRadio
-                    key={v4()}
-                    text={item.name}
-                    id={item.id}
-                    onRadio={changeRadio}
-                  />
+                  <BidRadio key={v4()} text={item.name} id={item.id} onRadio={changeRadio} />
                 ))}
               </div>
             </div>
@@ -170,11 +145,10 @@ export const FormSec = () => {
             <div>
               <div
                 onClick={() => dispatch(setBidStatus(!bidStatus))}
-                className="flex items-center gap-[10px]"
-              >
+                className="flex items-center gap-[10px]">
                 <label className="cursor-pointer flex gap-[10px] leading-[125%] text-extraSm">
                   <input
-                    {...methods.register("checkbox")}
+                    {...methods.register('checkbox')}
                     type="checkbox"
                     name="agree"
                     className="input-check"
@@ -187,8 +161,7 @@ export const FormSec = () => {
 
             <button
               type="submit"
-              className="py-[17px] w-full bg-green hover:bg-lightGreen transition-all rounded-[2px]"
-            >
+              className="py-[17px] w-full bg-green hover:bg-lightGreen transition-all rounded-[2px]">
               Отправить
             </button>
           </div>

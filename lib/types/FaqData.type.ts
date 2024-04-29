@@ -3,13 +3,8 @@ export interface FaqDataType {
 }
 
 export interface Datum {
-  header: string;
-  faq_items: FAQItem[];
-}
-
-export interface FAQItem {
-  question: string;
-  answer: string;
+  title: string;
+  content: string;
 }
 
 export interface RadioDataType {
