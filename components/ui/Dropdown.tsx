@@ -14,7 +14,7 @@ import { selectHeader } from "@/redux/slices/headerSlice";
 import { EventType } from "@/lib/types/EventsType";
 
 interface Props {
-  dropInfo: string[];
+  dropInfo?: string[];
   value?: string;
   required?: boolean;
   event?: boolean;
@@ -23,7 +23,6 @@ interface Props {
 }
 
 export const BidDrop = ({
-  dropInfo,
   value,
   name,
   required = false,
