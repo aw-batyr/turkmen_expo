@@ -15,36 +15,11 @@ import {
   setRadioStatus,
 } from "@/redux/slices/bidSlice";
 import { BidRadio } from "./BidRadio";
-import { text } from "stream/consumers";
 import { BidForm } from "./BidForm";
 
 export const exhibitions = [
   "ВЫСТАВКА-ЯРМАРКА «ВСЕ ДЛЯ ДЕТЕЙ»",
   "ВЫСТАВКА-ЯРМАРКА «ВСЕ ДЛЯ ДЕТЕЙ»",
-];
-
-export const bidData = [
-  {
-    name: "event_id",
-    label: "Название выставки",
-    required: true,
-    dropInfo: exhibitions,
-    value: "Выберите мероприятие",
-  },
-
-  {
-    name: "company_name",
-    label: "Название компании",
-    required: true,
-    type: "text",
-  },
-
-  {
-    label: "",
-    required: true,
-    dropInfo: exhibitions,
-    value: "Выберите мероприятие",
-  },
 ];
 
 export const formRadio = [
@@ -82,12 +57,13 @@ export const FormSec = () => {
   const {
     register,
     handleSubmit,
+    control,
     formState: { errors },
   } = useForm<FormFields>({
     resolver: zodResolver(schema),
   });
 
-  const submitData: SubmitHandler<FormFields> = (data) => {
+  const onSubmit = (data: FormFields) => {
     console.log(data);
   };
 
@@ -98,7 +74,7 @@ export const FormSec = () => {
   return (
     <form
       className="w-full max-w-[538px] tab:mx-0 mx-auto"
-      onSubmit={handleSubmit(submitData)}
+      onSubmit={handleSubmit(onSubmit)}
     >
       <div className="flex flex-col gap-5 w-full">
         <BidDrop
@@ -111,7 +87,6 @@ export const FormSec = () => {
 
         <BidForm
           {...register("company_name")}
-          htmlfor={"company_name"}
           label={"Название компании"}
           name={"company_name"}
           required
@@ -119,14 +94,12 @@ export const FormSec = () => {
 
         <BidForm
           {...register("company_name")}
-          htmlfor={"web_site"}
           label={"Название сайта"}
           name={"web_site"}
         />
 
         <BidForm
           {...register("phone")}
-          htmlfor={"phone"}
           label={"Телефон"}
           name={"phone"}
           type="tel"
@@ -135,7 +108,6 @@ export const FormSec = () => {
 
         <BidForm
           {...register("email")}
-          htmlfor={"email"}
           label={"E-mail"}
           name={"email"}
           required
@@ -143,7 +115,6 @@ export const FormSec = () => {
 
         <BidForm
           {...register("what_demonstrated")}
-          htmlfor={"what_demonstrated"}
           label={"Демонстрируемая продукция / оборудование / услуги"}
           name={"what_demonstrated"}
           textArea
@@ -151,7 +122,6 @@ export const FormSec = () => {
 
         <BidForm
           {...register("contact_person")}
-          htmlfor={"contact_person"}
           label={"Контактное лицо (Ф.И.О)"}
           name={"contact_person"}
           required
@@ -159,7 +129,6 @@ export const FormSec = () => {
 
         <BidForm
           {...register("required_area")}
-          htmlfor={"required_area"}
           label={"Требуемая площадь 2м"}
           name={"required_area"}
         />

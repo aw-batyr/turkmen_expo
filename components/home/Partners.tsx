@@ -45,11 +45,11 @@ export const Partners = () => {
       <div className="hidden lg:flex items-center">
         <Swiper
           modules={[Pagination, Autoplay]}
-          // loop
+          loop
           slidesPerView={5}
           autoplay={{ delay: 0 }}
           spaceBetween={30}
-          speed={10000}
+          speed={7500}
           pagination={{ type: "bullets", el: ".swiper-pagination" }}
         >
           {partnersData
@@ -71,11 +71,11 @@ export const Partners = () => {
       <div className="hidden lg:hidden md:flex items-center">
         <Swiper
           modules={[Pagination, Autoplay]}
-          // loop
+          loop
           slidesPerView={4.5}
           autoplay={{ delay: 0 }}
           spaceBetween={30}
-          speed={10000}
+          speed={7500}
           pagination={{ type: "bullets", el: ".swiper-pagination" }}
         >
           {partnersData
@@ -97,11 +97,11 @@ export const Partners = () => {
       <div className="hidden md:hidden sm:flex items-center">
         <Swiper
           modules={[Pagination, Autoplay]}
-          // loop
+          loop
           slidesPerView={3.5}
           autoplay={{ delay: 0 }}
           spaceBetween={30}
-          speed={10000}
+          speed={7500}
           pagination={{ type: "bullets", el: ".swiper-pagination" }}
         >
           {partnersData
@@ -123,11 +123,11 @@ export const Partners = () => {
       <div className="sm:hidden flex items-center">
         <Swiper
           modules={[Pagination, Autoplay]}
-          // loop
+          loop
           slidesPerView={2.5}
           autoplay={{ delay: 0 }}
           spaceBetween={30}
-          speed={10000}
+          speed={7500}
           pagination={{ type: "bullets", el: ".swiper-pagination" }}
         >
           {partnersData

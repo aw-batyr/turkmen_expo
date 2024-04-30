@@ -25,6 +25,7 @@ interface Props {
 export const BidDrop = ({
   value,
   name,
+  dropInfo,
   required = false,
   method = false,
   event = false,
@@ -134,7 +135,21 @@ export const BidDrop = ({
                       </div>
                     ))
                   : null
-                : ""}
+                : dropInfo &&
+                  dropInfo.map((item, id) => (
+                    <div
+                      key={v4()}
+                      onClick={() => onOption(item)}
+                      className={clsx(
+                        "cursor-pointer py-[15px] px-[12px] text-[14px] font-regular leading-[125%] transition-all",
+                        {
+                          "hover:bg-green rounded-sm": item === item,
+                        }
+                      )}
+                    >
+                      {item}
+                    </div>
+                  ))}
             </motion.div>
           )}
         </AnimatePresence>

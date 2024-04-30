@@ -15,15 +15,6 @@ interface IProps {
   required?: boolean;
   type?: string;
   textArea?: boolean;
-  htmlfor:
-    | "event_id"
-    | "company_name"
-    | "web_site"
-    | "contact_person"
-    | "phone"
-    | "email"
-    | "what_demonstrated"
-    | "required_area";
 }
 
 export const BidForm = ({
@@ -36,17 +27,17 @@ export const BidForm = ({
     <div>
       {textArea ? (
         <div className="flex w-full flex-col gap-[15px] items-start">
-          <label htmlFor={props.htmlfor}>{label}</label>
+          <label htmlFor={props.name}>{label}</label>
           <textarea
-            className="bid-input w-full"
-            {...props}
-            cols={30}
             rows={5}
+            cols={30}
+            {...props}
+            className="bid-input w-full"
           />
         </div>
       ) : (
         <div className="flex w-full gap-[15px] flex-col items-start">
-          <label {...props}>
+          <label htmlFor={props.name}>
             {label}
             {required && <span className="text-lightRed">*</span>}
           </label>
