@@ -9,6 +9,7 @@ import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import 'swiper/css/scrollbar';
+import clsx from 'clsx';
 
 export const NavBtn = ({
   left = false,
@@ -28,7 +29,13 @@ export const NavBtn = ({
       ref={btnRef}
       className={`${!left ? 'next-btn' : 'prev-btn'} `}
       onClick={!left ? onNext : onPrev}>
-      <Image src={navBtn} alt="arrow" className={`${left && 'rotate-[180deg]'} img-auto`} />
+      <Image
+        src={navBtn}
+        alt="arrow"
+        className={clsx('img-auto', {
+          'rotate-180': left,
+        })}
+      />
     </button>
   );
 };

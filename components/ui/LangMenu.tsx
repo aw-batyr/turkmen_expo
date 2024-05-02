@@ -64,7 +64,9 @@ export const LangMenu = () => {
         <Image
           src={triangle}
           alt="arrow"
-          className={`${rotate && 'rotate-180'} transition-rotate duration-300 img-auto`}
+          className={clsx('transition-rotate duration-300 img-auto', {
+            'rotate-180': rotate,
+          })}
         />
       </div>
       <AnimatePresence>

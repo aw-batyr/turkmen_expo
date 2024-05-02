@@ -1,25 +1,25 @@
-"use client";
+'use client';
 
-import React from "react";
-import clsx from "clsx";
-import Link from "next/link";
-import Image from "next/image";
-import { v4 } from "uuid";
-import { usePathname } from "next/navigation";
-import { AnimatePresence, motion } from "framer-motion";
+import React from 'react';
+import clsx from 'clsx';
+import Link from 'next/link';
+import Image from 'next/image';
+import { v4 } from 'uuid';
+import { usePathname } from 'next/navigation';
+import { AnimatePresence, motion } from 'framer-motion';
 
-import logo from "@/public/assets/icons/header/logo.svg";
-import burger from "@/public/assets/icons/header/burger.svg";
-import search from "@/public/assets/icons/header/search.svg";
-import searchMob from "@/public/assets/icons/header/mob-search.svg";
+import logo from '@/public/assets/icons/header/logo.svg';
+import burger from '@/public/assets/icons/header/burger.svg';
+import search from '@/public/assets/icons/header/search.svg';
+import searchMob from '@/public/assets/icons/header/mob-search.svg';
 
-import { LangMenu } from "../ui/LangMenu";
-import { Input } from "../home/Input";
-import { headerMenu, headerMenu2 } from "@/lib/database/pathnames";
-import { BurgerMenu } from "../ui/BurgerMenu";
-import { useAppDispatch, useAppSelector } from "@/redux/hooks";
-import { selectHeader, setShowInput } from "@/redux/slices/headerSlice";
-import { selectBurger, setBurgerMenu } from "@/redux/slices/burgerSlice";
+import { LangMenu } from '../ui/LangMenu';
+import { Input } from '../home/Input';
+import { headerMenu, headerMenu2 } from '@/lib/database/pathnames';
+import { BurgerMenu } from '../ui/BurgerMenu';
+import { useAppDispatch, useAppSelector } from '@/redux/hooks';
+import { selectHeader, setShowInput } from '@/redux/slices/headerSlice';
+import { selectBurger, setBurgerMenu } from '@/redux/slices/burgerSlice';
 
 export const Header = () => {
   const pathname = usePathname();
@@ -43,12 +43,11 @@ export const Header = () => {
 
       <header
         className={clsx(
-          "bg-bgWhite tab:hidden flex items-center justify-between z-50 px-4 py-6 sticky ",
+          'bg-bgWhite tab:hidden flex items-center justify-between z-50 px-4 py-6 sticky ',
           {
-            "fixed w-full top-0": burgerMenu,
-          }
-        )}
-      >
+            'fixed w-full top-0': burgerMenu,
+          },
+        )}>
         <Image
           src={searchMob}
           height={32}
@@ -63,44 +62,27 @@ export const Header = () => {
             dispatch(setBurgerMenu(false));
             dispatch(setShowInput(false));
           }}
-          href={"/"}
-        >
-          <Image
-            src={logo}
-            height={24}
-            width={160}
-            alt="лого"
-            className="cursor-pointer"
-          />
+          href={'/'}>
+          <Image src={logo} height={24} width={160} alt="лого" className="cursor-pointer" />
         </Link>
 
         <div
           onClick={toggleMenu}
-          className="cursor-pointer h-8 w-8 flex flex-col p-1 justify-between items-center"
-        >
+          className="cursor-pointer h-8 w-8 flex flex-col p-1 justify-between items-center">
           <span
-            className={clsx(
-              "block transition-all rounded-full bg-green w-6 h-[2px]",
-              {
-                "rotate-[45deg] translate-y-[9px]": burgerMenu,
-              }
-            )}
+            className={clsx('block transition-all rounded-full bg-green w-6 h-[2px]', {
+              'rotate-[45deg] translate-y-[9px]': burgerMenu,
+            })}
           />
           <span
-            className={clsx(
-              "block transition-all rounded-full bg-green w-6 h-[2px]",
-              {
-                "opacity-0 hidden": burgerMenu,
-              }
-            )}
+            className={clsx('block transition-all rounded-full bg-green w-6 h-[2px]', {
+              'opacity-0 hidden': burgerMenu,
+            })}
           />
           <span
-            className={clsx(
-              "block transition-all duration-300 rounded-full bg-green w-6 h-[2px]",
-              {
-                "rotate-[-45deg] translate-y-[-10px]": burgerMenu,
-              }
-            )}
+            className={clsx('block transition-all duration-300 rounded-full bg-green w-6 h-[2px]', {
+              'rotate-[-45deg] translate-y-[-10px]': burgerMenu,
+            })}
           />
         </div>
 
@@ -127,15 +109,14 @@ export const Header = () => {
                   <Link key={v4()} href={item.link}>
                     <p
                       className={clsx(
-                        "after:transition-all duration-1000 relative leading-[130%]",
+                        'after:transition-all duration-1000 relative leading-[130%]',
                         {
-                          "link-border-bottom cursor-default hover:after:bg-green":
+                          'link-border-bottom cursor-default hover:after:bg-green':
                             item.link === pathname,
-                          "hover:link-border-bottom hover:after:bg-[#738799]":
+                          'hover:link-border-bottom hover:after:bg-[#738799]':
                             item.link === item.link,
-                        }
-                      )}
-                    >
+                        },
+                      )}>
                       {item.title}
                     </p>
                   </Link>
