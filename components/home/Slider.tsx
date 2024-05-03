@@ -1,38 +1,46 @@
-'use client';
+"use client";
 
-import React, { useEffect, useState } from 'react';
-import Image from 'next/image';
-import Link from 'next/link';
-import { v4 } from 'uuid';
-import { Swiper, SwiperSlide } from 'swiper/react';
-import { Autoplay, Pagination, Navigation } from 'swiper/modules';
-import SwiperCore from 'swiper';
+import React, { useEffect, useState } from "react";
+import Image from "next/image";
+import Link from "next/link";
+import { v4 } from "uuid";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Autoplay, Pagination, Navigation } from "swiper/modules";
+import SwiperCore from "swiper";
 
-import { useAppSelector } from '@/redux/hooks';
-import { selectHeader } from '@/redux/slices/headerSlice';
-import { SliderTypes } from '@/lib/types/SliderData.type';
+import { useAppSelector } from "@/redux/hooks";
+import { selectHeader } from "@/redux/slices/headerSlice";
+import { SliderTypes } from "@/lib/types/SliderData.type";
 
-import 'swiper/css/pagination';
-import { baseAPI } from '@/lib/API';
+import "swiper/css/pagination";
+import { baseAPI } from "@/lib/API";
 
 export default () => {
   const [bannersData, setBannersData] = React.useState<SliderTypes>();
   const [smallBannersData, setSmallBannersData] = React.useState<SliderTypes>();
-  const [mediumBannersData, setMediumBannersData] = React.useState<SliderTypes>();
+  const [mediumBannersData, setMediumBannersData] =
+    React.useState<SliderTypes>();
   const { activeLang } = useAppSelector(selectHeader);
   const progressCircle = React.useRef<SVGSVGElement>(null);
 
   const [bannersTotal, setBannersTotal] = useState<number>();
 
-  const onAutoplayTimeLeft = (s: SwiperCore, time: number, progress: number) => {
+  const onAutoplayTimeLeft = (
+    s: SwiperCore,
+    time: number,
+    progress: number
+  ) => {
     if (progressCircle.current && progressCircle.current) {
-      progressCircle.current.style.setProperty('--progress', String(1 - progress));
+      progressCircle.current.style.setProperty(
+        "--progress",
+        String(1 - progress)
+      );
     }
   };
   const fetchMainBanners = async () => {
     try {
       const response = await fetch(
-        `${baseAPI}banners/main-banner?X-Localization=${activeLang.localization}`,
+        `${baseAPI}banners/main-banner?X-Localization=${activeLang.localization}`
       );
 
       const data = await response.json();
@@ -45,11 +53,11 @@ export default () => {
   const fetchMediumBanners = async () => {
     try {
       const res = await fetch(
-        `${baseAPI}banners/medium-banner?X-Localization=${activeLang.localization}`,
+        `${baseAPI}banners/medium-banner?X-Localization=${activeLang.localization}`
       );
 
       if (!res.ok) {
-        throw new Error('error');
+        throw new Error("error");
       }
 
       const data = await res.json();
@@ -63,11 +71,11 @@ export default () => {
   const fetchSmallBanners = async () => {
     try {
       const res = await fetch(
-        `${baseAPI}banners/small-banner?X-Localization=${activeLang.localization}`,
+        `${baseAPI}banners/small-banner?X-Localization=${activeLang.localization}`
       );
 
       if (!res.ok) {
-        throw new Error('error');
+        throw new Error("error");
       }
 
       const data = await res.json();
@@ -91,15 +99,16 @@ export default () => {
           <Swiper
             modules={[Pagination, Autoplay, Navigation]}
             slidesPerView={1}
-            pagination={{ type: 'fraction' }}
+            pagination={{ type: "fraction" }}
             onAutoplayTimeLeft={onAutoplayTimeLeft}
             // loop
             speed={1500}
-            autoplay={{ delay: 10000 }}>
+            autoplay={{ delay: 10000 }}
+          >
             {bannersData
               ? bannersData.data.banner_items.map((item) => (
                   <SwiperSlide key={v4()}>
-                    <Link href={''}>
+                    <Link href={""}>
                       <div className="">
                         <Image
                           src={item.image}
@@ -132,15 +141,16 @@ export default () => {
           <Swiper
             modules={[Pagination, Autoplay, Navigation]}
             slidesPerView={1}
-            pagination={{ type: 'fraction' }}
+            pagination={{ type: "fraction" }}
             onAutoplayTimeLeft={onAutoplayTimeLeft}
             // loop
             speed={1500}
-            autoplay={{ delay: 10000 }}>
+            autoplay={{ delay: 10000 }}
+          >
             {mediumBannersData
               ? mediumBannersData.data.banner_items.map((item) => (
                   <SwiperSlide key={v4()}>
-                    <Link href={''}>
+                    <Link href={""}>
                       <div className="">
                         <Image
                           src={item.image}
@@ -171,15 +181,16 @@ export default () => {
           <Swiper
             modules={[Pagination, Autoplay, Navigation]}
             slidesPerView={1}
-            pagination={{ type: 'fraction' }}
+            pagination={{ type: "fraction" }}
             onAutoplayTimeLeft={onAutoplayTimeLeft}
             // loop
             speed={1500}
-            autoplay={{ delay: 10000 }}>
+            autoplay={{ delay: 10000 }}
+          >
             {smallBannersData
               ? smallBannersData.data.banner_items.map((item) => (
                   <SwiperSlide key={v4()}>
-                    <Link href={''}>
+                    <Link href={""}>
                       <div className="">
                         <Image
                           src={item.image}
