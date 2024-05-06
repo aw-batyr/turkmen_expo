@@ -1,27 +1,27 @@
-"use client";
+'use client';
 
-import React from "react";
-import { v4 } from "uuid";
-import { Swiper, SwiperSlide } from "swiper/react";
-import { Navigation, Pagination } from "swiper/modules";
+import React from 'react';
+import { v4 } from 'uuid';
+import { Swiper, SwiperSlide } from 'swiper/react';
+import { Navigation, Pagination } from 'swiper/modules';
 
-import { NewsCard } from "../cards/NewsCard";
-import { NavBtn } from "./ui/NavBtn";
-import { GreenBtn, GreenBtnMob } from "../ui/Buttons";
-import { Title } from "./Title";
+import { NewsCard } from '../cards/NewsCard';
+import { NavBtn } from './ui/NavBtn';
+import { GreenBtn, GreenBtnMob } from '../ui/Buttons';
+import { Title } from './Title';
 
-import { newsCardData } from "@/lib/database/newsData";
-import { useAppSelector } from "@/redux/hooks";
-import { selectHeader } from "@/redux/slices/headerSlice";
-import { NewsData } from "@/lib/types/NewsData.type";
+import { newsCardData } from '@/lib/database/newsData';
+import { useAppSelector } from '@/redux/hooks';
+import { selectHeader } from '@/redux/slices/headerSlice';
+import { NewsData } from '@/lib/types/NewsData.type';
 
-import "swiper/css/bundle";
+import 'swiper/css/bundle';
 
-import "swiper/css";
-import "swiper/css/navigation";
-import "swiper/css/pagination";
-import "swiper/css/scrollbar";
-import Link from "next/link";
+import 'swiper/css';
+import 'swiper/css/navigation';
+import 'swiper/css/pagination';
+import 'swiper/css/scrollbar';
+import Link from 'next/link';
 
 export const News = () => {
   const [newsData, setNewsData] = React.useState<NewsData>();
@@ -31,7 +31,7 @@ export const News = () => {
   const fetchNews = async () => {
     try {
       const response = await fetch(
-        `https://turkmenexpo.com/app/api/v1/news?X-Localization=${activeLang.localization}`
+        `https://turkmenexpo.com/app/api/v1/news?X-Localization=${activeLang.localization}`,
       );
 
       if (!response.ok) {
@@ -41,7 +41,7 @@ export const News = () => {
       const data = await response.json();
       setNewsData(data);
     } catch (error) {
-      console.error("Fetch error:", error);
+      console.error('Fetch error:', error);
     }
   };
 
@@ -66,10 +66,9 @@ export const News = () => {
             spaceBetween={20}
             slidesPerView={4}
             navigation={{
-              nextEl: ".next-btn",
-              prevEl: ".prev-btn",
-            }}
-          >
+              nextEl: '.next-btn',
+              prevEl: '.prev-btn',
+            }}>
             {newsData?.data.map((item) => (
               <SwiperSlide key={v4()}>
                 <NewsCard
@@ -94,10 +93,9 @@ export const News = () => {
             spaceBetween={20}
             slidesPerView={3.5}
             navigation={{
-              nextEl: ".next-btn",
-              prevEl: ".prev-btn",
-            }}
-          >
+              nextEl: '.next-btn',
+              prevEl: '.prev-btn',
+            }}>
             {newsData?.data.map((item) => (
               <SwiperSlide key={v4()}>
                 <NewsCard
@@ -122,10 +120,9 @@ export const News = () => {
             spaceBetween={20}
             slidesPerView={2.5}
             navigation={{
-              nextEl: ".next-btn",
-              prevEl: ".prev-btn",
-            }}
-          >
+              nextEl: '.next-btn',
+              prevEl: '.prev-btn',
+            }}>
             {newsData?.data.map((item) => (
               <SwiperSlide key={v4()}>
                 <NewsCard
@@ -150,10 +147,9 @@ export const News = () => {
             spaceBetween={20}
             slidesPerView={2}
             navigation={{
-              nextEl: ".next-btn",
-              prevEl: ".prev-btn",
-            }}
-          >
+              nextEl: '.next-btn',
+              prevEl: '.prev-btn',
+            }}>
             {newsData?.data.map((item) => (
               <SwiperSlide key={v4()}>
                 <NewsCard
@@ -177,9 +173,8 @@ export const News = () => {
             modules={[Pagination]}
             slidesPerView={1.5}
             spaceBetween={20}
-            pagination={{ type: "bullets", el: ".swiper-pagination" }}
-            className="h-auto"
-          >
+            pagination={{ type: 'bullets', el: '.swiper-pagination' }}
+            className="h-auto">
             {newsData?.data.map((item) => (
               <SwiperSlide key={v4()}>
                 <NewsCard
@@ -204,9 +199,8 @@ export const News = () => {
             modules={[Pagination]}
             slidesPerView={1}
             spaceBetween={20}
-            pagination={{ type: "bullets", el: ".swiper-pagination" }}
-            className="h-auto"
-          >
+            pagination={{ type: 'bullets', el: '.swiper-pagination' }}
+            className="h-auto">
             {newsData
               ? newsData?.data.map((item) => (
                   <SwiperSlide key={v4()}>
@@ -227,7 +221,7 @@ export const News = () => {
               : null}
             <div className="sm:hidden block swiper-pagination swiper-pagination-horizontal mb-[65px]"></div>
             <footer className="flex justify-center mt-[72px]">
-              <Link href={"/news"}>
+              <Link href={'/news'}>
                 <GreenBtnMob text="Все новости" />
               </Link>
             </footer>
@@ -235,7 +229,7 @@ export const News = () => {
         </div>
 
         <footer className="hidden sm:flex justify-center">
-          <Link href={"/news"}>
+          <Link href={'/news'}>
             <GreenBtn text="Все новости" />
           </Link>
         </footer>

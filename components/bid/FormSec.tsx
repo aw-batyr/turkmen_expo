@@ -1,33 +1,26 @@
-"use client";
+'use client';
 
-import React from "react";
-import { z } from "zod";
-import { v4 } from "uuid";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { useForm, SubmitHandler } from "react-hook-form";
-import { AnimatePresence, motion } from "framer-motion";
-import { useAppSelector, useAppDispatch } from "@/redux/hooks";
+import React from 'react';
+import { z } from 'zod';
+import { v4 } from 'uuid';
+import { zodResolver } from '@hookform/resolvers/zod';
+import { useForm, SubmitHandler } from 'react-hook-form';
+import { AnimatePresence, motion } from 'framer-motion';
+import { useAppSelector, useAppDispatch } from '@/redux/hooks';
 
-import { BidDrop } from "../ui/Dropdown";
-import {
-  selectBid,
-  setBidStatus,
-  setRadioStatus,
-} from "@/redux/slices/bidSlice";
-import { BidRadio } from "./BidRadio";
-import { BidForm } from "./BidForm";
+import { BidDrop } from '../ui/Dropdown';
+import { selectBid, setBidStatus, setRadioStatus } from '@/redux/slices/bidSlice';
+import { BidRadio } from './BidRadio';
+import { BidForm } from './BidForm';
 
-export const exhibitions = [
-  "ВЫСТАВКА-ЯРМАРКА «ВСЕ ДЛЯ ДЕТЕЙ»",
-  "ВЫСТАВКА-ЯРМАРКА «ВСЕ ДЛЯ ДЕТЕЙ»",
-];
+export const exhibitions = ['ВЫСТАВКА-ЯРМАРКА «ВСЕ ДЛЯ ДЕТЕЙ»', 'ВЫСТАВКА-ЯРМАРКА «ВСЕ ДЛЯ ДЕТЕЙ»'];
 
 export const formRadio = [
-  { name: "Оборудованная", id: "equipped" },
-  { name: "Необорудованная", id: "unequipped" },
+  { name: 'Оборудованная', id: 'equipped' },
+  { name: 'Необорудованная', id: 'unequipped' },
 ];
 
-export const phoneMail = ["телефон", "E-mail"];
+export const phoneMail = ['телефон', 'E-mail'];
 
 const schema = z.object({
   event_id: z.number(),
@@ -44,7 +37,7 @@ const schema = z.object({
   checkbox: z.boolean(),
 });
 
-type FormFields = z.infer<typeof schema>;
+export type FormFields = z.infer<typeof schema>;
 
 export const FormSec = () => {
   const dispatch = useAppDispatch();
@@ -72,70 +65,47 @@ export const FormSec = () => {
   };
 
   return (
-    <form
-      className="w-full max-w-[538px] tab:mx-0 mx-auto"
-      onSubmit={handleSubmit(onSubmit)}
-    >
+    <form className="w-full max-w-[538px] tab:mx-0 mx-auto" onSubmit={handleSubmit(onSubmit)}>
       <div className="flex flex-col gap-5 w-full">
         <BidDrop
           event
-          {...register("event_id")}
+          register={register}
           name="Название выставки"
           required
           value="Выберите мероприятие из списка"
         />
 
-        <BidForm
-          {...register("company_name")}
-          label={"Название компании"}
-          name={"company_name"}
-          required
-        />
+        <BidForm register={register} label={'Название компании'} name={'company_name'} required />
+
+        <BidForm {...register('company_name')} label={'Название сайта'} name={'web_site'} />
+
+        <BidForm {...register('phone')} label={'Телефон'} name={'phone'} type="tel" required />
+
+        <BidForm {...register('email')} label={'E-mail'} name={'email'} required />
 
         <BidForm
-          {...register("company_name")}
-          label={"Название сайта"}
-          name={"web_site"}
-        />
-
-        <BidForm
-          {...register("phone")}
-          label={"Телефон"}
-          name={"phone"}
-          type="tel"
-          required
-        />
-
-        <BidForm
-          {...register("email")}
-          label={"E-mail"}
-          name={"email"}
-          required
-        />
-
-        <BidForm
-          {...register("what_demonstrated")}
-          label={"Демонстрируемая продукция / оборудование / услуги"}
-          name={"what_demonstrated"}
+          {...register('what_demonstrated')}
+          label={'Демонстрируемая продукция / оборудование / услуги'}
+          name={'what_demonstrated'}
           textArea
         />
 
         <BidForm
-          {...register("contact_person")}
-          label={"Контактное лицо (Ф.И.О)"}
-          name={"contact_person"}
+          {...register('contact_person')}
+          label={'Контактное лицо (Ф.И.О)'}
+          name={'contact_person'}
           required
         />
 
         <BidForm
-          {...register("required_area")}
-          label={"Требуемая площадь 2м"}
-          name={"required_area"}
+          {...register('required_area')}
+          label={'Требуемая площадь 2м'}
+          name={'required_area'}
         />
 
         <BidDrop
           method
-          {...register("response_method")}
+          {...register('response_method')}
           name="Предпочтительный способ ответа"
           dropInfo={phoneMail}
         />
@@ -149,12 +119,7 @@ export const FormSec = () => {
             </div>
             <div className="flex flex-col gap-4 mb-4 md:gap-5">
               {formRadio.map((item) => (
-                <BidRadio
-                  key={v4()}
-                  text={item.name}
-                  id={item.id}
-                  onRadio={changeRadio}
-                />
+                <BidRadio key={v4()} text={item.name} id={item.id} onRadio={changeRadio} />
               ))}
             </div>
           </div>
@@ -162,11 +127,10 @@ export const FormSec = () => {
           <div>
             <div
               onClick={() => dispatch(setBidStatus(!bidStatus))}
-              className="flex items-center gap-[10px]"
-            >
+              className="flex items-center gap-[10px]">
               <label className="cursor-pointer flex gap-[10px] leading-[125%] text-extraSm">
                 <input
-                  {...register("checkbox")}
+                  {...register('checkbox')}
                   type="checkbox"
                   name="agree"
                   className="input-check"
@@ -179,8 +143,7 @@ export const FormSec = () => {
 
           <button
             type="submit"
-            className="py-[17px] w-full bg-green hover:bg-lightGreen transition-all rounded-[2px]"
-          >
+            className="py-[17px] w-full bg-green hover:bg-lightGreen transition-all rounded-[2px]">
             Отправить
           </button>
         </div>

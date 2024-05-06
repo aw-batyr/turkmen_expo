@@ -1,34 +1,31 @@
-import React, { useEffect } from "react";
+import React, { useEffect } from 'react';
 
 interface IProps {
   label: string;
+  register: any;
   name:
-    | "event_id"
-    | "company_name"
-    | "web_site"
-    | "contact_person"
-    | "phone"
-    | "email"
-    | "what_demonstrated"
-    | "area"
-    | "required_area";
+    | 'event_id'
+    | 'company_name'
+    | 'web_site'
+    | 'contact_person'
+    | 'phone'
+    | 'email'
+    | 'what_demonstrated'
+    | 'area'
+    | 'required_area';
   required?: boolean;
   type?: string;
   textArea?: boolean;
 }
 
-export const BidForm = ({
-  required = false,
-  textArea = false,
-  label,
-  ...props
-}: IProps) => {
+export const BidForm = ({ required = false, textArea = false, label, register }: IProps) => {
   return (
     <div>
       {textArea ? (
         <div className="flex w-full flex-col gap-[15px] items-start">
           <label htmlFor={props.name}>{label}</label>
           <textarea
+            {...register(name)}
             rows={5}
             cols={30}
             {...props}
@@ -41,7 +38,7 @@ export const BidForm = ({
             {label}
             {required && <span className="text-lightRed">*</span>}
           </label>
-          <input {...props} className="bid-input w-full" />
+          <input {...register} className="bid-input w-full" />
         </div>
       )}
     </div>
