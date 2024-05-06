@@ -168,7 +168,7 @@ export default () => {
             <div className="container absolute right-0 bottom-[25px] swiper-pagination swiper-pagination-horizontal swiper-pagination-fraction">
               <div className="absolute right-0 bottom-0 autoplay-progress bg-bgWhite rounded-full">
                 <svg ref={progressCircle}>
-                  <line viewBox="0 0 63 5" x1={0} x2={63}></line>
+                  <line viewBox="0 0 63 5" x1={0} x2={63} />
                 </svg>
               </div>
             </div>
@@ -208,7 +208,7 @@ export default () => {
             <div className="container absolute right-0 bottom-[25px] swiper-pagination swiper-pagination-horizontal swiper-pagination-fraction">
               <div className="absolute right-0 bottom-0 autoplay-progress bg-bgWhite rounded-full">
                 <svg ref={progressCircle}>
-                  <line viewBox="0 0 63 5" x1={0} x2={63}></line>
+                  <line viewBox="0 0 63 5" x1={0} x2={63} />
                 </svg>
               </div>
             </div>

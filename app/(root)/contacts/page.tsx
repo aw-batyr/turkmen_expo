@@ -1,14 +1,14 @@
-'use client';
+"use client";
 
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState } from "react";
 
-import { Title } from '@/components/home/Title';
-import { BreadCrumbs } from '@/components/ui/BreadCrumbs';
-import { useAppSelector } from '@/redux/hooks';
-import { selectHeader } from '@/redux/slices/headerSlice';
-import { baseAPI } from '@/lib/API';
-import { v4 } from 'uuid';
-import { ContactsDataType } from '@/lib/types/Contacts.type';
+import { Title } from "@/components/home/Title";
+import { BreadCrumbs } from "@/components/ui/BreadCrumbs";
+import { useAppSelector } from "@/redux/hooks";
+import { selectHeader } from "@/redux/slices/headerSlice";
+import { baseAPI } from "@/lib/API";
+import { v4 } from "uuid";
+import { ContactsDataType } from "@/lib/types/Contacts.type";
 
 const Contacts = () => {
   const [contactsData, setContactsData] = useState<ContactsDataType>();
@@ -16,10 +16,12 @@ const Contacts = () => {
 
   const fecthContactsData = async () => {
     try {
-      const res = await fetch(`${baseAPI}contacts?X-Localization=${activeLang.localization}`);
+      const res = await fetch(
+        `${baseAPI}contacts?X-Localization=${activeLang.localization}`
+      );
 
       if (!res.ok) {
-        throw new Error('Error');
+        throw new Error("Error");
       }
 
       const data = await res.json();
@@ -45,7 +47,10 @@ const Contacts = () => {
         </div>
         {contactsData
           ? contactsData.data.map((item) => (
-              <div className="py-10 sm:py-[30px] border-b-[1px] border-navyBlue5 w-full" key={v4()}>
+              <div
+                className="py-10 sm:py-[30px] border-b-[1px] border-navyBlue5 w-full"
+                key={v4()}
+              >
                 <h4 className="leading-[120%] sm:leading-[100%] text-[16px] sm:text-[21px] mb-6">
                   {item.header}
                 </h4>

@@ -45,14 +45,14 @@ export const EventCard = ({
 
   return (
     <>
-      <div
+      <Link
         className="w-full cursor-default"
-        // href={`/calendar/${id}`}
+        href={`/calendar/${id}`}
         // passHref
       >
         <div
           className={clsx(
-            "bg-bgWhite p-6 min-[850px]:p-[40px] lg:p-[60px] rounded-[2px] transition-all w-full greenBtnShadow hover:hover-shadow",
+            "bg-bgWhite cursor-pointer p-6 min-[850px]:p-[40px] lg:p-[60px] rounded-[2px] transition-all w-full greenBtnShadow hover:hover-shadow",
             {
               "bg-navyBlue text-gray": dark,
             }
@@ -140,7 +140,7 @@ export const EventCard = ({
             </div>
           </div>
         </div>
-      </div>
+      </Link>
     </>
   );
 };

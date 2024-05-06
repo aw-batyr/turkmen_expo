@@ -67,68 +67,21 @@ const Event = ({ params }: { params: { id: string } }) => {
           />
         </div>
       </div>
+      <Image
+        src={eventsData ? eventsData.data.background_images[0].path : ""}
+        alt="выставка"
+        width={1920}
+        height={490}
+        className="h-[490px] w-full object-cover"
+      />
       <div>
-        <div className="relative z-10 h-fit pb-5 md:pb-0">
-          <Image
-            src={glassImg}
-            alt="выставка"
-            width={1920}
-            height={350}
-            className="mx-auto absolute top-0 left-0 -z-10 w-full h-full object-cover"
-          />
+        <div className="container section-mb">
+          <div className="hidden md:flex gap-5 my-[60px]">
+            <BorderBtn text={"Сайт выставки"} />
+            <BorderBtn text={"Забронировать стенд"} />
+            <BorderBtn text={"Получить электронный билет"} />
+          </div>
 
-          {eventsData ? (
-            <div className="w-full h-full z-20">
-              <div className="container h-full">
-                <div className="h-full flex flex-col justify-between">
-                  <div className="flex items-center">
-                    <div className="flex flex-col md:flex-row w-full gap-0 md:gap-[30px] px850:gap-[45px]">
-                      <div className="flex flex-col md:flex-row gap-0 md:gap-[15px]">
-                        <div className="mx-auto w-[170px] h-[150px] tab:w-[220px] tab:h-[180px] bg-gray4 py-[10px] px-[33px] flex justify-center items-center">
-                          <Image
-                            src={eventsData.data.images[0].path}
-                            width={154}
-                            height={160}
-                            alt="Иконка"
-                            className="w-[154px] h-full object-cover"
-                          />
-                        </div>
-                        <div className="flex flex-col gap-[9px] max-w-[580px] w-full mt-[50px] md:mt-[20px] tab:mt-[40px]">
-                          <h3
-                            className={`${roboto_slab.className} font-semibold text-[26px] sm:text-[28px] md:text-[34px] leading-[100%]`}
-                          >
-                            {eventsData.data.title}
-                          </h3>
-                          <h4 className="text-[14px] md:text-[16px] leading-[130%] md:leading-[150%]">
-                            {eventsData.data.description}
-                          </h4>
-
-                          <div className="text-[10px] text-gray sm:text-bgWhite flex flex-col gap-[5px]">
-                            <p>Организатор</p>
-                            <p>{eventsData.data.organizer.name}</p>
-                          </div>
-                        </div>
-                      </div>
-                      <div className="flex flex-col w-full max-w-[238px] md:mt-[40px] mt-[70px]">
-                        <h3 className="text-[16px] md:text-[21px] font-semibold mb-5 leading-[130%] md:leading-[100%]">
-                          {formatDate(eventsData.data.starts_at)}
-                        </h3>
-                      </div>
-                    </div>
-                  </div>
-
-                  <div className="hidden md:flex gap-5 py-[20px]">
-                    <BorderBtn text={"Сайт выставки"} />
-                    <BorderBtn text={"Забронировать стенд"} />
-                    <BorderBtn text={"Получить электронный билет"} />
-                  </div>
-                </div>
-              </div>
-            </div>
-          ) : null}
-        </div>
-
-        <div className="container mt-[60px] section-mb">
           <div className="flex flex-col gap-10 md:gap-[60px]">
             {eventsData && (
               <div>

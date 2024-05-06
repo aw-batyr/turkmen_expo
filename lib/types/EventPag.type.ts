@@ -11,7 +11,9 @@ export interface Data {
   starts_at: string;
   ends_at: string;
   images: Image[];
-  background_images: any[];
+  background_images: {
+    path: string;
+  }[];
   web_site: string;
   location: string;
   timing: Timing[];

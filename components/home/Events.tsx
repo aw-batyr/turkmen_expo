@@ -16,6 +16,7 @@ import { baseAPI } from "@/lib/API";
 import { useAppSelector } from "@/redux/hooks";
 import { selectHeader } from "@/redux/slices/headerSlice";
 import { CalendarType } from "@/lib/types/Calendar.type";
+import { act } from "react-dom/test-utils";
 
 export const Events = () => {
   const [eventsData, setEventsData] = useState<CalendarType>();
