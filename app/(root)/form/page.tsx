@@ -1,40 +1,51 @@
-"use client";
+'use client';
 
-import React from "react";
+import * as React from 'react';
 
-import { useForm, SubmitHandler } from "react-hook-form";
-
-interface FormFields {
-  name: string;
-  age: number;
-}
+import { useForm, SubmitHandler } from 'react-hook-form';
+import { Field } from '@/components/bid/Field';
+import { z } from 'zod';
+import { zodResolver } from '@hookform/resolvers/zod';
 
 const Form = () => {
-  const { register, handleSubmit } = useForm<FormFields>();
+  const formSchema = z.object({
+    name: z.string(),
+    age: z.number(),
+  });
+
+  const {
+    register,
+    handleSubmit,
+    reset,
+    formState: { errors },
+  } = useForm<FormFields>({ resolver: zodResolver(formSchema) });
+
+  type FormFields = z.infer<typeof formSchema>;
 
   const onSubmit = (data: FormFields) => {
     console.log(data);
+    reset();
   };
 
   return (
-    <form
-      onSubmit={handleSubmit(onSubmit)}
-      className="container my-20 flex flex-col gap-5"
-    >
-      <input
-        {...register("name", {
-          required: "Name is Required!",
+    <form onSubmit={handleSubmit(onSubmit)} className="container my-20 flex flex-col gap-5">
+      <Field
+        {...register('name', {
+          required: 'Name is Required!',
         })}
-        className="bid-input w-[300px]"
+        type="text"
       />
-      <input
-        {...register("age", {
-          required: "Age is Required!",
+      {errors.name && <span className="text-red">{errors.name.message}</span>}
+
+      <Field
+        {...register('age', {
+          required: 'Age is Required!',
         })}
-        className="bid-input w-[300px]"
         type="number"
       />
-      <button className="border-white border-[1px] rounded-lg w-fit px-10 py-3">
+      {errors.age && <span className="text-red">{errors.age.message}</span>}
+
+      <button type="submit" className="border-white border-[1px] rounded-lg w-fit px-10 py-3">
         Send
       </button>
     </form>
