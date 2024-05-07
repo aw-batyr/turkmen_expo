@@ -7,7 +7,7 @@ import { v4 } from "uuid";
 import { motion, AnimatePresence } from "framer-motion";
 
 import drop from "@/public/assets/icons/form-drop-icon.svg";
-import { exhibitions, FormFields, IMethods } from "../bid/FormSec";
+import { FormFields, IMethods } from "../bid/FormSec";
 import { baseAPI } from "@/lib/API";
 import { useAppSelector } from "@/redux/hooks";
 import { selectHeader } from "@/redux/slices/headerSlice";
