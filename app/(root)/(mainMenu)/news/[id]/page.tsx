@@ -20,9 +20,11 @@ const page = ({ params }: { params: { id: string } }) => {
 
   const fetchData = async () => {
     try {
-      const response = await fetch(
-        `${baseAPI}news/${params.id}?X-Localization=${activeLang.localization}`,
-      );
+      const response = await fetch(`${baseAPI}news/${params.id}`, {
+        headers: {
+          'Accept-Language': activeLang.localization,
+        },
+      });
 
       if (!response.ok) {
         throw new Error('error');
@@ -38,7 +40,7 @@ const page = ({ params }: { params: { id: string } }) => {
 
   React.useEffect(() => {
     fetchData();
-  }, []);
+  }, [activeLang.localization]);
 
   return (
     <div className="section-mb w-full">

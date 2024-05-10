@@ -1,22 +1,22 @@
-"use client";
+'use client';
 
-import React, { useEffect, useState } from "react";
-import { Swiper, SwiperSlide } from "swiper/react";
-import { v4 } from "uuid";
-import { EventCard } from "../cards/EventCard";
-import { GreenBtn, GreenBtnMob } from "../ui/Buttons";
+import React, { useEffect, useState } from 'react';
+import { Swiper, SwiperSlide } from 'swiper/react';
+import { v4 } from 'uuid';
+import { EventCard } from '../cards/EventCard';
+import { GreenBtn, GreenBtnMob } from '../ui/Buttons';
 
-import "swiper/css";
-import "swiper/css/pagination";
-import "./styles/events.css";
+import 'swiper/css';
+import 'swiper/css/pagination';
+import './styles/events.css';
 
-import { Title } from "./Title";
-import { Pagination } from "swiper/modules";
-import { baseAPI } from "@/lib/API";
-import { useAppSelector } from "@/redux/hooks";
-import { selectHeader } from "@/redux/slices/headerSlice";
-import { CalendarType } from "@/lib/types/Calendar.type";
-import { act } from "react-dom/test-utils";
+import { Title } from './Title';
+import { Pagination } from 'swiper/modules';
+import { baseAPI } from '@/lib/API';
+import { useAppSelector } from '@/redux/hooks';
+import { selectHeader } from '@/redux/slices/headerSlice';
+import { CalendarType } from '@/lib/types/Calendar.type';
+import { act } from 'react-dom/test-utils';
 
 export const Events = () => {
   const [eventsData, setEventsData] = useState<CalendarType>();
@@ -29,9 +29,11 @@ export const Events = () => {
 
   const fetchEvents = async () => {
     try {
-      const res = await fetch(
-        `${baseAPI}expoevents?X-Localization=${activeLang.localization}`
-      );
+      const res = await fetch(`${baseAPI}expoevents`, {
+        headers: {
+          'Accept-Language': activeLang.localization,
+        },
+      });
 
       const data = await res.json();
 
@@ -43,7 +45,7 @@ export const Events = () => {
 
   useEffect(() => {
     fetchEvents();
-  }, []);
+  }, [activeLang.localization]);
 
   return (
     <>
@@ -63,14 +65,12 @@ export const Events = () => {
                   ends={item.ends_at}
                   category={item.category}
                   id={item.id}
-                  web={item.web_site ? item.web_site : ""}
-                  location={item.location ? item.location : ""}
+                  web={item.web_site ? item.web_site : ''}
+                  location={item.location ? item.location : ''}
                   timing={item.timing}
-                  topic={item.event_topic ? item.event_topic : ""}
+                  topic={item.event_topic ? item.event_topic : ''}
                   images={
-                    item.images.length > 0
-                      ? item.images[0].path
-                      : eventsData.data[0].images[0]
+                    item.images.length > 0 ? item.images[0].path : eventsData.data[0].images[0]
                   }
                 />
               ))
@@ -84,23 +84,17 @@ export const Events = () => {
                   ends={item.ends_at}
                   category={item.category}
                   id={item.id}
-                  web={item.web_site ? item.web_site : ""}
-                  location={item.location ? item.location : ""}
+                  web={item.web_site ? item.web_site : ''}
+                  location={item.location ? item.location : ''}
                   timing={item.timing}
-                  topic={item.event_topic ? item.event_topic : ""}
+                  topic={item.event_topic ? item.event_topic : ''}
                   images={
-                    item.images.length > 0
-                      ? item.images[0].path
-                      : eventsData.data[0].images[0]
+                    item.images.length > 0 ? item.images[0].path : eventsData.data[0].images[0]
                   }
                 />
               ))}
           {eventsData && eventsData.data.length > 3 ? (
-            <GreenBtn
-              onEventBtn={onEventBtn}
-              text={"Показать ещё"}
-              mt="mt-[25px]"
-            />
+            <GreenBtn onEventBtn={onEventBtn} text={'Показать ещё'} mt="mt-[25px]" />
           ) : null}
         </div>
       </div>
@@ -117,8 +111,7 @@ export const Events = () => {
               modules={[Pagination]}
               slidesPerView={1}
               spaceBetween={20}
-              pagination={{ type: "bullets", el: ".swiper-pagination" }}
-            >
+              pagination={{ type: 'bullets', el: '.swiper-pagination' }}>
               {openCards &&
                 eventsData?.data.map((item) => (
                   <SwiperSlide key={v4()} className="mb-[72px]">
@@ -131,14 +124,12 @@ export const Events = () => {
                       ends={item.ends_at}
                       category={item.category}
                       id={item.id}
-                      web={item.web_site ? item.web_site : ""}
-                      location={item.location ? item.location : ""}
+                      web={item.web_site ? item.web_site : ''}
+                      location={item.location ? item.location : ''}
                       timing={item.timing}
-                      topic={item.event_topic ? item.event_topic : ""}
+                      topic={item.event_topic ? item.event_topic : ''}
                       images={
-                        item.images.length > 0
-                          ? item.images[0].path
-                          : eventsData.data[0].images[0]
+                        item.images.length > 0 ? item.images[0].path : eventsData.data[0].images[0]
                       }
                     />
                   </SwiperSlide>

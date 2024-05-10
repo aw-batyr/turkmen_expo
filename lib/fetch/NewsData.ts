@@ -1,15 +1,19 @@
-"use client";
+'use client';
 
-import { useAppSelector } from "@/redux/hooks";
-import { selectHeader } from "@/redux/slices/headerSlice";
-import { Dispatch, SetStateAction } from "react";
-import { NewsData } from "../types/NewsData.type";
-import { baseAPI } from "../API";
+import { useAppSelector } from '@/redux/hooks';
+import { selectHeader } from '@/redux/slices/headerSlice';
+import { Dispatch, SetStateAction } from 'react';
+import { NewsData } from '../types/NewsData.type';
+import { baseAPI } from '../API';
 
 export const fetchNews = async () => {
   const { activeLang } = useAppSelector(selectHeader);
   try {
-    const response = await fetch(`${baseAPI}news?X-Localization=${activeLang}`);
+    const response = await fetch(`${baseAPI}news`, {
+      headers: {
+        'Accept-Language': activeLang.localization,
+      },
+    });
 
     if (!response.ok) {
       throw new Error(`Fetch failed with status ${response.status}`);
@@ -18,6 +22,6 @@ export const fetchNews = async () => {
     const data = await response.json();
     return data;
   } catch (error) {
-    console.error("Fetch error:", error);
+    console.error('Fetch error:', error);
   }
 };

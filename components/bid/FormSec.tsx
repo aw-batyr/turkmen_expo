@@ -1,40 +1,28 @@
-"use client";
+'use client';
 
-import React from "react";
-import { z } from "zod";
-import { v4 } from "uuid";
-import { zodResolver } from "@hookform/resolvers/zod";
-import {
-  useForm,
-  Controller,
-  SubmitHandler,
-  FormProvider,
-} from "react-hook-form";
-import { AnimatePresence, motion } from "framer-motion";
-import { useAppSelector, useAppDispatch } from "@/redux/hooks";
+import React from 'react';
+import { z } from 'zod';
+import { v4 } from 'uuid';
+import { zodResolver } from '@hookform/resolvers/zod';
+import { useForm, Controller, SubmitHandler, FormProvider } from 'react-hook-form';
+import { AnimatePresence, motion } from 'framer-motion';
+import { useAppSelector, useAppDispatch } from '@/redux/hooks';
 
-import { BidDrop } from "../ui/Dropdown";
-import {
-  selectBid,
-  setBidStatus,
-  setRadioStatus,
-} from "@/redux/slices/bidSlice";
-import { BidRadio } from "./BidRadio";
-import { BidForm } from "./BidForm";
+import { BidDrop } from '../ui/Dropdown';
+import { selectBid, setBidStatus, setRadioStatus } from '@/redux/slices/bidSlice';
+import { BidRadio } from './BidRadio';
+import { BidForm } from './BidForm';
 
 export interface IMethods {
   value: string;
 }
 
 export const formRadio = [
-  { name: "Оборудованная", id: "equipped" },
-  { name: "Необорудованная", id: "unequipped" },
+  { name: 'Оборудованная', id: 'equipped' },
+  { name: 'Необорудованная', id: 'unequipped' },
 ];
 
-export const phoneMail: IMethods[] = [
-  { value: "телефон" },
-  { value: "E-mail" },
-];
+export const phoneMail: IMethods[] = [{ value: 'телефон' }, { value: 'E-mail' }];
 
 const schema = z.object({
   // event_id: z.number(),
@@ -72,44 +60,33 @@ export const FormSec = () => {
     dispatch(setRadioStatus(name));
   };
 
-  const getValue = (value: string) =>
-    value ? phoneMail.find((item) => item.value === value) : "";
+  const getValue = (value: string) => (value ? phoneMail.find((item) => item.value === value) : '');
 
   return (
     <FormProvider {...methods}>
       <form
         className="w-full max-w-[538px] tab:mx-0 mx-auto"
-        onSubmit={methods.handleSubmit(onSubmit)}
-      >
+        onSubmit={methods.handleSubmit(onSubmit)}>
         <div className="flex flex-col gap-5 w-full">
-          {/* <BidDrop
-          event
-          name="Название выставки"
-          required
-          value="Выберите мероприятие из списка"
-        /> */}
+          <BidDrop event name="Название выставки" required value="Выберите мероприятие из списка" />
 
-          <BidForm label={"Название компании"} name={"company_name"} require />
+          <BidForm label={'Название компании'} name={'company_name'} require />
 
-          <BidForm label={"Название сайта"} name={"web_site"} />
+          <BidForm label={'Название сайта'} name={'web_site'} />
 
-          <BidForm label={"Телефон"} name={"phone"} type="tel" require />
+          <BidForm label={'Телефон'} name={'phone'} type="tel" require />
 
-          <BidForm label={"E-mail"} name={"email"} require />
+          <BidForm label={'E-mail'} name={'email'} require />
 
           <BidForm
-            label={"Демонстрируемая продукция / оборудование / услуги"}
-            name={"what_demonstrated"}
+            label={'Демонстрируемая продукция / оборудование / услуги'}
+            name={'what_demonstrated'}
             textArea
           />
 
-          <BidForm
-            label={"Контактное лицо (Ф.И.О)"}
-            name={"contact_person"}
-            require
-          />
+          <BidForm label={'Контактное лицо (Ф.И.О)'} name={'contact_person'} require />
 
-          <BidForm label={"Требуемая площадь 2м"} name={"required_area"} />
+          <BidForm label={'Требуемая площадь 2м'} name={'required_area'} />
 
           {/* <BidDrop name="Предпочтительный способ ответа" dropInfo={phoneMail} /> */}
 
@@ -151,8 +128,7 @@ export const FormSec = () => {
  */}
             <button
               type="submit"
-              className="py-[17px] w-full bg-green hover:bg-lightGreen transition-all rounded-[2px]"
-            >
+              className="py-[17px] w-full bg-green hover:bg-lightGreen transition-all rounded-[2px]">
               Отправить
             </button>
           </div>

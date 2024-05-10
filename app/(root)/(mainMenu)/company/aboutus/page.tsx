@@ -17,9 +17,11 @@ const About = () => {
   const fecthAboutData = async () => {
     try {
       dispatch(fetchAbout({ activeLang }));
-      const res = await fetch(
-        `${baseAPI}settings/about_us?X-Localization=${activeLang.localization}`,
-      );
+      const res = await fetch(`${baseAPI}settings/about_us`, {
+        headers: {
+          'Accept-Language': activeLang.localization,
+        },
+      });
 
       if (!res.ok) {
         throw new Error('Error');

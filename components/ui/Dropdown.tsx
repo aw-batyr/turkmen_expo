@@ -1,17 +1,17 @@
-"use client";
+'use client';
 
-import React, { useEffect, useState } from "react";
-import Image from "next/image";
-import clsx from "clsx";
-import { v4 } from "uuid";
-import { motion, AnimatePresence } from "framer-motion";
+import React, { useEffect, useState } from 'react';
+import Image from 'next/image';
+import clsx from 'clsx';
+import { v4 } from 'uuid';
+import { motion, AnimatePresence } from 'framer-motion';
 
-import drop from "@/public/assets/icons/form-drop-icon.svg";
-import { FormFields, IMethods } from "../bid/FormSec";
-import { baseAPI } from "@/lib/API";
-import { useAppSelector } from "@/redux/hooks";
-import { selectHeader } from "@/redux/slices/headerSlice";
-import { EventType } from "@/lib/types/EventsType";
+import drop from '@/public/assets/icons/form-drop-icon.svg';
+import { FormFields, IMethods } from '../bid/FormSec';
+import { baseAPI } from '@/lib/API';
+import { useAppSelector } from '@/redux/hooks';
+import { selectHeader } from '@/redux/slices/headerSlice';
+import { EventType } from '@/lib/types/EventsType';
 
 interface Props {
   dropInfo?: IMethods[];
@@ -41,21 +41,23 @@ export const BidDrop = ({
       }
     };
 
-    document.addEventListener("click", handleClick);
+    document.addEventListener('click', handleClick);
 
-    return () => document.removeEventListener("click", handleClick);
+    return () => document.removeEventListener('click', handleClick);
   }, []);
 
   const [titles, setTitles] = useState<EventType>();
 
   const fetchTitles = async () => {
     try {
-      const res = await fetch(
-        `${baseAPI}expoevents?${activeLang.localization}`
-      );
+      const res = await fetch(`${baseAPI}expoevents`, {
+        headers: {
+          'Accept-Language': activeLang.localization,
+        },
+      });
 
       if (!res.ok) {
-        throw new Error("Error");
+        throw new Error('Error');
       }
 
       const data = await res.json();
@@ -68,7 +70,7 @@ export const BidDrop = ({
 
   React.useEffect(() => {
     fetchTitles();
-  }, []);
+  }, [activeLang.localization]);
 
   const onOption = (name: string) => {
     setActive(false);
@@ -86,16 +88,15 @@ export const BidDrop = ({
         onClick={() => {
           setActive(!active);
         }}
-        className="h-[43px] flex cursor-pointer items-center justify-between bid-drop py-[15px]"
-      >
+        className="h-[43px] flex cursor-pointer items-center justify-between bid-drop py-[15px]">
         <div>
           <div>{title}</div>
         </div>
         <Image
           src={drop}
           alt="arrow"
-          className={clsx("transition-all", {
-            "rotate-180": active,
+          className={clsx('transition-all', {
+            'rotate-180': active,
           })}
         />
       </div>
@@ -115,8 +116,7 @@ export const BidDrop = ({
               transition={{
                 duration: 0.25,
               }}
-              className="bg-navyBlue3 rounded-sm flex flex-col absolute w-full shadow-sm"
-            >
+              className="bg-navyBlue3 rounded-sm flex flex-col absolute w-full shadow-sm">
               {event
                 ? titles
                   ? titles.data.map((item) => (
@@ -124,12 +124,11 @@ export const BidDrop = ({
                         key={v4()}
                         onClick={() => onOption(item.title)}
                         className={clsx(
-                          "cursor-pointer py-[15px] px-[12px] text-[14px] font-regular leading-[125%] transition-all",
+                          'cursor-pointer py-[15px] px-[12px] text-[14px] font-regular leading-[125%] transition-all',
                           {
-                            "hover:bg-green rounded-sm": item === item,
-                          }
-                        )}
-                      >
+                            'hover:bg-green rounded-sm': item === item,
+                          },
+                        )}>
                         {item.title}
                       </div>
                     ))
@@ -140,13 +139,11 @@ export const BidDrop = ({
                       key={v4()}
                       onClick={() => onOption(item.value)}
                       className={clsx(
-                        "cursor-pointer py-[15px] px-[12px] text-[14px] font-regular leading-[125%] transition-all",
+                        'cursor-pointer py-[15px] px-[12px] text-[14px] font-regular leading-[125%] transition-all',
                         {
-                          "hover:bg-green rounded-sm":
-                            item.value === item.value,
-                        }
-                      )}
-                    >
+                          'hover:bg-green rounded-sm': item.value === item.value,
+                        },
+                      )}>
                       {item.value}
                     </div>
                   ))}

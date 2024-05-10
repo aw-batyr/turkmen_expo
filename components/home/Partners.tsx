@@ -1,18 +1,18 @@
-"use client";
+'use client';
 
-import React, { useEffect, useState } from "react";
-import Image from "next/image";
-import { v4 } from "uuid";
-import { Swiper, SwiperSlide } from "swiper/react";
+import React, { useEffect, useState } from 'react';
+import Image from 'next/image';
+import { v4 } from 'uuid';
+import { Swiper, SwiperSlide } from 'swiper/react';
 
-import { partnersData } from "@/lib/database/homeInfoData";
+import { partnersData } from '@/lib/database/homeInfoData';
 
-import { Title } from "./Title";
-import { Autoplay, Pagination } from "swiper/modules";
-import { useAppSelector } from "@/redux/hooks";
-import { selectHeader } from "@/redux/slices/headerSlice";
-import { PartnersType } from "@/lib/types/PartnersData.type";
-import { baseAPI } from "@/lib/API";
+import { Title } from './Title';
+import { Autoplay, Pagination } from 'swiper/modules';
+import { useAppSelector } from '@/redux/hooks';
+import { selectHeader } from '@/redux/slices/headerSlice';
+import { PartnersType } from '@/lib/types/PartnersData.type';
+import { baseAPI } from '@/lib/API';
 
 export const Partners = () => {
   const { activeLang } = useAppSelector(selectHeader);
@@ -20,9 +20,11 @@ export const Partners = () => {
 
   const fetchPartners = async () => {
     try {
-      const res = await fetch(
-        `${baseAPI}partners?X-Localization=${activeLang.localization}`
-      );
+      const res = await fetch(`${baseAPI}partners`, {
+        headers: {
+          'Accept-Language': activeLang.localization,
+        },
+      });
 
       const data = await res.json();
 
@@ -34,7 +36,7 @@ export const Partners = () => {
 
   useEffect(() => {
     fetchPartners();
-  }, []);
+  }, [activeLang.localization]);
 
   return (
     <div className="container">
@@ -50,8 +52,7 @@ export const Partners = () => {
           autoplay={{ delay: 0 }}
           spaceBetween={30}
           speed={7500}
-          pagination={{ type: "bullets", el: ".swiper-pagination" }}
-        >
+          pagination={{ type: 'bullets', el: '.swiper-pagination' }}>
           {partnersData
             ? partnersData.data.map((logo) => (
                 <SwiperSlide key={v4()} className="h-[63px] overflow-hidden">
@@ -76,8 +77,7 @@ export const Partners = () => {
           autoplay={{ delay: 0 }}
           spaceBetween={30}
           speed={7500}
-          pagination={{ type: "bullets", el: ".swiper-pagination" }}
-        >
+          pagination={{ type: 'bullets', el: '.swiper-pagination' }}>
           {partnersData
             ? partnersData.data.map((logo) => (
                 <SwiperSlide key={v4()}>
@@ -102,8 +102,7 @@ export const Partners = () => {
           autoplay={{ delay: 0 }}
           spaceBetween={30}
           speed={7500}
-          pagination={{ type: "bullets", el: ".swiper-pagination" }}
-        >
+          pagination={{ type: 'bullets', el: '.swiper-pagination' }}>
           {partnersData
             ? partnersData.data.map((logo) => (
                 <SwiperSlide key={v4()}>
@@ -128,8 +127,7 @@ export const Partners = () => {
           autoplay={{ delay: 0 }}
           spaceBetween={30}
           speed={7500}
-          pagination={{ type: "bullets", el: ".swiper-pagination" }}
-        >
+          pagination={{ type: 'bullets', el: '.swiper-pagination' }}>
           {partnersData
             ? partnersData.data.map((logo) => (
                 <SwiperSlide key={v4()}>

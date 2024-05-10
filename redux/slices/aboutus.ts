@@ -5,7 +5,11 @@ import { activeLangType } from './headerSlice';
 export const fetchAbout = createAsyncThunk(
   'about/fetchAbout',
   async ({ activeLang }: { activeLang: activeLangType }) => {
-    const res = await fetch(`${baseAPI}settings/about_us${activeLang.localization}`);
+    const res = await fetch(`${baseAPI}settings/about_us`, {
+      headers: {
+        'Accept-Language': activeLang.localization,
+      },
+    });
 
     const data = await res.json();
 

@@ -31,9 +31,11 @@ export const NewsSec = () => {
 
   const fetchNews = async () => {
     try {
-      const response = await fetch(
-        `${baseAPI}news?X-Localization=${activeLang.localization}&page=${current}&per_page=${perPage}`,
-      );
+      const response = await fetch(`${baseAPI}news?page=${current}&per_page=${perPage}`, {
+        headers: {
+          'Accept-Language': activeLang.localization,
+        },
+      });
 
       if (!response.ok) {
         throw new Error(`Fetch failed with status ${response.status}`);
@@ -49,7 +51,7 @@ export const NewsSec = () => {
 
   React.useEffect(() => {
     fetchNews();
-  }, [current, perPage]);
+  }, [current, perPage, activeLang.localization]);
 
   const handleOnClickButton = () => {
     setPerPage((prev) => prev + 6);
