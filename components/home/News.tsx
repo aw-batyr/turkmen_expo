@@ -49,7 +49,7 @@ export const News = () => {
 
   React.useEffect(() => {
     fetchNews();
-  }, []);
+  }, [activeLang.localization]);
 
   return (
     <>
