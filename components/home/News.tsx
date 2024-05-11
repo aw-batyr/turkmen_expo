@@ -30,9 +30,11 @@ export const News = () => {
 
   const fetchNews = async () => {
     try {
-      const response = await fetch(
-        `https://turkmenexpo.com/app/api/v1/news?X-Localization=${activeLang.localization}`,
-      );
+      const response = await fetch(`https://turkmenexpo.com/app/api/v1/news`, {
+        headers: {
+          'Accept-Language': activeLang.localization,
+        },
+      });
 
       if (!response.ok) {
         throw new Error(`Fetch failed with status ${response.status}`);
