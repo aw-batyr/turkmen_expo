@@ -31,7 +31,7 @@ export default () => {
   };
   const fetchMainBanners = async () => {
     try {
-      const response = await fetch(`${baseAPI}banners/main-banner`, {
+      const response = await fetch(`${baseAPI}banners/main-surat`, {
         headers: {
           'Accept-Language': activeLang.localization,
         },
@@ -46,7 +46,7 @@ export default () => {
 
   const fetchMediumBanners = async () => {
     try {
-      const res = await fetch(`${baseAPI}banners/medium-banner`, {
+      const res = await fetch(`${baseAPI}banners/medium-surat`, {
         headers: {
           'Accept-Language': activeLang.localization,
         },
@@ -66,7 +66,7 @@ export default () => {
 
   const fetchSmallBanners = async () => {
     try {
-      const res = await fetch(`${baseAPI}banners/small-banner`, {
+      const res = await fetch(`${baseAPI}banners/small-surat`, {
         headers: {
           'Accept-Language': activeLang.localization,
         },
