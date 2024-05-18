@@ -26,11 +26,9 @@ export const Input = ({ mob = false }: { mob?: boolean }) => {
   const wrapper = document.querySelector('.wrapper');
 
   useEffect(() => {
-    main?.classList.add('overflow-hidden');
     wrapper?.classList.add('overflow-hidden');
 
     return () => {
-      main?.classList.remove('overflow-hidden');
       wrapper?.classList.remove('overflow-hidden');
     };
   }, []);

@@ -1,17 +1,17 @@
-"use client";
+'use client';
 
-import { useState } from "react";
-import Image from "next/image";
-import clsx from "clsx";
-import { v4 } from "uuid";
-import { AnimatePresence, motion } from "framer-motion";
+import { useState } from 'react';
+import Image from 'next/image';
+import clsx from 'clsx';
+import { v4 } from 'uuid';
+import { AnimatePresence, motion } from 'framer-motion';
 
-import { useAppSelector } from "@/redux/hooks";
+import { useAppSelector } from '@/redux/hooks';
 
-import openIcon from "@/public/assets/icons/contact-arrow.svg";
+import openIcon from '@/public/assets/icons/contact-arrow.svg';
 
-import { selectFaq } from "@/redux/slices/faqSlice";
-import { PlusDrop } from "./PlusDrop";
+import { selectFaq } from '@/redux/slices/faqSlice';
+import { PlusDrop } from './PlusDrop';
 
 interface IProps {
   // header: string;
@@ -44,26 +44,27 @@ export const Select = ({ title, content }: IProps) => {
       <motion.div
         onClick={() => onTitle(title)}
         className={clsx(
-          "w-full flex items-center justify-between border-y-[1px] border-y-navyBlue cursor-pointer",
+          'w-full flex items-center justify-between border-y-[1px] border-y-navyBlue cursor-pointer',
           {
-            "border-t-navyBlue5": faqTitle === title,
-          }
-        )}
-      >
+            'border-t-navyBlue5': faqTitle === title,
+          },
+        )}>
         <h2 className="sm:text-[21px] text-[16px] sm:leading-[100%] leading-[120%] sm:font-semibold font-[400] py-4 sm:py-5">
           {title}
         </h2>
         <Image
-          src={openIcon}
+          src={'/assets/icons/contact-arrow.svg'}
+          width={30}
+          height={30}
           alt="arrow"
-          className={clsx("rotate-[180deg] transition-all gap-4", {
-            "rotate-[360deg]": openTitles.includes(title || ""),
+          className={clsx('rotate-[180deg] transition-all gap-4', {
+            'rotate-[360deg]': openTitles.includes(title || ''),
           })}
         />
       </motion.div>
       <div className="flex flex-col w-full max-w-[1000px]">
         <AnimatePresence>
-          {openTitles.includes(title || "") && (
+          {openTitles.includes(title || '') && (
             <motion.div
               initial={{
                 opacity: 0,

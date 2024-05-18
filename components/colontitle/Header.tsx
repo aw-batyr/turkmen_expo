@@ -41,9 +41,12 @@ export const Header = () => {
       {/* Mobile */}
 
       <header
-        className={clsx('bg-bgWhite tab:hidden flex items-center justify-between px-4 py-6', {
-          'fixed w-full top-0': burgerMenu,
-        })}>
+        className={clsx(
+          'bg-bgWhite tab:hidden relative z-[50] flex items-center justify-between px-4 py-6',
+          {
+            // 'fixed w-full top-0': burgerMenu,
+          },
+        )}>
         <Image
           src={searchMob}
           height={32}

@@ -2,7 +2,7 @@ import { Events } from '@/components/home/Events';
 import { News } from '@/components/home/News';
 import { Services } from '@/components/home/Services';
 import { Partners } from '@/components/home/Partners';
-import Slider from '@/components/home/Slider';
+import { Slider } from '@/components/home/Slider';
 import { Video } from '@/components/home/Video';
 
 const Home = () => {
