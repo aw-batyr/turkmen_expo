@@ -75,8 +75,6 @@ export const FaqSec = () => {
     setCurrentRadio(id);
   };
 
-  console.log(currentRadio);
-
   return (
     <div className="container flex flex-col items-start pt-[20px] section-mb">
       <BreadCrumbs second="FAQ" />

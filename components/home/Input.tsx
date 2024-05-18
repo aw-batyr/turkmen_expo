@@ -1,7 +1,8 @@
 'use client';
-import React, { useEffect } from 'react';
+import React, { ChangeEvent, useEffect, useState } from 'react';
 import Image from 'next/image';
-import { AnimatePresence, easeInOut, motion } from 'framer-motion';
+import { motion } from 'framer-motion';
+import { useDebounceCallback } from 'usehooks-ts';
 
 import { useAppDispatch, useAppSelector } from '@/redux/hooks';
 import close from '@/public/assets/icons/home/close-input.svg';
@@ -22,8 +23,11 @@ export const inputRadio = [
 ];
 
 export const Input = ({ mob = false }: { mob?: boolean }) => {
-  const main = document.querySelector('.main');
   const wrapper = document.querySelector('.wrapper');
+
+  const [value, setValue] = useState('');
+
+  const debounced = useDebounceCallback(setValue, 500);
 
   useEffect(() => {
     wrapper?.classList.add('overflow-hidden');
@@ -40,6 +44,8 @@ export const Input = ({ mob = false }: { mob?: boolean }) => {
   const setStatus = (name: string) => {
     dispatch(setInputStatus(name));
   };
+
+  console.log(value);
 
   return (
     <motion.div
@@ -70,9 +76,11 @@ export const Input = ({ mob = false }: { mob?: boolean }) => {
             src={close}
           />
         </div>
-        <div className={`flex flex-col mt-[10vw] items-center w-full max-w-[566px] mx-auto`}>
+        <div className={`flex flex-col mt-[10vw] items-center w-full mb-6 max-w-[566px] mx-auto`}>
           <div className="w-full mb-[24px]">
             <input
+              onChange={(e: React.ChangeEvent<HTMLInputElement>) => setValue(e.target.value)}
+              value={value}
               type="search"
               placeholder="Что найти?"
               className="p-3 w-full leading-[150%] placeholder:leading-[150%] placeholder:text-gray focus:outline-none rounded-sm bg-transparent border-[1px] border-[#BCC4CC]"
@@ -89,7 +97,14 @@ export const Input = ({ mob = false }: { mob?: boolean }) => {
               </div>
             ))}
           </div>
-          <SimpleGreenBtn text={'Найти'} />
+          <div className="mb-6">
+            <SimpleGreenBtn text={'Найти'} />
+          </div>
+          <div className="mb-12 font-light">
+            По запросу « <span className="font-bold">{}</span> » нашлось {} результатов
+          </div>
+
+          <div className="flex flex-col gap-9"></div>
         </div>
       </div>
     </motion.div>

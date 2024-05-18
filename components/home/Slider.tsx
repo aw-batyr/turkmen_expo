@@ -58,8 +58,6 @@ export const Slider = () => {
     fetchBanners();
   }, [activeLang.localization]);
 
-  console.log(bannersData);
-
   return (
     <div className="relative z-10 h-fit pb-5 md:pb-0">
       <Swiper
