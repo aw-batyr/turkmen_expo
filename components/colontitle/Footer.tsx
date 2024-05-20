@@ -21,9 +21,6 @@ export const icons = [
 ];
 
 export const Footer = () => {
-  const { showInput } = useAppSelector(selectHeader);
-  const { burgerMenu } = useAppSelector(selectBurger);
-
   return (
     <footer className="bg-darkBlue pt-6 pb-5 mob:py-[40px]">
       <div className="container">

@@ -1,11 +1,11 @@
-'use client';
+"use client";
 
-import clsx from 'clsx';
-import React from 'react';
-import Image from 'next/image';
-import { motion, AnimatePresence } from 'framer-motion';
+import clsx from "clsx";
+import React from "react";
+import Image from "next/image";
+import { motion, AnimatePresence } from "framer-motion";
 
-import check from '@/public/assets/icons/check.svg';
+import check from "@/public/assets/icons/check.svg";
 
 interface Props {
   fill?: boolean;
@@ -17,21 +17,13 @@ export const Radio = ({ fill }: Props) => {
       <AnimatePresence mode="popLayout">
         {fill && (
           <motion.div
-            initial={{
-              scale: 0,
-            }}
-            animate={{
-              scale: 1,
-            }}
-            exit={{
-              scale: 0,
-            }}
-            transition={{
-              duration: 0.05,
-            }}
-            className={clsx('w-full h-full rounded-full opacity-0 bg-green transition-all', {
-              'opacity-100': fill,
-            })}></motion.div>
+            className={clsx(
+              "w-full h-full rounded-full opacity-0 bg-green transition-all",
+              {
+                "opacity-100": fill,
+              }
+            )}
+          ></motion.div>
         )}
       </AnimatePresence>
     </div>
@@ -41,8 +33,18 @@ export const Radio = ({ fill }: Props) => {
 export const Checkbox = ({ fill }: Props) => {
   return (
     <div className="w-[16px] h-[16px] rounded-sm p-[4px] border-[1px] border-navyBlue">
-      <div className={clsx('w-full h-full rounded-sm opacity-0 bg-navyBlue transition-all')}>
-        <Image src={check} alt="checked" width={8} height={7} className={clsx('opacity-100', {})} />
+      <div
+        className={clsx(
+          "w-full h-full rounded-sm opacity-0 bg-navyBlue transition-all"
+        )}
+      >
+        <Image
+          src={check}
+          alt="checked"
+          width={8}
+          height={7}
+          className={clsx("opacity-100", {})}
+        />
       </div>
     </div>
   );

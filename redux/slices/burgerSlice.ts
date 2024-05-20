@@ -3,14 +3,14 @@ import { RootState } from "../store";
 
 interface BurgerTypes {
   footerDrop: string;
-  burgerMenu: boolean;
+  burgerOpen: boolean;
   burgerDrop: string;
 }
 
 const initialState: BurgerTypes = {
   burgerDrop: "",
   footerDrop: "",
-  burgerMenu: false,
+  burgerOpen: false,
 };
 
 const burgerSlice = createSlice({
@@ -20,8 +20,8 @@ const burgerSlice = createSlice({
     setFooterDrop(state, action: PayloadAction<string>) {
       state.footerDrop = action.payload;
     },
-    setBurgerMenu(state, action: PayloadAction<boolean>) {
-      state.burgerMenu = action.payload;
+    setBurgerOpen(state, action: PayloadAction<boolean>) {
+      state.burgerOpen = action.payload;
     },
     setBurgerDrop(state, action: PayloadAction<string>) {
       state.burgerDrop = action.payload;
@@ -31,7 +31,7 @@ const burgerSlice = createSlice({
 
 export const selectBurger = (state: RootState) => state.burgerSlice;
 
-export const { setFooterDrop, setBurgerMenu, setBurgerDrop } =
+export const { setFooterDrop, setBurgerOpen, setBurgerDrop } =
   burgerSlice.actions;
 
 export default burgerSlice.reducer;

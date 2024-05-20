@@ -1,19 +1,19 @@
-'use client';
+"use client";
 
-import React, { useEffect } from 'react';
-import { v4 } from 'uuid';
+import React, { useEffect } from "react";
+import { v4 } from "uuid";
 
-import { EventCard } from '../cards/EventCard';
-import { BorderBtn } from '../ui/Buttons';
+import { EventCard } from "../cards/EventCard";
+import { BorderBtn } from "../ui/Buttons";
 
-import { Pagination } from '../ui/Pagination';
-import { useAppDispatch, useAppSelector } from '@/redux/hooks';
-import { selectHeader } from '@/redux/slices/headerSlice';
-import { Title } from '../home/Title';
-import { setBurgerMenu } from '@/redux/slices/burgerSlice';
-import { baseAPI } from '@/lib/API';
-import { CalendarType } from '@/lib/types/Calendar.type';
-import { BreadCrumbs } from '../ui/BreadCrumbs';
+import { Pagination } from "../ui/Pagination";
+import { useAppDispatch, useAppSelector } from "@/redux/hooks";
+import { selectHeader } from "@/redux/slices/headerSlice";
+import { Title } from "../home/Title";
+import { setBurgerOpen } from "@/redux/slices/burgerSlice";
+import { baseAPI } from "@/lib/API";
+import { CalendarType } from "@/lib/types/Calendar.type";
+import { BreadCrumbs } from "../ui/BreadCrumbs";
 
 export const CalendarSec = ({}: {}) => {
   const [current, setCurrent] = React.useState<number>(1);
@@ -22,21 +22,21 @@ export const CalendarSec = ({}: {}) => {
   const [eventsData, setEventsData] = React.useState<CalendarType>();
   const dispatch = useAppDispatch();
   React.useEffect(() => {
-    dispatch(setBurgerMenu(false));
+    dispatch(setBurgerOpen(false));
   }, []);
 
   const fetchEvents = async () => {
     try {
       const response = await fetch(`${baseAPI}expoevents`, {
         headers: {
-          'Accept-Language': activeLang.localization,
+          "Accept-Language": activeLang.localization,
         },
       });
 
       const data = await response.json();
 
       if (!response.ok) {
-        throw new Error('error');
+        throw new Error("error");
       }
 
       setEventsData(data);
@@ -71,12 +71,14 @@ export const CalendarSec = ({}: {}) => {
                   ends={item.ends_at}
                   category={item.category}
                   id={item.id}
-                  web={item.web_site ? item.web_site : ''}
-                  location={item.location ? item.location : ''}
+                  web={item.web_site ? item.web_site : ""}
+                  location={item.location ? item.location : ""}
                   timing={item.timing}
-                  topic={item.event_topic ? item.event_topic : ''}
+                  topic={item.event_topic ? item.event_topic : ""}
                   images={
-                    item.images.length > 0 ? item.images[0].path : eventsData.data[0].images[0]
+                    item.images.length > 0
+                      ? item.images[0].path
+                      : eventsData.data[0].images[0]
                   }
                 />
               ))
@@ -84,7 +86,11 @@ export const CalendarSec = ({}: {}) => {
         </div>
         <div className="w-full flex flex-col gap-6 items-center justify-center">
           {eventsData && eventsData.data.length > 3 && (
-            <BorderBtn text={showCards ? 'Скрыть' : 'Показать ещё'} mt="24" px />
+            <BorderBtn
+              text={showCards ? "Скрыть" : "Показать ещё"}
+              mt="24"
+              px
+            />
           )}
           <div className="flex items-center gap-5">
             {/* <Pagination

@@ -1,14 +1,18 @@
-'use client';
+"use client";
 
-import { burgerMenuData } from '@/lib/database/pathnames';
-import { useAppDispatch, useAppSelector } from '@/redux/hooks';
-import Link from 'next/link';
-import React from 'react';
-import Image from 'next/image';
-import { v4 } from 'uuid';
+import { burgerMenuData } from "@/lib/database/pathnames";
+import { useAppDispatch, useAppSelector } from "@/redux/hooks";
+import Link from "next/link";
+import React from "react";
+import Image from "next/image";
+import { v4 } from "uuid";
 
-import arrow from '@/public/assets/icons/header/burger-arrow.svg';
-import { setBurgerDrop, setBurgerMenu, setFooterDrop } from '@/redux/slices/burgerSlice';
+import arrow from "@/public/assets/icons/header/burger-arrow.svg";
+import {
+  setBurgerDrop,
+  setBurgerOpen,
+  setFooterDrop,
+} from "@/redux/slices/burgerSlice";
 
 export const BurgerDrop = ({
   filter,
@@ -28,10 +32,11 @@ export const BurgerDrop = ({
             <div
               onClick={() => {
                 setDrop(false);
-                dispatch(setBurgerDrop(''));
-                dispatch(setFooterDrop(''));
+                dispatch(setBurgerDrop(""));
+                dispatch(setFooterDrop(""));
               }}
-              className="cursor-pointer flex items-center gap-[10px] mb-[10px]">
+              className="cursor-pointer flex items-center gap-[10px] mb-[10px]"
+            >
               <Image src={arrow} alt="стрелка" className="rotate-180" />
               <h3 className="leading-[135%] text-[18px]">{item.title}</h3>
             </div>
@@ -44,14 +49,15 @@ export const BurgerDrop = ({
                   href={subj.link}
                   className="cursor-pointer text-white"
                   onClick={() => {
-                    dispatch(setBurgerMenu(false));
+                    dispatch(setBurgerOpen(false));
                     setDrop(false);
-                  }}>
+                  }}
+                >
                   {subj.title}
                 </Link>
               ))}
             </div>
           </div>
-        ),
+        )
     );
 };
