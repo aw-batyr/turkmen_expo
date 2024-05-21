@@ -6,7 +6,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { v4 } from "uuid";
 import { usePathname } from "next/navigation";
-import { AnimatePresence, motion } from "framer-motion";
+import { AnimatePresence } from "framer-motion";
 
 import logo from "@/public/assets/icons/header/logo.svg";
 import search from "@/public/assets/icons/header/search.svg";

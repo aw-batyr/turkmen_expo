@@ -2,11 +2,11 @@
 
 import React, { useState } from "react";
 import { z } from "zod";
-import { v4 } from "uuid";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
-import { useAppSelector, useAppDispatch } from "@/redux/hooks";
 import { PostParticipantFormTypes } from "@/lib/types/PostParticipantForm.type";
+import { SuccessBlur } from "./SuccessBlur";
+import clsx from "clsx";
 
 export interface IMethods {
   value: string;
@@ -52,7 +52,7 @@ export const FormSec = () => {
     register,
     reset,
     handleSubmit,
-    formState: { errors },
+    formState: { errors, isSubmitSuccessful, isSubmitting },
   } = useForm<FormFields>({
     resolver: zodResolver(formSchema),
   });
@@ -119,134 +119,149 @@ export const FormSec = () => {
     reset();
   };
 
+  console.log(isSubmitSuccessful);
+
   return (
-    <form
-      className="w-full max-w-[538px] tab:mx-0 mx-auto"
-      onSubmit={handleSubmit(onSubmit)}
-    >
-      <div className="flex flex-col gap-6">
-        <div className="flex flex-col gap-4">
-          <label htmlFor="company_name" className="form-label">
-            Название компании:
+    <>
+      <SuccessBlur />
+      {/* <SuccessBlur /> */}
+      <form
+        className="w-full max-w-[538px] tab:mx-0 mx-auto"
+        onSubmit={handleSubmit(onSubmit)}
+      >
+        <div className="flex flex-col gap-6">
+          <div className="flex flex-col gap-4">
+            <label htmlFor="company_name" className="form-label">
+              Название компании:
+              <span className="text-lightRed">*</span>
+            </label>
+            <input
+              {...register("company_name")}
+              name="company_name"
+              id="company_name"
+              type="text"
+              className="bid-input"
+            />
+            {errors.company_name && (
+              <span className="text-lightRed">
+                {errors.company_name.message}
+              </span>
+            )}
+          </div>
+
+          <label htmlFor="contact_person" className="form-label">
+            Контактное лицо (Ф.И.О.):
             <span className="text-lightRed">*</span>
           </label>
           <input
-            {...register("company_name")}
-            name="company_name"
-            id="company_name"
+            {...register("contact_person")}
+            name="contact_person"
             type="text"
+            id="contact_person"
             className="bid-input"
           />
-          {errors.company_name && (
-            <span className="text-lightRed">{errors.company_name.message}</span>
-          )}
-        </div>
-
-        <label htmlFor="contact_person" className="form-label">
-          Контактное лицо (Ф.И.О.):
-          <span className="text-lightRed">*</span>
-        </label>
-        <input
-          {...register("contact_person")}
-          name="contact_person"
-          type="text"
-          id="contact_person"
-          className="bid-input"
-        />
-        {errors.contact_person && (
-          <span className="text-lightRed">{errors.contact_person.message}</span>
-        )}
-
-        <div className="flex flex-col gap-4">
-          <label htmlFor="web_site" className="form-label">
-            Веб-сайт:
-          </label>
-          <input
-            {...register("web_site")}
-            name="web_site"
-            id="web_site"
-            type="text"
-            className="bid-input"
-          />
-          {errors.web_site && (
-            <span className="text-lightRed">{errors.web_site.message}</span>
-          )}
-        </div>
-
-        <div className="flex flex-col gap-4">
-          <label htmlFor="phone" className="form-label">
-            Телефон
-            <span className="text-lightRed">*</span>
-          </label>
-          <input
-            {...register("phone")}
-            name="phone"
-            id="phone"
-            type="text"
-            className="bid-input"
-          />
-          {errors.phone && (
-            <span className="text-lightRed">{errors.phone.message}</span>
-          )}
-        </div>
-
-        <div className="flex flex-col gap-4">
-          <label htmlFor="email" className="form-label">
-            E-mail:<span className="text-lightRed">*</span>
-          </label>
-          <input
-            {...register("email")}
-            name="email"
-            id="email"
-            type="text"
-            className="bid-input"
-          />
-          {errors.email && (
-            <span className="text-lightRed">{errors.email.message}</span>
-          )}
-        </div>
-
-        <div className="flex flex-col gap-4">
-          <label htmlFor="what_demonstrated" className="form-label">
-            Демонстрируемая продукция / оборудование / услуги:
-          </label>
-          <textarea
-            {...register("what_demonstrated")}
-            rows={7}
-            name="what_demonstrated"
-            id="what_demonstrated"
-            className="bid-input"
-          />
-          {errors.what_demonstrated && (
+          {errors.contact_person && (
             <span className="text-lightRed">
-              {errors.what_demonstrated.message}
+              {errors.contact_person.message}
             </span>
           )}
-        </div>
-      </div>
 
-      <div className="flex flex-col gap-4 mt-6">
-        <div className="flex items-center gap-4">
-          <input
-            {...register("agree")}
-            name="agree"
-            id="agree"
-            type="checkbox"
-            className="bid-input cursor-pointer"
-          />
-          <label htmlFor="agree" className="text-[13px] cursor-pointer">
-            Даю согласие на обработку своих данных
-          </label>
-        </div>
-        {errors.agree && (
-          <p className="text-lightRed">{errors.agree.message}</p>
-        )}
+          <div className="flex flex-col gap-4">
+            <label htmlFor="web_site" className="form-label">
+              Веб-сайт:
+            </label>
+            <input
+              {...register("web_site")}
+              name="web_site"
+              id="web_site"
+              type="text"
+              className="bid-input"
+            />
+            {errors.web_site && (
+              <span className="text-lightRed">{errors.web_site.message}</span>
+            )}
+          </div>
 
-        <button className="w-full py-[17px] bg-green text-white">
-          Отправить
-        </button>
-      </div>
-    </form>
+          <div className="flex flex-col gap-4">
+            <label htmlFor="phone" className="form-label">
+              Телефон
+              <span className="text-lightRed">*</span>
+            </label>
+            <input
+              {...register("phone")}
+              name="phone"
+              id="phone"
+              type="text"
+              className="bid-input"
+            />
+            {errors.phone && (
+              <span className="text-lightRed">{errors.phone.message}</span>
+            )}
+          </div>
+
+          <div className="flex flex-col gap-4">
+            <label htmlFor="email" className="form-label">
+              E-mail:<span className="text-lightRed">*</span>
+            </label>
+            <input
+              {...register("email")}
+              name="email"
+              id="email"
+              type="text"
+              className="bid-input"
+            />
+            {errors.email && (
+              <span className="text-lightRed">{errors.email.message}</span>
+            )}
+          </div>
+
+          <div className="flex flex-col gap-4">
+            <label htmlFor="what_demonstrated" className="form-label">
+              Демонстрируемая продукция / оборудование / услуги:
+            </label>
+            <textarea
+              {...register("what_demonstrated")}
+              rows={7}
+              name="what_demonstrated"
+              id="what_demonstrated"
+              className="bid-input"
+            />
+            {errors.what_demonstrated && (
+              <span className="text-lightRed">
+                {errors.what_demonstrated.message}
+              </span>
+            )}
+          </div>
+        </div>
+
+        <div className="flex flex-col gap-4 mt-6">
+          <div className="flex items-center gap-4">
+            <input
+              {...register("agree")}
+              name="agree"
+              id="agree"
+              type="checkbox"
+              className="bid-input cursor-pointer"
+            />
+            <label htmlFor="agree" className="text-[13px] cursor-pointer">
+              Даю согласие на обработку своих данных
+            </label>
+          </div>
+          {errors.agree && (
+            <p className="text-lightRed">{errors.agree.message}</p>
+          )}
+
+          <button
+            disabled={isSubmitting}
+            className={clsx("w-full py-[17px] bg-green text-white", {
+              "bg-gray": isSubmitting,
+            })}
+          >
+            Отправить
+          </button>
+        </div>
+      </form>
+    </>
   );
 };
 

@@ -4,11 +4,13 @@ import { RootState } from "../store";
 interface Props {
   radioStatus: string;
   bidStatus: boolean;
+  submited: boolean;
 }
 
 const initialState: Props = {
   radioStatus: "equipped",
   bidStatus: false,
+  submited: false,
 };
 
 const bidSlice = createSlice({
@@ -21,11 +23,14 @@ const bidSlice = createSlice({
     setBidStatus(state, action) {
       state.bidStatus = action.payload;
     },
+    setSumbited(state, action) {
+      state.submited = action.payload;
+    },
   },
 });
 
 export const selectBid = (state: RootState) => state.bidSlice;
 
-export const { setRadioStatus, setBidStatus } = bidSlice.actions;
+export const { setRadioStatus, setBidStatus, setSumbited } = bidSlice.actions;
 
 export default bidSlice.reducer;
