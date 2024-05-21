@@ -15,6 +15,7 @@ import { SliderTypes } from '@/lib/types/SliderData.type';
 
 import 'swiper/css/pagination';
 import { baseAPI } from '@/lib/API';
+import expoService from '@/lib/fetch/expo.service';
 
 export const Slider = () => {
   const tab = useMediaQuery('(min-width: 1250px)');

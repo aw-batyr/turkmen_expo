@@ -14,9 +14,7 @@ class ExpoService {
 
       const data: SliderTypes = await response.json();
 
-      return {
-        data,
-      };
+      return data;
     } catch (error) {
       console.error(error);
     }
