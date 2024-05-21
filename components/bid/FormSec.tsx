@@ -1,20 +1,20 @@
-"use client";
+'use client';
 
-import React, { useState } from "react";
-import { z } from "zod";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { useForm } from "react-hook-form";
-import { PostParticipantFormTypes } from "@/lib/types/PostParticipantForm.type";
-import { SuccessBlur } from "./SuccessBlur";
-import clsx from "clsx";
+import React, { useEffect, useState } from 'react';
+import { z } from 'zod';
+import { zodResolver } from '@hookform/resolvers/zod';
+import { useForm } from 'react-hook-form';
+import { PostParticipantFormTypes } from '@/lib/types/PostParticipantForm.type';
+import { SuccessBlur } from './SuccessBlur';
+import clsx from 'clsx';
 
 export interface IMethods {
   value: string;
 }
 
 export const formRadio = [
-  { name: "Оборудованная", id: "equipped" },
-  { name: "Необорудованная", id: "unequipped" },
+  { name: 'Оборудованная', id: 'equipped' },
+  { name: 'Необорудованная', id: 'unequipped' },
 ];
 
 // const activeresponseMethod = useParticipantsForm((state) => state.activeMethod.id);
@@ -26,23 +26,23 @@ export const FormSec = () => {
 
   const formSchema = z.object({
     company_name: z
-      .string({ required_error: "Заполните поле!" })
-      .min(2, "Минимальная длина 2 символа"),
+      .string({ required_error: 'Заполните поле!' })
+      .min(2, 'Минимальная длина 2 символа'),
     web_site: z.string().optional(),
     what_demonstrated: z.string().optional(),
     // area: z.string().refine((value) => (value === '' ? true : /^-?\d+(\.\d+)?$/.test(value)), {
     //   message: 'Площадь должна быть указана в цифрах',
     // }),
     phone: z.string().refine((value) => phoneNumberRegex.test(value), {
-      message: "Неверный формат номера телефона",
+      message: 'Неверный формат номера телефона',
     }),
-    email: z.string().email("Недействительный адрес электронной почты"),
-    contact_person: z.string().min(5, "Минимальная длина 5 символов"),
+    email: z.string().email('Недействительный адрес электронной почты'),
+    contact_person: z.string().min(5, 'Минимальная длина 5 символов'),
     // equipment: z.enum(['not-equipment', 'equipment'], {
     //   message: 'Выберите один из параметров',
     // }),
     agree: z.boolean().refine((value) => value === true, {
-      message: "Вы должны принять условия использования",
+      message: 'Вы должны принять условия использования',
     }),
   });
 
@@ -52,7 +52,7 @@ export const FormSec = () => {
     register,
     reset,
     handleSubmit,
-    formState: { errors, isSubmitSuccessful, isSubmitting },
+    formState: { errors, isSubmitSuccessful, isSubmitting, isValid },
   } = useForm<FormFields>({
     resolver: zodResolver(formSchema),
   });
@@ -71,27 +71,24 @@ export const FormSec = () => {
     setIsLoading(true);
     setIsError(false);
     try {
-      const response = await fetch(
-        `https://turkmenexpo.com/app/api/v1/applications`,
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            event_id: 3,
-            company_name,
-            phone,
-            email,
-            area,
-            response_method: 1,
-            contact_person,
-            area_is_equipped: true,
-            what_demonstrated,
-            web_site,
-          }),
-        }
-      );
+      const response = await fetch(`https://turkmenexpo.com/app/api/v1/applications`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          event_id: 3,
+          company_name,
+          phone,
+          email,
+          area,
+          response_method: 1,
+          contact_person,
+          area_is_equipped: true,
+          what_demonstrated,
+          web_site,
+        }),
+      });
 
       if (!response.ok) {
         setIsError(true);
@@ -113,22 +110,18 @@ export const FormSec = () => {
       // response_method: activeresponseMethod,
       contact_person: data.contact_person,
       // area_is_equipped: data.equipment === 'equipment' ? true : false,
-      what_demonstrated: data.what_demonstrated ? data.what_demonstrated : "",
-      web_site: data.web_site ? data.web_site : "",
+      what_demonstrated: data.what_demonstrated ? data.what_demonstrated : '',
+      web_site: data.web_site ? data.web_site : '',
     });
     reset();
   };
 
-  const [success, setSuccess] = useState(false);
+  const [success, setSuccess] = useState(isSubmitSuccessful);
 
   return (
     <>
-      <SuccessBlur />
-      {/* <SuccessBlur /> */}
-      <form
-        className="w-full max-w-[538px] tab:mx-0 mx-auto"
-        onSubmit={handleSubmit(onSubmit)}
-      >
+      {success && <SuccessBlur setSuccess={setSuccess} />}
+      <form className="w-full max-w-[538px] tab:mx-0 mx-auto" onSubmit={handleSubmit(onSubmit)}>
         <div className="flex flex-col gap-6">
           <div className="flex flex-col gap-4">
             <label htmlFor="company_name" className="form-label">
@@ -136,16 +129,14 @@ export const FormSec = () => {
               <span className="text-lightRed">*</span>
             </label>
             <input
-              {...register("company_name")}
+              {...register('company_name')}
               name="company_name"
               id="company_name"
               type="text"
               className="bid-input"
             />
             {errors.company_name && (
-              <span className="text-lightRed">
-                {errors.company_name.message}
-              </span>
+              <span className="text-lightRed">{errors.company_name.message}</span>
             )}
           </div>
 
@@ -154,16 +145,14 @@ export const FormSec = () => {
             <span className="text-lightRed">*</span>
           </label>
           <input
-            {...register("contact_person")}
+            {...register('contact_person')}
             name="contact_person"
             type="text"
             id="contact_person"
             className="bid-input"
           />
           {errors.contact_person && (
-            <span className="text-lightRed">
-              {errors.contact_person.message}
-            </span>
+            <span className="text-lightRed">{errors.contact_person.message}</span>
           )}
 
           <div className="flex flex-col gap-4">
@@ -171,15 +160,13 @@ export const FormSec = () => {
               Веб-сайт:
             </label>
             <input
-              {...register("web_site")}
+              {...register('web_site')}
               name="web_site"
               id="web_site"
               type="text"
               className="bid-input"
             />
-            {errors.web_site && (
-              <span className="text-lightRed">{errors.web_site.message}</span>
-            )}
+            {errors.web_site && <span className="text-lightRed">{errors.web_site.message}</span>}
           </div>
 
           <div className="flex flex-col gap-4">
@@ -188,15 +175,13 @@ export const FormSec = () => {
               <span className="text-lightRed">*</span>
             </label>
             <input
-              {...register("phone")}
+              {...register('phone')}
               name="phone"
               id="phone"
               type="text"
               className="bid-input"
             />
-            {errors.phone && (
-              <span className="text-lightRed">{errors.phone.message}</span>
-            )}
+            {errors.phone && <span className="text-lightRed">{errors.phone.message}</span>}
           </div>
 
           <div className="flex flex-col gap-4">
@@ -204,15 +189,13 @@ export const FormSec = () => {
               E-mail:<span className="text-lightRed">*</span>
             </label>
             <input
-              {...register("email")}
+              {...register('email')}
               name="email"
               id="email"
               type="text"
               className="bid-input"
             />
-            {errors.email && (
-              <span className="text-lightRed">{errors.email.message}</span>
-            )}
+            {errors.email && <span className="text-lightRed">{errors.email.message}</span>}
           </div>
 
           <div className="flex flex-col gap-4">
@@ -220,16 +203,14 @@ export const FormSec = () => {
               Демонстрируемая продукция / оборудование / услуги:
             </label>
             <textarea
-              {...register("what_demonstrated")}
+              {...register('what_demonstrated')}
               rows={7}
               name="what_demonstrated"
               id="what_demonstrated"
               className="bid-input"
             />
             {errors.what_demonstrated && (
-              <span className="text-lightRed">
-                {errors.what_demonstrated.message}
-              </span>
+              <span className="text-lightRed">{errors.what_demonstrated.message}</span>
             )}
           </div>
         </div>
@@ -237,7 +218,7 @@ export const FormSec = () => {
         <div className="flex flex-col gap-4 mt-6">
           <div className="flex items-center gap-4">
             <input
-              {...register("agree")}
+              {...register('agree')}
               name="agree"
               id="agree"
               type="checkbox"
@@ -247,16 +228,12 @@ export const FormSec = () => {
               Даю согласие на обработку своих данных
             </label>
           </div>
-          {errors.agree && (
-            <p className="text-lightRed">{errors.agree.message}</p>
-          )}
+          {errors.agree && <p className="text-lightRed">{errors.agree.message}</p>}
 
           <button
-            disabled={isSubmitting}
-            className={clsx("w-full py-[17px] bg-green text-white", {
-              "bg-gray": isSubmitting,
-            })}
-          >
+            disabled={!isValid}
+            onClick={() => isSubmitSuccessful && setSuccess(true)}
+            className={clsx('w-full py-[17px] bg-green text-white')}>
             Отправить
           </button>
         </div>

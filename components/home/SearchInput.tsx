@@ -22,11 +22,14 @@ export const inputRadio = [
   { name: 'В новостях', id: 'news' },
 ];
 
-export const Input = ({ mob = false }: { mob?: boolean }) => {
+export const SearchInput = ({ mob = false }: { mob?: boolean }) => {
   const localization = useAppSelector((state) => state.headerSlice.activeLang.localization);
   const wrapper = document.querySelector('.wrapper');
 
   const [value, setValue] = useState('');
+  const [searchData, setSearchData] = useState();
+  const [isSearching, setIsSearching] = useState(false);
+  const [searchIsError, setSearchIsError] = useState(false);
 
   useEffect(() => {
     wrapper?.classList.remove('overflow-hidden');
@@ -37,19 +40,32 @@ export const Input = ({ mob = false }: { mob?: boolean }) => {
     };
   }, []);
 
-  // const fetchSearchData = async () => {
-  //   try {
-  //     const res = await fetch(`${baseAPI}search`, {
-  //       headers: {
-  //         'Accept-Language': localization,
-  //       },
-  //       body: {
-  //         filter: 'news',
-  //         search: value,
-  //       },
-  //     });
-  //   } catch (error) {}
-  // };
+  const fetchSearchData = async () => {
+    setIsSearching(true);
+    try {
+      const res = await fetch(
+        `${baseAPI}search?search=${value}${inputStatus !== 'all' ? '&filter=' + inputStatus : ''}`,
+        {
+          headers: {
+            'Accept-Language': localization,
+            'Content-Type': 'application/json',
+          },
+        },
+      );
+
+      if (!res.ok) {
+        return console.error(res.status);
+      }
+
+      const data = await res.json();
+      setSearchData(data);
+
+      setIsSearching(false);
+    } catch (error) {
+      console.error(error);
+      setSearchIsError(true);
+    }
+  };
 
   const dispatch = useAppDispatch();
   const { inputStatus } = useAppSelector(selectInput);
@@ -93,7 +109,7 @@ export const Input = ({ mob = false }: { mob?: boolean }) => {
             <input
               onChange={(e: React.ChangeEvent<HTMLInputElement>) => setValue(e.target.value)}
               value={value}
-              type="search"
+              type="text"
               placeholder="Что найти?"
               className="p-3 w-full leading-[150%] placeholder:leading-[150%] placeholder:text-gray focus:outline-none rounded-sm bg-transparent border-[1px] border-[#BCC4CC]"
             />
@@ -109,9 +125,9 @@ export const Input = ({ mob = false }: { mob?: boolean }) => {
               </div>
             ))}
           </div>
-          <div className="mb-6">
+          <button disabled={isSearching} className="mb-6" onClick={fetchSearchData}>
             <SimpleGreenBtn text={'Найти'} />
-          </div>
+          </button>
           {/* <div className="mb-12 font-light">
             По запросу « <span className="font-bold">{}</span> » нашлось {}{" "}
             результатов
