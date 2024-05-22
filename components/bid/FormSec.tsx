@@ -233,15 +233,16 @@ export const FormSec = () => {
           </div>
         </div>
 
-        <div className="flex flex-col gap-4 mt-6">
-          <div className="flex items-center gap-4">
+        <div className="flex flex-col gap-6 mt-10">
+          <div className="flex cursor-pointer w-fit items-center gap-[10px]">
             <input
               {...register("agree")}
               name="agree"
               id="agree"
               type="checkbox"
-              className="bid-input cursor-pointer"
+              className="real-checkbox"
             />
+            <span className="fake-checkbox" />
             <label htmlFor="agree" className="text-[13px] cursor-pointer">
               Даю согласие на обработку своих данных
             </label>
@@ -252,7 +253,9 @@ export const FormSec = () => {
 
           <button
             disabled={isLoading}
-            className={clsx("w-full py-[17px] bg-green text-white")}
+            className={clsx(
+              "w-full py-[17px] bg-green hover:bg-lightGreen text-[14px] font-medium transition-all text-white"
+            )}
           >
             {isLoading ? "Идет отправка" : "Отправить"}
           </button>
@@ -261,56 +264,3 @@ export const FormSec = () => {
     </>
   );
 };
-
-{
-  /* <div className="flex flex-col gap-4">
-          <label htmlFor="area" className="form-label">
-            {chooseDataLang('Required area, m2', 'Требуемая площадь, м2')}
-          </label>
-          <input {...register('area')} name="area" id="area" type="string" className="bid-input" />
-          {errors.area && <span className="text-lightRed">{errors.area.message}</span>}
-        </div> */
-}
-
-{
-  /* <DropDown /> */
-}
-
-{
-  /* <div className="flex flex-col gap-4">
-          <p className="text-[14px] leading-[140%] w-full">
-            {chooseDataLang(
-              'Products  /equipment / services demonstrated',
-              'Демонстрируемая продукция / оборудование / услуги',
-            )}
-          </p>
-          <div className="flex items-center gap-[10px]">
-            <input
-              {...register('equipment')}
-              name="equipment"
-              type="radio"
-              id="equipment"
-              className="bid-input cursor-pointer"
-              value={'equipment'}
-            />
-            <label htmlFor="equipment" className="text-[13px] cursor-pointer">
-              {chooseDataLang('Equipped', 'Оборудованная')}
-            </label>
-          </div>
-
-          <div className="flex items-center gap-[10px]">
-            <input
-              {...register('equipment')}
-              name="equipment"
-              type="radio"
-              id="not-equipment"
-              className="bid-input cursor-pointer"
-              value={'not-equipment'}
-            />
-            <label htmlFor="not-equipment" className="text-[13px] cursor-pointer">
-              {chooseDataLang('unequipped', 'необорудованная')}
-            </label>
-          </div>
-          {errors.equipment && <span className="text-lightRed">{errors.equipment.message}</span>}
-        </div> */
-}

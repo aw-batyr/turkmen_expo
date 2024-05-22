@@ -145,10 +145,10 @@ export const SearchInput = ({ mob = false }: { mob?: boolean }) => {
           >
             <SimpleGreenBtn text={"Найти"} />
           </button>
-          <div className="mb-12 font-light">
+          {/* <div className="mb-12 font-light">
             По запросу « <span className="font-bold">{value}</span> » нашлось {}{" "}
             результатов
-          </div>
+          </div> */}
 
           <div className="flex flex-col gap-9"></div>
         </div>
