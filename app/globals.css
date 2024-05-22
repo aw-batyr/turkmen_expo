@@ -18,7 +18,7 @@ body {
 }
 
 .main-abs-bg::before {
-  content: '';
+  content: "";
   position: absolute;
   left: 100%;
   width: 100vw;
@@ -57,8 +57,8 @@ body {
 }
 
 .input-check:checked + .span-check::before {
-  content: '';
-  background-image: url('../public/assets/icons/check.svg');
+  content: "";
+  background-image: url("../public/assets/icons/check.svg");
   background-size: 8px 8px;
   position: absolute;
   left: 50%;
@@ -87,7 +87,7 @@ body {
 }
 
 .radio-input:checked + .radio-span::before {
-  content: '';
+  content: "";
   position: absolute;
   left: 50%;
   top: 50%;
@@ -213,12 +213,16 @@ p img {
   }
 
   .swiper-horizontal > .swiper-pagination-bullets .swiper-pagination-bullet,
-  .swiper-pagination-horizontal.swiper-pagination-bullets .swiper-pagination-bullet {
+  .swiper-pagination-horizontal.swiper-pagination-bullets
+    .swiper-pagination-bullet {
     @apply w-[6px] h-[6px] bg-gray;
   }
 
-  .swiper-horizontal > .swiper-pagination-bullets .swiper-pagination-bullet-active,
-  .swiper-pagination-horizontal.swiper-pagination-bullets .swiper-pagination-bullet-active {
+  .swiper-horizontal
+    > .swiper-pagination-bullets
+    .swiper-pagination-bullet-active,
+  .swiper-pagination-horizontal.swiper-pagination-bullets
+    .swiper-pagination-bullet-active {
     @apply h-3 w-3 bg-green translate-y-[1.7px];
   }
 
@@ -279,9 +283,9 @@ p img {
   }
 
   .loader {
-    width: 48px;
-    height: 48px;
-    border: 5px solid #fff;
+    width: 15px;
+    height: 15px;
+    border: 2px solid #fff;
     border-bottom-color: transparent;
     border-radius: 50%;
     display: inline-block;
@@ -318,7 +322,7 @@ p img {
   }
 
   .fake-checkbox::before {
-    content: '';
+    content: "";
     display: inline-block;
     width: 10px;
     height: 10px;
@@ -327,7 +331,7 @@ p img {
     top: 50%;
     transform: translate(-50%, -50%) scale(0);
     transition: all 0.1s ease-in;
-    background-image: url('/assets/icons/check.svg');
+    background-image: url("/assets/icons/check.svg");
     background-repeat: no-repeat;
     background-size: contain;
   }
