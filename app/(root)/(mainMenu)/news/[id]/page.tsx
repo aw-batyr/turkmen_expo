@@ -7,14 +7,16 @@ import { BorderBtn } from '@/components/ui/Buttons';
 
 import message from '@/public/assets/icons/news/message.svg';
 import img from '@/public/assets/images/news/1.png';
-import { useAppSelector } from '@/redux/hooks';
-import { selectHeader } from '@/redux/slices/headerSlice';
+import { useAppDispatch, useAppSelector } from '@/redux/hooks';
+import { selectHeader, setShowInput } from '@/redux/slices/headerSlice';
 import { baseAPI } from '@/lib/API';
 import { NewsPageType } from '@/lib/types/NewsPage.type';
 import Link from 'next/link';
 import { BreadCrumbs } from '@/components/ui/BreadCrumbs';
 
 const page = ({ params }: { params: { id: string } }) => {
+  const dispatch = useAppDispatch();
+
   const { activeLang } = useAppSelector(selectHeader);
   const [newsItemData, setNewsItemData] = React.useState<NewsPageType>();
 
@@ -40,6 +42,7 @@ const page = ({ params }: { params: { id: string } }) => {
 
   React.useEffect(() => {
     fetchData();
+    dispatch(setShowInput(false));
   }, [activeLang.localization]);
 
   return (

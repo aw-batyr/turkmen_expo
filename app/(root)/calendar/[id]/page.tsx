@@ -1,39 +1,41 @@
-"use client";
+'use client';
 
-import React, { useEffect, useState } from "react";
-import Link from "next/link";
-import Image from "next/image";
-import { Roboto_Slab } from "next/font/google";
+import React, { useEffect, useState } from 'react';
+import Link from 'next/link';
+import Image from 'next/image';
+import { Roboto_Slab } from 'next/font/google';
 
-import glassImg from "@/public/assets/images/events/CardFullImg.png";
+import glassImg from '@/public/assets/images/events/CardFullImg.png';
 
-import { BorderBtn } from "@/components/ui/Buttons";
-import { fullEventData } from "@/lib/database/eventsData";
-import { v4 } from "uuid";
-import { baseAPI } from "@/lib/API";
-import { selectHeader } from "@/redux/slices/headerSlice";
-import { useAppSelector } from "@/redux/hooks";
-import { EventPageType } from "@/lib/types/EventPag.type";
-import { BreadCrumbs } from "@/components/ui/BreadCrumbs";
+import { BorderBtn } from '@/components/ui/Buttons';
+import { fullEventData } from '@/lib/database/eventsData';
+import { v4 } from 'uuid';
+import { baseAPI } from '@/lib/API';
+import { selectHeader, setShowInput } from '@/redux/slices/headerSlice';
+import { useAppDispatch, useAppSelector } from '@/redux/hooks';
+import { EventPageType } from '@/lib/types/EventPag.type';
+import { BreadCrumbs } from '@/components/ui/BreadCrumbs';
 
 const roboto_slab = Roboto_Slab({
-  weight: ["600"],
-  subsets: ["latin", "cyrillic"],
+  weight: ['600'],
+  subsets: ['latin', 'cyrillic'],
 });
 
 const Event = ({ params }: { params: { id: string } }) => {
+  const dispatch = useAppDispatch();
+
   const { activeLang } = useAppSelector(selectHeader);
   const [eventsData, setEventsData] = useState<EventPageType>();
   const fetchEvents = async () => {
     try {
       const res = await fetch(`${baseAPI}expoevents/${params.id}`, {
         headers: {
-          "Accept-Language": activeLang.localization,
+          'Accept-Language': activeLang.localization,
         },
       });
 
       if (!res.ok) {
-        throw new Error("error");
+        throw new Error('error');
       }
 
       const data = await res.json();
@@ -45,12 +47,13 @@ const Event = ({ params }: { params: { id: string } }) => {
 
   useEffect(() => {
     fetchEvents();
+    dispatch(setShowInput(false));
   }, [activeLang.localization]);
 
   const formatDate = (dateString: string) => {
-    const dateParts = dateString.split(" ");
+    const dateParts = dateString.split(' ');
     const date = dateParts[0];
-    const parts = date.split("-");
+    const parts = date.split('-');
     const formattedDate = `${parts[2]}.${parts[1]}.${parts[0]}`;
 
     return formattedDate;
@@ -62,15 +65,11 @@ const Event = ({ params }: { params: { id: string } }) => {
     <div>
       <div className="container">
         <div className="pt-5">
-          <BreadCrumbs
-            second="Календарь мероприятий"
-            path="/calendar"
-            third="Мероприятие"
-          />
+          <BreadCrumbs second="Календарь мероприятий" path="/calendar" third="Мероприятие" />
         </div>
       </div>
       <Image
-        src={eventsData ? eventsData.data.background_images[0].path : ""}
+        src={eventsData ? eventsData.data.background_images[0].path : ''}
         alt="выставка"
         width={1920}
         height={490}
@@ -79,9 +78,9 @@ const Event = ({ params }: { params: { id: string } }) => {
       <div>
         <div className="container section-mb">
           <div className="hidden md:flex gap-5 my-[60px]">
-            <BorderBtn text={"Сайт выставки"} />
-            <BorderBtn text={"Забронировать стенд"} />
-            <BorderBtn text={"Получить электронный билет"} />
+            <BorderBtn text={'Сайт выставки'} />
+            <BorderBtn text={'Забронировать стенд'} />
+            <BorderBtn text={'Получить электронный билет'} />
           </div>
 
           <div className="flex flex-col gap-10 md:gap-[60px]">
@@ -92,47 +91,31 @@ const Event = ({ params }: { params: { id: string } }) => {
                 </p>
                 <div className="flex flex-col sm:flex-row gap-[20px]">
                   <div className="w-full max-w-[290px] flex flex-col gap-[20px]">
-                    <h3 className="leading-[120%] text-[18px] font-semibold">
-                      Даты проведения
-                    </h3>
+                    <h3 className="leading-[120%] text-[18px] font-semibold">Даты проведения</h3>
                     <div className="leading-[130%]">
-                      <p className="text-gray4">
-                        {formatDate(eventsData.data.starts_at)}
-                      </p>
+                      <p className="text-gray4">{formatDate(eventsData.data.starts_at)}</p>
                     </div>
                     <div className="leading-[130%]">
-                      <p className="text-gray4">
-                        {formatDate(eventsData.data.ends_at)}
-                      </p>
+                      <p className="text-gray4">{formatDate(eventsData.data.ends_at)}</p>
                     </div>
                   </div>
 
                   <div className="w-full max-w-[290px] flex flex-col gap-[20px]">
-                    <h3 className="leading-[120%] text-[18px] font-semibold">
-                      Монтаж
-                    </h3>
+                    <h3 className="leading-[120%] text-[18px] font-semibold">Монтаж</h3>
                     <div className="leading-[130%]">
-                      <p className="text-gray4">
-                        {formatDate(eventsData.data.starts_at)}
-                      </p>
+                      <p className="text-gray4">{formatDate(eventsData.data.starts_at)}</p>
                     </div>
                   </div>
 
                   <div className="w-full max-w-[290px] flex flex-col gap-[20px]">
-                    <h3 className="leading-[120%] text-[18px] font-semibold">
-                      Демонтаж
-                    </h3>
+                    <h3 className="leading-[120%] text-[18px] font-semibold">Демонтаж</h3>
                     <div className="leading-[130%]">
-                      <p className="text-gray4">
-                        {formatDate(eventsData.data.ends_at)}
-                      </p>
+                      <p className="text-gray4">{formatDate(eventsData.data.ends_at)}</p>
                     </div>
                   </div>
 
                   <div className="w-full max-w-[290px] flex flex-col gap-[20px]">
-                    <h3 className="leading-[120%] text-[18px] font-semibold">
-                      Место проведения
-                    </h3>
+                    <h3 className="leading-[120%] text-[18px] font-semibold">Место проведения</h3>
                     <div className="leading-[130%]">
                       <p className="text-gray4">{eventsData.data.location}</p>
                     </div>
@@ -204,9 +187,7 @@ const Event = ({ params }: { params: { id: string } }) => {
               <div>
                 <div className="flex flex-col gap-[10px]" key={v4()}>
                   <h3 className="text-21 mb-[10px]">Организатор</h3>
-                  <h4 className="text-gray leading-[130%]">
-                    {eventsData.data.organizer.name}
-                  </h4>
+                  <h4 className="text-gray leading-[130%]">{eventsData.data.organizer.name}</h4>
                   <div className="leading-[150%] sm:leading-[130%]">
                     <p>{eventsData.data.organizer.address}</p>
                     <p>{eventsData.data.organizer.phones[0].phone}</p>

@@ -38,6 +38,14 @@ export const Header = () => {
 
   return (
     <>
+      <AnimatePresence>
+        {showInput && (
+          <div className="absolute w-full top-0 left-0">
+            <SearchInput />
+          </div>
+        )}
+      </AnimatePresence>
+
       {/* Mobile */}
 
       <header
@@ -88,13 +96,13 @@ export const Header = () => {
         <AnimatePresence>{burgerOpen && <BurgerMenu />}</AnimatePresence>
       </header>
 
-      <AnimatePresence>
+      {/* <AnimatePresence>
         {showInput && (
           <div className="absolute w-full top-0 left-0">
             <SearchInput mob />
           </div>
         )}
-      </AnimatePresence>
+      </AnimatePresence> */}
 
       {/* Desktop */}
 
@@ -129,13 +137,13 @@ export const Header = () => {
                   onClick={() => dispatch(setShowInput(true))}
                   className="cursor-pointer"
                 />
-                <AnimatePresence>
+                {/* <AnimatePresence>
                   {showInput && (
                     <div className="absolute h-[100vh] w-full z-[2500] top-0 left-0">
                       <SearchInput />
                     </div>
                   )}
-                </AnimatePresence>
+                </AnimatePresence> */}
               </div>
             </div>
           </div>
