@@ -17,12 +17,12 @@ export const NewsCard = ({ img, title, date, id, mobile = false }: Props) => {
         {/* Aspect ration 1.8:1 */}
         <Image
           src={img}
-          width={mobile ? 620 : 290}
+          width={mobile ? 600 : 290}
           height={mobile ? 400 : 160}
           alt="photo"
-          className="h-[160px] w-full object-cover"
+          className="mob:h-[160px] h-[200px] w-full object-cover"
         />
-        <div className="p-[25px] h-full sm:h-[137px]">
+        <div className="p-[25px] h-[160px] sm:h-[140px]">
           <p className="text-extraSm leading-[125%] text-gray mb-[10px]">
             {date}
           </p>

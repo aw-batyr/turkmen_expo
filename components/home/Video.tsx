@@ -1,31 +1,10 @@
 "use client";
 
-import { baseAPI } from "@/lib/API";
 import clsx from "clsx";
-import { useState, useRef, useEffect } from "react";
+import { useState, useRef } from "react";
 
 export const Video = () => {
-  const [loading, setLoading] = useState(false);
   const vidRef = useRef<HTMLVideoElement>(null);
-  const [videoData, setVideoData] = useState();
-
-  // const fetchVideo = async () => {
-  //   try {
-  //     const res = await fetch(`${baseAPI}media/video/video.mp4`);
-
-  //     if (!res.ok) {
-  //       throw new Error("Error");
-  //     }
-
-  //     const data = await res.json();
-
-  //     setVideoData(data);
-  //   } catch (error) {
-  //     console.error(error);
-  //   }
-  // };
-
-  // console.log(videoData)
 
   return (
     <div className="relative">
@@ -36,14 +15,10 @@ export const Video = () => {
         )}
         id="vid"
         ref={vidRef}
-        onWaiting={() => alert("sadsda")}
-        onLoad={() => alert("sdfdsf")}
         autoPlay
         typeof="video/mp4"
         loop
         muted
-        // disablepictureinpicture
-        // disablePictureInPicture
         src="/assets/video.mp4"
       />
       <div
