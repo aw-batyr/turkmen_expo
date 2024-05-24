@@ -31,8 +31,6 @@ export const SearchInput = ({ mob = false }: { mob?: boolean }) => {
 
   const tab = useMediaQuery('(min-width: 980px)');
 
-  console.log(tab);
-
   const [value, setValue] = useState('');
   const [searchValue, setSearchValue] = useState('');
   const [searchData, setSearchData] = useState<SearchTypes>();
@@ -45,24 +43,24 @@ export const SearchInput = ({ mob = false }: { mob?: boolean }) => {
     wrapper?.classList.remove('overflow-hidden');
     wrapper?.classList.add('overflow-hidden');
 
+    setStatus(inputRadio[0].id);
+    inputRadio;
+
     return () => {
       wrapper?.classList.remove('overflow-hidden');
     };
-  }, []);
+  }, [showInput]);
 
   const fetchSearchData = async () => {
     setIsSearching(true);
     setSearchValue(value);
     try {
-      const res = await fetch(
-        `${baseAPI}search?search=${value}${inputStatus !== 'all' ? '&filter=' + inputStatus : ''}`,
-        {
-          headers: {
-            'Accept-Language': localization,
-            'Content-Type': 'application/json',
-          },
+      const res = await fetch(`${baseAPI}search?search=${value}`, {
+        headers: {
+          'Accept-Language': localization,
+          'Content-Type': 'application/json',
         },
-      );
+      });
 
       if (!res.ok) {
         return console.error(res.status);
@@ -157,25 +155,29 @@ export const SearchInput = ({ mob = false }: { mob?: boolean }) => {
                   По запросу « <span className="font-bold">{searchValue}</span> » нашлось{' '}
                   {searchData.data.expo_events.length + searchData.data.posts.length} результатов
                 </div>
-                <div className="flex flex-col gap-9">
-                  {searchData.data.expo_events.map((item) => (
-                    <div>
-                      <h3 className="font-bold mb-[18px] text-[16px] leading-[125%]">
-                        {item.title}
-                      </h3>
-                      <Link href={`/calendar/${item.id}`}>Перейти на страницу</Link>
-                      <hr className="mt-9 border-navyBlue4" />
-                    </div>
-                  ))}
-                  {searchData.data.posts.map((item) => (
-                    <div>
-                      <h3 className="font-bold mb-[18px] text-[16px] leading-[125%]">
-                        {item.title}
-                      </h3>
-                      <Link href={`/news/${item.id}`}>Перейти на страницу</Link>
-                      <hr className="mt-9 border-navyBlue4" />
-                    </div>
-                  ))}
+                <div className="flex flex-col gap-9 w-full">
+                  {inputStatus === 'all' || inputStatus === 'events'
+                    ? searchData.data.expo_events.map((item) => (
+                        <div className="w-full">
+                          <h3 className="font-bold mb-[18px] text-[16px] leading-[125%]">
+                            {item.title}
+                          </h3>
+                          <Link href={`/calendar/${item.id}`}>Перейти на страницу</Link>
+                          <hr className="mt-9 border-navyBlue4" />
+                        </div>
+                      ))
+                    : null}
+                  {inputStatus === 'all' || inputStatus === 'news'
+                    ? searchData.data.posts.map((item) => (
+                        <div className="w-full">
+                          <h3 className="font-bold mb-[18px] text-[16px] leading-[125%]">
+                            {item.title}
+                          </h3>
+                          <Link href={`/news/${item.id}`}>Перейти на страницу</Link>
+                          <hr className="mt-9 border-navyBlue4" />
+                        </div>
+                      ))
+                    : null}
                 </div>
               </>
             ) : (
