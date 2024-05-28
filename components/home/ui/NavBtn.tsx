@@ -1,15 +1,15 @@
-'use client';
+"use client";
 
-import React from 'react';
-import Image from 'next/image';
+import React from "react";
+import Image from "next/image";
 
-import navBtn from '@/public/assets/icons/home/nav-btn.svg';
+import navBtn from "@/public/assets/icons/home/nav-btn.svg";
 
-import 'swiper/css';
-import 'swiper/css/navigation';
-import 'swiper/css/pagination';
-import 'swiper/css/scrollbar';
-import clsx from 'clsx';
+import "swiper/css";
+import "swiper/css/navigation";
+import "swiper/css/pagination";
+import "swiper/css/scrollbar";
+import clsx from "clsx";
 
 export const NavBtn = ({
   left = false,
@@ -22,18 +22,19 @@ export const NavBtn = ({
 }) => {
   const btnRef = React.useRef<HTMLButtonElement>(null);
 
-  const checkBtn: string = btnRef.current?.disabled ? 'disabled-nav-btn' : '';
+  const checkBtn: string = btnRef.current?.disabled ? "disabled-nav-btn" : "";
 
   return (
     <button
       ref={btnRef}
-      className={`${!left ? 'next-btn' : 'prev-btn'} `}
-      onClick={!left ? onNext : onPrev}>
+      className={`${!left ? "next-btn" : "prev-btn"} `}
+      onClick={!left ? onNext : onPrev}
+    >
       <Image
         src={navBtn}
         alt="arrow"
-        className={clsx('img-auto', {
-          'rotate-180': left,
+        className={clsx("img-auto", {
+          "rotate-180": left,
         })}
       />
     </button>

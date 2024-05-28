@@ -78,11 +78,6 @@ export const NewsSec = () => {
         />
       </div>
 
-      {/* <div className="hidden sm:flex w-full max-w-[184px] items-center cursor-pointer justify-center mx-auto mb-10 md:mb-[24px] gap-[10px]">
-        <Image src={message} alt="Письмо" />
-        <p className="leading-[125%] text-extraSm">подписаться на новости</p>
-      </div> */}
-
       <div
         className={clsx("mb-[48px] lg:mb-[108px]", {
           "flex flex-col gap-6": !grid,
