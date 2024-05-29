@@ -1,6 +1,7 @@
 import React from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
+import { useMediaQuery } from 'usehooks-ts';
 
 interface Props {
   img: string;
@@ -11,7 +12,9 @@ interface Props {
 }
 
 export const Card = ({ img, date, grid, id, title }: Props) => {
-  return grid ? (
+  const small = useMediaQuery('(min-width: 630px)');
+
+  return grid || !small ? (
     <Link href={`/news/${id}`} className="border-[1px] border-navyBlue cursor-pointer">
       <Image
         width={430}
@@ -27,46 +30,11 @@ export const Card = ({ img, date, grid, id, title }: Props) => {
     </Link>
   ) : (
     <>
-      <Link
-        href={`/news/${id}`}
-        className="block sm:hidden border-[1px] border-navyBlue cursor-pointer">
-        <Image
-          width={700}
-          height={156}
-          src={img}
-          alt="событие"
-          className="w-[700px] h-full object-cover"
-        />
-        <div className="px-[16px] py-[25px] sm:p-[25px]">
-          <p className="text-extraSm text-gray4 mb-[10px]">{date}</p>
-          <p className="font-bold text-[16px] leading-[125%] w-full max-w-[355px]">{title}</p>
-        </div>
-      </Link>
-
-      <Link
-        href={`/news/${id}`}
-        className="hidden sm:block border-[1px] border-navyBlue cursor-pointer">
-        <div className="flex flex-col sm:flex-row">
-          <Image
-            className="hidden md:block h-[156px] w-[500px] object-cover"
-            height={156}
-            width={500}
-            src={img}
-            alt="событие"
-          />
-          <Image
-            className="md:hidden w-[400px] h-[156px] object-cover"
-            width={400}
-            height={95}
-            src={img}
-            alt="событие"
-          />
-          <div className="p-[25px]">
-            <p className="text-extraSm text-gray4 mb-[10px]">{date}</p>
-            <p className="font-bold text-[14px] md:text-[16px] leading-[125%] w-full max-w-[483px]">
-              {title}
-            </p>
-          </div>
+      <Link href={`/news/${id}`} className="flex">
+        <Image src={img} alt="" width={300} height={160} className="object-cover" />
+        <div className="p-6 w-full border-y-[1px] border-r-[1px] border-y-navyBlue border-r-navyBlue">
+          <div className="text-gray4 mb-[10px]">{date}</div>
+          <div className="font-bold leading-[125%] text-[16px]">{title}</div>
         </div>
       </Link>
     </>

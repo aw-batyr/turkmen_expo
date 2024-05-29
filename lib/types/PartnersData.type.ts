@@ -4,6 +4,7 @@ export interface PartnersType {
 
 export interface Datum {
   images: Image[];
+  link: string;
 }
 
 export interface Image {
