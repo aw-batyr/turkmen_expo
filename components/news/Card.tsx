@@ -31,7 +31,7 @@ export const Card = ({ img, date, grid, id, title }: Props) => {
   ) : (
     <>
       <Link href={`/news/${id}`} className="flex">
-        <Image src={img} alt="" width={300} height={160} className="object-cover" />
+        <Image src={img} alt="" width={300} height={160} className="object-cover flex-[0_0_300px] h-[160px]" />
         <div className="p-6 w-full border-y-[1px] border-r-[1px] border-y-navyBlue border-r-navyBlue">
           <div className="text-gray4 mb-[10px]">{date}</div>
           <div className="font-bold leading-[125%] text-[16px]">{title}</div>

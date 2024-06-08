@@ -199,7 +199,7 @@ export const FormSec = () => {
           </div>
 
           <div className="flex flex-col gap-4">
-            <label htmlFor="what_demonstrated" className="form-label">
+            <label htmlFor="what_demonstrated" className="form-label leading-[150%]">
               Демонстрируемая продукция / оборудование / услуги:
             </label>
             <textarea

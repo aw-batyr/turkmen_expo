@@ -1,106 +1,94 @@
-"use client";
+'use client';
 
-import Link from "next/link";
-import Image, { StaticImageData } from "next/image";
-import { useEffect, useRef, useState } from "react";
-import { v4 } from "uuid";
-import { motion } from "framer-motion";
-import ru from "@/public/assets/icons/header/ru.svg";
-import en from "@/public/assets/icons/header/en.svg";
-import tm from "@/public/assets/icons/header/tm.svg";
+import Link from 'next/link';
+import Image, { StaticImageData } from 'next/image';
+import { useEffect, useRef, useState } from 'react';
+import { v4 } from 'uuid';
+import { motion } from 'framer-motion';
+import ru from '@/public/assets/icons/header/ru.svg';
+import en from '@/public/assets/icons/header/en.svg';
+import tm from '@/public/assets/icons/header/tm.svg';
 
-import { headerMenu2 } from "@/lib/database/pathnames";
-import { useAppDispatch, useAppSelector } from "@/redux/hooks";
+import { headerMenu2 } from '@/lib/database/pathnames';
+import { useAppDispatch, useAppSelector } from '@/redux/hooks';
 import {
   selectBurger,
   setBurgerDrop,
   setBurgerOpen,
   setFooterDrop,
-} from "@/redux/slices/burgerSlice";
-import { selectHeader, setActiveLang } from "@/redux/slices/headerSlice";
-import clsx from "clsx";
-import { lang } from "./LangMenu";
-import { burgerMenu, burgerMenu2 } from "@/lib/database/header";
+} from '@/redux/slices/burgerSlice';
+import { selectHeader, setActiveLang } from '@/redux/slices/headerSlice';
+import clsx from 'clsx';
+import { lang } from './LangMenu';
+import { burgerMenu, burgerMenu2 } from '@/lib/database/header';
 
 interface flagTypes {
-  title: "Ру" | "En" | "Tm";
-  localization: "ru" | "en" | "tm";
+  title: 'Ру' | 'En' | 'Tm';
+  localization: 'ru' | 'en' | 'tm';
 }
 
 const burgerLangs: flagTypes[] = [
   {
-    title: "Tm",
-    localization: "tm",
+    title: 'Tm',
+    localization: 'tm',
   },
   {
-    title: "Ру",
-    localization: "ru",
+    title: 'Ру',
+    localization: 'ru',
   },
   {
-    title: "En",
-    localization: "en",
+    title: 'En',
+    localization: 'en',
   },
 ];
 
 export const BurgerMenu = () => {
   const dispatch = useAppDispatch();
-  const wrapper = document.querySelector(".wrapper");
+  const wrapper = document.querySelector('.wrapper');
 
-  const localization = useAppSelector(
-    (state) => state.headerSlice.activeLang.localization
-  );
+  const localization = useAppSelector((state) => state.headerSlice.activeLang.localization);
 
   const burgerOpen = useAppSelector((state) => state.burgerSlice.burgerOpen);
 
-  const [activeMenu, setActiveMenu] = useState<string>("");
-  const [activeMenu2, setActiveMenu2] = useState<string>("");
+  const [activeMenu, setActiveMenu] = useState<string>('');
+  const [activeMenu2, setActiveMenu2] = useState<string>('');
 
-  const chooseDataLang = (en: string, ru: string) =>
-    localization === "en" ? en : ru;
+  const chooseDataLang = (en: string, ru: string) => (localization === 'en' ? en : ru);
 
   const setActiveTitle = () => {
-    if (activeMenu.includes("/mem")) return "Участникам";
+    if (activeMenu.includes('/mem')) return 'Участникам';
   };
 
   const setActiveTitle2 = () => {
-    if (activeMenu2.includes("/company")) return "О компании";
+    if (activeMenu2.includes('/company')) return 'О компании';
   };
 
   useEffect(() => {
-    wrapper?.classList.remove("overflow-hidden");
-    wrapper?.classList.add("overflow-hidden");
+    wrapper?.classList.remove('overflow-hidden');
+    wrapper?.classList.add('overflow-hidden');
 
     return () => {
-      wrapper?.classList.remove("overflow-hidden");
+      wrapper?.classList.remove('overflow-hidden');
     };
   }, []);
 
   return (
     <motion.div
-      initial={{ x: "100%" }}
+      initial={{ x: '100%' }}
       animate={{ x: 0 }}
       transition={{
-        duration: 0.4,
+        duration: 0.3,
+        ease: 'easeOut',
       }}
       exit={{
-        x: "100%",
+        x: '100%',
       }}
-      className="bg-green overflow-auto text-white fixed w-full z-[900] top-[74px] bottom-0 left-0 min-h-[100vh] h-full px-4 py-10 flex flex-col overflow-y-auto"
-    >
+      className="bg-green overflow-auto text-white fixed w-full z-[900] top-[74px] bottom-0 left-0 min-h-[100vh] h-full px-4 py-10 flex flex-col overflow-y-auto">
       {activeMenu && (
         <div>
-          <div
-            onClick={() => setActiveMenu("")}
-            className="flex cursor-pointer"
-          >
-            <img
-              src="/assets/icons/header/burger-arrow.svg"
-              alt="arrow"
-              className="rotate-180"
-            />
-            <h2 className="text-[18px] ml-[10px] leading-[135%]">
-              {setActiveTitle()}
-            </h2>
+          <div onClick={() => setActiveMenu('')} className="flex cursor-pointer">
+            <img src="/assets/icons/header/burger-arrow.svg" alt="arrow" className="rotate-180" />
+            <h2 className="text-[18px] ml-[10px] leading-[135%]">{setActiveTitle()}</h2>
           </div>
 
           <div className="mt-[10px] opacity-50 mb-5 h-[1px] w-full bg-[#F2F9FF]" />
@@ -109,19 +97,15 @@ export const BurgerMenu = () => {
 
       {activeMenu && (
         <div className="flex flex-col gap-5 leading-[150%]">
-          {activeMenu.includes("/mem") &&
+          {activeMenu.includes('/mem') &&
             burgerMenu
               .filter((item) => item.partic)
               .map((item) =>
                 item.dropDown?.map((obj) => (
-                  <Link
-                    key={v4()}
-                    onClick={() => dispatch(setBurgerOpen(false))}
-                    href={obj.link}
-                  >
-                    {localization === "en" ? obj.titleEn : obj.title}
+                  <Link key={v4()} onClick={() => dispatch(setBurgerOpen(false))} href={obj.link}>
+                    {localization === 'en' ? obj.titleEn : obj.title}
                   </Link>
-                ))
+                )),
               )}
         </div>
       )}
@@ -135,8 +119,7 @@ export const BurgerMenu = () => {
                 onClick={() => {
                   dispatch(setBurgerOpen(false));
                 }}
-                href={item.link}
-              >
+                href={item.link}>
                 {item.title}
               </Link>
             ) : (
@@ -145,18 +128,12 @@ export const BurgerMenu = () => {
                 className="cursor-pointer flex items-center justify-between"
                 onClick={() => {
                   setActiveMenu(item.link);
-                  setActiveMenu2("");
-                }}
-              >
+                  setActiveMenu2('');
+                }}>
                 <div>{item.title}</div>
-                {item.drop && (
-                  <img
-                    src="/assets/icons/header/burger-arrow.svg"
-                    alt="arrow"
-                  />
-                )}
+                {item.drop && <img src="/assets/icons/header/burger-arrow.svg" alt="arrow" />}
               </div>
-            )
+            ),
           )}
       </div>
 
@@ -164,18 +141,9 @@ export const BurgerMenu = () => {
 
       {activeMenu2 && (
         <div>
-          <div
-            onClick={() => setActiveMenu2("")}
-            className="flex cursor-pointer pt-4"
-          >
-            <img
-              src="/assets/icons/header/burger-arrow.svg"
-              alt="arrow"
-              className="rotate-180"
-            />
-            <h2 className="text-[18px] ml-[10px] leading-[135%]">
-              {setActiveTitle2()}
-            </h2>
+          <div onClick={() => setActiveMenu2('')} className="flex cursor-pointer pt-4">
+            <img src="/assets/icons/header/burger-arrow.svg" alt="arrow" className="rotate-180" />
+            <h2 className="text-[18px] ml-[10px] leading-[135%]">{setActiveTitle2()}</h2>
           </div>
 
           <div className="mt-[10px] opacity-50 mb-5 h-[1px] w-full bg-[#F2F9FF]" />
@@ -183,18 +151,13 @@ export const BurgerMenu = () => {
       )}
 
       <div
-        className={clsx("leading-[135%] text-[14px] flex flex-col gap-5", {
-          "mt-10": !activeMenu2,
-        })}
-      >
+        className={clsx('leading-[135%] text-[14px] flex flex-col gap-5', {
+          'mt-10': !activeMenu2,
+        })}>
         {!activeMenu2 &&
           burgerMenu2.map((item) =>
             !item.drop ? (
-              <Link
-                key={v4()}
-                onClick={() => dispatch(setBurgerOpen(false))}
-                href={item.link}
-              >
+              <Link key={v4()} onClick={() => dispatch(setBurgerOpen(false))} href={item.link}>
                 {item.title}
               </Link>
             ) : (
@@ -203,21 +166,15 @@ export const BurgerMenu = () => {
                 className="cursor-pointer flex items-center justify-between"
                 onClick={() => {
                   item.drop && setActiveMenu2(item.link);
-                  setActiveMenu("");
-                }}
-              >
+                  setActiveMenu('');
+                }}>
                 <div>{item.title}</div>
-                {item.drop && (
-                  <img
-                    src="/assets/icons/header/burger-arrow.svg"
-                    alt="arrow"
-                  />
-                )}
+                {item.drop && <img src="/assets/icons/header/burger-arrow.svg" alt="arrow" />}
               </div>
-            )
+            ),
           )}
 
-        {activeMenu2.includes("/company") &&
+        {activeMenu2.includes('/company') &&
           burgerMenu2
             .filter((item) => item.company)
             .map((obj) =>
@@ -227,15 +184,14 @@ export const BurgerMenu = () => {
                   href={item.link}
                   onClick={() => {
                     dispatch(setBurgerOpen(false));
-                  }}
-                >
+                  }}>
                   {item.title}
                 </Link>
-              ))
+              )),
             )}
       </div>
 
-      <div className="flex items-center mx-auto gap-10">
+      <div className="flex items-center mx-auto gap-10 mt-10">
         {burgerLangs.map((item) => (
           <div
             key={v4()}
@@ -243,12 +199,8 @@ export const BurgerMenu = () => {
               setActiveLang(item);
               dispatch(setBurgerOpen(false));
             }}
-            className="flex cursor-pointer items-center gap-[10px]"
-          >
-            <img
-              src={`/assets/icons/header/${item.localization}.svg`}
-              alt="flag"
-            />
+            className="flex cursor-pointer items-center gap-[10px]">
+            <img src={`/assets/icons/header/${item.localization}.svg`} alt="flag" />
             <p>{item.title}</p>
           </div>
         ))}
