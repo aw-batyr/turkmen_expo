@@ -1,33 +1,39 @@
 export const burgerMenu = [
   {
-    title: "Календарь мероприятий",
-    link: "/calendar",
+    title: 'Календарь мероприятий',
+    titleEn: 'Calendar of events',
+    link: '/calendar',
   },
   {
     partic: true,
     drop: true,
-    title: "Участникам",
-    link: "/members",
+    title: 'Участникам',
+    titleEn: 'Participants',
+    link: '/members',
     dropDown: [
       {
-        title: "Информация для участников",
-        titleEn: "Information for participants",
-        link: "/members",
+        title: 'Информация для участников',
+        titleEn: 'Information for participants',
+        link: '/members',
       },
       {
-        titleEn: "Application for participation",
-        title: "Онлайн заявка для участников",
-        link: "/members/bid",
+        title: 'Онлайн заявка для участников',
+        titleEn: 'Application for participation',
+        link: '/members/bid',
       },
     ],
   },
   {
-    title: "Посетителям",
-    link: "",
+    title: 'Посетителям',
+
+    titleEn: 'Visitors',
+    link: '',
   },
   {
-    title: "Организаторам",
-    link: "",
+    title: 'Организаторам',
+
+    titleEn: 'Services',
+    link: '',
   },
 
   //   { en: true, title: "Exhibition", link: "/exhibition-about" },
@@ -38,26 +44,35 @@ export const burgerMenu = [
 export const burgerMenu2 = [
   {
     company: true,
-    title: "О компании",
-    link: "/company/aboutus",
+    title: 'О компании',
+
+    titleEn: 'About company',
+    link: '/company/aboutus',
     drop: true,
     dropDown: [
       {
-        title: "О нас",
-        link: "/company/aboutus",
+        title: 'О нас',
+        titleEn: 'About us',
+        link: '/company/aboutus',
       },
     ],
   },
   {
-    title: "Новости",
-    link: "/news",
+    title: 'Новости',
+
+    titleEn: 'News',
+    link: '/news',
   },
   {
-    title: "FAQ",
-    link: "/faq",
+    title: 'FAQ',
+
+    titleEn: 'FAQ',
+    link: '/faq',
   },
   {
-    title: "Контакты",
-    link: "/contacts",
+    title: 'Контакты',
+
+    titleEn: 'Контакты',
+    link: '/contacts',
   },
 ];

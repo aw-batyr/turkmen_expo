@@ -1,25 +1,26 @@
-"use client";
+'use client';
 
-import React, { useEffect } from "react";
-import clsx from "clsx";
-import Link from "next/link";
-import Image from "next/image";
-import { v4 } from "uuid";
-import { usePathname } from "next/navigation";
-import { AnimatePresence } from "framer-motion";
+import React, { useEffect } from 'react';
+import clsx from 'clsx';
+import Link from 'next/link';
+import Image from 'next/image';
+import { v4 } from 'uuid';
+import { usePathname } from 'next/navigation';
+import { AnimatePresence } from 'framer-motion';
 
-import logo from "@/public/assets/icons/header/logo.svg";
-import search from "@/public/assets/icons/header/search.svg";
-import searchMob from "@/public/assets/icons/header/mob-search.svg";
+import logo from '@/public/assets/icons/header/logo.svg';
+import search from '@/public/assets/icons/header/search.svg';
+import searchMob from '@/public/assets/icons/header/mob-search.svg';
 
-import { LangMenu } from "../ui/LangMenu";
-import { SearchInput } from "../home/SearchInput";
-import { headerMenu, headerMenu2 } from "@/lib/database/pathnames";
-import { BurgerMenu } from "../ui/BurgerMenu";
-import { useAppDispatch, useAppSelector } from "@/redux/hooks";
-import { selectHeader, setShowInput } from "@/redux/slices/headerSlice";
-import { selectBurger, setBurgerOpen } from "@/redux/slices/burgerSlice";
-import { useStorage } from "@/hooks/useStorage";
+import { LangMenu } from '../ui/LangMenu';
+import { SearchInput } from '../home/SearchInput';
+import { headerMenu, headerMenu2 } from '@/lib/database/pathnames';
+import { BurgerMenu } from '../ui/BurgerMenu';
+import { useAppDispatch, useAppSelector } from '@/redux/hooks';
+import { selectHeader, setShowInput } from '@/redux/slices/headerSlice';
+import { selectBurger, setBurgerOpen } from '@/redux/slices/burgerSlice';
+import { useStorage } from '@/hooks/useStorage';
+import { useLang } from '@/utils/useLang';
 
 export const Header = () => {
   const pathname = usePathname();
@@ -38,7 +39,7 @@ export const Header = () => {
     dispatch(setBurgerOpen(false));
   };
 
-  const { setItem } = useStorage("language");
+  const { setItem } = useStorage('language');
 
   useEffect(() => {
     setItem(activeLang);
@@ -58,12 +59,11 @@ export const Header = () => {
 
       <header
         className={clsx(
-          "bg-bgWhite tab:hidden relative z-[50] flex items-center justify-between px-4 py-6",
+          'bg-bgWhite tab:hidden relative z-[50] flex items-center justify-between px-4 py-6',
           {
             // 'fixed w-full top-0': burgerOpen,
-          }
-        )}
-      >
+          },
+        )}>
         <Image
           src={searchMob}
           height={32}
@@ -78,44 +78,27 @@ export const Header = () => {
             dispatch(setBurgerOpen(false));
             dispatch(setShowInput(false));
           }}
-          href={"/"}
-        >
-          <Image
-            src={logo}
-            height={24}
-            width={160}
-            alt="лого"
-            className="cursor-pointer"
-          />
+          href={'/'}>
+          <Image src={logo} height={24} width={160} alt="лого" className="cursor-pointer" />
         </Link>
 
         <div
           onClick={toggleMenu}
-          className="cursor-pointer h-8 w-8 flex flex-col p-1 justify-between items-center"
-        >
+          className="cursor-pointer h-8 w-8 flex flex-col p-1 justify-between items-center">
           <span
-            className={clsx(
-              "block transition-all rounded-full bg-green w-6 h-[2px]",
-              {
-                "rotate-[45deg] translate-y-[9px]": burgerOpen,
-              }
-            )}
+            className={clsx('block transition-all rounded-full bg-green w-6 h-[2px]', {
+              'rotate-[45deg] translate-y-[9px]': burgerOpen,
+            })}
           />
           <span
-            className={clsx(
-              "block transition-all rounded-full bg-green w-6 h-[2px]",
-              {
-                "opacity-0 hidden": burgerOpen,
-              }
-            )}
+            className={clsx('block transition-all rounded-full bg-green w-6 h-[2px]', {
+              'opacity-0 hidden': burgerOpen,
+            })}
           />
           <span
-            className={clsx(
-              "block transition-all duration-300 rounded-full bg-green w-6 h-[2px]",
-              {
-                "rotate-[-45deg] translate-y-[-10px]": burgerOpen,
-              }
-            )}
+            className={clsx('block transition-all duration-300 rounded-full bg-green w-6 h-[2px]', {
+              'rotate-[-45deg] translate-y-[-10px]': burgerOpen,
+            })}
           />
         </div>
 
@@ -135,26 +118,27 @@ export const Header = () => {
       <header className="hidden relative z-[3000] tab:flex flex-col">
         <div className="flex items-center bg-darkBlue text-white py-[12px] font-regular text-extraSm">
           <div className="container flex items-center justify-between">
-            <p className="text-extraSm">Тел.: +99362006200</p>
+            <p className="text-extraSm">{useLang('Phone: +99362006200', 'Тел.: +99362006200')}</p>
             <div className="flex items-center gap-[6px]">
               <div className="flex items-center gap-x-[20px]">
-                {headerMenu.map((item) => (
-                  <Link key={v4()} href={item.link}>
-                    <p
-                      className={clsx(
-                        "after:transition-all duration-1000 relative leading-[130%]",
-                        {
-                          "link-border-bottom cursor-default hover:after:bg-green":
-                            item.link === pathname,
-                          "hover:link-border-bottom hover:after:bg-[#738799]":
-                            item.link === item.link,
-                        }
-                      )}
-                    >
-                      {item.title}
-                    </p>
-                  </Link>
-                ))}
+                {headerMenu
+                  .filter((item) => (activeLang.localization === 'en' ? item.en : !item.en))
+                  .map((item, i) => (
+                    <Link key={i} href={item.link}>
+                      <p
+                        className={clsx(
+                          'after:transition-all duration-1000 relative leading-[130%]',
+                          {
+                            'link-border-bottom cursor-default hover:after:bg-green':
+                              item.link === pathname,
+                            'hover:link-border-bottom hover:after:bg-[#738799]':
+                              item.link === item.link,
+                          },
+                        )}>
+                        {item.title}
+                      </p>
+                    </Link>
+                  ))}
               </div>
               <div className="flex gap-[10px]">
                 <LangMenu />
@@ -182,11 +166,13 @@ export const Header = () => {
               <Image src={logo} alt="logo" height={38} width={235} />
             </Link>
             <div className="flex items-center gap-x-[20px] font-medium">
-              {headerMenu2.map((item) => (
-                <Link key={v4()} href={item.link} className="cursor-pointer">
-                  {item.title}
-                </Link>
-              ))}
+              {headerMenu2
+                .filter((item) => (activeLang.localization === 'en' ? item.en : !item.en))
+                .map((item) => (
+                  <Link key={v4()} href={item.link} className="cursor-pointer">
+                    {item.title}
+                  </Link>
+                ))}
             </div>
           </div>
         </div>

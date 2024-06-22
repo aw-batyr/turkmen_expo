@@ -1,4 +1,4 @@
-import { StaticImageData } from "next/image";
+import { StaticImageData } from 'next/image';
 
 export type EventCardProps = {
   dark?: boolean;
@@ -23,4 +23,5 @@ export type NewsCardProps = {
 export type RoadCardProps = {
   icon: any;
   text: string;
+  enText: string;
 };

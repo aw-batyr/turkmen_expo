@@ -1,57 +1,56 @@
-"use client";
+'use client';
 
-import React from "react";
-import Link from "next/link";
-import Image from "next/image";
+import React from 'react';
+import Link from 'next/link';
 
-import vk from "@/public/assets/icons/footer/vk.svg";
-import rss from "@/public/assets/icons/footer/rss.svg";
-import telegram from "@/public/assets/icons/footer/telegram.svg";
+import vk from '@/public/assets/icons/footer/vk.svg';
+import rss from '@/public/assets/icons/footer/rss.svg';
+import telegram from '@/public/assets/icons/footer/telegram.svg';
 
-import { footerInfo, headerMenu, headerMenu2 } from "@/lib/database/pathnames";
-import { v4 } from "uuid";
-import { useAppSelector } from "@/redux/hooks";
-import { selectHeader } from "@/redux/slices/headerSlice";
-import { selectBurger } from "@/redux/slices/burgerSlice";
+import { footerInfo, headerMenu, headerMenu2 } from '@/lib/database/pathnames';
+import { useAppSelector } from '@/redux/hooks';
 
 export const icons = [
-  { title: telegram, link: "" },
-  { title: vk, link: "" },
-  { title: rss, link: "" },
+  { title: telegram, link: '' },
+  { title: vk, link: '' },
+  { title: rss, link: '' },
 ];
 
 export const Footer = () => {
+  const localization = useAppSelector((state) => state.headerSlice.activeLang.localization);
+
   return (
     <footer className="bg-darkBlue pt-6 pb-5 mob:py-[40px]">
       <div className="container">
         <div className="flex md:flex-row flex-col justify-between text-bgWhite text-sm md:mb-[80px] mb-5">
           <div className="w-full mob:max-w-[600px] flex md:flex-row flex-col items-start justify-between gap-x-[20px]">
             <div className="w-full max-w-[290px] flex flex-col items-start gap-y-[10px]">
-              {headerMenu2.map((item) => (
-                <Link key={v4()} href={item.link} className="cursor-pointer">
-                  {item.title}
-                </Link>
-              ))}
+              {headerMenu2
+                .filter((item) => (localization === 'en' ? item.en : !item.en))
+                .map((item, i) => (
+                  <Link key={i} href={item.link} className="cursor-pointer">
+                    {item.title}
+                  </Link>
+                ))}
             </div>
 
             <hr className="md:hidden w-full border-[1px] border-gray3 max-w-[233px] my-5" />
 
             <div className="w-full max-w-[290px] mob:leading-[100%] leading-[115%] md:mb-0 mb-5 flex flex-col items-start gap-y-[10px]">
-              {headerMenu.map((item) => (
-                <Link key={v4()} href={item.link} className="cursor-pointer">
-                  {item.title}
-                </Link>
-              ))}
+              {headerMenu
+                .filter((item) => (localization === 'en' ? item.en : !item.en))
+                .map((item, i) => (
+                  <Link key={i} href={item.link} className="cursor-pointer">
+                    {item.title}
+                  </Link>
+                ))}
             </div>
           </div>
           <div className="">
             <div className="flex flex-col justify-end w-full md:mb-5">
               <div className="mb-[40px] flex flex-col md:gap-y-[10px] gap-0">
-                {footerInfo.map((item) => (
-                  <p
-                    className="md:leading-[100%] text-[12px] leading-[130%]"
-                    key={v4()}
-                  >
+                {footerInfo.map((item, i) => (
+                  <p className="md:leading-[100%] text-[12px] leading-[130%]" key={i}>
                     {item}
                   </p>
                 ))}

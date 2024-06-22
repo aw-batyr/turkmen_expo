@@ -1,9 +1,11 @@
-import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { RootState } from "../store";
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { RootState } from '../store';
 
 export type activeLangType = {
-  title: "Ру" | "Tm" | "En";
-  localization: "ru" | "tm" | "en";
+  title: 'Ру' | 'En';
+  // title: 'Ру' | 'Tm' | 'En';
+  // localization: "ru" | "tm" | "en";
+  localization: 'ru' | 'en';
 };
 
 interface HeaderState {
@@ -12,12 +14,12 @@ interface HeaderState {
 }
 
 const initialState: HeaderState = {
-  activeLang: { title: "Ру", localization: "ru" },
+  activeLang: { title: 'Ру', localization: 'ru' },
   showInput: false,
 };
 
 const headerSlice = createSlice({
-  name: "header",
+  name: 'header',
   initialState,
   reducers: {
     setActiveLang(state, action: PayloadAction<activeLangType>) {

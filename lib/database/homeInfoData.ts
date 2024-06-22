@@ -8,14 +8,20 @@ export const roadCardData: RoadCardProps[] = [
   {
     icon: car,
     text: 'На машине',
+
+    enText: 'Car',
   },
   {
     icon: bus,
     text: 'На автобусе',
+
+    enText: 'Public transport',
   },
   {
     icon: track,
-    text: 'Проезд грузового транспорта',
+    text: 'Freight transport',
+
+    enText: 'Car',
   },
 ];
 
@@ -27,14 +33,20 @@ export const contactCardData: RoadCardProps[] = [
   {
     icon: call,
     text: 'Справочный центр',
+
+    enText: 'Call centre',
   },
   {
     icon: bag,
     text: 'Услуги',
+
+    enText: 'Servise bureau',
   },
   {
     icon: megaphone,
     text: 'Реклама',
+
+    enText: 'Advertising',
   },
 ];
 

@@ -1,37 +1,28 @@
 'use client';
 
 import Link from 'next/link';
-import Image, { StaticImageData } from 'next/image';
 import { useEffect, useRef, useState } from 'react';
 import { v4 } from 'uuid';
 import { motion } from 'framer-motion';
-import ru from '@/public/assets/icons/header/ru.svg';
-import en from '@/public/assets/icons/header/en.svg';
-import tm from '@/public/assets/icons/header/tm.svg';
 
-import { headerMenu2 } from '@/lib/database/pathnames';
 import { useAppDispatch, useAppSelector } from '@/redux/hooks';
-import {
-  selectBurger,
-  setBurgerDrop,
-  setBurgerOpen,
-  setFooterDrop,
-} from '@/redux/slices/burgerSlice';
-import { selectHeader, setActiveLang } from '@/redux/slices/headerSlice';
+import { setBurgerOpen } from '@/redux/slices/burgerSlice';
+import { setActiveLang } from '@/redux/slices/headerSlice';
 import clsx from 'clsx';
-import { lang } from './LangMenu';
 import { burgerMenu, burgerMenu2 } from '@/lib/database/header';
 
 interface flagTypes {
-  title: 'Ру' | 'En' | 'Tm';
-  localization: 'ru' | 'en' | 'tm';
+  // title: 'Ру' | 'En' | 'Tm';
+  title: 'Ру' | 'En';
+  localization: 'ru' | 'en';
+  // localization: 'ru' | 'en' | 'tm';
 }
 
 const burgerLangs: flagTypes[] = [
-  {
-    title: 'Tm',
-    localization: 'tm',
-  },
+  // {
+  //   title: 'Tm',
+  //   localization: 'tm',
+  // },
   {
     title: 'Ру',
     localization: 'ru',
@@ -48,19 +39,17 @@ export const BurgerMenu = () => {
 
   const localization = useAppSelector((state) => state.headerSlice.activeLang.localization);
 
-  const burgerOpen = useAppSelector((state) => state.burgerSlice.burgerOpen);
-
   const [activeMenu, setActiveMenu] = useState<string>('');
   const [activeMenu2, setActiveMenu2] = useState<string>('');
 
-  const chooseDataLang = (en: string, ru: string) => (localization === 'en' ? en : ru);
-
   const setActiveTitle = () => {
-    if (activeMenu.includes('/mem')) return 'Участникам';
+    if (activeMenu.includes('/mem'))
+      return (localization === 'ru' && 'Участникам') || (localization === 'en' && 'Participants');
   };
 
   const setActiveTitle2 = () => {
-    if (activeMenu2.includes('/company')) return 'О компании';
+    if (activeMenu2.includes('/company'))
+      return (localization === 'ru' && 'О компании') || (localization === 'en' && 'About company');
   };
 
   useEffect(() => {
@@ -120,7 +109,7 @@ export const BurgerMenu = () => {
                   dispatch(setBurgerOpen(false));
                 }}
                 href={item.link}>
-                {item.title}
+                {(localization === 'en' && item.titleEn) || (localization === 'ru' && item.title)}
               </Link>
             ) : (
               <div
@@ -130,7 +119,7 @@ export const BurgerMenu = () => {
                   setActiveMenu(item.link);
                   setActiveMenu2('');
                 }}>
-                <div>{item.title}</div>
+                {(localization === 'en' && item.titleEn) || (localization === 'ru' && item.title)}
                 {item.drop && <img src="/assets/icons/header/burger-arrow.svg" alt="arrow" />}
               </div>
             ),
@@ -158,7 +147,7 @@ export const BurgerMenu = () => {
           burgerMenu2.map((item) =>
             !item.drop ? (
               <Link key={v4()} onClick={() => dispatch(setBurgerOpen(false))} href={item.link}>
-                {item.title}
+                {(localization === 'en' && item.titleEn) || (localization === 'ru' && item.title)}
               </Link>
             ) : (
               <div
@@ -168,7 +157,9 @@ export const BurgerMenu = () => {
                   item.drop && setActiveMenu2(item.link);
                   setActiveMenu('');
                 }}>
-                <div>{item.title}</div>
+                <div>
+                  {(localization === 'en' && item.titleEn) || (localization === 'ru' && item.title)}
+                </div>
                 {item.drop && <img src="/assets/icons/header/burger-arrow.svg" alt="arrow" />}
               </div>
             ),
@@ -185,7 +176,7 @@ export const BurgerMenu = () => {
                   onClick={() => {
                     dispatch(setBurgerOpen(false));
                   }}>
-                  {item.title}
+                  {(localization === 'en' && item.titleEn) || (localization === 'ru' && item.title)}
                 </Link>
               )),
             )}
@@ -196,7 +187,7 @@ export const BurgerMenu = () => {
           <div
             key={v4()}
             onClick={() => {
-              setActiveLang(item);
+              dispatch(setActiveLang(item));
               dispatch(setBurgerOpen(false));
             }}
             className="flex cursor-pointer items-center gap-[10px]">
@@ -208,154 +199,3 @@ export const BurgerMenu = () => {
     </motion.div>
   );
 };
-
-{
-  /* <motion.div
-ref={burgerRef}
-initial={{ x: "100%" }}
-animate={{ x: 0 }}
-transition={{
-  duration: 0.3,
-}}
-exit={{
-  x: "100%",
-}}
-className={clsx(
-  "bg-green overflow-auto fixed w-full z-[900] top-[74px] bottom-0 left-0 min-h-[100vh] h-full px-4 py-10 flex flex-col gap-10 overflow-y-auto",
-  {
-    hidden: showInput,
-  }
-)}
->
-<div className="flex flex-col gap-5">
-  {burgerMenuData
-    .filter((obj) => obj.first)
-    .map(
-      (item) =>
-        !headerDrop && (
-          <motion.div key={v4()}>
-            {item.only ? (
-              <Link
-                onClick={() => {
-                  onBurgerDrop(item.pathname, true, true);
-                }}
-                href={item.pathname}
-                className="cursor-pointer flex items-center justify-between"
-              >
-                <p className="text-[18px] leading-[135%]">{item.title}</p>
-                {!item.only && (
-                  <Image
-                    src={arrow}
-                    alt="стрелка"
-                    width={20}
-                    height={20}
-                  />
-                )}
-              </Link>
-            ) : (
-              !burgerDrop.includes(item.title) && (
-                <motion.div
-                  onClick={() => {
-                    dispatch(setBurgerDrop(item.pathname));
-                    setHeaderDrop(true);
-                  }}
-                  className="cursor-pointer flex items-center justify-between"
-                >
-                  <h3 className="text-[18px] leading-[135%]">
-                    {item.title}
-                  </h3>
-                  {!item.only && (
-                    <Image
-                      src={arrow}
-                      alt="стрелка"
-                      width={20}
-                      height={20}
-                    />
-                  )}
-                </motion.div>
-              )
-            )}
-          </motion.div>
-        )
-    )}
-  {burgerDrop && (
-    <BurgerDrop setDrop={setHeaderDrop} filter={burgerDrop} />
-  )}
-</div>
-
-<hr className="border-bgWhite" />
-
-<div className="flex flex-col gap-5">
-  {burgerMenuData
-    .filter((obj) => !obj.first)
-    .map(
-      (item) =>
-        !bottom && (
-          <div key={v4()}>
-            {item.only ? (
-              <Link
-                onClick={() => onBurgerDrop(item.pathname, true, false)}
-                key={v4()}
-                className="cursor-pointer flex items-center justify-between"
-                href={item.pathname}
-              >
-                <p className="leading-[140%]">{item.title}</p>
-                {!item.only && (
-                  <Image
-                    src={arrow}
-                    alt="стрелка"
-                    width={20}
-                    height={20}
-                  />
-                )}
-              </Link>
-            ) : (
-              !footerDrop.includes(item.title) && (
-                <div
-                  onClick={() => {
-                    dispatch(setFooterDrop(item.pathname));
-                    setBottom(true);
-                  }}
-                  className="cursor-pointer flex items-center justify-between"
-                >
-                  <h3 className="text-[14px] leading-[140%]">
-                    {item.title}
-                  </h3>
-                  {!item.only && (
-                    <Image
-                      src={arrow}
-                      alt="стрелка"
-                      width={20}
-                      height={20}
-                    />
-                  )}
-                </div>
-              )
-            )}
-          </div>
-        )
-    )}
-  {footerDrop && <BurgerDrop setDrop={setBottom} filter={footerDrop} />}
-</div>
-
-<div className="flex mx-auto items-center gap-10 mb-[60px]">
-  {lang.map((item) => (
-    <div
-      onClick={() => dispatch(setActiveLang(item))}
-      key={v4()}
-      className="flex items-center gap-[10px] cursor-pointer"
-    >
-      <p className="leading-[140%]">{item.title}</p>
-      <Image
-        src={
-          (item.localization === "ru" && ru) ||
-          (item.localization === "en" && en) ||
-          (item.localization === "tm" && tm)
-        }
-        alt="флаг"
-      />
-    </div>
-  ))}
-</div>
-</motion.div> */
-}

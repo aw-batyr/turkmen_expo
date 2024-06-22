@@ -1,27 +1,27 @@
-"use client";
+'use client';
 
-import React from "react";
-import { v4 } from "uuid";
-import { Swiper, SwiperSlide } from "swiper/react";
-import { Navigation, Pagination } from "swiper/modules";
+import React from 'react';
+import { v4 } from 'uuid';
+import { Swiper, SwiperSlide } from 'swiper/react';
+import { Navigation, Pagination } from 'swiper/modules';
 
-import { NewsCard } from "../cards/NewsCard";
-import { NavBtn } from "./ui/NavBtn";
-import { GreenBtn, GreenBtnMob } from "../ui/Buttons";
-import { Title } from "./Title";
+import { NewsCard } from '../cards/NewsCard';
+import { NavBtn } from './ui/NavBtn';
+import { GreenBtn } from '../ui/Buttons';
+import { Title } from './Title';
 
-import { newsCardData } from "@/lib/database/newsData";
-import { useAppSelector } from "@/redux/hooks";
-import { selectHeader } from "@/redux/slices/headerSlice";
-import { NewsData } from "@/lib/types/NewsData.type";
+import { useAppSelector } from '@/redux/hooks';
+import { selectHeader } from '@/redux/slices/headerSlice';
+import { NewsData } from '@/lib/types/NewsData.type';
 
-import "swiper/css/bundle";
+import 'swiper/css/bundle';
 
-import "swiper/css";
-import "swiper/css/navigation";
-import "swiper/css/pagination";
-import "swiper/css/scrollbar";
-import Link from "next/link";
+import 'swiper/css';
+import 'swiper/css/navigation';
+import 'swiper/css/pagination';
+import 'swiper/css/scrollbar';
+import Link from 'next/link';
+import { useLang } from '@/utils/useLang';
 
 export const News = () => {
   const [newsData, setNewsData] = React.useState<NewsData>();
@@ -32,7 +32,7 @@ export const News = () => {
     try {
       const response = await fetch(`https://turkmenexpo.com/app/api/v1/news`, {
         headers: {
-          "Accept-Language": activeLang.localization,
+          'Accept-Language': activeLang.localization,
         },
       });
 
@@ -43,7 +43,7 @@ export const News = () => {
       const data = await response.json();
       setNewsData(data);
     } catch (error) {
-      console.error("Fetch error:", error);
+      console.error('Fetch error:', error);
     }
   };
 
@@ -55,7 +55,7 @@ export const News = () => {
     <>
       <div className="container w-full">
         <header className="flex items-center mb-5 sm:mb-[43px] justify-between">
-          <Title text="Новости" />
+          <Title text={useLang('News', 'Новости')} />
           <div className="hidden sm:flex items-center gap-x-[20px]">
             <NavBtn left />
             <NavBtn />
@@ -75,10 +75,9 @@ export const News = () => {
               440: { slidesPerView: 1.5 },
             }}
             navigation={{
-              nextEl: ".next-btn",
-              prevEl: ".prev-btn",
-            }}
-          >
+              nextEl: '.next-btn',
+              prevEl: '.prev-btn',
+            }}>
             {newsData?.data.map((item) => (
               <SwiperSlide key={v4()}>
                 <NewsCard
@@ -98,8 +97,8 @@ export const News = () => {
         </div>
 
         <footer className="hidden sm:flex justify-center">
-          <Link href={"/news"}>
-            <GreenBtn text="Все новости" />
+          <Link href={'/news'}>
+            <GreenBtn text={useLang('All news', 'Все новости')} />
           </Link>
         </footer>
       </div>

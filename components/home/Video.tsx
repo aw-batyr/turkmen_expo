@@ -1,7 +1,7 @@
 'use client';
 
 import clsx from 'clsx';
-import { useState, useRef } from 'react';
+import { useRef } from 'react';
 
 export const Video = () => {
   const vidRef = useRef<HTMLVideoElement>(null);

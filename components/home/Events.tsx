@@ -16,7 +16,7 @@ import { baseAPI } from '@/lib/API';
 import { useAppSelector } from '@/redux/hooks';
 import { selectHeader } from '@/redux/slices/headerSlice';
 import { CalendarType } from '@/lib/types/Calendar.type';
-import { act } from 'react-dom/test-utils';
+import { useLang } from '@/utils/useLang';
 
 export const Events = () => {
   const [eventsData, setEventsData] = useState<CalendarType>();
@@ -47,11 +47,15 @@ export const Events = () => {
     fetchEvents();
   }, [activeLang.localization]);
 
+  console.log(activeLang.localization);
+
   return (
     <>
       <div className="container hidden md:block">
         <div className="mb-10">
-          <Title text="Ближайшие выставки и мероприятия" />
+          <Title
+            text={useLang('Upcoming exhibitions and events', 'Ближайшие выставки и мероприятия')}
+          />
         </div>
         <div className="mb-[158px] w-full flex flex-col items-center gap-y-[10px]">
           {openCards
@@ -94,7 +98,11 @@ export const Events = () => {
                 />
               ))}
           {eventsData && eventsData.data.length > 3 ? (
-            <GreenBtn onEventBtn={onEventBtn} text={'Показать ещё'} mt="mt-[25px]" />
+            <GreenBtn
+              onEventBtn={onEventBtn}
+              text={useLang('Show more', 'Показать ещё')}
+              mt="mt-[25px]"
+            />
           ) : null}
         </div>
       </div>
@@ -103,7 +111,7 @@ export const Events = () => {
 
       <div className="md:hidden container">
         <h2 className="text-[26px] mb-5 sm:mb-10 font-semibold leading-[115%]">
-          Ближайшие выставки и мероприятия
+          {useLang('Upcoming exhibitions and events', 'Ближайшие выставки и мероприятия')}
         </h2>
         <div className="flex flex-col">
           <div className="flex items-center gap-y-[10px]">

@@ -16,10 +16,10 @@ export const lang: activeLangType[] = [
     title: 'Ру',
     localization: 'ru',
   },
-  {
-    title: 'Tm',
-    localization: 'tm',
-  },
+  // {
+  //   title: 'Tm',
+  //   localization: 'tm',
+  // },
   {
     title: 'En',
     localization: 'en',
@@ -33,7 +33,7 @@ export const LangMenu = () => {
   const [rotate, setRotate] = React.useState(false);
   const menuRef = React.useRef<HTMLDivElement>(null);
 
-  const setLang = (str: { localization: 'ru' | 'en' | 'tm'; title: 'Ру' | 'En' | 'Tm' }) => {
+  const setLang = (str: { localization: 'ru' | 'en'; title: 'Ру' | 'En' }) => {
     setActive(false);
     dispatch(setActiveLang(str));
   };

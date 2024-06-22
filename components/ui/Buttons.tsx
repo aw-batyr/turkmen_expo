@@ -4,7 +4,7 @@ import React from 'react';
 import clsx from 'clsx';
 
 interface GreenBtnProps {
-  text: string;
+  text: string | boolean;
   mt?: string;
   onEventBtn?: () => void;
   border?: boolean;

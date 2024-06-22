@@ -1,25 +1,16 @@
 'use client';
 
 import React, { useEffect, useState } from 'react';
-import Link from 'next/link';
 import Image from 'next/image';
-import { Roboto_Slab } from 'next/font/google';
-
-import glassImg from '@/public/assets/images/events/CardFullImg.png';
 
 import { BorderBtn } from '@/components/ui/Buttons';
-import { fullEventData } from '@/lib/database/eventsData';
 import { v4 } from 'uuid';
 import { baseAPI } from '@/lib/API';
 import { selectHeader, setShowInput } from '@/redux/slices/headerSlice';
 import { useAppDispatch, useAppSelector } from '@/redux/hooks';
 import { EventPageType } from '@/lib/types/EventPag.type';
 import { BreadCrumbs } from '@/components/ui/BreadCrumbs';
-
-const roboto_slab = Roboto_Slab({
-  weight: ['600'],
-  subsets: ['latin', 'cyrillic'],
-});
+import Link from 'next/link';
 
 const Event = ({ params }: { params: { id: string } }) => {
   const dispatch = useAppDispatch();
@@ -59,7 +50,9 @@ const Event = ({ params }: { params: { id: string } }) => {
     return formattedDate;
   };
 
-  console.log(eventsData);
+  useEffect(() => {
+    window.scroll(0, 0);
+  }, []);
 
   return (
     <div>
@@ -78,9 +71,12 @@ const Event = ({ params }: { params: { id: string } }) => {
       <div>
         <div className="container section-mb">
           <div className="hidden md:flex gap-5 my-[60px]">
-            <BorderBtn text={'Сайт выставки'} />
-            <BorderBtn text={'Забронировать стенд'} />
-            <BorderBtn text={'Получить электронный билет'} />
+            <a href="https://kids.turkmenexpo.com/" target="_blank">
+              <BorderBtn text={'Сайт выставки'} />
+            </a>
+            <Link href={'/members/bid'}>
+              <BorderBtn text={'Забронировать стенд'} />
+            </Link>
           </div>
 
           <div className="flex flex-col gap-10 md:gap-[60px]">
