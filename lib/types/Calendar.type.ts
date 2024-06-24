@@ -9,7 +9,7 @@ export interface Datum {
   title: string;
   description: string;
   category: string;
-  organizer: Organizer;
+  organizers: Organizer[];
   starts_at: string;
   ends_at: string;
   images: Image[];
@@ -29,11 +29,11 @@ export interface Image {
 
 export interface Organizer {
   name: string;
-  // address?: string;
-  // phones?: Phone[];
-  // fax?: string;
-  // email?: string;
-  // web_site?: string;
+  address: string;
+  phones: Phone[];
+  fax: string;
+  email: string;
+  web_site: string;
 }
 
 export interface Phone {

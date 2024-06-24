@@ -88,25 +88,27 @@ const Event = ({ params }: { params: { id: string } }) => {
                 <div className="flex flex-col sm:flex-row gap-[20px]">
                   <div className="w-full max-w-[290px] flex flex-col gap-[20px]">
                     <h3 className="leading-[120%] text-[18px] font-semibold">Даты проведения</h3>
-                    <div className="leading-[130%]">
-                      <p className="text-gray4">{formatDate(eventsData.data.starts_at)}</p>
-                    </div>
-                    <div className="leading-[130%]">
-                      <p className="text-gray4">{formatDate(eventsData.data.ends_at)}</p>
+                    <div className="leading-[130%] flex flex-col text-[14px] gap-[2px]">
+                      {eventsData.data.timing.map((item) => (
+                        <>
+                          <div className="text-gray4">{item.date}</div>
+                          <div className="text-gray">{item.time}</div>
+                        </>
+                      ))}
                     </div>
                   </div>
 
                   <div className="w-full max-w-[290px] flex flex-col gap-[20px]">
                     <h3 className="leading-[120%] text-[18px] font-semibold">Монтаж</h3>
                     <div className="leading-[130%]">
-                      <p className="text-gray4">{formatDate(eventsData.data.starts_at)}</p>
+                      <p className="text-gray4">{eventsData.data.installation_date}</p>
                     </div>
                   </div>
 
                   <div className="w-full max-w-[290px] flex flex-col gap-[20px]">
                     <h3 className="leading-[120%] text-[18px] font-semibold">Демонтаж</h3>
                     <div className="leading-[130%]">
-                      <p className="text-gray4">{formatDate(eventsData.data.ends_at)}</p>
+                      <p className="text-gray4">{eventsData.data.dismantling_date}</p>
                     </div>
                   </div>
 
@@ -183,13 +185,13 @@ const Event = ({ params }: { params: { id: string } }) => {
               <div>
                 <div className="flex flex-col gap-[10px]" key={v4()}>
                   <h3 className="text-21 mb-[10px]">Организатор</h3>
-                  <h4 className="text-gray leading-[130%]">{eventsData.data.organizer.name}</h4>
+                  <h4 className="text-gray leading-[130%]">{eventsData.data.organizers[0].name}</h4>
                   <div className="leading-[150%] sm:leading-[130%]">
-                    <p>{eventsData.data.organizer.address}</p>
-                    <p>{eventsData.data.organizer.phones[0].phone}</p>
-                    <p>Факс {eventsData.data.organizer.fax}</p>
-                    <p>Email: {eventsData.data.organizer.email}</p>
-                    <p>{eventsData.data.organizer.web_site}</p>
+                    <p>{eventsData.data.organizers[0].address}</p>
+                    <p>{eventsData.data.organizers[0].phones[0].phone}</p>
+                    <p>Факс {eventsData.data.organizers[0].fax}</p>
+                    <p>Email: {eventsData.data.organizers[0].email}</p>
+                    <p>{eventsData.data.organizers[0].web_site}</p>
                   </div>
                 </div>
               </div>

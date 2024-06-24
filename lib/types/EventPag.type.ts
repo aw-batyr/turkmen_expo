@@ -7,7 +7,7 @@ export interface Data {
   title: string;
   description: string;
   category: string;
-  organizer: Organizer;
+  organizers: Organizer[];
   starts_at: string;
   ends_at: string;
   images: Image[];
@@ -18,6 +18,8 @@ export interface Data {
   location: string;
   timing: Timing[];
   event_topic: string;
+  installation_date: string;
+  dismantling_date: string;
 }
 
 export interface Image {
@@ -42,6 +44,6 @@ export interface Phone {
 }
 
 export interface Timing {
-  string: string;
+  date: string;
   time: string;
 }

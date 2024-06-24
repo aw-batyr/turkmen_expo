@@ -64,7 +64,7 @@ export const Events = () => {
                   key={v4()}
                   title={item.title}
                   description={item.description}
-                  organizerName={item.organizer.name}
+                  organizers={item.organizers}
                   starts={item.starts_at}
                   ends={item.ends_at}
                   category={item.category}
@@ -83,7 +83,7 @@ export const Events = () => {
                   key={v4()}
                   title={item.title}
                   description={item.description}
-                  organizerName={item.organizer.name}
+                  organizers={item.organizers}
                   starts={item.starts_at}
                   ends={item.ends_at}
                   category={item.category}
@@ -127,7 +127,7 @@ export const Events = () => {
                       key={v4()}
                       title={item.title}
                       description={item.description}
-                      organizerName={item.organizer.name}
+                      organizers={item.organizers}
                       starts={item.starts_at}
                       ends={item.ends_at}
                       category={item.category}
