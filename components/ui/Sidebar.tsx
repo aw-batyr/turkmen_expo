@@ -17,9 +17,7 @@ export const Sidebar = () => {
         .filter(
           (obj) =>
             (pathname === "/company/aboutus" && obj.company) ||
-            (pathname === "/members" && obj.members) ||
-            (pathname === "/members/bid" && obj.members) ||
-            (pathname === "/news" && obj.news) ||
+            (pathname.includes("/members") && obj.members) ||
             (pathname.includes("/news") && obj.news)
         )
         .map((item) => (

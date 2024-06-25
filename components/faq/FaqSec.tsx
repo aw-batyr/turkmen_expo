@@ -1,23 +1,22 @@
-'use client';
+"use client";
 
-import React, { useEffect, useState } from 'react';
-import { v4 } from 'uuid';
+import React, { useEffect, useState } from "react";
+import { v4 } from "uuid";
 
-import { useAppSelector } from '@/redux/hooks';
+import { useAppSelector } from "@/redux/hooks";
 
-import { Radio } from '../ui/Radio';
-import { Title } from '../home/Title';
-import { baseAPI } from '@/lib/API';
-import { selectHeader } from '@/redux/slices/headerSlice';
-import { FaqDataType, RadioDataType } from '@/lib/types/FaqData.type';
-import { Select } from './Select';
-import { BreadCrumbs } from '../ui/BreadCrumbs';
-import { AnimatePresence } from 'framer-motion';
+import { Radio } from "../ui/Radio";
+import { Title } from "../home/Title";
+import { baseAPI } from "@/lib/API";
+import { selectHeader } from "@/redux/slices/headerSlice";
+import { FaqDataType, RadioDataType } from "@/lib/types/FaqData.type";
+import { Select } from "./Select";
+import { BreadCrumbs } from "../ui/BreadCrumbs";
 
 export const radio = [
-  { name: 'Все', id: 'all' },
-  { name: 'Посетителям', id: 'visitors' },
-  { name: 'Участникам', id: 'members' },
+  { name: "Все", id: "all" },
+  { name: "Посетителям", id: "visitors" },
+  { name: "Участникам", id: "members" },
 ];
 
 export const FaqSec = () => {
@@ -31,7 +30,7 @@ export const FaqSec = () => {
     try {
       const res = await fetch(`${baseAPI}faq-user-groups?`, {
         headers: {
-          'Accept-Language': activeLang.localization,
+          "Accept-Language": activeLang.localization,
         },
       });
 
@@ -46,16 +45,18 @@ export const FaqSec = () => {
   const fetchFaq = async () => {
     try {
       const res = await fetch(
-        `${baseAPI}${currentRadio === 2 || (currentRadio === 0 && 'participants-page-items')}`,
+        `${baseAPI}faq-headers${
+          currentRadio !== 0 ? "?faq_user_group_id=" + currentRadio : ""
+        }`,
         {
           headers: {
-            'Accept-Language': activeLang.localization,
+            "Accept-Language": activeLang.localization,
           },
-        },
+        }
       );
 
       if (!res.ok) {
-        throw new Error('Error');
+        throw new Error("Error");
       }
 
       const data: FaqDataType = await res.json();
@@ -85,7 +86,7 @@ export const FaqSec = () => {
           id={currentRadio}
           changeRadio={changeRadio}
           active={currentRadio === 0}
-          text={'Все'}
+          text={"Все"}
         />
         {radioData
           ? radioData.data.map((item) => (
@@ -100,7 +101,9 @@ export const FaqSec = () => {
             ))
           : null}
       </div>
-      {faqData ? faqData.data.map((obj) => <Select {...obj} key={v4()} />) : null}
+      {faqData
+        ? faqData.data.map((obj) => <Select {...obj} key={v4()} />)
+        : null}
     </div>
   );
 };
