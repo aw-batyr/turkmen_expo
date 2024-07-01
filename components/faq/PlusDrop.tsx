@@ -3,7 +3,6 @@
 import React, { useState } from 'react';
 import Image from 'next/image';
 import { useAppDispatch } from '@/redux/hooks';
-import { setFaqInfo } from '@/redux/slices/faqSlice';
 import { motion } from 'framer-motion';
 
 import add from '@/public/assets/icons/faq/add.svg';
@@ -31,9 +30,7 @@ export const PlusDrop = ({ question, answer }: Props) => {
 
   return (
     <div className="w-full">
-      <div
-        onClick={() => dispatch(setFaqInfo(''))}
-        className="flex items-center gap-x-[10px] cursor-pointer">
+      <div className="flex items-center gap-x-[10px] cursor-pointer">
         <Image
           src={openItems.includes(question || '') ? minus : add}
           width={20}

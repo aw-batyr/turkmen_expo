@@ -71,11 +71,11 @@ export const Select = ({ ...props }: IProps) => {
         className={clsx(
           'flex flex-col gap-6 last:border-b-[1px] last:border-b-navyBlue overflow-hidden',
         )}>
-        {props.faq_items?.map((item) => (
+        {props.faq_items?.map((item, i) => (
           <motion.div
             initial={{ height: 0 }}
             animate={openTitles.includes(header || '') ? { height: '100%' } : {}}
-            key={item.answer}
+            key={i}
             className="flex flex-col gap-3 w-full max-w-[1000px]">
             <h4 className="leading-[140%]">{item.question}</h4>
             <p className="text-gray4 leading-[140%]">{item.answer}</p>
