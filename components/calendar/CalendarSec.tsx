@@ -14,6 +14,7 @@ import { setBurgerOpen } from "@/redux/slices/burgerSlice";
 import { baseAPI } from "@/lib/API";
 import { CalendarType } from "@/lib/types/Calendar.type";
 import { BreadCrumbs } from "../ui/BreadCrumbs";
+import { useLang } from "@/utils/useLang";
 
 export const CalendarSec = ({}: {}) => {
   const [current, setCurrent] = React.useState<number>(1);
@@ -55,9 +56,13 @@ export const CalendarSec = ({}: {}) => {
       <div className="container flex flex-col items-start pt-[20px] gap-10 md:gap-12">
         <div>
           <div className="mb-[24px]">
-            <BreadCrumbs second="Календарь мероприятий" />
+            <BreadCrumbs
+              second={useLang("Calendar of events", "Календарь мероприятий")}
+            />
           </div>
-          <Title text="Календарь мероприятий" />
+          <Title
+            text={useLang("Calendar of events", "Календарь мероприятий")}
+          />
         </div>
         <div className="flex flex-col gap-6 w-full">
           {eventsData

@@ -12,11 +12,12 @@ import { selectHeader } from "@/redux/slices/headerSlice";
 import { FaqDataType, RadioDataType } from "@/lib/types/FaqData.type";
 import { Select } from "./Select";
 import { BreadCrumbs } from "../ui/BreadCrumbs";
+import { useLang } from "@/utils/useLang";
 
 export const radio = [
-  { name: "Все", id: "all" },
-  { name: "Посетителям", id: "visitors" },
-  { name: "Участникам", id: "members" },
+  { nameEn: "All", name: "Все", id: 0 },
+  { nameEn: "Visitors", name: "Посетителям", id: 1 },
+  { nameEn: "Participants", name: "Участникам", id: 2 },
 ];
 
 export const FaqSec = () => {
@@ -78,28 +79,19 @@ export const FaqSec = () => {
 
   return (
     <div className="container flex flex-col items-start pt-[20px] section-mb">
-      <BreadCrumbs second="FAQ" />
-      <Title text="«Вопросы-ответы»" />
+      <BreadCrumbs second={useLang("FAQ", "«Вопросы-ответы»")} />
+      <Title text={useLang("FAQ", "«Вопросы-ответы»")} />
       <div className="flex items-center sm:mt-6 mt-10 sm:gap-[20px] gap-10 mb-[48px]">
-        <Radio
-          nofilter
-          id={currentRadio}
-          changeRadio={changeRadio}
-          active={currentRadio === 0}
-          text={"Все"}
-        />
-        {radioData
-          ? radioData.data.map((item) => (
-              <div key={v4()}>
-                <Radio
-                  id={item.id}
-                  active={currentRadio === item.id}
-                  changeRadio={changeRadio}
-                  text={item.name}
-                />
-              </div>
-            ))
-          : null}
+        {radio.map((item, i) => (
+          <div key={i}>
+            <Radio
+              id={item.id}
+              active={currentRadio === item.id}
+              changeRadio={changeRadio}
+              text={activeLang.localization === "ru" ? item.name : item.nameEn}
+            />
+          </div>
+        ))}
       </div>
       {faqData
         ? faqData.data.map((obj) => <Select {...obj} key={v4()} />)

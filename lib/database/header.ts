@@ -1,39 +1,39 @@
 export const burgerMenu = [
   {
-    title: 'Календарь мероприятий',
-    titleEn: 'Calendar of events',
-    link: '/calendar',
+    title: "Календарь мероприятий",
+    titleEn: "Calendar of events",
+    link: "/calendar",
   },
   {
     partic: true,
     drop: true,
-    title: 'Участникам',
-    titleEn: 'Participants',
-    link: '/members',
+    title: "Участникам",
+    titleEn: "Participants",
+    link: "/members",
     dropDown: [
       {
-        title: 'Информация для участников',
-        titleEn: 'Information for participants',
-        link: '/members',
+        title: "Информация для участников",
+        titleEn: "Information for participants",
+        link: "/members",
       },
       {
-        title: 'Онлайн заявка для участников',
-        titleEn: 'Application for participation',
-        link: '/members/bid',
+        title: "Онлайн заявка для участников",
+        titleEn: "Application for participation",
+        link: "/members/bid",
       },
     ],
   },
   {
-    title: 'Посетителям',
+    title: "Посетителям",
 
-    titleEn: 'Visitors',
-    link: '',
+    titleEn: "Visitors",
+    link: "/visitors",
   },
   {
-    title: 'Организаторам',
+    title: "Организаторам",
 
-    titleEn: 'Services',
-    link: '',
+    titleEn: "Services",
+    link: "",
   },
 
   //   { en: true, title: "Exhibition", link: "/exhibition-about" },
@@ -44,35 +44,35 @@ export const burgerMenu = [
 export const burgerMenu2 = [
   {
     company: true,
-    title: 'О компании',
+    title: "О компании",
 
-    titleEn: 'About company',
-    link: '/company/aboutus',
+    titleEn: "About company",
+    link: "/company/aboutus",
     drop: true,
     dropDown: [
       {
-        title: 'О нас',
-        titleEn: 'About us',
-        link: '/company/aboutus',
+        title: "О нас",
+        titleEn: "About us",
+        link: "/company/aboutus",
       },
     ],
   },
   {
-    title: 'Новости',
+    title: "Новости",
 
-    titleEn: 'News',
-    link: '/news',
+    titleEn: "News",
+    link: "/news",
   },
   {
-    title: 'FAQ',
+    title: "FAQ",
 
-    titleEn: 'FAQ',
-    link: '/faq',
+    titleEn: "FAQ",
+    link: "/faq",
   },
   {
-    title: 'Контакты',
+    title: "Контакты",
 
-    titleEn: 'Контакты',
-    link: '/contacts',
+    titleEn: "Контакты",
+    link: "/contacts",
   },
 ];

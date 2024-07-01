@@ -6,10 +6,14 @@ import clsx from "clsx";
 import { usePathname } from "next/navigation";
 
 import { sidebarData } from "@/lib/database/pathnames";
-import { v4 } from "uuid";
+import { useAppSelector } from "@/redux/hooks";
 
 export const Sidebar = () => {
   const pathname = usePathname();
+
+  const lang = useAppSelector(
+    (state) => state.headerSlice.activeLang.localization
+  );
 
   return (
     <div className="flex flex-col items-start gap-y-[12px] py-[20px] sticky top-0 left-0 overflow-hidden">
@@ -18,20 +22,21 @@ export const Sidebar = () => {
           (obj) =>
             (pathname === "/company/aboutus" && obj.company) ||
             (pathname.includes("/members") && obj.members) ||
-            (pathname.includes("/news") && obj.news)
+            (pathname.includes("/news") && obj.news) ||
+            (pathname.includes("/visitors") && obj.visitors)
         )
-        .map((item) => (
-          <div key={v4()}>
+        .map((item, i) => (
+          <div key={i}>
             <p
               className={clsx(
                 "text-bgWhite mb-[16px] text-[16px] font-bold leading-[1.5]"
               )}
             >
-              {item.pathname}
+              {lang === "ru" ? item.pathname : item.pathnameEn}
             </p>
             <div className="flex flex-col items-start gap-y-[8px]">
               <div className="flex flex-col gap-[10px] px-[16px]">
-                {item.info.map((obj) => (
+                {item.info.map((obj, i) => (
                   <Link
                     href={obj.link}
                     className={clsx(
@@ -41,9 +46,9 @@ export const Sidebar = () => {
                           obj.link === pathname,
                       }
                     )}
-                    key={v4()}
+                    key={i}
                   >
-                    {obj.title}
+                    {lang === "ru" ? obj.title : obj.titleEn}
                   </Link>
                 ))}
               </div>

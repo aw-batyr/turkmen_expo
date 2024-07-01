@@ -9,6 +9,7 @@ import { selectHeader } from "@/redux/slices/headerSlice";
 import { baseAPI } from "@/lib/API";
 import { v4 } from "uuid";
 import { ContactsDataType } from "@/lib/types/Contacts.type";
+import { useLang } from "@/utils/useLang";
 
 const Contacts = () => {
   const [contactsData, setContactsData] = useState<ContactsDataType>();
@@ -42,10 +43,10 @@ const Contacts = () => {
     <div className="bg-blueBg h-full">
       <div className="container flex flex-col items-start">
         <div className="mt-5">
-          <BreadCrumbs second="Контакты" />
+          <BreadCrumbs second={useLang("Contacts", "Контакты")} />
         </div>
         <div className="sm:mb-[48px] mb-10">
-          <Title text="Контакты" />
+          <Title text={useLang("Contacts", "Контакты")} />
         </div>
         {contactsData
           ? contactsData.data.map((item, i) => (

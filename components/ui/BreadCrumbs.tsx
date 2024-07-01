@@ -1,5 +1,6 @@
 "use client";
 
+import { useLang } from "@/utils/useLang";
 import Link from "next/link";
 
 export const BreadCrumbs = ({
@@ -17,7 +18,7 @@ export const BreadCrumbs = ({
 }) => {
   return (
     <div className="text-[12px] text-gray4 flex items-center mob:mb-6 mb-5">
-      <Link href={"/"}>Главная</Link>
+      <Link href={"/"}>{useLang("Home", "Главная")}</Link>
 
       <p className="px-1">/</p>
 

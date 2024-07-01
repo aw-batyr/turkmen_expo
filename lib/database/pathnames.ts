@@ -1,9 +1,12 @@
 interface MenuType {
   pathname: string;
+  pathnameEn: string;
   company?: boolean;
   members?: boolean;
+  visitors?: boolean;
   news?: boolean;
   info: {
+    titleEn: string;
     title: string;
     link: string;
   }[];
@@ -13,8 +16,9 @@ export const sidebarData: MenuType[] = [
   {
     company: true,
     pathname: "О компании",
+    pathnameEn: "About company",
     info: [
-      { title: "Коротко о нас", link: "/company/aboutus" },
+      { title: "Коротко о нас", titleEn: "About us", link: "/company/aboutus" },
       // { title: 'Выставочная деятельность', link: '' },
       // { title: 'История и награды', link: '' },
       // { title: 'Партнеры', link: '' },
@@ -25,18 +29,52 @@ export const sidebarData: MenuType[] = [
   {
     members: true,
     pathname: "Участникам",
+    pathnameEn: "Participants",
+
     info: [
-      { title: "Информация для участников", link: "/members" },
-      { title: "Онлайн заявка для участников", link: "/members/bid" },
-      { title: "Правила для участников", link: "/members/members-rules" },
+      {
+        title: "Информация для участников",
+        titleEn: "Information for participants",
+        link: "/members",
+      },
+      {
+        title: "Онлайн заявка для участников",
+        titleEn: "Online application",
+        link: "/members/bid",
+      },
+      {
+        title: "Правила для участников",
+        titleEn: "Rules for participants",
+        link: "/members/members-rules",
+      },
     ],
   },
   {
     news: true,
     pathname: "Новости",
+    pathnameEn: "News",
+
     info: [
-      { title: "Новости", link: "/news" },
+      { title: "Новости", titleEn: "News", link: "/news" },
       // { title: 'Пресс-релизы', link: '' },
+    ],
+  },
+  {
+    visitors: true,
+    pathname: "Посетителям",
+    pathnameEn: "Visitors",
+
+    info: [
+      {
+        title: "Информация для посетителей",
+        titleEn: "Information for visitors",
+        link: "/visitors",
+      },
+      {
+        title: "Правила посещения",
+        titleEn: "Entrance rules",
+        link: "/visitors/rules-for-visitors",
+      },
     ],
   },
 ];
@@ -156,12 +194,12 @@ export const headerMenu: HeaderType[] = [
 export const headerMenu2: HeaderType[] = [
   { title: "Календарь мероприятий", link: "/calendar", id: 1 },
   { title: "Участникам", link: "/members", id: 2 },
-  { title: "Посетителям", link: "", id: 3 },
+  { title: "Посетителям", link: "/visitors", id: 3 },
   { title: "Услуги", link: "", id: 4 },
 
   { en: true, title: "Calendar of events", link: "/calendar", id: 1 },
   { en: true, title: "Participants", link: "/members", id: 2 },
-  { en: true, title: "Visitors", link: "", id: 3 },
+  { en: true, title: "Visitors", link: "/visitors", id: 3 },
   { en: true, title: "Services", link: "", id: 4 },
 ];
 

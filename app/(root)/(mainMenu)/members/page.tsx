@@ -11,8 +11,8 @@ import { LayoutWithSidebar } from "@/components/page/LayoutWithSidebar";
 import { baseAPI } from "@/lib/API";
 import { useAppSelector } from "@/redux/hooks";
 import { selectHeader } from "@/redux/slices/headerSlice";
-import { FaqDataType } from "@/lib/types/FaqData.type";
 import { ParticipantsDataType } from "@/lib/types/Participants.type";
+import { useLang } from "@/utils/useLang";
 
 const Members = () => {
   const { activeLang } = useAppSelector(selectHeader);
@@ -45,8 +45,14 @@ const Members = () => {
   return (
     <div className="flex flex-col">
       <LayoutWithSidebar
-        title="Информация для участников"
-        second="Информация для участников"
+        title={useLang(
+          "Information for participants",
+          "Информация для участников"
+        )}
+        second={useLang(
+          "Information for participants",
+          "Информация для участников"
+        )}
       >
         <p className="text-p">
           В распоряжении компании имеются возможности размещения и застройки

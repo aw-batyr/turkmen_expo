@@ -1,12 +1,13 @@
-'use client';
+"use client";
 
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState } from "react";
 
-import { LayoutWithSidebar } from '@/components/page/LayoutWithSidebar';
-import { baseAPI } from '@/lib/API';
-import { useAppDispatch, useAppSelector } from '@/redux/hooks';
-import { selectHeader } from '@/redux/slices/headerSlice';
-import { fetchAbout } from '@/redux/slices/aboutus';
+import { LayoutWithSidebar } from "@/components/page/LayoutWithSidebar";
+import { baseAPI } from "@/lib/API";
+import { useAppDispatch, useAppSelector } from "@/redux/hooks";
+import { selectHeader } from "@/redux/slices/headerSlice";
+import { fetchAbout } from "@/redux/slices/aboutus";
+import { useLang } from "@/utils/useLang";
 
 const About = () => {
   const dispatch = useAppDispatch();
@@ -19,12 +20,12 @@ const About = () => {
       dispatch(fetchAbout({ activeLang }));
       const res = await fetch(`${baseAPI}settings/about_us`, {
         headers: {
-          'Accept-Language': activeLang.localization,
+          "Accept-Language": activeLang.localization,
         },
       });
 
       if (!res.ok) {
-        throw new Error('Error');
+        throw new Error("Error");
       }
 
       const data = await res.json();
@@ -42,8 +43,10 @@ const About = () => {
   }, [activeLang.localization]);
 
   return (
-    <LayoutWithSidebar second="Коротко о нас" title="Коротко о нас">
-      {/* <Image src={aboutImg} width={1000} height={500} alt="about image" /> */}
+    <LayoutWithSidebar
+      second={useLang("About us", "Коротко о нас")}
+      title={useLang("About us", "Коротко о нас")}
+    >
       <div className="aboutus flex flex-col items-start gap-y-[24px] text-p">
         {aboutDatas ? (
           <div

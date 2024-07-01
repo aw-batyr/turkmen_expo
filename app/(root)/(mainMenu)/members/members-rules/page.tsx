@@ -6,6 +6,7 @@ import { baseAPI } from "@/lib/API";
 import { ParticipantsDataType } from "@/lib/types/Participants.type";
 import { useAppSelector } from "@/redux/hooks";
 import { selectHeader } from "@/redux/slices/headerSlice";
+import { useLang } from "@/utils/useLang";
 import { useEffect, useState } from "react";
 
 const MembersRules = () => {
@@ -40,10 +41,10 @@ const MembersRules = () => {
   return (
     <div>
       <LayoutWithSidebar
-        title="Правила для участников"
-        second="Участникам"
+        title={useLang("Rules for participants", "Правила для участников")}
+        second={useLang("Participants", "Участникам")}
         path="/members"
-        third="Правила для участников"
+        third={useLang("Rules for participants", "Правила для участников")}
       >
         <div className="">
           {membersRulesData

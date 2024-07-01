@@ -1,17 +1,18 @@
-import React from "react";
+"use client";
 
 import { FormSec } from "@/components/bid/FormSec";
 import { LayoutWithSidebar } from "@/components/page/LayoutWithSidebar";
+import { useLang } from "@/utils/useLang";
 
 const Bid = () => {
   return (
     <>
       <div className="h-full w-full">
         <LayoutWithSidebar
-          title="Онлайн-заявка для участников"
-          second="Участникам"
+          title={useLang("Online application", "Онлайн-заявка для участников")}
+          second={useLang("Participants", "Участникам")}
           path="/members"
-          third="Онлайн-заявка для участников"
+          third={useLang("Online application", "Онлайн-заявка для участников")}
         >
           <FormSec />
         </LayoutWithSidebar>
