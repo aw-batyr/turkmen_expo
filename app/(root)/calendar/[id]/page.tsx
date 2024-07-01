@@ -1,16 +1,16 @@
-'use client';
+"use client";
 
-import React, { useEffect, useState } from 'react';
-import Image from 'next/image';
+import React, { useEffect, useState } from "react";
+import Image from "next/image";
 
-import { BorderBtn } from '@/components/ui/Buttons';
-import { v4 } from 'uuid';
-import { baseAPI } from '@/lib/API';
-import { selectHeader, setShowInput } from '@/redux/slices/headerSlice';
-import { useAppDispatch, useAppSelector } from '@/redux/hooks';
-import { EventPageType } from '@/lib/types/EventPag.type';
-import { BreadCrumbs } from '@/components/ui/BreadCrumbs';
-import Link from 'next/link';
+import { BorderBtn } from "@/components/ui/Buttons";
+import { v4 } from "uuid";
+import { baseAPI } from "@/lib/API";
+import { selectHeader, setShowInput } from "@/redux/slices/headerSlice";
+import { useAppDispatch, useAppSelector } from "@/redux/hooks";
+import { EventPageType } from "@/lib/types/EventPag.type";
+import { BreadCrumbs } from "@/components/ui/BreadCrumbs";
+import Link from "next/link";
 
 const Event = ({ params }: { params: { id: string } }) => {
   const dispatch = useAppDispatch();
@@ -21,12 +21,12 @@ const Event = ({ params }: { params: { id: string } }) => {
     try {
       const res = await fetch(`${baseAPI}expoevents/${params.id}`, {
         headers: {
-          'Accept-Language': activeLang.localization,
+          "Accept-Language": activeLang.localization,
         },
       });
 
       if (!res.ok) {
-        throw new Error('error');
+        throw new Error("error");
       }
 
       const data = await res.json();
@@ -41,10 +41,12 @@ const Event = ({ params }: { params: { id: string } }) => {
     dispatch(setShowInput(false));
   }, [activeLang.localization]);
 
+  console.log(eventsData?.data.coorganizers);
+
   const formatDate = (dateString: string) => {
-    const dateParts = dateString.split(' ');
+    const dateParts = dateString.split(" ");
     const date = dateParts[0];
-    const parts = date.split('-');
+    const parts = date.split("-");
     const formattedDate = `${parts[2]}.${parts[1]}.${parts[0]}`;
 
     return formattedDate;
@@ -58,11 +60,15 @@ const Event = ({ params }: { params: { id: string } }) => {
     <div>
       <div className="container">
         <div className="pt-5">
-          <BreadCrumbs second="Календарь мероприятий" path="/calendar" third="Мероприятие" />
+          <BreadCrumbs
+            second="Календарь мероприятий"
+            path="/calendar"
+            third="Мероприятие"
+          />
         </div>
       </div>
       <Image
-        src={eventsData ? eventsData.data.background_images[0].path : ''}
+        src={eventsData ? eventsData.data.background_images[0].path : ""}
         alt="выставка"
         width={1920}
         height={490}
@@ -72,13 +78,12 @@ const Event = ({ params }: { params: { id: string } }) => {
         <div className="container section-mb">
           <div className="hidden md:flex gap-5 my-[60px]">
             <a href="https://kids.turkmenexpo.com/" target="_blank">
-              <BorderBtn text={'Сайт выставки'} />
+              <BorderBtn text={"Сайт выставки"} />
             </a>
-            <Link href={'/members/bid'}>
-              <BorderBtn text={'Забронировать стенд'} />
+            <Link href={"/members/bid"}>
+              <BorderBtn text={"Забронировать стенд"} />
             </Link>
           </div>
-
           <div className="flex flex-col gap-10 md:gap-[60px]">
             {eventsData && (
               <div>
@@ -87,7 +92,9 @@ const Event = ({ params }: { params: { id: string } }) => {
                 </p>
                 <div className="flex flex-col sm:flex-row gap-[20px]">
                   <div className="w-full max-w-[290px] flex flex-col gap-[20px]">
-                    <h3 className="leading-[120%] text-[18px] font-semibold">Даты проведения</h3>
+                    <h3 className="leading-[120%] text-[18px] font-semibold">
+                      Даты проведения
+                    </h3>
                     <div className="leading-[130%] flex flex-col text-[14px] gap-[2px]">
                       {eventsData.data.timing.map((item) => (
                         <>
@@ -99,21 +106,31 @@ const Event = ({ params }: { params: { id: string } }) => {
                   </div>
 
                   <div className="w-full max-w-[290px] flex flex-col gap-[20px]">
-                    <h3 className="leading-[120%] text-[18px] font-semibold">Монтаж</h3>
+                    <h3 className="leading-[120%] text-[18px] font-semibold">
+                      Монтаж
+                    </h3>
                     <div className="leading-[130%]">
-                      <p className="text-gray4">{eventsData.data.installation_date}</p>
+                      <p className="text-gray4">
+                        {eventsData.data.installation_date}
+                      </p>
                     </div>
                   </div>
 
                   <div className="w-full max-w-[290px] flex flex-col gap-[20px]">
-                    <h3 className="leading-[120%] text-[18px] font-semibold">Демонтаж</h3>
+                    <h3 className="leading-[120%] text-[18px] font-semibold">
+                      Демонтаж
+                    </h3>
                     <div className="leading-[130%]">
-                      <p className="text-gray4">{eventsData.data.dismantling_date}</p>
+                      <p className="text-gray4">
+                        {eventsData.data.dismantling_date}
+                      </p>
                     </div>
                   </div>
 
                   <div className="w-full max-w-[290px] flex flex-col gap-[20px]">
-                    <h3 className="leading-[120%] text-[18px] font-semibold">Место проведения</h3>
+                    <h3 className="leading-[120%] text-[18px] font-semibold">
+                      Место проведения
+                    </h3>
                     <div className="leading-[130%]">
                       <p className="text-gray4">{eventsData.data.location}</p>
                     </div>
@@ -121,47 +138,6 @@ const Event = ({ params }: { params: { id: string } }) => {
                 </div>
               </div>
             )}
-
-            {/* <div className="flex flex-col gap-[33px]">
-              {fullEventData
-                .filter((item) => item.theme)
-                .map((obj) => (
-                  <div key={v4()}>
-                    <h3 className="text-[21px] mb-10 leading-[100%] font-semibold">
-                      {obj.title}
-                    </h3>
-                    {obj.info?.map((text) => (
-                      <div
-                        key={v4()}
-                        className=" last:mt-6 flex flex-col gap-[20px]"
-                      >
-                        <h4 className="text-[18px] font-semibold leading-[120%]">
-                          {text.title}
-                        </h4>
-
-                        <div className="pl-[9px] leading-[130%] list-disc">
-                          <div className="text-gray4 relative">
-                            <div className="w-[4px] h-[4px] rounded-full bg-lightGreen absolute top-[7px] left-[-10px]"></div>
-                            {text.list}
-                          </div>
-                          <div className="text-gray4 relative">
-                            <div className="w-[4px] h-[4px] rounded-full bg-lightGreen absolute top-[7px] left-[-10px]"></div>
-                            {text.list2}
-                          </div>
-                          <div className="text-gray4 relative">
-                            <div className="w-[4px] h-[4px] rounded-full bg-lightGreen absolute top-[7px] left-[-10px]"></div>
-                            {text.list3}
-                          </div>
-                          <div className="text-gray4 relative">
-                            <div className="w-[4px] h-[4px] rounded-full bg-lightGreen absolute top-[7px] left-[-10px]"></div>
-                            {text.list4}
-                          </div>
-                        </div>
-                      </div>
-                    ))}
-                  </div>
-                ))}
-            </div> */}
 
             {eventsData ? (
               <>
@@ -181,21 +157,48 @@ const Event = ({ params }: { params: { id: string } }) => {
             ) : null}
 
             <hr className="border-navyBlue hidden sm:block" />
-            {eventsData ? (
-              <div>
-                <div className="flex flex-col gap-[10px]" key={v4()}>
-                  <h3 className="text-21 mb-[10px]">Организатор</h3>
-                  <h4 className="text-gray leading-[130%]">{eventsData.data.organizers[0].name}</h4>
-                  <div className="leading-[150%] sm:leading-[130%]">
-                    <p>{eventsData.data.organizers[0].address}</p>
-                    <p>{eventsData.data.organizers[0].phones[0].phone}</p>
-                    <p>Факс {eventsData.data.organizers[0].fax}</p>
-                    <p>Email: {eventsData.data.organizers[0].email}</p>
-                    <p>{eventsData.data.organizers[0].web_site}</p>
-                  </div>
-                </div>
-              </div>
-            ) : null}
+
+            <div className="flex flex-col gap-10">
+              {eventsData?.data.organizers
+                ? eventsData.data.organizers.map((item) => (
+                    <div className="flex flex-col gap-[10px]" key={v4()}>
+                      <h3 className="text-21 mb-[10px]">Организатор</h3>
+                      <h4 className="text-gray leading-[130%]">{item.name}</h4>
+                      <div className="leading-[150%] flex flex-col gap-0.5 sm:leading-[130%]">
+                        <p>{item.address}</p>
+                        <div className="leading-[140%] flex flex-col gap-0.5">
+                          {item.phones.map((obj, i) => (
+                            <p key={i}>{obj.phone}</p>
+                          ))}
+                        </div>
+                        <p>Факс {item.fax}</p>
+                        <p>Email: {item.email}</p>
+                        <p>{item.web_site}</p>
+                      </div>
+                    </div>
+                  ))
+                : null}
+
+              {eventsData?.data.coorganizers
+                ? eventsData.data.coorganizers.map((item, i) => (
+                    <div key={i} className="flex flex-col gap-[10px]">
+                      <h3 className="text-21 mb-[10px]">Соорганизатор</h3>
+                      <h4 className="text-gray leading-[130%]">{item.name}</h4>
+                      <div className="leading-[150%] flex flex-col gap-0.5 sm:leading-[130%]">
+                        <p>{item.address}</p>
+                        <div className="leading-[140%] flex flex-col gap-0.5">
+                          {item.phones.map((obj, ix) => (
+                            <p key={ix}>{obj.phone}</p>
+                          ))}
+                        </div>
+                        <p>Факс {item.fax}</p>
+                        <p>Email: {item.email}</p>
+                        <p>{item.web_site}</p>
+                      </div>
+                    </div>
+                  ))
+                : null}
+            </div>
           </div>
         </div>
       </div>

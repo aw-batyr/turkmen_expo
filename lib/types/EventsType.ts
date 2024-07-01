@@ -8,6 +8,7 @@ export interface Data {
   description: string;
   category: string;
   organizer: Organizer;
+  coorganizer: Organizer;
   starts_at: Date;
   ends_at: Date;
   images: Image[];
