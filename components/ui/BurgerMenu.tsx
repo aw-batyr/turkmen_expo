@@ -41,6 +41,7 @@ export const BurgerMenu = () => {
 
   const [activeMenu, setActiveMenu] = useState<string>('');
   const [activeMenu2, setActiveMenu2] = useState<string>('');
+  const [activeMenu3, setActiveMenu3] = useState<string>('');
 
   const setActiveTitle = () => {
     if (activeMenu.includes('/mem'))
@@ -50,6 +51,11 @@ export const BurgerMenu = () => {
   const setActiveTitle2 = () => {
     if (activeMenu2.includes('/company'))
       return (localization === 'ru' && 'О компании') || (localization === 'en' && 'About company');
+  };
+
+  const setActiveTitle3 = () => {
+    if (activeMenu2.includes('/services'))
+      return (localization === 'ru' && 'Услуги') || (localization === 'en' && 'Services');
   };
 
   useEffect(() => {
@@ -89,9 +95,24 @@ export const BurgerMenu = () => {
           {activeMenu.includes('/mem') &&
             burgerMenu
               .filter((item) => item.partic)
-              .map((item) =>
+              .map((item, i) =>
                 item.dropDown?.map((obj) => (
-                  <Link key={v4()} onClick={() => dispatch(setBurgerOpen(false))} href={obj.link}>
+                  <Link key={i} onClick={() => dispatch(setBurgerOpen(false))} href={obj.link}>
+                    {localization === 'en' ? obj.titleEn : obj.title}
+                  </Link>
+                )),
+              )}
+        </div>
+      )}
+
+      {activeMenu && (
+        <div className="flex flex-col gap-5 leading-[150%]">
+          {activeMenu.includes('/services') &&
+            burgerMenu
+              .filter((item) => item.services)
+              .map((item, i) =>
+                item.dropDown?.map((obj) => (
+                  <Link key={i} onClick={() => dispatch(setBurgerOpen(false))} href={obj.link}>
                     {localization === 'en' ? obj.titleEn : obj.title}
                   </Link>
                 )),
@@ -101,10 +122,10 @@ export const BurgerMenu = () => {
 
       <div className="leading-[135%] text-[18px] mb-10 flex flex-col gap-5">
         {!activeMenu &&
-          burgerMenu.map((item) =>
+          burgerMenu.map((item, i) =>
             !item.drop ? (
               <Link
-                key={v4()}
+                key={i}
                 onClick={() => {
                   dispatch(setBurgerOpen(false));
                 }}
@@ -113,7 +134,7 @@ export const BurgerMenu = () => {
               </Link>
             ) : (
               <div
-                key={v4()}
+                key={i}
                 className="cursor-pointer flex items-center justify-between"
                 onClick={() => {
                   setActiveMenu(item.link);
@@ -144,14 +165,14 @@ export const BurgerMenu = () => {
           'mt-10': !activeMenu2,
         })}>
         {!activeMenu2 &&
-          burgerMenu2.map((item) =>
+          burgerMenu2.map((item, i) =>
             !item.drop ? (
-              <Link key={v4()} onClick={() => dispatch(setBurgerOpen(false))} href={item.link}>
+              <Link key={i} onClick={() => dispatch(setBurgerOpen(false))} href={item.link}>
                 {(localization === 'en' && item.titleEn) || (localization === 'ru' && item.title)}
               </Link>
             ) : (
               <div
-                key={v4()}
+                key={i}
                 className="cursor-pointer flex items-center justify-between"
                 onClick={() => {
                   item.drop && setActiveMenu2(item.link);
