@@ -35,8 +35,6 @@ const Visitors = () => {
     fetchVisitors();
   }, []);
 
-  console.log(visitorsData ? visitorsData : "null");
-
   return (
     <div>
       <LayoutWithSidebar

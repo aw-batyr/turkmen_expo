@@ -25,8 +25,6 @@ export const SelectRules = ({ ...props }: IProps) => {
     }
   };
 
-  console.log(openTitles);
-
   return (
     <motion.div className="w-full">
       <motion.div

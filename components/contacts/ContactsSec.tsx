@@ -44,8 +44,6 @@ export const ContactsSec = () => {
     fetchContactsData();
   }, []);
 
-  console.log(contactsData);
-
   return (
     <div className="flex flex-col w-full">
       {/* {menuData.map((obj) => (

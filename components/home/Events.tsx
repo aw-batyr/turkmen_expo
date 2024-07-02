@@ -1,22 +1,22 @@
-'use client';
+"use client";
 
-import React, { useEffect, useState } from 'react';
-import { Swiper, SwiperSlide } from 'swiper/react';
-import { v4 } from 'uuid';
-import { EventCard } from '../cards/EventCard';
-import { GreenBtn, GreenBtnMob } from '../ui/Buttons';
+import React, { useEffect, useState } from "react";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { v4 } from "uuid";
+import { EventCard } from "../cards/EventCard";
+import { GreenBtn, GreenBtnMob } from "../ui/Buttons";
 
-import 'swiper/css';
-import 'swiper/css/pagination';
-import './styles/events.css';
+import "swiper/css";
+import "swiper/css/pagination";
+import "./styles/events.css";
 
-import { Title } from './Title';
-import { Pagination } from 'swiper/modules';
-import { baseAPI } from '@/lib/API';
-import { useAppSelector } from '@/redux/hooks';
-import { selectHeader } from '@/redux/slices/headerSlice';
-import { CalendarType } from '@/lib/types/Calendar.type';
-import { useLang } from '@/utils/useLang';
+import { Title } from "./Title";
+import { Pagination } from "swiper/modules";
+import { baseAPI } from "@/lib/API";
+import { useAppSelector } from "@/redux/hooks";
+import { selectHeader } from "@/redux/slices/headerSlice";
+import { CalendarType } from "@/lib/types/Calendar.type";
+import { useLang } from "@/utils/useLang";
 
 export const Events = () => {
   const [eventsData, setEventsData] = useState<CalendarType>();
@@ -31,7 +31,7 @@ export const Events = () => {
     try {
       const res = await fetch(`${baseAPI}expoevents`, {
         headers: {
-          'Accept-Language': activeLang.localization,
+          "Accept-Language": activeLang.localization,
         },
       });
 
@@ -47,14 +47,15 @@ export const Events = () => {
     fetchEvents();
   }, [activeLang.localization]);
 
-  console.log(activeLang.localization);
-
   return (
     <>
       <div className="container hidden md:block">
         <div className="mb-10">
           <Title
-            text={useLang('Upcoming exhibitions and events', 'Ближайшие выставки и мероприятия')}
+            text={useLang(
+              "Upcoming exhibitions and events",
+              "Ближайшие выставки и мероприятия"
+            )}
           />
         </div>
         <div className="mb-[158px] w-full flex flex-col items-center gap-y-[10px]">
@@ -69,12 +70,14 @@ export const Events = () => {
                   ends={item.ends_at}
                   category={item.category}
                   id={item.id}
-                  web={item.web_site ? item.web_site : ''}
-                  location={item.location ? item.location : ''}
+                  web={item.web_site ? item.web_site : ""}
+                  location={item.location ? item.location : ""}
                   timing={item.timing}
-                  topic={item.event_topic ? item.event_topic : ''}
+                  topic={item.event_topic ? item.event_topic : ""}
                   images={
-                    item.images.length > 0 ? item.images[0].path : eventsData.data[0].images[0]
+                    item.images.length > 0
+                      ? item.images[0].path
+                      : eventsData.data[0].images[0]
                   }
                 />
               ))
@@ -88,19 +91,21 @@ export const Events = () => {
                   ends={item.ends_at}
                   category={item.category}
                   id={item.id}
-                  web={item.web_site ? item.web_site : ''}
-                  location={item.location ? item.location : ''}
+                  web={item.web_site ? item.web_site : ""}
+                  location={item.location ? item.location : ""}
                   timing={item.timing}
-                  topic={item.event_topic ? item.event_topic : ''}
+                  topic={item.event_topic ? item.event_topic : ""}
                   images={
-                    item.images.length > 0 ? item.images[0].path : eventsData.data[0].images[0]
+                    item.images.length > 0
+                      ? item.images[0].path
+                      : eventsData.data[0].images[0]
                   }
                 />
               ))}
           {eventsData && eventsData.data.length > 3 ? (
             <GreenBtn
               onEventBtn={onEventBtn}
-              text={useLang('Show more', 'Показать ещё')}
+              text={useLang("Show more", "Показать ещё")}
               mt="mt-[25px]"
             />
           ) : null}
@@ -111,7 +116,10 @@ export const Events = () => {
 
       <div className="md:hidden container">
         <h2 className="text-[26px] mb-5 sm:mb-10 font-semibold leading-[115%]">
-          {useLang('Upcoming exhibitions and events', 'Ближайшие выставки и мероприятия')}
+          {useLang(
+            "Upcoming exhibitions and events",
+            "Ближайшие выставки и мероприятия"
+          )}
         </h2>
         <div className="flex flex-col">
           <div className="flex items-center gap-y-[10px]">
@@ -119,7 +127,8 @@ export const Events = () => {
               modules={[Pagination]}
               slidesPerView={1}
               spaceBetween={20}
-              pagination={{ type: 'bullets', el: '.swiper-pagination' }}>
+              pagination={{ type: "bullets", el: ".swiper-pagination" }}
+            >
               {openCards &&
                 eventsData?.data.map((item) => (
                   <SwiperSlide key={v4()} className="mb-[72px]">
@@ -132,12 +141,14 @@ export const Events = () => {
                       ends={item.ends_at}
                       category={item.category}
                       id={item.id}
-                      web={item.web_site ? item.web_site : ''}
-                      location={item.location ? item.location : ''}
+                      web={item.web_site ? item.web_site : ""}
+                      location={item.location ? item.location : ""}
                       timing={item.timing}
-                      topic={item.event_topic ? item.event_topic : ''}
+                      topic={item.event_topic ? item.event_topic : ""}
                       images={
-                        item.images.length > 0 ? item.images[0].path : eventsData.data[0].images[0]
+                        item.images.length > 0
+                          ? item.images[0].path
+                          : eventsData.data[0].images[0]
                       }
                     />
                   </SwiperSlide>
