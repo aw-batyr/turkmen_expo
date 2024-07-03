@@ -274,6 +274,10 @@ p img {
     @apply block mb-3 mt-5;
   }
 
+  .select-inner a {
+    @apply underline cursor-pointer font-bold;
+  }
+
   .event-topic p {
     @apply before:content-["•"] before:px-2 before:text-green;
   }
