@@ -31,7 +31,7 @@ export const NewsSec = () => {
 
   const fetchNews = async () => {
     try {
-      const response = await fetch(`${baseAPI}news?page=${current}&per_page=${perPage}`, {
+      const response = await fetch(`${baseAPI}news?page=${current}&per_peage=${perPage}`, {
         headers: {
           'Accept-Language': activeLang.localization,
         },

@@ -4,7 +4,6 @@ import React, { useEffect } from 'react';
 import clsx from 'clsx';
 import Link from 'next/link';
 import Image from 'next/image';
-import { v4 } from 'uuid';
 import { usePathname } from 'next/navigation';
 import { AnimatePresence } from 'framer-motion';
 

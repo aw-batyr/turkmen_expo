@@ -1,19 +1,18 @@
-"use client";
+'use client';
 
-import React from "react";
+import React from 'react';
 
-import { LayoutWithSidebar } from "@/components/page/LayoutWithSidebar";
-import { NewsSec } from "@/components/news/NewsSec";
-import { useLang } from "@/utils/useLang";
+import { LayoutWithSidebar } from '@/components/page/LayoutWithSidebar';
+import { NewsSec } from '@/components/news/NewsSec';
+import { useLang } from '@/utils/useLang';
 
 const News = () => {
   return (
     <div>
       <LayoutWithSidebar
-        title={useLang("News", "Новости")}
-        second={useLang("News", "Новости")}
-        cursor={false}
-      >
+        title={useLang('News', 'Новости')}
+        second={useLang('News', 'Новости')}
+        cursor={false}>
         <div>
           <div className="flex flex-col">
             {/* <div className="relative">
