@@ -38,13 +38,10 @@ const RulesForVisitors = () => {
   return (
     <div>
       <LayoutWithSidebar
-        title={useLang(
-          "Entrance rules",
-          "ПОРЯДОК РЕГИСТРАЦИИ ПОСЕТИТЕЛЕЙ НА МЕРОПРИЯТИЯ, ОРГАНИЗУЕМЫЕ ИП «ТУРКМЕН ЭКСПО»"
-        )}
+        title={useLang("Entrance rules", "Порядок регистрации посетителей")}
         second={useLang("Visitors", "Посетителям")}
         path="/visitors"
-        third={useLang("Entrance rules", "Правила посещения")}
+        third={useLang("Entrance rules", "Порядок регистрации посетителей")}
       >
         <div
           dangerouslySetInnerHTML={{ __html: visitorsData ? visitorsData : "" }}
