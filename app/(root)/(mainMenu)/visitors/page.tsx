@@ -42,10 +42,7 @@ const Visitors = () => {
           "Information for visitors",
           "Информация для посетителей"
         )}
-        second={useLang(
-          "Information for visitors",
-          "Информация для посетителей"
-        )}
+        second={useLang("For visitors", "Посетителям")}
       >
         <div
           dangerouslySetInnerHTML={{ __html: visitorsData ? visitorsData : "" }}

@@ -267,7 +267,7 @@ p img {
   }
 
   .select-inner strong {
-    @apply text-[16px];
+    @apply text-[16px] leading-[130%];
   }
 
   .select-inner u {

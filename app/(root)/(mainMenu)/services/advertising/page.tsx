@@ -47,7 +47,7 @@ const Advertising = () => {
       <div
         className="select-inner"
         dangerouslySetInnerHTML={{
-          __html: servicesData ? servicesData.data[0].content : "",
+          __html: servicesData?.data ? servicesData.data[1].content : "",
         }}
       />
     </LayoutWithSidebar>

@@ -2,16 +2,25 @@
 
 import { LayoutWithSidebar } from "@/components/page/LayoutWithSidebar";
 import { baseAPI } from "@/lib/API";
+import { fetchData } from "@/lib/fetchData";
 import { ServicesType } from "@/lib/types/Services.data";
-import { useAppSelector } from "@/redux/hooks";
+import { headers } from "next/headers";
 import { useLang } from "@/utils/useLang";
 import { useEffect, useState } from "react";
+import { useAppSelector } from "@/redux/hooks";
 
 const page = () => {
   const [servicesData, setData] = useState<ServicesType>();
   const lang = useAppSelector(
     (state) => state.headerSlice.activeLang.localization
   );
+  // const headersList = headers();
+  // const activeLang = headersList.get("accept-language") || "en";
+
+  // const servicesData = await fetchData<ServicesType>(
+  //   `${baseAPI}services`,
+  //   activeLang
+  // );
 
   const fecthServicsData = async () => {
     try {
@@ -46,7 +55,7 @@ const page = () => {
       <div
         className="select-inner"
         dangerouslySetInnerHTML={{
-          __html: servicesData ? servicesData.data[0].content : "",
+          __html: servicesData?.data ? servicesData.data[0].content : "",
         }}
       />
     </LayoutWithSidebar>
