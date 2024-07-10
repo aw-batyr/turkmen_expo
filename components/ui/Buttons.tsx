@@ -32,9 +32,10 @@ interface BorderProps {
   text: string;
   mt?: string;
   px?: boolean;
+  ticket?: boolean;
 }
 
-export const BorderBtn = ({ onEventBtn, text, mt, px }: BorderProps) => {
+export const BorderBtn = ({ onEventBtn, text, mt, px, ticket }: BorderProps) => {
   return (
     <button
       className={clsx(`mt-[${mt}] border-btn py-[17px]`, {

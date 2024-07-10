@@ -1,18 +1,20 @@
-"use client";
+'use client';
 
-import React, { useEffect, useState } from "react";
-import Image from "next/image";
+import React, { useEffect, useState } from 'react';
+import Image from 'next/image';
 
-import { BorderBtn } from "@/components/ui/Buttons";
-import { baseAPI } from "@/lib/API";
-import { selectHeader, setShowInput } from "@/redux/slices/headerSlice";
-import { useAppDispatch, useAppSelector } from "@/redux/hooks";
-import { EventPageType } from "@/lib/types/EventPag.type";
-import { BreadCrumbs } from "@/components/ui/BreadCrumbs";
-import Link from "next/link";
+import { BorderBtn } from '@/components/ui/Buttons';
+import { baseAPI } from '@/lib/API';
+import { selectHeader, setShowInput } from '@/redux/slices/headerSlice';
+import { useAppDispatch, useAppSelector } from '@/redux/hooks';
+import { EventPageType } from '@/lib/types/EventPag.type';
+import { BreadCrumbs } from '@/components/ui/BreadCrumbs';
+import Link from 'next/link';
 
 const Event = ({ params }: { params: { id: string } }) => {
   const dispatch = useAppDispatch();
+
+  const [btnIsHover, setBtnIsHover] = useState(false);
 
   const { activeLang } = useAppSelector(selectHeader);
   const [eventsData, setEventsData] = useState<EventPageType>();
@@ -20,12 +22,12 @@ const Event = ({ params }: { params: { id: string } }) => {
     try {
       const res = await fetch(`${baseAPI}expoevents/${params.id}`, {
         headers: {
-          "Accept-Language": activeLang.localization,
+          'Accept-Language': activeLang.localization,
         },
       });
 
       if (!res.ok) {
-        throw new Error("error");
+        throw new Error('error');
       }
 
       const data = await res.json();
@@ -41,9 +43,9 @@ const Event = ({ params }: { params: { id: string } }) => {
   }, [activeLang.localization]);
 
   const formatDate = (dateString: string) => {
-    const dateParts = dateString.split(" ");
+    const dateParts = dateString.split(' ');
     const date = dateParts[0];
-    const parts = date.split("-");
+    const parts = date.split('-');
     const formattedDate = `${parts[2]}.${parts[1]}.${parts[0]}`;
 
     return formattedDate;
@@ -57,15 +59,11 @@ const Event = ({ params }: { params: { id: string } }) => {
     <div>
       <div className="container">
         <div className="pt-5">
-          <BreadCrumbs
-            second="Календарь мероприятий"
-            path="/calendar"
-            third="Мероприятие"
-          />
+          <BreadCrumbs second="Календарь мероприятий" path="/calendar" third="Мероприятие" />
         </div>
       </div>
       <Image
-        src={eventsData ? eventsData.data.background_images[0].path : ""}
+        src={eventsData ? eventsData.data.background_images[0].path : ''}
         alt="выставка"
         width={1920}
         height={490}
@@ -75,11 +73,31 @@ const Event = ({ params }: { params: { id: string } }) => {
         <div className="container section-mb">
           <div className="hidden md:flex gap-5 my-[60px]">
             <a href="https://kids.turkmenexpo.com/" target="_blank">
-              <BorderBtn text={"Сайт выставки"} />
+              <BorderBtn text={'Сайт выставки'} />
             </a>
-            <Link href={"/members/bid"}>
-              <BorderBtn text={"Забронировать стенд"} />
+            <Link href={'/members/bid'}>
+              <BorderBtn text={'Забронировать стенд'} />
             </Link>
+            <a
+              href="https://reg.turkmenexpo.com/login.php?idExh=1"
+              target="_blank"
+              onMouseEnter={() => setBtnIsHover(true)}
+              onMouseLeave={() => setBtnIsHover(false)}
+              className={`border-btn px-[17px] py-[17px] flex items-center gap-4`}>
+              <div>Получить билет</div>
+              <svg
+                width="21"
+                height="20"
+                viewBox="0 0 21 20"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg">
+                <path
+                  d="M4.5 16L16.5 4M16.5 4H5.5M16.5 4V15"
+                  stroke={btnIsHover ? '#303F4D' : '#F2F9FF'}
+                  stroke-width="2"
+                />
+              </svg>
+            </a>
           </div>
           <div className="flex flex-col gap-10 md:gap-[60px]">
             {eventsData && (
@@ -89,9 +107,7 @@ const Event = ({ params }: { params: { id: string } }) => {
                 </p>
                 <div className="flex flex-col sm:flex-row gap-[20px]">
                   <div className="w-full max-w-[290px] flex flex-col gap-[20px]">
-                    <h3 className="leading-[120%] text-[18px] font-semibold">
-                      Даты проведения
-                    </h3>
+                    <h3 className="leading-[120%] text-[18px] font-semibold">Даты проведения</h3>
                     <div className="leading-[130%] flex flex-col text-[14px] gap-[2px]">
                       {eventsData.data.timing.map((item) => (
                         <>
@@ -103,31 +119,21 @@ const Event = ({ params }: { params: { id: string } }) => {
                   </div>
 
                   <div className="w-full max-w-[290px] flex flex-col gap-[20px]">
-                    <h3 className="leading-[120%] text-[18px] font-semibold">
-                      Монтаж
-                    </h3>
+                    <h3 className="leading-[120%] text-[18px] font-semibold">Монтаж</h3>
                     <div className="leading-[130%]">
-                      <p className="text-gray4">
-                        {eventsData.data.installation_date}
-                      </p>
+                      <p className="text-gray4">{eventsData.data.installation_date}</p>
                     </div>
                   </div>
 
                   <div className="w-full max-w-[290px] flex flex-col gap-[20px]">
-                    <h3 className="leading-[120%] text-[18px] font-semibold">
-                      Демонтаж
-                    </h3>
+                    <h3 className="leading-[120%] text-[18px] font-semibold">Демонтаж</h3>
                     <div className="leading-[130%]">
-                      <p className="text-gray4">
-                        {eventsData.data.dismantling_date}
-                      </p>
+                      <p className="text-gray4">{eventsData.data.dismantling_date}</p>
                     </div>
                   </div>
 
                   <div className="w-full max-w-[290px] flex flex-col gap-[20px]">
-                    <h3 className="leading-[120%] text-[18px] font-semibold">
-                      Место проведения
-                    </h3>
+                    <h3 className="leading-[120%] text-[18px] font-semibold">Место проведения</h3>
                     <div className="leading-[130%]">
                       <p className="text-gray4">{eventsData.data.location}</p>
                     </div>

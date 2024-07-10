@@ -104,14 +104,6 @@ export const Header = () => {
         <AnimatePresence>{burgerOpen && <BurgerMenu />}</AnimatePresence>
       </header>
 
-      {/* <AnimatePresence>
-        {showInput && (
-          <div className="absolute w-full top-0 left-0">
-            <SearchInput mob />
-          </div>
-        )}
-      </AnimatePresence> */}
-
       {/* Desktop */}
 
       <header className="hidden relative z-[3000] tab:flex flex-col">
@@ -147,13 +139,6 @@ export const Header = () => {
                   onClick={() => dispatch(setShowInput(true))}
                   className="cursor-pointer"
                 />
-                {/* <AnimatePresence>
-                  {showInput && (
-                    <div className="absolute h-[100vh] w-full z-[2500] top-0 left-0">
-                      <SearchInput />
-                    </div>
-                  )}
-                </AnimatePresence> */}
               </div>
             </div>
           </div>
