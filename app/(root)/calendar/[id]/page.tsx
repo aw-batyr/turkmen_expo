@@ -71,7 +71,7 @@ const Event = ({ params }: { params: { id: string } }) => {
       />
       <div>
         <div className="container section-mb">
-          <div className="hidden md:flex gap-5 my-[60px]">
+          <div className="flex gap-5 my-[60px]">
             <a href="https://kids.turkmenexpo.com/" target="_blank">
               <BorderBtn text={'Сайт выставки'} />
             </a>
@@ -83,7 +83,7 @@ const Event = ({ params }: { params: { id: string } }) => {
               target="_blank"
               onMouseEnter={() => setBtnIsHover(true)}
               onMouseLeave={() => setBtnIsHover(false)}
-              className={`border-btn px-[17px] py-[17px] flex items-center gap-4`}>
+              className={`border-btn px-[17px]  flex items-center gap-4`}>
               <div>Получить билет</div>
               <svg
                 width="21"
