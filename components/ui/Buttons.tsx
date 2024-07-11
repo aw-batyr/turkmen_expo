@@ -1,7 +1,7 @@
-'use client';
+"use client";
 
-import React from 'react';
-import clsx from 'clsx';
+import React from "react";
+import clsx from "clsx";
 
 interface GreenBtnProps {
   text: string | boolean;
@@ -18,10 +18,11 @@ export const GreenBtn = ({ text, mt, onEventBtn, px }: GreenBtnProps) => {
       className={clsx(
         `${mt}  py-[17px] text-[14px] greenBtnShadow rounded-sm bg-green text-bgWhite hover:bg-lightGreen font-medium transition-all`,
         {
-          'px-[43px]': !px,
-          'px-[70px]': px,
-        },
-      )}>
+          "px-[43px]": !px,
+          "px-[70px]": px,
+        }
+      )}
+    >
       {text}
     </button>
   );
@@ -32,17 +33,19 @@ interface BorderProps {
   text: string;
   mt?: string;
   px?: boolean;
-  ticket?: boolean;
+  full?: boolean;
 }
 
-export const BorderBtn = ({ onEventBtn, text, mt, px, ticket }: BorderProps) => {
+export const BorderBtn = ({ onEventBtn, text, mt, px, full }: BorderProps) => {
   return (
     <button
       className={clsx(`mt-[${mt}] border-btn py-[17px]`, {
-        'px-[43px]': px,
-        'px-[17px]': !px,
+        "px-[43px]": px,
+        "px-[17px]": !px,
+        "w-full sm:w-fit": full,
       })}
-      onClick={onEventBtn}>
+      onClick={onEventBtn}
+    >
       {text}
     </button>
   );
@@ -56,7 +59,8 @@ export const GreenBtnMob = ({ text }: MobBtnProps) => {
   return (
     <button
       type="button"
-      className="p-3 rounded-sm bg-green w-[140px] mx-auto cursor-pointer hover:bg-lightGreen transition-all">
+      className="p-3 rounded-sm bg-green w-[140px] mx-auto cursor-pointer hover:bg-lightGreen transition-all"
+    >
       {text}
     </button>
   );
@@ -66,7 +70,8 @@ export const SimpleGreenBtn = ({ text }: MobBtnProps) => {
   return (
     <button
       type="button"
-      className="bg-green py-[17px] px-[70px] leading-[100%] rounded-sm hover:bg-lightGreen transition-all">
+      className="bg-green py-[17px] px-[70px] leading-[100%] rounded-sm hover:bg-lightGreen transition-all"
+    >
       {text}
     </button>
   );
