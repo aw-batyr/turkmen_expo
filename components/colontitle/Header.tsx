@@ -109,7 +109,9 @@ export const Header = () => {
       <header className="hidden relative z-[3000] tab:flex flex-col">
         <div className="flex items-center bg-darkBlue text-white py-[12px] font-regular text-extraSm">
           <div className="container flex items-center justify-between">
-            <p className="text-extraSm">{useLang('Phone: +99362006200', 'Тел.: +99362006200')}</p>
+            <p className="text-extraSm">
+              {useLang('Phone: +99362006200', 'Тел.: +99362006200', activeLang.localization)}
+            </p>
             <div className="flex items-center gap-1.5">
               <div className="flex items-center gap-x-5">
                 {headerMenu

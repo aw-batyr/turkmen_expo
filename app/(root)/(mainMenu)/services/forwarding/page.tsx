@@ -38,7 +38,7 @@ const page = () => {
   return (
     <LayoutWithSidebar
       title={servicesData?.data ? servicesData.data[4].title : ''}
-      second={useLang('Services', 'Услуги')}
+      second={useLang('Services', 'Услуги', lang)}
       third={servicesData?.data ? servicesData.data[4].title : ''}>
       <div
         className="select-inner"

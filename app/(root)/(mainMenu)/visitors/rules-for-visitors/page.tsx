@@ -1,11 +1,11 @@
-"use client";
+'use client';
 
-import { LayoutWithSidebar } from "@/components/page/LayoutWithSidebar";
-import { baseAPI } from "@/lib/API";
-import { useAppSelector } from "@/redux/hooks";
-import { selectHeader } from "@/redux/slices/headerSlice";
-import { useLang } from "@/utils/useLang";
-import { useEffect, useState } from "react";
+import { LayoutWithSidebar } from '@/components/page/LayoutWithSidebar';
+import { baseAPI } from '@/lib/API';
+import { useAppSelector } from '@/redux/hooks';
+import { selectHeader } from '@/redux/slices/headerSlice';
+import { useLang } from '@/utils/useLang';
+import { useEffect, useState } from 'react';
 
 const RulesForVisitors = () => {
   const [visitorsData, setVisitorsData] = useState<string>();
@@ -15,12 +15,12 @@ const RulesForVisitors = () => {
     try {
       const res = await fetch(`${baseAPI}settings/visiting_rules`, {
         headers: {
-          "Accept-Language": activeLang.localization,
+          'Accept-Language': activeLang.localization,
         },
       });
 
       if (!res.ok) {
-        throw new Error("Error");
+        throw new Error('Error');
       }
 
       const data = await res.json();
@@ -38,13 +38,20 @@ const RulesForVisitors = () => {
   return (
     <div>
       <LayoutWithSidebar
-        title={useLang("Entrance rules", "Порядок регистрации посетителей")}
-        second={useLang("Visitors", "Посетителям")}
+        title={useLang(
+          'Entrance rules',
+          'Порядок регистрации посетителей',
+          activeLang.localization,
+        )}
+        second={useLang('Visitors', 'Посетителям', activeLang.localization)}
         path="/visitors"
-        third={useLang("Entrance rules", "Порядок регистрации посетителей")}
-      >
+        third={useLang(
+          'Entrance rules',
+          'Порядок регистрации посетителей',
+          activeLang.localization,
+        )}>
         <div
-          dangerouslySetInnerHTML={{ __html: visitorsData ? visitorsData : "" }}
+          dangerouslySetInnerHTML={{ __html: visitorsData ? visitorsData : '' }}
           className="flex flex-col gap-1 select-inner"
         />
       </LayoutWithSidebar>

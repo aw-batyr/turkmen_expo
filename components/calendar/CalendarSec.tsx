@@ -16,7 +16,6 @@ import { BreadCrumbs } from '../ui/BreadCrumbs';
 import { useLang } from '@/utils/useLang';
 
 export const CalendarSec = ({}: {}) => {
-  const [current, setCurrent] = useState<number>(1);
   const [showCards, setShowCards] = useState(false);
   const { activeLang } = useAppSelector(selectHeader);
   const [eventsData, setEventsData] = useState<CalendarType>();
@@ -55,9 +54,17 @@ export const CalendarSec = ({}: {}) => {
       <div className="container flex flex-col items-start pt-[20px] gap-10 md:gap-12">
         <div>
           <div className="mb-[24px]">
-            <BreadCrumbs second={useLang('Calendar of events', 'Календарь мероприятий')} />
+            <BreadCrumbs
+              second={useLang(
+                'Calendar of events',
+                'Календарь мероприятий',
+                activeLang.localization,
+              )}
+            />
           </div>
-          <Title text={useLang('Calendar of events', 'Календарь мероприятий')} />
+          <Title
+            text={useLang('Calendar of events', 'Календарь мероприятий', activeLang.localization)}
+          />
         </div>
         <div className="flex flex-col gap-6 w-full">
           {eventsData

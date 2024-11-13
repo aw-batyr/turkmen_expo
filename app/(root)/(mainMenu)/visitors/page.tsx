@@ -1,11 +1,11 @@
-"use client";
+'use client';
 
-import { LayoutWithSidebar } from "@/components/page/LayoutWithSidebar";
-import { baseAPI } from "@/lib/API";
-import { useAppSelector } from "@/redux/hooks";
-import { selectHeader } from "@/redux/slices/headerSlice";
-import { useLang } from "@/utils/useLang";
-import { useEffect, useState } from "react";
+import { LayoutWithSidebar } from '@/components/page/LayoutWithSidebar';
+import { baseAPI } from '@/lib/API';
+import { useAppSelector } from '@/redux/hooks';
+import { selectHeader } from '@/redux/slices/headerSlice';
+import { useLang } from '@/utils/useLang';
+import { useEffect, useState } from 'react';
 
 const Visitors = () => {
   const [visitorsData, setVisitorsData] = useState<string>();
@@ -15,12 +15,12 @@ const Visitors = () => {
     try {
       const res = await fetch(`${baseAPI}settings/visitors_page`, {
         headers: {
-          "Accept-Language": activeLang.localization,
+          'Accept-Language': activeLang.localization,
         },
       });
 
       if (!res.ok) {
-        throw new Error("Error");
+        throw new Error('Error');
       }
 
       const data = await res.json();
@@ -39,13 +39,13 @@ const Visitors = () => {
     <div>
       <LayoutWithSidebar
         title={useLang(
-          "Information for visitors",
-          "Информация для посетителей"
+          'Information for visitors',
+          'Информация для посетителей',
+          activeLang.localization,
         )}
-        second={useLang("For visitors", "Посетителям")}
-      >
+        second={useLang('For visitors', 'Посетителям', activeLang.localization)}>
         <div
-          dangerouslySetInnerHTML={{ __html: visitorsData ? visitorsData : "" }}
+          dangerouslySetInnerHTML={{ __html: visitorsData ? visitorsData : '' }}
           className="flex flex-col gap-1 select-inner"
         />
       </LayoutWithSidebar>
