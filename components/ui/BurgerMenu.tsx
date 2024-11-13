@@ -4,6 +4,7 @@ import Link from 'next/link';
 import { useEffect, useRef, useState } from 'react';
 import { v4 } from 'uuid';
 import { motion } from 'framer-motion';
+import { ChevronRight } from 'lucide-react';
 
 import { useAppDispatch, useAppSelector } from '@/redux/hooks';
 import { setBurgerOpen } from '@/redux/slices/burgerSlice';
@@ -12,10 +13,8 @@ import clsx from 'clsx';
 import { burgerMenu, burgerMenu2 } from '@/lib/database/header';
 
 interface flagTypes {
-  // title: 'Ру' | 'En' | 'Tm';
   title: 'Ру' | 'En';
   localization: 'ru' | 'en';
-  // localization: 'ru' | 'en' | 'tm';
 }
 
 const burgerLangs: flagTypes[] = [
@@ -63,20 +62,18 @@ export const BurgerMenu = () => {
 
   return (
     <motion.div
-      initial={{ x: '100%' }}
-      animate={{ x: 0 }}
-      transition={{
-        duration: 0.3,
-        ease: 'easeOut',
-      }}
+      initial={{ x: '100%', opacity: 0 }}
+      animate={{ x: 0, opacity: 1 }}
       exit={{
         x: '100%',
+        opacity: 0,
       }}
-      className="bg-green overflow-auto text-white fixed w-full z-[900] top-[74px] bottom-0 left-0 min-h-[100vh] h-full px-4 py-10 flex flex-col overflow-y-auto">
+      transition={{ duration: 0.5, ease: [0.55, 0, 0.1, 1] }}
+      className="bg-green overflow-auto text-blueBg fixed w-full z-[900] top-[74px] bottom-0 left-0 min-h-[100vh] h-full px-4 py-10 flex flex-col overflow-y-auto">
       {activeMenu && (
         <div>
           <div onClick={() => setActiveMenu('')} className="flex cursor-pointer">
-            <img src="/assets/icons/header/burger-arrow.svg" alt="arrow" className="rotate-180" />
+            <ChevronRight className="rotate-180 text-blueBg" />
             <h2 className="text-[18px] ml-[10px] leading-[135%]">{setActiveTitle()}</h2>
           </div>
 
@@ -84,7 +81,7 @@ export const BurgerMenu = () => {
         </div>
       )}
 
-      {activeMenu && (
+      {/* {activeMenu && (
         <div className="flex flex-col gap-5 leading-[150%]">
           {activeMenu.includes('/mem') &&
             burgerMenu
@@ -97,7 +94,7 @@ export const BurgerMenu = () => {
                 )),
               )}
         </div>
-      )}
+      )} */}
 
       {activeMenu && (
         <div className="flex flex-col gap-5 leading-[150%]">

@@ -1,6 +1,7 @@
 'use client';
 
 import { LayoutWithSidebar } from '@/components/page/LayoutWithSidebar';
+import Loader from '@/components/ui/Loader';
 import { baseAPI } from '@/lib/API';
 import { ServicesType } from '@/lib/types/Services.data';
 import { useAppSelector } from '@/redux/hooks';
@@ -35,7 +36,7 @@ const page = () => {
     fecthServicsData();
   }, [lang]);
 
-  return (
+  return servicesData ? (
     <LayoutWithSidebar
       title={servicesData?.data ? servicesData.data[2].title : ''}
       second={useLang('Services', 'Услуги', lang)}
@@ -47,6 +48,8 @@ const page = () => {
         }}
       />
     </LayoutWithSidebar>
+  ) : (
+    <Loader />
   );
 };
 

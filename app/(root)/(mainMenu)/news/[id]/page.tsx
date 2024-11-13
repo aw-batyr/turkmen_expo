@@ -1,16 +1,17 @@
-"use client";
-import React from "react";
-import Image from "next/image";
+'use client';
+import React from 'react';
+import Image from 'next/image';
 
-import { Title } from "@/components/home/Title";
-import { BorderBtn } from "@/components/ui/Buttons";
+import { Title } from '@/components/home/Title';
+import { BorderBtn } from '@/components/ui/Buttons';
 
-import { useAppDispatch, useAppSelector } from "@/redux/hooks";
-import { selectHeader, setShowInput } from "@/redux/slices/headerSlice";
-import { baseAPI } from "@/lib/API";
-import { NewsPageType } from "@/lib/types/NewsPage.type";
-import Link from "next/link";
-import { BreadCrumbs } from "@/components/ui/BreadCrumbs";
+import { useAppDispatch, useAppSelector } from '@/redux/hooks';
+import { selectHeader, setShowInput } from '@/redux/slices/headerSlice';
+import { baseAPI } from '@/lib/API';
+import { NewsPageType } from '@/lib/types/NewsPage.type';
+import Link from 'next/link';
+import { BreadCrumbs } from '@/components/ui/BreadCrumbs';
+import Loader from '@/components/ui/Loader';
 
 const page = ({ params }: { params: { id: string } }) => {
   const dispatch = useAppDispatch();
@@ -22,12 +23,12 @@ const page = ({ params }: { params: { id: string } }) => {
     try {
       const response = await fetch(`${baseAPI}news/${params.id}`, {
         headers: {
-          "Accept-Language": activeLang.localization,
+          'Accept-Language': activeLang.localization,
         },
       });
 
       if (!response.ok) {
-        throw new Error("error");
+        throw new Error('error');
       }
 
       const data = await response.json();
@@ -50,7 +51,9 @@ const page = ({ params }: { params: { id: string } }) => {
         <div className="mb-5">
           <Title text={newsItemData.data.title} />
         </div>
-      ) : null}
+      ) : (
+        <Loader />
+      )}
 
       <div className="flex items-center justify-between mb-[44px] md:mb-8">
         <p className="text-[#919599]">{newsItemData?.data.published_at}</p>

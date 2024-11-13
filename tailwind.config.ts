@@ -16,7 +16,7 @@ const config: Config = {
         navyBlue5: '#51606F',
         navyBlue6: '#6D7C8A',
         navyBlueBg: '#344350',
-        green: '#059784',
+        green: '#F2CF8C',
         greenHover: '#A3CCC7',
         red: '#BC213A',
         black: '#0C0C0D',

@@ -65,9 +65,9 @@ export const Events = () => {
             )}
           />
         </div>
-        <div className="mb-[158px] w-full flex flex-col items-center gap-y-[10px]">
+        <div className="mb-[158px] w-full flex flex-col items-center gap-8">
           {eventsData?.data?.map((item, i) => (
-            <EventCard key={i} {...item} />
+            <EventCard dark key={i} {...item} />
           ))}
           {eventsData && eventsData?.data?.length > 3 ? (
             <Link href={'/calendar'}>
@@ -103,7 +103,7 @@ export const Events = () => {
               {openCards &&
                 eventsData?.data?.map((item, i) => (
                   <SwiperSlide key={i} className="mb-[72px]">
-                    <EventCard {...item} />
+                    <EventCard dark {...item} />
                   </SwiperSlide>
                 ))}
               <div className="swiper-pagination swiper-pagination-horizontal mb-[30px]"></div>

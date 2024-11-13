@@ -14,6 +14,7 @@ import { baseAPI } from '@/lib/API';
 import { CalendarType } from '@/lib/types/Calendar.type';
 import { BreadCrumbs } from '../ui/BreadCrumbs';
 import { useLang } from '@/utils/useLang';
+import Loader from '../ui/Loader';
 
 export const CalendarSec = ({}: {}) => {
   const [showCards, setShowCards] = useState(false);
@@ -67,9 +68,11 @@ export const CalendarSec = ({}: {}) => {
           />
         </div>
         <div className="flex flex-col gap-6 w-full">
-          {eventsData
-            ? eventsData.data.map((item, i) => <EventCard dark={true} key={i} {...item} />)
-            : null}
+          {eventsData ? (
+            eventsData.data.map((item, i) => <EventCard dark={true} key={i} {...item} />)
+          ) : (
+            <Loader className="h-[500px]" />
+          )}
         </div>
         <div className="w-full flex flex-col gap-6 items-center justify-center">
           {eventsData && eventsData.data.length > 3 && (

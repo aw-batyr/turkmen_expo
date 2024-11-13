@@ -1,6 +1,7 @@
 'use client';
 
 import { LayoutWithSidebar } from '@/components/page/LayoutWithSidebar';
+import Loader from '@/components/ui/Loader';
 import useFetch from '@/hooks/useFetch';
 import { baseAPI } from '@/lib/API';
 import { ServicesType } from '@/lib/types/Services.data';
@@ -36,7 +37,7 @@ const Advertising = () => {
     fecthServicsData();
   }, [lang]);
 
-  return (
+  return servicesData ? (
     <LayoutWithSidebar
       title={servicesData?.data ? servicesData.data[1].title : ''}
       second={useLang('Services', 'Услуги', lang)}
@@ -48,6 +49,8 @@ const Advertising = () => {
         }}
       />
     </LayoutWithSidebar>
+  ) : (
+    <Loader />
   );
 };
 

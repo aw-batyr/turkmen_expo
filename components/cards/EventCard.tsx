@@ -49,7 +49,7 @@ export const EventCard = ({
         className={clsx(
           'bg-bgWhite cursor-pointer p-6 min-[850px]:p-[40px] lg:p-[60px] rounded-[2px] transition-all w-full greenBtnShadow hover:hover-shadow',
           {
-            'bg-navyBlue text-gray': dark,
+            'bg-[#455A6E] text-gray': dark,
           },
         )}>
         <div
@@ -79,14 +79,14 @@ export const EventCard = ({
           />
           <div className="flex justify-between w-full">
             <div className="flex flex-col gap-[10px] md:gap-[25px] max-w-[683px]">
-              <p className="text-[12px] text-gray">{category}</p>
+              <p className="text-[12px] text-[#C7D2DC]">{category}</p>
               <div className="flex flex-col gap-[10px] md:gap-[15px]">
                 <h3
                   className={clsx(
                     'text-[21px] font-bold line-clamp-2 leading-[115%] md:leading-[100%]',
                     {
                       'text-bgWhite': dark,
-                      'text-green': !dark,
+                      'text-green': dark,
                     },
                   )}>
                   {title}
@@ -96,15 +96,15 @@ export const EventCard = ({
                     'text-[16px] event-text text-black leading-[130%] md:leading-[150%]',
                     {
                       'text-gray2 md:text-black': !dark,
-                      'text-gray4': dark,
+                      'text-[#ECF0F3]': dark,
                     },
                   )}>
                   {description}
                 </p>
               </div>
               <div className="flex flex-col gap-[10px]">
-                <p className="uppercase text-gray text-[10px]">Организатор</p>
-                <p className="text-gray text-extraSm leading-[125%]">
+                <p className="uppercase text-[#C7D2DC] text-[10px]">Организатор</p>
+                <p className="text-[#C7D2DC] text-extraSm leading-[125%]">
                   {organizers ? organizers[0].name : null}
                 </p>
               </div>

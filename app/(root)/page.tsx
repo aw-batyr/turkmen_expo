@@ -8,15 +8,14 @@ import Image from 'next/image';
 
 const Home = () => {
   return (
-    <div className="bg-blueBg flex flex-col gap-[60px] md:gap-[80px] xl:gap-[120px]">
+    <div className="bg-blueBg flex flex-col gap-[60px] md:gap-[80px] xl:gap-[120px] pb-[120px]">
       <Slider />
       <Events />
       <News />
       <Video />
-      <Services />
       <Partners />
 
-      <section className="section-mb container">
+      {/* <section className="section-mb container">
         <div className="bg-white flex justify-center">
           <a className="" href="https://exposale.net/ru" target="_blank">
             <Image
@@ -28,7 +27,7 @@ const Home = () => {
             />
           </a>
         </div>
-      </section>
+      </section> */}
     </div>
   );
 };

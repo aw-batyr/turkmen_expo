@@ -66,7 +66,7 @@ export const Slider = () => {
   return (
     <div className="relative z-10 h-fit pb-5 md:pb-0">
       {loading ? (
-        <Loader className="h-[490px]" />
+        <Loader className="!h-[490px]" />
       ) : (
         <Swiper
           modules={[Pagination, Autoplay, Navigation]}

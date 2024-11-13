@@ -8,6 +8,7 @@ import { useAppDispatch, useAppSelector } from '@/redux/hooks';
 import { selectHeader } from '@/redux/slices/headerSlice';
 import { fetchAbout } from '@/redux/slices/aboutus';
 import { useLang } from '@/utils/useLang';
+import Loader from '@/components/ui/Loader';
 
 const About = () => {
   const dispatch = useAppDispatch();
@@ -54,7 +55,9 @@ const About = () => {
             }}
             className="text-[16px] leading-[150%]"
           />
-        ) : null}
+        ) : (
+          <Loader className="w-full" />
+        )}
       </div>
     </LayoutWithSidebar>
   );

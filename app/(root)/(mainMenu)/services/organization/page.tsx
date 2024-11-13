@@ -8,6 +8,7 @@ import { headers } from 'next/headers';
 import { useLang } from '@/utils/useLang';
 import { useEffect, useState } from 'react';
 import { useAppSelector } from '@/redux/hooks';
+import Loader from '@/components/ui/Loader';
 
 const page = () => {
   const [servicesData, setData] = useState<ServicesType>();
@@ -37,7 +38,7 @@ const page = () => {
     fecthServicsData();
   }, [lang]);
 
-  return (
+  return servicesData ? (
     <LayoutWithSidebar
       title={servicesData?.data ? servicesData.data[0].title : ''}
       second={useLang('Services', 'Услуги', lang)}
@@ -49,6 +50,8 @@ const page = () => {
         }}
       />
     </LayoutWithSidebar>
+  ) : (
+    <Loader />
   );
 };
 

@@ -91,7 +91,7 @@ export const LangMenu = () => {
                 <div
                   key={v4()}
                   onClick={() => setLang(item)}
-                  className={clsx('p-3 pr-[22px] text-extraSm transition-all', {
+                  className={clsx('p-3 pr-[22px] text-extraSm text-bgWhite transition-all', {
                     'hover:bg-navyBlue2': item.title === item.title,
                   })}>
                   {item.title}
