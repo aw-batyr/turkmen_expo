@@ -4,7 +4,6 @@ import Link from 'next/link';
 import { useEffect, useRef, useState } from 'react';
 import { v4 } from 'uuid';
 import { motion } from 'framer-motion';
-import { ChevronRight } from 'lucide-react';
 
 import { useAppDispatch, useAppSelector } from '@/redux/hooks';
 import { setBurgerOpen } from '@/redux/slices/burgerSlice';
