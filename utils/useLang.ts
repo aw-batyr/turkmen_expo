@@ -1,13 +1,9 @@
-"use client";
+'use client';
 
-import { useAppSelector } from "@/redux/hooks";
-
-export const useLang = (en: string, ru: string) => {
-  const localization = useAppSelector(
-    (state) => state.headerSlice.activeLang.localization
-  );
-
-  return (
-    (localization === "en" && en) || ((localization === "ru" && ru) as string)
-  );
+export const useLang = (en: string, ru: string, localization: string) => {
+  if (localization === 'en') {
+    return en;
+  } else {
+    return ru;
+  }
 };
