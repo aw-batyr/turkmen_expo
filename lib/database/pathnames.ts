@@ -16,10 +16,10 @@ interface MenuType {
 export const sidebarData: MenuType[] = [
   {
     company: true,
-    pathname: "О компании",
-    pathnameEn: "About company",
+    pathname: 'О компании',
+    pathnameEn: 'About company',
     info: [
-      { title: "Коротко о нас", titleEn: "About us", link: "/company/aboutus" },
+      { title: 'Коротко о нас', titleEn: 'About us', link: '/company/aboutus' },
       // { title: 'Выставочная деятельность', link: '' },
       // { title: 'История и награды', link: '' },
       // { title: 'Партнеры', link: '' },
@@ -29,100 +29,100 @@ export const sidebarData: MenuType[] = [
   },
   {
     members: true,
-    pathname: "Участникам",
-    pathnameEn: "Participants",
+    pathname: 'Участникам',
+    pathnameEn: 'Participants',
 
     info: [
       {
-        title: "Информация для участников",
-        titleEn: "Information for participants",
-        link: "/members",
+        title: 'Информация для участников',
+        titleEn: 'Information for participants',
+        link: '/members',
       },
       {
-        title: "Онлайн заявка для участников",
-        titleEn: "Online application",
-        link: "/members/bid",
+        title: 'Онлайн заявка для участников',
+        titleEn: 'Online application',
+        link: '/members/bid',
       },
       {
-        title: "Правила для участников",
-        titleEn: "Rules for participants",
-        link: "/members/members-rules",
+        title: 'Правила для участников',
+        titleEn: 'Rules for participants',
+        link: '/members/members-rules',
       },
     ],
   },
   {
     news: true,
-    pathname: "Новости",
-    pathnameEn: "News",
+    pathname: 'Новости',
+    pathnameEn: 'News',
 
     info: [
-      { title: "Новости", titleEn: "News", link: "/news" },
+      { title: 'Новости', titleEn: 'News', link: '/news' },
       // { title: 'Пресс-релизы', link: '' },
     ],
   },
   {
     visitors: true,
-    pathname: "Посетителям",
-    pathnameEn: "Visitors",
+    pathname: 'Посетителям',
+    pathnameEn: 'Visitors',
 
     info: [
       {
-        title: "Информация для посетителей",
-        titleEn: "Information for visitors",
-        link: "/visitors",
+        title: 'Информация для посетителей',
+        titleEn: 'Information for visitors',
+        link: '/visitors',
       },
       {
-        title: "Порядок регистрации посетителей",
-        titleEn: "Entrance rules",
-        link: "/visitors/rules-for-visitors",
+        title: 'Порядок регистрации посетителей',
+        titleEn: 'Entrance rules',
+        link: '/visitors/rules-for-visitors',
       },
     ],
   },
   {
     services: true,
-    pathname: "Услуги",
-    pathnameEn: "Services",
+    pathname: 'Услуги',
+    pathnameEn: 'Services',
 
     info: [
       {
-        title: "Организация выставок",
-        titleEn: "Organization of exhibitions",
-        link: "/services/organization",
+        title: 'Организация выставок',
+        titleEn: 'Organization of exhibitions',
+        link: '/services/organization',
       },
       {
-        title: "Рекламная деятельность",
-        titleEn: "Advertising activity",
-        link: "/services/advertising",
+        title: 'Рекламная деятельность',
+        titleEn: 'Advertising activity',
+        link: '/services/advertising',
       },
       {
-        title: "Организация гибридных мероприятий",
-        titleEn: "Organization of hybrid events",
-        link: "/services/hybrid-organizations",
+        title: 'Организация гибридных мероприятий',
+        titleEn: 'Organization of hybrid events',
+        link: '/services/hybrid-organizations',
       },
       {
-        title: "Сертификация",
-        titleEn: "Certification",
-        link: "/services/certification",
+        title: 'Сертификация',
+        titleEn: 'Certification',
+        link: '/services/certification',
       },
       {
-        title: "Экспедирование грузов и таможенное оформление",
-        titleEn: "Freight forwarding and customs clearance",
-        link: "/services/forwarding",
+        title: 'Экспедирование грузов и таможенное оформление',
+        titleEn: 'Freight forwarding and customs clearance',
+        link: '/services/forwarding',
       },
       {
-        title: "Аутсорсинг бух.учета и аудита",
-        titleEn: "Outsourcing of accounting and auditing",
-        link: "/services/outsourcing",
+        title: 'Аутсорсинг бух.учета и аудита',
+        titleEn: 'Outsourcing of accounting and auditing',
+        link: '/services/outsourcing',
       },
       {
-        title: "Обучения персонала",
-        titleEn: "Personnel-training",
-        link: "/services/personnel-training",
+        title: 'Обучения персонала',
+        titleEn: 'Personnel-training',
+        link: '/services/personnel-training',
       },
       {
-        title: "Бизнес - туры",
-        titleEn: "Business - tours",
-        link: "/services/business-tours",
+        title: 'Бизнес - туры',
+        titleEn: 'Business - tours',
+        link: '/services/business-tours',
       },
     ],
   },
@@ -150,57 +150,57 @@ interface BurgerDataTypes {
 
 export const burgerMenuData: BurgerDataTypes[] = [
   {
-    pathname: "/calendar",
+    pathname: '/calendar',
     calendar: true,
     only: true,
-    title: "Календарь мероприятий",
+    title: 'Календарь мероприятий',
     first: true,
   },
   {
     members: true,
-    title: "Участникам",
-    pathname: "/members",
-    drop: "members",
+    title: 'Участникам',
+    pathname: '/members',
+    drop: 'members',
     first: true,
     info: [
-      { title: "Информация для участников", link: "/members" },
-      { title: "Онлайн заявка для участников", link: "/members/bid" },
+      { title: 'Информация для участников', link: '/members' },
+      { title: 'Онлайн заявка для участников', link: '/members/bid' },
     ],
   },
   {
-    pathname: "/visitors",
+    pathname: '/visitors',
     visitors: true,
     only: true,
-    title: "Посетителям",
+    title: 'Посетителям',
     first: true,
   },
   {
-    pathname: "/services",
+    pathname: '/services',
     services: true,
     only: true,
-    title: "Услуги",
+    title: 'Услуги',
     first: true,
   },
 
   {
-    pathname: "/faq",
+    pathname: '/faq',
     faq: true,
     only: true,
-    title: "FAQ",
+    title: 'FAQ',
   },
   {
-    pathname: "/contacts",
+    pathname: '/contacts',
     contacts: true,
     only: true,
-    title: "Контакты",
+    title: 'Контакты',
   },
   {
     company: true,
-    title: "О компании",
-    pathname: "/company/aboutus",
-    drop: "company",
+    title: 'О компании',
+    pathname: '/company/aboutus',
+    drop: 'company',
     info: [
-      { title: "Коротко о нас", link: "/company/aboutus" },
+      { title: 'Коротко о нас', link: '/company/aboutus' },
       // { title: "Выставочная деятельность", link: "" },
       // { title: "История и награды", link: "" },
       // { title: "Партнеры", link: "" },
@@ -210,11 +210,11 @@ export const burgerMenuData: BurgerDataTypes[] = [
   },
   {
     news: true,
-    title: "Новости",
-    pathname: "/news",
-    drop: "news",
+    title: 'Новости',
+    pathname: '/news',
+    drop: 'news',
     info: [
-      { title: "Новости", link: "/news" },
+      { title: 'Новости', link: '/news' },
       // { title: "Пресс-релизы", link: "/news" },
     ],
   },
@@ -229,27 +229,35 @@ interface HeaderType {
 }
 
 export const headerMenu: HeaderType[] = [
-  { title: "О компании", link: "/company/aboutus", id: 1 },
-  { title: "Новости", link: "/news", id: 2 },
-  { title: "FAQ", link: "/faq", id: 3 },
-  { title: "Контакты", link: "/contacts", id: 4 },
+  { title: 'О компании', link: '/company/aboutus', id: 1 },
+  { title: 'Новости', link: '/news', id: 2 },
+  { title: 'FAQ', link: '/faq', id: 3 },
+  { title: 'Контакты', link: '/contacts', id: 4 },
 
-  { en: true, title: "About company", link: "/company/aboutus", id: 1 },
-  { en: true, title: "News", link: "/news", id: 2 },
-  { en: true, title: "FAQ", link: "/faq", id: 3 },
-  { en: true, title: "Contacts", link: "/contacts", id: 4 },
+  { en: true, title: 'About company', link: '/company/aboutus', id: 1 },
+  { en: true, title: 'News', link: '/news', id: 2 },
+  { en: true, title: 'FAQ', link: '/faq', id: 3 },
+  { en: true, title: 'Contacts', link: '/contacts', id: 4 },
 ];
 
 export const headerMenu2: HeaderType[] = [
-  { title: "Календарь мероприятий", link: "/calendar", id: 1 },
-  { title: "Участникам", link: "/members", id: 2 },
-  { title: "Посетителям", link: "/visitors", id: 3 },
-  { title: "Услуги", link: "/services/organization", id: 4 },
+  { title: 'Календарь мероприятий', link: '/calendar', id: 1 },
+  { title: 'Услуги', link: '/services/organization', id: 2 },
+  { title: 'О компании', link: '/company/aboutus', id: 3 },
+  { title: 'Новости', link: '/news', id: 4 },
+  { title: 'Контакты', link: '/contacts', id: 5 },
 
-  { en: true, title: "Calendar of events", link: "/calendar", id: 1 },
-  { en: true, title: "Participants", link: "/members", id: 2 },
-  { en: true, title: "Visitors", link: "/visitors", id: 3 },
-  { en: true, title: "Services", link: "/services/organization", id: 4 },
+  // { title: 'Участникам', link: '/members', id: 2 },
+  // { title: 'Посетителям', link: '/visitors', id: 3 },
+
+  { en: true, title: 'Calendar of events', link: '/calendar', id: 1 },
+  { en: true, title: 'Services', link: '/services/organization', id: 2 },
+  { en: true, title: 'About company', link: '/company/aboutus', id: 3 },
+  { en: true, title: 'News', link: '/news', id: 4 },
+  { en: true, title: 'Contacts', link: '/contacts', id: 5 },
+
+  // { en: true, title: 'Participants', link: '/members', id: 2 },
+  // { en: true, title: 'Visitors', link: '/visitors', id: 3 },
 ];
 
 interface FooterType {
@@ -258,93 +266,93 @@ interface FooterType {
 }
 
 export const footerMenu = [
-  { title: "Календарь мероприятий", link: "/calendar", one: true },
-  { title: "Участникам", link: "/members" },
-  { title: "Посетителям", link: "" },
-  { title: "Услуги", link: "/services/organization" },
+  { title: 'Календарь мероприятий', link: '/calendar', one: true },
+  { title: 'Участникам', link: '/members' },
+  { title: 'Посетителям', link: '' },
+  { title: 'Услуги', link: '/services/organization' },
 ];
 
 export const footerMenu2: FooterType[] = [
-  { title: "Территория комплекса", link: "" },
-  { title: "О компании", link: "/company/aboutus" },
-  { title: "Пресс-центр", link: "" },
-  { title: "FAQ", link: "/faq" },
-  { title: "Контакты", link: "/contacts" },
-  { title: "Справочный центр", link: "" },
+  { title: 'Территория комплекса', link: '' },
+  { title: 'О компании', link: '/company/aboutus' },
+  { title: 'Пресс-центр', link: '' },
+  { title: 'FAQ', link: '/faq' },
+  { title: 'Контакты', link: '/contacts' },
+  { title: 'Справочный центр', link: '' },
 ];
 
 export const footerInfo: string[] = [
-  "Адрес: 744000, г. Ашхабад, просп. Битарап Туркменистан, 183",
-  "Тел.: +99362006200",
-  "E-mail: info@turkmenexpo.com",
+  'Адрес: 744000, г. Ашхабад, просп. Битарап Туркменистан, 183',
+  'Тел.: +99362006200',
+  'E-mail: info@turkmenexpo.com',
 ];
 
 export const topMenu = [
   {
-    path: "about",
-    links: [{ active: "Главная", default: "/ О компании / Коротко нас" }],
+    path: 'about',
+    links: [{ active: 'Главная', default: '/ О компании / Коротко нас' }],
   },
   {
-    path: "members",
+    path: 'members',
     links: [
       {
-        active: "Главная",
-        active2: " / Участникам",
-        default: " / Информация для участников",
+        active: 'Главная',
+        active2: ' / Участникам',
+        default: ' / Информация для участников',
       },
     ],
   },
   {
-    path: "members/bid",
+    path: 'members/bid',
     links: [
       {
-        active: "Главная",
-        default: " / Участникам / Онлайн заявка для участников",
+        active: 'Главная',
+        default: ' / Участникам / Онлайн заявка для участников',
       },
     ],
   },
   {
-    path: "events",
+    path: 'events',
     links: [
       {
-        active: "Главная ",
-        default: "/ Календарь мероприятий",
+        active: 'Главная ',
+        default: '/ Календарь мероприятий',
       },
     ],
   },
   {
-    path: "faq",
+    path: 'faq',
     links: [
       {
-        active: "Главная",
-        default: " / FAQ",
+        active: 'Главная',
+        default: ' / FAQ',
       },
     ],
   },
   {
-    path: "contacts",
+    path: 'contacts',
     links: [
       {
-        active: "Главная",
-        default: " / Контакты",
+        active: 'Главная',
+        default: ' / Контакты',
       },
     ],
   },
   {
-    path: "calendar",
+    path: 'calendar',
     links: [
       {
-        active: "Главная",
-        default: " / Календарь мероприятий",
+        active: 'Главная',
+        default: ' / Календарь мероприятий',
       },
     ],
   },
   {
-    path: "news",
+    path: 'news',
     links: [
       {
-        active: "Главная",
-        default: " / Новости",
+        active: 'Главная',
+        default: ' / Новости',
       },
     ],
   },
@@ -352,54 +360,54 @@ export const topMenu = [
 
 export const burgerLinks = [
   {
-    title: "О компании",
+    title: 'О компании',
     about: true,
     links: [
-      { name: "Коротко о нас", link: "/about/company" },
-      { name: "Выставочная деятельность", link: "/about/company" },
-      { name: "История и награды", link: "/about/company" },
-      { name: "Партнеры", link: "/about/company" },
-      { name: "Работа в компании", link: "/about/company" },
-      { name: "Наши издания", link: "/about/company" },
+      { name: 'Коротко о нас', link: '/about/company' },
+      { name: 'Выставочная деятельность', link: '/about/company' },
+      { name: 'История и награды', link: '/about/company' },
+      { name: 'Партнеры', link: '/about/company' },
+      { name: 'Работа в компании', link: '/about/company' },
+      { name: 'Наши издания', link: '/about/company' },
     ],
   },
   {
-    title: "Новости",
+    title: 'Новости',
     news: true,
     links: [
-      { name: "Новости", link: "/news" },
-      { name: "Пресс центр", link: "/news" },
+      { name: 'Новости', link: '/news' },
+      { name: 'Пресс центр', link: '/news' },
     ],
   },
   {
-    title: "Участникам",
+    title: 'Участникам',
     members: true,
     links: [
-      { name: "Участникам", link: "/members" },
-      { name: "Онлайн заявка", link: "/members/bid" },
+      { name: 'Участникам', link: '/members' },
+      { name: 'Онлайн заявка', link: '/members/bid' },
     ],
   },
   {
-    title: "Контакты",
+    title: 'Контакты',
     contacts: true,
     links: [
-      { name: "Новости", link: "/news" },
-      { name: "Пресс центр", link: "/news" },
+      { name: 'Новости', link: '/news' },
+      { name: 'Пресс центр', link: '/news' },
     ],
   },
   {
-    title: "FAQ",
+    title: 'FAQ',
     faq: true,
     links: [
-      { name: "faq", link: "/news" },
-      { name: "Пресс центр", link: "/news" },
+      { name: 'faq', link: '/news' },
+      { name: 'Пресс центр', link: '/news' },
     ],
   },
   {
     news: true,
     links: [
-      { name: "Новости", link: "/news" },
-      { name: "Пресс центр", link: "/news" },
+      { name: 'Новости', link: '/news' },
+      { name: 'Пресс центр', link: '/news' },
     ],
   },
 ];

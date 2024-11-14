@@ -3,8 +3,6 @@ import { RootState } from '../store';
 
 export type activeLangType = {
   title: 'Ру' | 'En';
-  // title: 'Ру' | 'Tm' | 'En';
-  // localization: "ru" | "tm" | "en";
   localization: 'ru' | 'en';
 };
 

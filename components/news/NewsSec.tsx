@@ -17,6 +17,7 @@ import { useAppSelector } from '@/redux/hooks';
 import { selectHeader } from '@/redux/slices/headerSlice';
 import { NewsData } from '@/lib/types/NewsData.type';
 import { baseAPI } from '@/lib/API';
+import Loader from '../ui/Loader';
 
 export const NewsSec = () => {
   const menu = ['Новости', 'СМИ о нас'];
@@ -80,22 +81,24 @@ export const NewsSec = () => {
           'flex flex-col gap-6': !grid,
           'grid grid-cols-1 sm:grid-cols-2 gap-5 sm:gap-8 lg:gap-y-[85px]': grid,
         })}>
-        {newsData
-          ? newsData.data.map((item) => (
-              <Card
-                grid={grid}
-                key={v4()}
-                id={item.id}
-                title={item.title}
-                date={item.published_at}
-                img={
-                  item.featured_images.length > 0
-                    ? item.featured_images[0].path
-                    : newsData.data[0].featured_images[0].path
-                }
-              />
-            ))
-          : 'Loading'}
+        {newsData ? (
+          newsData.data.map((item) => (
+            <Card
+              grid={grid}
+              key={v4()}
+              id={item.id}
+              title={item.title}
+              date={item.published_at}
+              img={
+                item.featured_images.length > 0
+                  ? item.featured_images[0].path
+                  : newsData.data[0].featured_images[0].path
+              }
+            />
+          ))
+        ) : (
+          <Loader className="h-[500px] w-full ml-[60%]" />
+        )}
       </div>
 
       <div className="hidden sm:flex flex-col gap-6 w-full max-w-[180px] mx-auto justify-center items-center">

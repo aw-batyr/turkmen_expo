@@ -40,7 +40,7 @@ export const Partners = () => {
   return (
     <div className="container">
       <div className="mb-[40px]">
-        <Title text={useLang('Partners', 'Партнёры')} />
+        <Title text={useLang('Partners', 'Партнёры', activeLang.localization)} />
       </div>
 
       <div className="flex items-center">

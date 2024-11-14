@@ -55,7 +55,7 @@ export const News = () => {
     <>
       <div className="container w-full">
         <header className="flex items-center mb-5 sm:mb-[43px] justify-between">
-          <Title text={useLang('News', 'Новости')} />
+          <Title text={useLang('News', 'Новости', activeLang.localization)} />
           <div className="hidden sm:flex items-center gap-x-[20px]">
             <NavBtn left />
             <NavBtn />
@@ -98,7 +98,7 @@ export const News = () => {
 
         <footer className="hidden sm:flex justify-center">
           <Link href={'/news'}>
-            <GreenBtn text={useLang('All news', 'Все новости')} />
+            <GreenBtn text={useLang('All news', 'Все новости', activeLang.localization)} />
           </Link>
         </footer>
       </div>

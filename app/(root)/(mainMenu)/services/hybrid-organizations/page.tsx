@@ -1,28 +1,27 @@
-"use client";
+'use client';
 
-import { LayoutWithSidebar } from "@/components/page/LayoutWithSidebar";
-import { baseAPI } from "@/lib/API";
-import { ServicesType } from "@/lib/types/Services.data";
-import { useAppSelector } from "@/redux/hooks";
-import { useLang } from "@/utils/useLang";
-import { useEffect, useState } from "react";
+import { LayoutWithSidebar } from '@/components/page/LayoutWithSidebar';
+import Loader from '@/components/ui/Loader';
+import { baseAPI } from '@/lib/API';
+import { ServicesType } from '@/lib/types/Services.data';
+import { useAppSelector } from '@/redux/hooks';
+import { useLang } from '@/utils/useLang';
+import { useEffect, useState } from 'react';
 
 const page = () => {
   const [servicesData, setData] = useState<ServicesType>();
-  const lang = useAppSelector(
-    (state) => state.headerSlice.activeLang.localization
-  );
+  const lang = useAppSelector((state) => state.headerSlice.activeLang.localization);
 
   const fecthServicsData = async () => {
     try {
       const res = await fetch(`${baseAPI}services`, {
         headers: {
-          "Accept-Language": lang,
+          'Accept-Language': lang,
         },
       });
 
       if (!res.ok) {
-        throw new Error("Error");
+        throw new Error('Error');
       }
 
       const data = await res.json();
@@ -37,19 +36,20 @@ const page = () => {
     fecthServicsData();
   }, [lang]);
 
-  return (
+  return servicesData ? (
     <LayoutWithSidebar
-      title={servicesData?.data ? servicesData.data[2].title : ""}
-      second={useLang("Services", "Услуги")}
-      third={servicesData?.data ? servicesData.data[2].title : ""}
-    >
+      title={servicesData?.data ? servicesData.data[2].title : ''}
+      second={useLang('Services', 'Услуги', lang)}
+      third={servicesData?.data ? servicesData.data[2].title : ''}>
       <div
         className="select-inner"
         dangerouslySetInnerHTML={{
-          __html: servicesData ? servicesData.data[2].content : "",
+          __html: servicesData ? servicesData.data[2].content : '',
         }}
       />
     </LayoutWithSidebar>
+  ) : (
+    <Loader />
   );
 };
 

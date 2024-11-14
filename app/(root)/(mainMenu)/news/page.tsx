@@ -5,13 +5,17 @@ import React from 'react';
 import { LayoutWithSidebar } from '@/components/page/LayoutWithSidebar';
 import { NewsSec } from '@/components/news/NewsSec';
 import { useLang } from '@/utils/useLang';
+import { useAppSelector } from '@/redux/hooks';
+import { selectHeader } from '@/redux/slices/headerSlice';
 
 const News = () => {
+  const { activeLang } = useAppSelector(selectHeader);
+
   return (
     <div>
       <LayoutWithSidebar
-        title={useLang('News', 'Новости')}
-        second={useLang('News', 'Новости')}
+        title={useLang('News', 'Новости', activeLang.localization)}
+        second={useLang('News', 'Новости', activeLang.localization)}
         cursor={false}>
         <div>
           <div className="flex flex-col">

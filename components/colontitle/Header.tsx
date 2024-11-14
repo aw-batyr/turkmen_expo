@@ -4,7 +4,6 @@ import React, { useEffect } from 'react';
 import clsx from 'clsx';
 import Link from 'next/link';
 import Image from 'next/image';
-import { usePathname } from 'next/navigation';
 import { AnimatePresence } from 'framer-motion';
 
 import logo from '@/public/assets/icons/header/logo.svg';
@@ -19,10 +18,8 @@ import { useAppDispatch, useAppSelector } from '@/redux/hooks';
 import { selectHeader, setShowInput } from '@/redux/slices/headerSlice';
 import { selectBurger, setBurgerOpen } from '@/redux/slices/burgerSlice';
 import { useStorage } from '@/hooks/useStorage';
-import { useLang } from '@/utils/useLang';
 
 export const Header = () => {
-  const pathname = usePathname();
   const dispatch = useAppDispatch();
   const { showInput } = useAppSelector(selectHeader);
   const { burgerOpen } = useAppSelector(selectBurger);
@@ -107,9 +104,11 @@ export const Header = () => {
       {/* Desktop */}
 
       <header className="hidden relative z-[3000] tab:flex flex-col">
-        <div className="flex items-center bg-darkBlue text-white py-[12px] font-regular text-extraSm">
+        {/* <div className="flex items-center bg-darkBlue text-white py-[12px] font-regular text-extraSm">
           <div className="container flex items-center justify-between">
-            <p className="text-extraSm">{useLang('Phone: +99362006200', 'Тел.: +99362006200')}</p>
+            <p className="text-extraSm">
+              {useLang('Phone: +99362006200', 'Тел.: +99362006200', activeLang.localization)}
+            </p>
             <div className="flex items-center gap-1.5">
               <div className="flex items-center gap-x-5">
                 {headerMenu
@@ -131,6 +130,16 @@ export const Header = () => {
                     </Link>
                   ))}
               </div>
+            </div>
+          </div>
+        </div> */}
+
+        <div className="bg-bgWhite text-black">
+          <div className="container py-[17px] flex items-center justify-between">
+            <div className="flex items-center">
+              <Link href="/">
+                <Image src={logo} alt="logo" height={38} width={235} />
+              </Link>
               <div className="flex gap-[10px]">
                 <LangMenu />
                 <Image
@@ -141,14 +150,7 @@ export const Header = () => {
                 />
               </div>
             </div>
-          </div>
-        </div>
 
-        <div className="bg-bgWhite text-black">
-          <div className="container py-[17px] flex items-center justify-between">
-            <Link href="/">
-              <Image src={logo} alt="logo" height={38} width={235} />
-            </Link>
             <div className="flex items-center gap-x-5 font-medium">
               {headerMenu2
                 .filter((item) => (activeLang.localization === 'en' ? item.en : !item.en))

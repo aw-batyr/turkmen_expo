@@ -13,37 +13,53 @@ export interface Datum {
   coorganizers: Organizer[];
   starts_at: string;
   ends_at: string;
-  images: Image[];
-  web_site: null | string;
-  location: null | string;
+  images: CalendarImage[];
+  background_images: CalendarImage[];
+  web_site: string;
+  location: string;
   timing: Timing[];
-  event_topic: null | string;
+  installation_date: string;
+  dismantling_date: string;
+  event_topic: string;
 }
 
-export interface Image {
+export interface CalendarImage {
   id: number;
   disk_name: string;
   file_name: string;
   path: string;
-  extension: string;
+  extension: Extension;
+}
+
+export enum Extension {
+  ExtensionJPG = 'JPG',
+  Jpg = 'jpg',
+  PNG = 'png',
 }
 
 export interface Organizer {
+  id: number;
   name: string;
   address: string;
-  phones: Phone[];
+  phones: PhoneElement[];
   fax: string;
   email: string;
   web_site: string;
 }
 
-export interface Phone {
-  phone: string;
+export interface PhoneElement {
+  phone: PhoneEnum;
+}
+
+export enum PhoneEnum {
+  The99312398881 = '(+99312) 39 88 81',
+  The99312398981 = '(+99312) 39 89 81',
+  The99362006200 = '+993 62 006200',
 }
 
 export interface Timing {
-  date: string;
-  time: string;
+  date: null;
+  time: null;
 }
 
 export interface Links {

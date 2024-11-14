@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { v4 } from "uuid";
 import { motion } from "framer-motion";
 
@@ -102,7 +102,7 @@ export const BurgerMenu = () => {
         </div>
       )}
 
-      {activeMenu && (
+      {/* {activeMenu && (
         <div className="flex flex-col gap-5 leading-[150%]">
           {activeMenu.includes("/mem") &&
             burgerMenu
@@ -119,7 +119,7 @@ export const BurgerMenu = () => {
                 ))
               )}
         </div>
-      )}
+      )} */}
 
       {activeMenu && (
         <div className="flex flex-col gap-5 leading-[150%]">
