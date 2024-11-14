@@ -5,79 +5,69 @@ export const burgerMenu = [
     link: "/calendar",
   },
   {
-    partic: true,
-    drop: true,
-    title: "Участникам",
-    titleEn: "Participants",
-    link: "/members",
-    dropDown: [
-      {
-        title: "Информация для участников",
-        titleEn: "Information for participants",
-        link: "/members",
-      },
-      {
-        title: "Онлайн заявка для участников",
-        titleEn: "Application for participation",
-        link: "/members/bid",
-      },
-    ],
+    title: "О компании",
+    titleEn: "Calendar of events",
+    link: "/company/aboutus",
   },
   {
-    title: "Посетителям",
-    // drop: true,
-    titleEn: "Visitors",
-    link: "/visitors",
+    title: "Новости",
+    titleEn: "News",
+    link: "/news",
+  },
+  {
+    title: "Контакты",
+    titleEn: "Contacts",
+    link: "/contacts",
   },
   {
     services: true,
     title: "Услуги",
-    // drop: true,
+    drop: true,
     titleEn: "Services",
     link: "/services/organization",
 
-    // dropDown: [
-    //   {
-    //     title: 'Организация выставок',
-    //     titleEn: 'Organization of exhibitions',
-    //     link: '/services/organization',
-    //   },
-    //   {
-    //     title: 'Рекламная деятельность',
-    //     titleEn: 'Advertising activity',
-    //     link: '/services/advertising',
-    //   },
-    //   {
-    //     title: 'Организация гибридных мероприятий',
-    //     titleEn: 'Organization of hybrid events',
-    //     link: '/services/hybrid-organizations',
-    //   },
-    //   {
-    //     title: 'Сертификация',
-    //     titleEn: 'Certification',
-    //     link: '/services/certification',
-    //   },
-    //   {
-    //     title: 'Экспедирование грузов и таможенное оформление',
-    //     titleEn: 'Freight forwarding and customs clearance',
-    //     link: '/services/forwarding',
-    //   },
-    //   {
-    //     title: 'Аутсорсинг бух.учета и аудита',
-    //     titleEn: 'Outsourcing of accounting and auditing',
-    //     link: '/services/outsourcing',
-    //   },
-    //   {
-    //     title: 'Обучения персонала',
-    //     titleEn: 'Personnel-training',
-    //     link: '/services/personnel-training',
-    //   },
-    //   {
-    //     title: 'Бизнес - туры',
-    //     titleEn: 'Business - tours',
-    //     link: '/services/business-tours',
-    //   },
-    // ],
+    dropDown: [
+      {
+        title: "Организация выставок",
+        titleEn: "Organization of exhibitions",
+        link: "/services/organization",
+      },
+      {
+        title: "Рекламная деятельность",
+        titleEn: "Advertising activity",
+        link: "/services/advertising",
+      },
+      {
+        title: "Организация гибридных мероприятий",
+        titleEn: "Organization of hybrid events",
+        link: "/services/hybrid-organizations",
+      },
+      {
+        title: "Сертификация",
+        titleEn: "Certification",
+        link: "/services/certification",
+      },
+      {
+        title: "Экспедирование грузов и таможенное оформление",
+        titleEn: "Freight forwarding and customs clearance",
+        link: "/services/forwarding",
+      },
+      {
+        title: "Аутсорсинг бух.учета и аудита",
+        titleEn: "Outsourcing of accounting and auditing",
+        link: "/services/outsourcing",
+      },
+      {
+        title: "Обучения персонала",
+        titleEn: "Personnel-training",
+        link: "/services/personnel-training",
+      },
+      {
+        title: "Бизнес - туры",
+        titleEn: "Business - tours",
+        link: "/services/business-tours",
+      },
+    ],
   },
 
   //   { en: true, title: "Exhibition", link: "/exhibition-about" },

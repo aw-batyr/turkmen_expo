@@ -45,10 +45,10 @@ export const BurgerMenu = () => {
   const [activeMenu2, setActiveMenu2] = useState<string>("");
 
   const setActiveTitle = () => {
-    if (activeMenu.includes("/mem"))
+    if (activeMenu.includes("/ser"))
       return (
-        (localization === "ru" && "Участникам") ||
-        (localization === "en" && "Participants")
+        (localization === "ru" && "Услуги") ||
+        (localization === "en" && "Сервисы")
       );
   };
 
@@ -80,7 +80,7 @@ export const BurgerMenu = () => {
       exit={{
         x: "100%",
       }}
-      className="bg-green overflow-auto text-white fixed w-full z-[900] top-[74px] bottom-0 left-0 min-h-[100vh] h-full px-4 py-10 flex flex-col overflow-y-auto"
+      className="bg-green overflow-auto text-blueBg fixed w-full z-[900] top-[74px] bottom-0 left-0 min-h-[100vh] h-full px-4 py-10 flex flex-col overflow-y-auto"
     >
       {activeMenu && (
         <div>
@@ -88,17 +88,25 @@ export const BurgerMenu = () => {
             onClick={() => setActiveMenu("")}
             className="flex cursor-pointer"
           >
-            <img
-              src="/assets/icons/header/burger-arrow.svg"
-              alt="arrow"
+            <svg
               className="rotate-180"
-            />
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M12.6 12L8 7.4L9.4 6L15.4 12L9.4 18L8 16.6L12.6 12Z"
+                fill="#303F4D"
+              />
+            </svg>
             <h2 className="text-[18px] ml-[10px] leading-[135%]">
               {setActiveTitle()}
             </h2>
           </div>
 
-          <div className="mt-[10px] opacity-50 mb-5 h-[1px] w-full bg-[#F2F9FF]" />
+          <div className="mt-[10px] opacity-50 mb-5 h-[1px] w-full bg-blueBg" />
         </div>
       )}
 
@@ -160,23 +168,30 @@ export const BurgerMenu = () => {
                 className="cursor-pointer flex items-center justify-between"
                 onClick={() => {
                   setActiveMenu(item.link);
-                  setActiveMenu2("");
                 }}
               >
                 {(localization === "en" && item.titleEn) ||
                   (localization === "ru" && item.title)}
                 {item.drop && (
-                  <img
-                    src="/assets/icons/header/burger-arrow.svg"
-                    alt="arrow"
-                  />
+                  <svg
+                    width="24"
+                    height="24"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M12.6 12L8 7.4L9.4 6L15.4 12L9.4 18L8 16.6L12.6 12Z"
+                      fill="#303F4D"
+                    />
+                  </svg>
                 )}
               </div>
             )
           )}
       </div>
 
-      <div className="h-[1px] w-full opacity-50 bg-[#F2F9FF]" />
+      <div className="h-[1px] w-full opacity-50 bg-blueBg" />
 
       {activeMenu2 && (
         <div>
@@ -203,40 +218,6 @@ export const BurgerMenu = () => {
           "mt-10": !activeMenu2,
         })}
       >
-        {!activeMenu2 &&
-          burgerMenu2.map((item, i) =>
-            !item.drop ? (
-              <Link
-                key={i}
-                onClick={() => dispatch(setBurgerOpen(false))}
-                href={item.link}
-              >
-                {(localization === "en" && item.titleEn) ||
-                  (localization === "ru" && item.title)}
-              </Link>
-            ) : (
-              <div
-                key={i}
-                className="cursor-pointer flex items-center justify-between"
-                onClick={() => {
-                  item.drop && setActiveMenu2(item.link);
-                  setActiveMenu("");
-                }}
-              >
-                <div>
-                  {(localization === "en" && item.titleEn) ||
-                    (localization === "ru" && item.title)}
-                </div>
-                {item.drop && (
-                  <img
-                    src="/assets/icons/header/burger-arrow.svg"
-                    alt="arrow"
-                  />
-                )}
-              </div>
-            )
-          )}
-
         {activeMenu2.includes("/company") &&
           burgerMenu2
             .filter((item) => item.company)
