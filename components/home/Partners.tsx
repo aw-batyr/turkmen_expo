@@ -69,7 +69,7 @@ export const Partners = () => {
                       width={200}
                       src={logo.images[0].path}
                       alt="logo"
-                      className="h-full w-full object-contain"
+                      className="h-full w-full object-cover"
                     />
                   </a>
                 ) : (
@@ -78,7 +78,7 @@ export const Partners = () => {
                     width={200}
                     src={logo.images[0].path}
                     alt="logo"
-                    className="h-full w-full object-contain"
+                    className="h-full w-full object-cover"
                   />
                 )}
               </SwiperSlide>
