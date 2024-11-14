@@ -32,7 +32,7 @@ export const NewsSec = () => {
 
   const fetchNews = async () => {
     try {
-      const response = await fetch(`${baseAPI}news?page=${current}&per_peage=${perPage}`, {
+      const response = await fetch(`${baseAPI}news?page=${current}&per_page=${perPage}`, {
         headers: {
           'Accept-Language': activeLang.localization,
         },
@@ -107,6 +107,7 @@ export const NewsSec = () => {
             <BorderBtn px text={'Показать ещё'} />
           </div>
         )}
+
         {newsData?.meta ? (
           <Pagination
             current={current}

@@ -1,9 +1,8 @@
 'use client';
 
 import React from 'react';
-import { v4 } from 'uuid';
 import { Swiper, SwiperSlide } from 'swiper/react';
-import { Navigation, Pagination } from 'swiper/modules';
+import { Navigation } from 'swiper/modules';
 
 import { NewsCard } from '../cards/NewsCard';
 import { NavBtn } from './ui/NavBtn';
@@ -56,7 +55,7 @@ export const News = () => {
       <div className="container w-full">
         <header className="flex items-center mb-5 sm:mb-[43px] justify-between">
           <Title text={useLang('News', 'Новости', activeLang.localization)} />
-          <div className="hidden sm:flex items-center gap-x-[20px]">
+          <div className="hidden sm:flex items-center gap-5">
             <NavBtn left />
             <NavBtn />
           </div>
@@ -78,18 +77,13 @@ export const News = () => {
               nextEl: '.next-btn',
               prevEl: '.prev-btn',
             }}>
-            {newsData?.data.map((item) => (
-              <SwiperSlide key={v4()}>
+            {newsData?.data.map((item, i) => (
+              <SwiperSlide key={i}>
                 <NewsCard
-                  key={v4()}
                   id={item.id}
                   title={item.title}
                   date={item.published_at}
-                  img={
-                    item.featured_images.length > 0
-                      ? item.featured_images[0].path
-                      : newsData.data[0].featured_images[0].path
-                  }
+                  img={item.featured_images[0].path}
                 />
               </SwiperSlide>
             ))}

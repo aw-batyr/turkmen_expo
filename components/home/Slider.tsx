@@ -16,6 +16,7 @@ import 'swiper/css/pagination';
 import { baseAPI } from '@/lib/API';
 import Loader from '../ui/Loader';
 import { useLang } from '@/utils/useLang';
+import clsx from 'clsx';
 
 export const Slider = () => {
   const tab = useMediaQuery('(min-width: 1250px)');
@@ -90,8 +91,18 @@ export const Slider = () => {
                   </div>
                 </Link>
 
-                <div className="absolute top-1/4 right-0 h-[490px] xl:left-20 lg:left-10 left-5 container z-20">
-                  <div className="flex flex-col justify-center gap-2 z-50 absolute top-10 left-0 mx-auto max-w-[848px]">
+                <div
+                  className={clsx(
+                    'absolute top-1/4 right-0 h-[490px] xl:left-20 lg:left-10 left-5 container z-20',
+                  )}>
+                  <div
+                    className={clsx(
+                      'flex flex-col justify-center gap-2 z-50 absolute top-10 left-0 mx-auto',
+                      {
+                        'w-[650px]': activeLang.localization === 'ru',
+                        'w-[550px]': activeLang.localization === 'en',
+                      },
+                    )}>
                     <svg
                       width="143"
                       height="22"

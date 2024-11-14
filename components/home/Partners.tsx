@@ -12,6 +12,7 @@ import { selectHeader } from '@/redux/slices/headerSlice';
 import { PartnersType } from '@/lib/types/PartnersData.type';
 import { baseAPI } from '@/lib/API';
 import { useLang } from '@/utils/useLang';
+import Link from 'next/link';
 
 export const Partners = () => {
   const { activeLang } = useAppSelector(selectHeader);
@@ -62,25 +63,13 @@ export const Partners = () => {
           {partnersData
             ? partnersData.data.map((logo, i) => (
                 <SwiperSlide key={i} className="h-[63px] overflow-hidden">
-                  {logo.link ? (
-                    <a href={logo.link} target="_blank">
-                      <Image
-                        height={200}
-                        width={200}
-                        src={logo.images[0].path}
-                        alt="logo"
-                        className="h-full w-full object-contain"
-                      />
-                    </a>
-                  ) : (
-                    <Image
-                      height={200}
-                      width={200}
-                      src={logo.images[0].path}
-                      alt="logo"
-                      className="h-full w-full object-contain"
-                    />
-                  )}
+                  <Image
+                    height={200}
+                    width={200}
+                    src={logo.images[0].path}
+                    alt="logo"
+                    className="h-full w-full object-contain"
+                  />
                 </SwiperSlide>
               ))
             : null}
