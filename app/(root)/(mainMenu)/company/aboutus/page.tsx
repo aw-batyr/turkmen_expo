@@ -43,22 +43,22 @@ const About = () => {
     // dispatch(fetchAbout({ activeLang }));
   }, [activeLang.localization]);
 
+  console.log(aboutDatas);
+
   return (
     <LayoutWithSidebar
       second={useLang('About us', 'Коротко о нас', activeLang.localization)}
       title={useLang('About us', 'Коротко о нас', activeLang.localization)}>
-      <div className="aboutus flex flex-col items-start gap-y-[24px] text-p">
-        {aboutDatas ? (
-          <div
-            dangerouslySetInnerHTML={{
-              __html: aboutDatas,
-            }}
-            className="text-[16px] leading-[150%]"
-          />
-        ) : (
-          <Loader className="w-full" />
-        )}
-      </div>
+      {aboutDatas ? (
+        <div
+          dangerouslySetInnerHTML={{
+            __html: aboutDatas,
+          }}
+          className="text-[16px] aboutus  text-p flex flex-col items-start gap-6 leading-[150%]"
+        />
+      ) : (
+        <Loader className="w-full" />
+      )}
     </LayoutWithSidebar>
   );
 };

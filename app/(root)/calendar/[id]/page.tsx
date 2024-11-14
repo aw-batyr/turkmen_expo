@@ -72,11 +72,11 @@ const Event = ({ params }: { params: { id: string } }) => {
             </div>
           </div>
           <Image
-            src={eventsData ? eventsData?.data?.background_images[0]?.path : ''}
+            src={eventsData ? eventsData?.data?.images[0]?.path : ''}
             alt="выставка"
             width={1920}
             height={490}
-            className="h-[490px] w-full object-cover"
+            className="h-[290px] w-full object-contain"
           />
           <div>
             <div className="container section-mb">

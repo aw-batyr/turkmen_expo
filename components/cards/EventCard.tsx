@@ -4,6 +4,8 @@ import Image from 'next/image';
 import clsx from 'clsx';
 
 import { CalendarImage, Organizer, Timing } from '@/lib/types/Calendar.type';
+import { useAppSelector } from '@/redux/hooks';
+import { useLang } from '@/utils/useLang';
 
 interface Props {
   id: number;
@@ -41,7 +43,7 @@ export const EventCard = ({
     return formattedDate;
   };
 
-  console.log('render');
+  const lang = useAppSelector((state) => state.headerSlice.activeLang.localization);
 
   return (
     <Link className="w-full cursor-default" href={`/calendar/${id}`}>
@@ -103,7 +105,7 @@ export const EventCard = ({
             </div>
             <div className="flex flex-col gap-[10px]">
               <p className="text-[#C7D2DC] uppercase font-normal leading-none text-[10px]">
-                Организатор
+                {useLang('Organiser', 'Организатор', lang)}
               </p>
               <p className="text-[#C7D2DC] font-normal text-[13px] leading-[125%]">
                 {organizers ? organizers[0].name : null}

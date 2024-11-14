@@ -7,7 +7,7 @@ import vk from '@/public/assets/icons/footer/vk.svg';
 import rss from '@/public/assets/icons/footer/rss.svg';
 import telegram from '@/public/assets/icons/footer/telegram.svg';
 
-import { footerInfo, headerMenu, headerMenu2 } from '@/lib/database/pathnames';
+import { footerInfo, headerMenu2 } from '@/lib/database/pathnames';
 import { useAppSelector } from '@/redux/hooks';
 import { useLang } from '@/utils/useLang';
 
@@ -39,21 +39,33 @@ export const Footer = () => {
           </div>
 
           <div className="flex flex-col gap-2.5">
-            <h5>Социальные сети:</h5>
+            <h5>{useLang('Social Media:', 'Социальные сети:', localization)}</h5>
             <div className="flex items-center gap-4">
-              <img src="" alt="" />
+              <a href="">
+                <img src="/assets/icons/instagram.svg" alt="social" />
+              </a>
             </div>
           </div>
 
           <div className="">
             <div className="flex flex-col justify-end w-full md:mb-5">
-              <div className="mb-[40px] flex flex-col md:gap-y-[10px] gap-0">
-                {footerInfo.map((item, i) => (
-                  <p className="text-[12px] leading-[130%]" key={i}>
-                    {item}
-                  </p>
-                ))}
-              </div>
+              {localization === 'ru' ? (
+                <div className="mb-[40px] flex flex-col md:gap-y-[10px] gap-0">
+                  {footerInfo.slice(0, 3).map((item, i) => (
+                    <p className="text-[12px] leading-[130%]" key={i}>
+                      {item}
+                    </p>
+                  ))}
+                </div>
+              ) : (
+                <div className="mb-[40px] flex flex-col md:gap-y-[10px] gap-0">
+                  {footerInfo.slice(3, 7).map((item, i) => (
+                    <p className="text-[12px] leading-[130%]" key={i}>
+                      {item}
+                    </p>
+                  ))}
+                </div>
+              )}
             </div>
           </div>
         </div>

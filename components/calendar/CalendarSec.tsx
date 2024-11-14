@@ -75,9 +75,9 @@ export const CalendarSec = ({}: {}) => {
           )}
         </div>
         <div className="w-full flex flex-col gap-6 items-center justify-center">
-          {eventsData && eventsData.data.length > 3 && (
+          {/* {eventsData && eventsData.data.length > 3 && (
             <BorderBtn text={showCards ? 'Скрыть' : 'Показать ещё'} mt="24" px />
-          )}
+          )} */}
           <div className="flex items-center gap-5">
             {/* <Pagination
               current={current}

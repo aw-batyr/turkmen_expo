@@ -285,6 +285,9 @@ export const footerInfo: string[] = [
   'Адрес: 744000, г. Ашхабад, просп. Битарап Туркменистан, 183',
   'Тел.: +99362006200',
   'E-mail: info@turkmenexpo.com',
+  'Address: Ashgabat, 183 Bitarap Turkmenistan',
+  'ave.,744000',
+  'E-mail: info@turkmenexpo.com',
 ];
 
 export const topMenu = [
