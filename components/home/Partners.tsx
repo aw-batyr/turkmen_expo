@@ -59,30 +59,31 @@ export const Partners = () => {
             630: { slidesPerView: 3.5 },
             300: { slidesPerView: 2 },
           }}>
-          {partnersData &&
-            partnersData.data.map((logo, i) => (
-              <SwiperSlide key={i} className="h-[63px] overflow-hidden">
-                {logo.link ? (
-                  <a href={logo.link} target="_blank">
+          {partnersData
+            ? partnersData.data.map((logo, i) => (
+                <SwiperSlide key={i} className="h-[63px] overflow-hidden">
+                  {logo.link ? (
+                    <a href={logo.link} target="_blank">
+                      <Image
+                        height={200}
+                        width={200}
+                        src={logo.images[0].path}
+                        alt="logo"
+                        className="h-full w-full object-contain"
+                      />
+                    </a>
+                  ) : (
                     <Image
                       height={200}
                       width={200}
                       src={logo.images[0].path}
                       alt="logo"
-                      className="h-full w-full object-cover"
+                      className="h-full w-full object-contain"
                     />
-                  </a>
-                ) : (
-                  <Image
-                    height={200}
-                    width={200}
-                    src={logo.images[0].path}
-                    alt="logo"
-                    className="h-full w-full object-cover"
-                  />
-                )}
-              </SwiperSlide>
-            ))}
+                  )}
+                </SwiperSlide>
+              ))
+            : null}
         </Swiper>
       </div>
     </div>
