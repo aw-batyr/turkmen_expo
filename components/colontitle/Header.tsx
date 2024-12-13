@@ -6,7 +6,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { AnimatePresence } from "framer-motion";
 
-import logo from "@/public/assets/icons/header/logo.svg";
+import logo from "@/public/assets/icons/logo.svg";
 import search from "@/public/assets/icons/header/search.svg";
 import searchMob from "@/public/assets/icons/header/mob-search.svg";
 
