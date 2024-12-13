@@ -1,29 +1,30 @@
-'use client';
+"use client";
 
-import React from 'react';
+import React, { useState } from "react";
 
-import Image from 'next/image';
-import { v4 } from 'uuid';
-import clsx from 'clsx';
+import Image from "next/image";
+import { v4 } from "uuid";
+import clsx from "clsx";
 
-import message from '@/public/assets/icons/news/message.svg';
-import col from '@/public/assets/icons/news/col.svg';
-import gridIco from '@/public/assets/icons/news/grid.svg';
+import message from "@/public/assets/icons/news/message.svg";
+import col from "@/public/assets/icons/news/col.svg";
+import gridIco from "@/public/assets/icons/news/grid.svg";
 
-import { BorderBtn } from '@/components/ui/Buttons';
-import { Pagination } from '@/components/ui/Pagination';
-import { Card } from '@/components/news/Card';
-import { useAppSelector } from '@/redux/hooks';
-import { selectHeader } from '@/redux/slices/headerSlice';
-import { NewsData } from '@/lib/types/NewsData.type';
-import { baseAPI } from '@/lib/API';
-import Loader from '../ui/Loader';
+import { BorderBtn } from "@/components/ui/Buttons";
+import { Pagination } from "@/components/ui/Pagination";
+import { Card } from "@/components/news/Card";
+import { useAppSelector } from "@/redux/hooks";
+import { selectHeader } from "@/redux/slices/headerSlice";
+import { NewsData } from "@/lib/types/NewsData.type";
+import { baseAPI } from "@/lib/API";
+import Loader from "../ui/Loader";
 
 export const NewsSec = () => {
-  const menu = ['Новости', 'СМИ о нас'];
+  const menu = ["Новости", "СМИ о нас"];
   const [current, setCurrent] = React.useState<number>(1);
   const [perPage, setPerPage] = React.useState<number>(6);
   const [totalNews, setTotalNews] = React.useState<number>(0);
+  const [loading, setLoading] = useState(true);
 
   const [grid, setGrid] = React.useState(true);
   const [newsData, setNewsData] = React.useState<NewsData>();
@@ -32,11 +33,15 @@ export const NewsSec = () => {
 
   const fetchNews = async () => {
     try {
-      const response = await fetch(`${baseAPI}news?page=${current}&per_page=${perPage}`, {
-        headers: {
-          'Accept-Language': activeLang.localization,
-        },
-      });
+      setLoading(true);
+      const response = await fetch(
+        `${baseAPI}news?page=${current}&per_page=${perPage}`,
+        {
+          headers: {
+            "Accept-Language": activeLang.localization,
+          },
+        }
+      );
 
       if (!response.ok) {
         throw new Error(`Fetch failed with status ${response.status}`);
@@ -46,7 +51,9 @@ export const NewsSec = () => {
       setNewsData(data);
       setTotalNews(data.meta.total);
     } catch (error) {
-      console.error('Fetch error:', error);
+      console.error("Fetch error:", error);
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -57,6 +64,10 @@ export const NewsSec = () => {
   const handleOnClickButton = () => {
     setPerPage((prev) => prev + 6);
   };
+
+  if (loading) {
+    return <Loader className="h-[500px] mx-auto w-full " />;
+  }
 
   return (
     <div className="flex flex-col">
@@ -77,11 +88,13 @@ export const NewsSec = () => {
       </div>
 
       <div
-        className={clsx('mb-[48px] lg:mb-[108px]', {
-          'flex flex-col gap-6': !grid,
-          'grid grid-cols-1 sm:grid-cols-2 gap-5 sm:gap-8 lg:gap-y-[85px]': grid,
-        })}>
-        {newsData ? (
+        className={clsx("mb-[48px] lg:mb-[108px]", {
+          "flex flex-col gap-6": !grid,
+          "grid grid-cols-1 sm:grid-cols-2 gap-5 sm:gap-8 lg:gap-y-[85px]":
+            grid,
+        })}
+      >
+        {newsData &&
           newsData.data.map((item) => (
             <Card
               grid={grid}
@@ -95,16 +108,13 @@ export const NewsSec = () => {
                   : newsData.data[0].featured_images[0].path
               }
             />
-          ))
-        ) : (
-          <Loader className="h-[500px] w-full ml-[60%]" />
-        )}
+          ))}
       </div>
 
       <div className="hidden sm:flex flex-col gap-6 w-full max-w-[180px] mx-auto justify-center items-center">
         {newsData && totalNews > perPage && perPage >= totalNews && (
           <div onClick={handleOnClickButton}>
-            <BorderBtn px text={'Показать ещё'} />
+            <BorderBtn px text={"Показать ещё"} />
           </div>
         )}
 
