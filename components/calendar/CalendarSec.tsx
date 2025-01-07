@@ -1,10 +1,8 @@
 'use client';
 
 import React, { useEffect, useState } from 'react';
-import { v4 } from 'uuid';
 
 import { EventCard } from '../cards/EventCard';
-import { BorderBtn } from '../ui/Buttons';
 
 import { useAppDispatch, useAppSelector } from '@/redux/hooks';
 import { selectHeader } from '@/redux/slices/headerSlice';
@@ -15,11 +13,12 @@ import { CalendarType } from '@/lib/types/Calendar.type';
 import { BreadCrumbs } from '../ui/BreadCrumbs';
 import { useLang } from '@/utils/useLang';
 import Loader from '../ui/Loader';
+import { Pagination } from '../ui/Pagination';
 
 export const CalendarSec = ({}: {}) => {
-  const [showCards, setShowCards] = useState(false);
   const { activeLang } = useAppSelector(selectHeader);
   const [eventsData, setEventsData] = useState<CalendarType>();
+  const [current, setCurrent] = useState(1);
   const dispatch = useAppDispatch();
 
   useEffect(() => {
@@ -28,7 +27,7 @@ export const CalendarSec = ({}: {}) => {
 
   const fetchEvents = async () => {
     try {
-      const response = await fetch(`${baseAPI}expoevents`, {
+      const response = await fetch(`${baseAPI}expoevents?page=${current}`, {
         headers: {
           'Accept-Language': activeLang.localization,
         },
@@ -48,7 +47,7 @@ export const CalendarSec = ({}: {}) => {
 
   useEffect(() => {
     fetchEvents();
-  }, [activeLang.localization]);
+  }, [activeLang.localization, current]);
 
   return (
     <div className="section-mb">
@@ -79,13 +78,13 @@ export const CalendarSec = ({}: {}) => {
             <BorderBtn text={showCards ? 'Скрыть' : 'Показать ещё'} mt="24" px />
           )} */}
           <div className="flex items-center gap-5">
-            {/* <Pagination
+            <Pagination
               current={current}
               setCurrent={setCurrent}
               totalPage={eventsData?.meta.total}
               lastPage={eventsData?.meta.last_page}
               currentPage={eventsData?.meta.current_page}
-            /> */}
+            />
           </div>
         </div>
       </div>

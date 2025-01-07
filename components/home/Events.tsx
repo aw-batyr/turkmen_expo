@@ -1,23 +1,23 @@
-"use client";
+'use client';
 
-import { useEffect, useState } from "react";
-import { Swiper, SwiperSlide } from "swiper/react";
-import { EventCard } from "../cards/EventCard";
-import { GreenBtn } from "../ui/Buttons";
+import { useEffect, useState } from 'react';
+import { Swiper, SwiperSlide } from 'swiper/react';
+import { EventCard } from '../cards/EventCard';
+import { GreenBtn } from '../ui/Buttons';
 
-import "swiper/css";
-import "swiper/css/pagination";
-import "./styles/events.css";
+import 'swiper/css';
+import 'swiper/css/pagination';
+import './styles/events.css';
 
-import { Title } from "./Title";
-import { Pagination } from "swiper/modules";
-import { baseAPI } from "@/lib/API";
-import { useAppSelector } from "@/redux/hooks";
-import { CalendarType } from "@/lib/types/Calendar.type";
-import { useLang } from "@/utils/useLang";
-import { selectHeader } from "@/redux/slices/headerSlice";
-import Link from "next/link";
-import Loader from "../ui/Loader";
+import { Title } from './Title';
+import { Pagination } from 'swiper/modules';
+import { baseAPI } from '@/lib/API';
+import { useAppSelector } from '@/redux/hooks';
+import { CalendarType } from '@/lib/types/Calendar.type';
+import { useLang } from '@/utils/useLang';
+import { selectHeader } from '@/redux/slices/headerSlice';
+import Link from 'next/link';
+import Loader from '../ui/Loader';
 
 export const Events = () => {
   const [eventsData, setEventsData] = useState<CalendarType>();
@@ -34,14 +34,14 @@ export const Events = () => {
       setLoading(true);
       const response = await fetch(`${baseAPI}expoevents`, {
         headers: {
-          "Accept-Language": activeLang.localization,
+          'Accept-Language': activeLang.localization,
         },
       });
 
       const data = await response.json();
 
       if (!response.ok) {
-        throw new Error("error");
+        throw new Error('error');
       }
 
       setEventsData(data);
@@ -66,25 +66,21 @@ export const Events = () => {
         <div className="mb-10">
           <Title
             text={useLang(
-              "Upcoming exhibitions and events",
-              "Ближайшие выставки и мероприятия",
-              activeLang.localization
+              'Upcoming exhibitions and events',
+              'Ближайшие выставки и мероприятия',
+              activeLang.localization,
             )}
           />
         </div>
         <div className="mb-[158px] w-full flex flex-col items-center gap-8">
-          {eventsData?.data?.map((item, i) => (
+          {eventsData?.data?.slice(0, 3).map((item, i) => (
             <EventCard dark key={i} {...item} />
           ))}
           {eventsData && eventsData?.data?.length > 3 && (
-            <Link href={"/calendar"}>
+            <Link href={'/calendar'}>
               <GreenBtn
                 onEventBtn={onEventBtn}
-                text={useLang(
-                  "Show more",
-                  "Показать ещё",
-                  activeLang.localization
-                )}
+                text={useLang('Show more', 'Показать ещё', activeLang.localization)}
                 mt="mt-[25px]"
               />
             </Link>
@@ -97,9 +93,9 @@ export const Events = () => {
       <div className="md:hidden container">
         <h2 className="text-[26px] mb-5 sm:mb-10 font-semibold leading-[115%]">
           {useLang(
-            "Upcoming exhibitions and events",
-            "Ближайшие выставки и мероприятия",
-            activeLang.localization
+            'Upcoming exhibitions and events',
+            'Ближайшие выставки и мероприятия',
+            activeLang.localization,
           )}
         </h2>
         <div className="flex flex-col">
@@ -108,8 +104,7 @@ export const Events = () => {
               modules={[Pagination]}
               slidesPerView={1}
               spaceBetween={20}
-              pagination={{ type: "bullets", el: ".swiper-pagination" }}
-            >
+              pagination={{ type: 'bullets', el: '.swiper-pagination' }}>
               {openCards &&
                 eventsData?.data?.map((item, i) => (
                   <SwiperSlide key={i} className="mb-[72px]">

@@ -108,7 +108,7 @@ export const EventCard = ({
               {useLang('Organiser', 'Организатор', lang)}
             </p>
             <p className="text-[#C7D2DC] font-normal text-[13px] leading-[125%]">
-              {organizers ? organizers[0].name : null}
+              {organizers ? organizers[0]?.name : null}
             </p>
           </div>
         </div>
