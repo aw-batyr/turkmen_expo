@@ -90,7 +90,7 @@ export const sidebarData: MenuType[] = [
         link: '/services/organization',
       },
       {
-        title: 'Рекламная деятельность',
+        title: 'Маркетинговые услуги',
         titleEn: 'Advertising activity',
         link: '/services/advertising',
       },
@@ -105,17 +105,17 @@ export const sidebarData: MenuType[] = [
         link: '/services/certification',
       },
       {
-        title: 'Экспедирование грузов и таможенное оформление',
+        title: 'Организация перевозки и таможенное оформление',
         titleEn: 'Freight forwarding and customs clearance',
         link: '/services/forwarding',
       },
       {
-        title: 'Аутсорсинг бух.учета и аудита',
+        title: 'Аутсорсинг бухгалтерского учета и аудита',
         titleEn: 'Outsourcing of accounting and auditing',
         link: '/services/outsourcing',
       },
       {
-        title: 'Обучения персонала',
+        title: 'Тренинг для персонала',
         titleEn: 'Personnel-training',
         link: '/services/personnel-training',
       },
@@ -123,6 +123,11 @@ export const sidebarData: MenuType[] = [
         title: 'Бизнес - туры',
         titleEn: 'Business - tours',
         link: '/services/business-tours',
+      },
+      {
+        title: 'Дополнительные услуги',
+        titleEn: 'Additional servies',
+        link: '/services/additional',
       },
     ],
   },
