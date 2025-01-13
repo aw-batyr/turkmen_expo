@@ -3,7 +3,7 @@ import React from 'react';
 import Image from 'next/image';
 
 import { Title } from '@/components/home/Title';
-import { BorderBtn } from '@/components/ui/Buttons';
+import { BorderBtn, GreenBtn } from '@/components/ui/Buttons';
 
 import { useAppDispatch, useAppSelector } from '@/redux/hooks';
 import { selectHeader, setShowInput } from '@/redux/slices/headerSlice';
@@ -82,11 +82,9 @@ const page = ({ params }: { params: { id: string } }) => {
         ) : null}
       </div>
 
-      <div className="flex justify-center">
-        <Link href="/news">
-          <BorderBtn text="Все новости" px />
-        </Link>
-      </div>
+      <Link href="/news" className="flex justify-center">
+        <GreenBtn text="Все новости" px />
+      </Link>
     </div>
   );
 };

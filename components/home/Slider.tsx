@@ -19,8 +19,8 @@ import { useLang } from '@/utils/useLang';
 import clsx from 'clsx';
 
 export const Slider = () => {
-  const tab = useMediaQuery('(min-width: 1250px)');
-  const md = useMediaQuery('(min-width: 768px)');
+  const tab = useMediaQuery('(min-width: 1024px)');
+  const md = useMediaQuery('(min-width: 700px)');
 
   const [loading, setLoading] = useState(true);
 
@@ -85,14 +85,14 @@ export const Slider = () => {
                     src={item.image}
                     alt="Баннер"
                     width={1920}
-                    height={490}
-                    className="md:h-[490px] h-[300px] object-cover object-center w-[1920px]"
+                    height={600}
+                    className="object-cover max-h-[600px] min-h-[320px] object-center w-[1920px] "
                   />
                 </Link>
 
                 <div
                   className={clsx(
-                    'absolute top-1/4 right-0 h-[490px] xl:left-20 lg:left-10 left-5 container z-20',
+                    'absolute top-1/4 right-0 max-h-[490px] xl:left-20 lg:left-10 left-5 container z-20',
                   )}>
                   <div
                     className={clsx(

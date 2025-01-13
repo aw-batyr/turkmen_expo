@@ -14,7 +14,7 @@ export const Sidebar = () => {
   const lang = useAppSelector((state) => state.headerSlice.activeLang.localization);
 
   return (
-    <div className="flex flex-col items-start gap-y-[12px] py-[20px] sticky top-0 left-0 overflow-hidden">
+    <div className="flex flex-col bg-white rounded-lg px-6 py-4 items-start gap-y-[12px] pb-5 mt-12 sticky top-0 left-0 overflow-hidden">
       {sidebarData
         .filter(
           (obj) =>
@@ -26,7 +26,7 @@ export const Sidebar = () => {
         )
         .map((item, i) => (
           <div key={i}>
-            <p className={clsx('text-bgWhite mb-[16px] text-[16px] font-bold leading-[1.5]')}>
+            <p className={clsx('mb-[16px] text-[16px] font-bold leading-[1.5]')}>
               {lang === 'ru' ? item.pathname : item.pathnameEn}
             </p>
             <div className="flex flex-col items-start gap-y-[8px]">
@@ -35,7 +35,7 @@ export const Sidebar = () => {
                   <Link
                     href={obj.link}
                     className={clsx(
-                      'cursor-pointer py-1 leading-[130%] transition-all hover:text-[#A3CCC7]',
+                      'cursor-pointer py-1 leading-[130%] transition-all hover:opacity-80',
                       {
                         'hover:text-green text-green hover:cursor-default': obj.link === pathname,
                       },

@@ -73,7 +73,7 @@ export const BurgerMenu = () => {
         x: '100%',
         opacity: 0,
       }}
-      className="bg-green overflow-auto text-blueBg fixed w-full z-[900] top-[74px] bottom-0 left-0 min-h-[100vh] h-full px-4 py-10 flex flex-col overflow-y-auto">
+      className="bg-green overflow-auto fixed w-full z-[900] top-[74px] bottom-0 left-0 min-h-[100vh] h-full px-4 py-10 flex flex-col overflow-y-auto">
       {activeMenu && (
         <div>
           <div onClick={() => setActiveMenu('')} className="flex cursor-pointer">

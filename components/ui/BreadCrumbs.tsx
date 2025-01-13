@@ -21,7 +21,7 @@ export const BreadCrumbs = ({
   const { activeLang } = useAppSelector(selectHeader);
 
   return (
-    <div className="text-[12px] text-gray4 flex items-center mob:mb-6 mb-5">
+    <div className="text-[12px] text-[#6B7674] flex items-center mob:mb-6 mb-5">
       <Link href={'/'}>{useLang('Home', 'Главная', activeLang.localization)}</Link>
 
       <p className="px-1">/</p>

@@ -16,7 +16,7 @@ export const GreenBtn = ({ text, mt, onEventBtn, px }: GreenBtnProps) => {
     <button
       onClick={onEventBtn}
       className={clsx(
-        `${mt} py-[17px] text-[14px] greenBtnShadow rounded-sm bg-green text-blueBg hover:bg-[#F5D8A3] font-medium transition-all`,
+        `${mt} py-[17px] text-[14px] rounded-[4px] bg-green text-[#346560] hover:bg-opacity-90 font-medium transition-all`,
         {
           'px-[43px]': !px,
           'px-[70px]': px,

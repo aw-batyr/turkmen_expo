@@ -50,16 +50,16 @@ const Contacts = () => {
         <div className="mt-5">
           <BreadCrumbs second={useLang('Contacts', 'Контакты', activeLang.localization)} />
         </div>
-        <div className="sm:mb-[48px] mb-10">
+        <div className="mb-4">
           <Title text={useLang('Contacts', 'Контакты', activeLang.localization)} />
         </div>
         {contactsData ? (
           contactsData.data.map((item, i) => (
             <div className="py-10 sm:py-[30px] border-b-[1px] border-navyBlue5 w-full" key={v4()}>
-              <h4 className="leading-[120%] sm:leading-[100%] text-[16px] sm:text-[21px] mb-6">
+              {/* <h4 className="leading-[120%] sm:leading-[100%] text-[16px] sm:text-[21px] mb-6">
                 {item.header}
-              </h4>
-              <div className="text-gray4 sm:text-bgWhite flex flex-col items-start leading-[150%] text-[14px] sm:text-[16px]">
+              </h4> */}
+              <div className="flex flex-col items-start leading-[150%] text-[14px] sm:text-[16px]">
                 {item.services.map((service, i) => (
                   <div key={i}>
                     <p>{service.phone}</p>

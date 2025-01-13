@@ -1,8 +1,8 @@
-"use client";
+'use client';
 
-import React from "react";
-import { Title } from "../home/Title";
-import { BreadCrumbs } from "../ui/BreadCrumbs";
+import React from 'react';
+import { Title } from '../home/Title';
+import { BreadCrumbs } from '../ui/BreadCrumbs';
 
 interface Props {
   title: string;
@@ -24,14 +24,9 @@ export const LayoutWithSidebar = ({
   cursor = false,
 }: Props) => {
   return (
-    <div className="flex flex-col md:gap-6 gap-10 section-mb w-full">
+    <div className="flex bg-white px-6 py-4 rounded-lg flex-col md:gap-6 gap-10 section-mb w-full">
       <div>
-        <BreadCrumbs
-          second={second}
-          path={path}
-          path2={path2}
-          third={third ? third : ""}
-        />
+        <BreadCrumbs second={second} path={path} path2={path2} third={third ? third : ''} />
         <Title text={title} />
       </div>
       {children}

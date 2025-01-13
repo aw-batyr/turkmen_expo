@@ -2,8 +2,8 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { RootState } from '../store';
 
 export type activeLangType = {
-  title: 'Ру' | 'En';
-  localization: 'ru' | 'en';
+  title: 'Ру' | 'En' | 'Tm';
+  localization: 'ru' | 'en' | 'tm';
 };
 
 interface HeaderState {

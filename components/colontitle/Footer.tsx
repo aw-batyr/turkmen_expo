@@ -21,13 +21,13 @@ export const Footer = () => {
   const localization = useAppSelector((state) => state.headerSlice.activeLang.localization);
 
   return (
-    <footer className="bg-darkBlue pt-6 pb-5 mob:py-[40px]">
+    <footer className="bg-[#059784] text-white pt-6 pb-5 mob:py-[40px]">
       <div className="container">
-        <div className="grid sm:gap-y-0 gap-y-10 grid-cols-2 sm:grid-cols-4 gap-4 text-bgWhite text-sm md:mb-[80px] mb-5">
-          <img src="/assets/icons/logo.svg" alt="logo" />
+        <div className="">
+          <div className="flex lg:flex-row flex-col w-full justify-between mb-12">
+            <img className="h-12" src="/assets/icons/white-logo.svg" />
 
-          <div className="w-full mob:max-w-[600px] flex md:flex-row flex-col items-start justify-between gap-x-[20px]">
-            <div className="w-full max-w-[290px] flex flex-col items-start gap-y-[10px]">
+            <div className="flex flex-col mt-8 lg:flex-row items-center font-medium gap-12">
               {headerMenu2
                 .filter((item) => (localization === 'en' ? item.en : !item.en))
                 .map((item, i) => (
@@ -38,43 +38,43 @@ export const Footer = () => {
             </div>
           </div>
 
-          <div className="flex flex-col gap-2.5">
-            <h5>{useLang('Social Media:', 'Социальные сети:', localization)}</h5>
-            <div className="flex items-center gap-4">
-              <a href="">
-                <img src="/assets/icons/instagram.svg" alt="social" />
-              </a>
-            </div>
-          </div>
-
-          <div className="">
-            <div className="flex flex-col justify-end w-full md:mb-5">
+          <div className="flex flex-col lg:flex-row lg:justify-between justify-center text-center lg:text-left lg:items-end items-center gap-6">
+            <div className="flex flex-col justify-end w-full">
               {localization === 'ru' ? (
-                <div className="mb-[40px] flex flex-col md:gap-y-[10px] gap-0">
+                <div className="flex flex-col md:gap-y-[10px] gap-0">
                   {footerInfo.slice(0, 3).map((item, i) => (
                     <p className="text-[12px] leading-[130%]" key={i}>
                       {item}
                     </p>
                   ))}
                 </div>
-              ) : (
-                <div className="mb-[40px] flex flex-col md:gap-y-[10px] gap-0">
+              ) : localization === 'en' ? (
+                <div className="flex flex-col md:gap-y-[10px] gap-0">
                   {footerInfo.slice(3, 7).map((item, i) => (
                     <p className="text-[12px] leading-[130%]" key={i}>
                       {item}
                     </p>
                   ))}
                 </div>
-              )}
+              ) : null}
+            </div>
+
+            <div className="flex items-center lg:justify-end justify-center gap-2.5 w-full">
+              <h5>{useLang('Social Media:', 'Социальные сети:', localization)}</h5>
+              <div className="flex items-center gap-4">
+                <a href="">
+                  <img src="/assets/icons/instagram.svg" alt="social" />
+                </a>
+              </div>
             </div>
           </div>
         </div>
 
-        <div className="text-bgWhite flex mob:flex-row flex-col items-center justify-between pt-[17px] border-t-[1px] border-gray3">
+        {/* <div className="text-[#435654] flex mob:flex-row flex-col items-center justify-between pt-[17px] border-t-[1px] border-gray3">
           <p className="mob:text-[12px] mx-auto text-[12px] leading-[130%] md:leading-[150%] md:mb-0 mb-5">
             {useLang('@2024 IE TurkmenExpo', '@2024 ИП ТуркменЭкспо', localization)}
           </p>
-        </div>
+        </div> */}
       </div>
     </footer>
   );

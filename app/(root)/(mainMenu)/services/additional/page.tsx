@@ -36,6 +36,8 @@ const page = () => {
     fecthServicsData();
   }, [lang]);
 
+  console.log(servicesData);
+
   return servicesData ? (
     <LayoutWithSidebar
       title={servicesData?.data ? servicesData.data[8].title : ''}

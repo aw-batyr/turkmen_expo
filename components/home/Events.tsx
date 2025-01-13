@@ -73,7 +73,7 @@ export const Events = () => {
           />
         </div>
         <div className="mb-[158px] w-full flex flex-col items-center gap-8">
-          {eventsData?.data?.slice(0, 3).map((item, i) => (
+          {eventsData?.data?.slice(0, 2).map((item, i) => (
             <EventCard dark key={i} {...item} />
           ))}
           {eventsData && eventsData?.data?.length > 3 && (
@@ -111,7 +111,7 @@ export const Events = () => {
                     <EventCard dark {...item} />
                   </SwiperSlide>
                 ))}
-              <div className="swiper-pagination swiper-pagination-horizontal mb-[30px]"></div>
+              {/* <div className="swiper-pagination swiper-pagination-horizontal mb-[30px]"></div> */}
             </Swiper>
           </div>
           {/* <GreenBtnMob text={'Все мероприятия'} /> */}
