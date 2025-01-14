@@ -1,10 +1,7 @@
-"use cache";
-import { unstable_cache as cacheLife } from "next/cache";
+import { PropsWithChildren } from 'react';
 
-import { PropsWithChildren } from "react";
-
-import { Header } from "@/components/colontitle/Header";
-import { Footer } from "@/components/colontitle/Footer";
+import { Header } from '@/components/colontitle/Header';
+import { Footer } from '@/components/colontitle/Footer';
 
 const layout = ({ children }: PropsWithChildren) => {
   return (

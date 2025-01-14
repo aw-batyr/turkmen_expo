@@ -18,13 +18,13 @@ export default async function MeetingsPage({ searchParams }: { searchParams: { l
 
   return (
     <LayoutWithSidebar
-      title={data?.data ? data.data[6].title : ''}
+      title={data?.data ? data.data[9].title : ''}
       second={lang === 'en' ? 'Services' : 'Сервисы'}
-      third={data?.data ? data.data[6].title : ''}>
+      third={data?.data ? data.data[9].title : ''}>
       <div
         className="select-inner"
         dangerouslySetInnerHTML={{
-          __html: data ? data.data[6].content : '',
+          __html: data ? data.data[9].content : '',
         }}
       />
     </LayoutWithSidebar>

@@ -1,51 +1,50 @@
-"use client";
+'use client';
 
-import { useEffect, useState } from "react";
-import Image from "next/image";
-import { useMediaQuery } from "usehooks-ts";
+import { useEffect, useState } from 'react';
+import Image from 'next/image';
+import { useMediaQuery } from 'usehooks-ts';
+import { useAppSelector } from '@/redux/hooks';
+import { useSliderBanner } from '@/hooks/use-slider';
+import Loader from '../ui/Loader';
 
-const useBannerType = () => {
-  const isTab = useMediaQuery("(min-width: 1024px)");
-  const isMd = useMediaQuery("(min-width: 700px)");
+export const SliderClient = () => {
+  const isTab = useMediaQuery('(min-width: 1024px)');
+  const isMd = useMediaQuery('(min-width: 700px)');
 
-  if (isTab) return "main-surat";
-  if (isMd) return "medium-surat";
-  return "small-surat";
-};
-
-export const SliderClient = ({
-  defaultBannerType,
-}: {
-  defaultBannerType: string;
-}) => {
   const [data, setData] = useState<any>(null);
-  const bannerType = useBannerType();
+  const [loading, setLoading] = useState(true);
+  const bannerType = useSliderBanner(isTab, isMd);
+  const lang = useAppSelector((state) => state.headerSlice.activeLang.localization);
 
-  useEffect(() => {
-    if (bannerType === defaultBannerType) return; // Не обновляем, если тип баннера совпадает
-
-    const fetchData = async () => {
+  const fetchData = async () => {
+    try {
+      setLoading(true);
       const res = await fetch(`/api/banners?bannerType=${bannerType}`, {
         headers: {
-          "Accept-Language": "ru",
+          'Accept-Language': lang,
         },
       });
       const json = await res.json();
       setData(json);
-    };
+      setLoading(false);
+    } catch (error) {
+      console.error(error);
+    }
+  };
 
+  useEffect(() => {
     fetchData();
-  }, [bannerType, defaultBannerType]);
+  }, [bannerType, lang]);
 
-  if (!data) return null; // Пока данные не обновились, ничего не рендерим
+  if (loading) return <Loader className="h-[600px] min-h-[320px]" />;
 
   return (
     <Image
-      src={data.data.banner_items?.[0]?.image || ""}
+      src={data.data.banner_items?.[0]?.image || ''}
       alt="Баннер"
       width={1920}
       height={600}
-      className="object-cover max-h-[600px] lg:hidden min-h-[320px] size-full object-center"
+      className="object-cover max-h-[600px] min-h-[320px] size-full object-center"
     />
   );
 };

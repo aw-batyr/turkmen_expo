@@ -33,6 +33,7 @@ export const News = () => {
     try {
       setLoading(true);
       const response = await fetch(`https://turkmenexpo.com/app/api/v1/news`, {
+        next: { revalidate: 1800 },
         headers: {
           'Accept-Language': activeLang.localization,
         },

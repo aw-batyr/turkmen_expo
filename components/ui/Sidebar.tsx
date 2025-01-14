@@ -37,7 +37,8 @@ export const Sidebar = () => {
                     className={clsx(
                       'cursor-pointer py-1 leading-[130%] transition-all hover:opacity-80',
                       {
-                        'hover:text-green text-green hover:cursor-default': obj.link === pathname,
+                        'hover:text-[#059784] text-[#059784] hover:cursor-default':
+                          obj.link === pathname,
                       },
                     )}
                     key={i}>

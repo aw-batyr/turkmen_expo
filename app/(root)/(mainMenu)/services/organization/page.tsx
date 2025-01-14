@@ -2,9 +2,7 @@
 
 import { LayoutWithSidebar } from '@/components/page/LayoutWithSidebar';
 import { baseAPI } from '@/lib/API';
-import { fetchData } from '@/lib/fetchData';
 import { ServicesType } from '@/lib/types/Services.data';
-import { headers } from 'next/headers';
 import { useLang } from '@/utils/useLang';
 import { useEffect, useState } from 'react';
 import { useAppSelector } from '@/redux/hooks';

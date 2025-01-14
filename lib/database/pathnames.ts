@@ -90,6 +90,16 @@ export const sidebarData: MenuType[] = [
         link: '/services/organization',
       },
       {
+        title: 'B2B Встречи и Бизнес-Матчмейкинг',
+        titleEn: 'B2B Meetings & Business Matchmaking',
+        link: '/services/meetings',
+      },
+      {
+        title: 'Бизнес-Миссии',
+        titleEn: 'Business Missions',
+        link: '/services/missions',
+      },
+      {
         title: 'Маркетинговые услуги',
         titleEn: 'Advertising activity',
         link: '/services/advertising',

@@ -1,5 +1,5 @@
 export interface SliderType {
-  data: Data;
+  data: Data[];
 }
 
 export interface Data {
