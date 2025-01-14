@@ -1,20 +1,13 @@
-'use client';
-
-import clsx from 'clsx';
-import { useRef } from 'react';
+import clsx from "clsx";
 
 export const Video = () => {
-  const vidRef = useRef<HTMLVideoElement>(null);
-
   return (
     <div className="relative">
       <video
         className={clsx(
-          'w-full opacity-100 lg:h-[565px] sm:h-[375px] h-[250px] object-cover mx-auto',
-          {},
+          "w-full opacity-100 lg:h-[565px] sm:h-[375px] h-[250px] object-cover mx-auto"
         )}
         id="vid"
-        ref={vidRef}
         autoPlay
         typeof="video/mp4"
         loop
@@ -23,7 +16,8 @@ export const Video = () => {
       />
       <div
         id="spinner"
-        className="hidden border-[8px] border-solid border-l-red h-[60px] w-[60px] rounded-full z-[100] absolute top-[100px] left-[100px] "></div>
+        className="hidden border-[8px] border-solid border-l-red h-[60px] w-[60px] rounded-full z-[100] absolute top-[100px] left-[100px] "
+      ></div>
     </div>
   );
 };
