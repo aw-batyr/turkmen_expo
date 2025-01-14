@@ -1,4 +1,4 @@
-export interface SliderTypes {
+export interface SliderType {
   data: Data;
 }
 

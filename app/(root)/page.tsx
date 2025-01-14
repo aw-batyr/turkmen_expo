@@ -1,35 +1,30 @@
-import { Events } from '@/components/home/Events';
-import { News } from '@/components/home/News';
-import { Services } from '@/components/home/Services';
-import { Partners } from '@/components/home/Partners';
-import { Slider } from '@/components/home/Slider';
-import { Video } from '@/components/home/Video';
-import Image from 'next/image';
+import { Events } from "@/components/home/Events";
+import { News } from "@/components/home/News";
+import { Partners } from "@/components/home/Partners";
+import { Slider } from "@/components/home/Slider";
+import { SliderClient } from "@/components/home/SliderClient";
+import { Video } from "@/components/home/Video";
+import Loader from "@/components/ui/Loader";
+import { Suspense } from "react";
 
-const Home = () => {
+export default function HomePage({
+  searchParams,
+}: {
+  searchParams: { lang: string };
+}) {
+  const defaultBannerType = "main-surat";
+
   return (
-    <div className="bg-blueBg flex flex-col gap-[60px] md:gap-[80px] xl:gap-[120px] pb-[120px]">
-      <Slider />
+    <main className="bg-blueBg flex flex-col gap-[60px] md:gap-[80px] xl:gap-[120px] pb-[120px]">
+      <Suspense fallback={<Loader />}>
+        <Slider defaultBannerType={defaultBannerType} />
+        <SliderClient defaultBannerType={defaultBannerType} />
+      </Suspense>
+
       <Events />
       <News />
       <Video />
       <Partners />
-
-      {/* <section className="section-mb container">
-        <div className="bg-white flex justify-center">
-          <a className="" href="https://exposale.net/ru" target="_blank">
-            <Image
-              alt="banner"
-              width={728}
-              height={90}
-              src="https://exposale.net/template-admin/assets/elFinder/files/banners/728x90rus.png"
-              title="Найди свою выставку на EXPOSALE.net "
-            />
-          </a>
-        </div>
-      </section> */}
-    </div>
+    </main>
   );
-};
-
-export default Home;
+}

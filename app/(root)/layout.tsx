@@ -1,9 +1,12 @@
-import React from 'react';
+"use cache";
+import { unstable_cache as cacheLife } from "next/cache";
 
-import { Header } from '@/components/colontitle/Header';
-import { Footer } from '@/components/colontitle/Footer';
+import { PropsWithChildren } from "react";
 
-const layout = ({ children }: { children: React.ReactNode }) => {
+import { Header } from "@/components/colontitle/Header";
+import { Footer } from "@/components/colontitle/Footer";
+
+const layout = ({ children }: PropsWithChildren) => {
   return (
     <div className="flex flex-col h-full wrapper w-full overflow-x-hidden relative">
       <Header />
