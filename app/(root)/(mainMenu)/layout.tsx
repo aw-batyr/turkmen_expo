@@ -9,9 +9,9 @@ const CompanyLayout = ({ children }: { children: React.ReactNode }) => {
           <aside className="w-[25%] hidden tab:block">
             <Sidebar />
           </aside>
-          <div className="mt-12 rounded-[4px] lg:ml-10 md:pl-6 pl-0 lg:w-[75%] w-full relative">
+          <main className="mt-12 rounded-[4px] lg:ml-10 md:pl-6 pl-0 lg:w-[75%] w-full relative">
             {children}
-          </div>
+          </main>
         </div>
       </div>
     </div>

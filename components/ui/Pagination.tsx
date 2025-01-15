@@ -32,7 +32,7 @@ export const Pagination = ({ current, setCurrent, lastPage = 3 }: IProps) => {
           <path d="M18 22L12 16L18 10L19.4 11.4L14.8 16L19.4 20.6L18 22Z" fill="#059784" />
         </svg>
       </button>
-      <div className="border-[1px] border-navyBlue5 rounded-sm px-3 py-[9px]">{current}</div>
+      <div className="border-[1px] border-OUTLINE_VAR rounded-sm px-3 py-[9px]">{current}</div>
       <p>из {lastPage}</p>
       <button onClick={onNext} disabled={current >= lastPage} type="button">
         <svg

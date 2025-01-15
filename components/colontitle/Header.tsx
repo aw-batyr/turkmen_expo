@@ -1,23 +1,23 @@
-"use client";
+'use client';
 
-import React, { Suspense, useEffect } from "react";
-import clsx from "clsx";
-import Link from "next/link";
-import Image from "next/image";
-import { AnimatePresence } from "framer-motion";
+import React, { Suspense, useEffect } from 'react';
+import clsx from 'clsx';
+import Link from 'next/link';
+import Image from 'next/image';
+import { AnimatePresence } from 'framer-motion';
 
-import logo from "@/public/assets/icons/logo.svg";
-import search from "@/public/assets/icons/header/search.svg";
-import searchMob from "@/public/assets/icons/header/mob-search.svg";
+import logo from '@/public/assets/icons/logo.svg';
+import search from '@/public/assets/icons/header/search.svg';
+import searchMob from '@/public/assets/icons/header/mob-search.svg';
 
-import { LangMenu } from "../ui/LangMenu";
-import { SearchInput } from "../home/search-input";
-import { headerMenu2 } from "@/lib/database/pathnames";
-import { BurgerMenu } from "../ui/BurgerMenu";
-import { useAppDispatch, useAppSelector } from "@/redux/hooks";
-import { selectHeader, setShowInput } from "@/redux/slices/headerSlice";
-import { selectBurger, setBurgerOpen } from "@/redux/slices/burgerSlice";
-import { useStorage } from "@/hooks/useStorage";
+import { LangMenu } from '../ui/LangMenu';
+import { SearchInput } from '../home/search-input';
+import { headerMenu2 } from '@/lib/database/pathnames';
+import { BurgerMenu } from '../ui/BurgerMenu';
+import { useAppDispatch, useAppSelector } from '@/redux/hooks';
+import { selectHeader, setShowInput } from '@/redux/slices/headerSlice';
+import { selectBurger, setBurgerOpen } from '@/redux/slices/burgerSlice';
+import { useStorage } from '@/hooks/useStorage';
 
 export const Header = () => {
   const dispatch = useAppDispatch();
@@ -35,7 +35,7 @@ export const Header = () => {
     dispatch(setBurgerOpen(false));
   };
 
-  const { setItem } = useStorage("language");
+  const { setItem } = useStorage('language');
 
   useEffect(() => {
     setItem(activeLang);
@@ -55,12 +55,11 @@ export const Header = () => {
 
       <header
         className={clsx(
-          "bg-bgWhite border-b border-[#DFE2E1] tab:hidden relative z-[50] flex items-center justify-between px-4 py-6",
+          'bg-[#EEF1F0] border-b border-[#DFE2E1] tab:hidden relative z-[50] flex items-center justify-between px-4 py-6',
           {
             // 'fixed w-full top-0': burgerOpen,
-          }
-        )}
-      >
+          },
+        )}>
         <Image
           src={searchMob}
           height={32}
@@ -75,43 +74,29 @@ export const Header = () => {
             dispatch(setBurgerOpen(false));
             dispatch(setShowInput(false));
           }}
-          href={"/"}
-        >
-          <Image
-            src={logo}
-            height={24}
-            width={160}
-            alt="лого"
-            className="cursor-pointer"
-          />
+          href={'/'}>
+          <Image src={logo} height={24} width={160} alt="лого" className="cursor-pointer" />
         </Link>
 
         <div
           onClick={toggleMenu}
-          className="cursor-pointer h-8 w-8 flex flex-col p-1 justify-between items-center"
-        >
+          className="cursor-pointer h-8 w-8 flex flex-col p-1 justify-between items-center">
           <span
-            className={clsx(
-              "block transition-all rounded-full bg-[#059784] w-6 h-[2px]",
-              {
-                "rotate-[45deg] translate-y-[9px]": burgerOpen,
-              }
-            )}
+            className={clsx('block transition-all rounded-full bg-PRIMARY w-6 h-[2px]', {
+              'rotate-[45deg] translate-y-[9px]': burgerOpen,
+            })}
+          />
+          <span
+            className={clsx('block transition-all rounded-full bg-PRIMARY w-6 h-[2px]', {
+              'opacity-0 hidden': burgerOpen,
+            })}
           />
           <span
             className={clsx(
-              "block transition-all rounded-full bg-[#059784] w-6 h-[2px]",
+              'block transition-all duration-300 rounded-full bg-PRIMARY w-6 h-[2px]',
               {
-                "opacity-0 hidden": burgerOpen,
-              }
-            )}
-          />
-          <span
-            className={clsx(
-              "block transition-all duration-300 rounded-full bg-[#059784] w-6 h-[2px]",
-              {
-                "rotate-[-45deg] translate-y-[-10px]": burgerOpen,
-              }
+                'rotate-[-45deg] translate-y-[-10px]': burgerOpen,
+              },
             )}
           />
         </div>
@@ -122,37 +107,7 @@ export const Header = () => {
       {/* Desktop */}
 
       <header className="hidden border-b border-[#DFE2E1] relative z-[3000] tab:flex flex-col">
-        {/* <div className="flex items-center bg-darkBlue text-white py-[12px] font-regular text-extraSm">
-          <div className="container flex items-center justify-between">
-            <p className="text-extraSm">
-              {useLang('Phone: +99362006200', 'Тел.: +99362006200', activeLang.localization)}
-            </p>
-            <div className="flex items-center gap-1.5">
-              <div className="flex items-center gap-x-5">
-                {headerMenu
-                  .filter((item) => (activeLang.localization === 'en' ? item.en : !item.en))
-                  .map((item, i) => (
-                    <Link key={i} href={item.link}>
-                      <p
-                        className={clsx(
-                          'after:transition-all duration-1000 relative leading-[130%]',
-                          {
-                            'link-border-bottom cursor-default hover:after:bg-green':
-                              item.link === pathname,
-                            'hover:link-border-bottom hover:after:bg-[#738799]':
-                              item.link === item.link,
-                          },
-                        )}>
-                        {item.title}
-                      </p>
-                    </Link>
-                  ))}
-              </div>
-            </div>
-          </div>
-        </div> */}
-
-        <div className="bg-bgWhite text-black">
+        <div className="bg-[#EEF1F0] text-black">
           <div className="container py-[17px] flex items-center justify-between">
             <div className="flex items-center">
               <Link href="/">
@@ -171,17 +126,15 @@ export const Header = () => {
               </div>
             </div>
 
-            <div className="flex items-center gap-x-5 font-medium">
+            <nav className="flex items-center gap-x-5 font-medium">
               {headerMenu2
-                .filter((item) =>
-                  activeLang.localization === "en" ? item.en : !item.en
-                )
+                .filter((item) => (activeLang.localization === 'en' ? item.en : !item.en))
                 .map((item, i) => (
                   <Link key={i} href={item.link} className="cursor-pointer">
                     {item.title}
                   </Link>
                 ))}
-            </div>
+            </nav>
           </div>
         </div>
       </header>

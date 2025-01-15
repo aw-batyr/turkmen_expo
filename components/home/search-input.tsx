@@ -160,7 +160,7 @@ export const SearchInput = ({ mob = false }: { mob?: boolean }) => {
                             {item.title}
                           </h3>
                           <Link href={`/calendar/${item.id}`}>Перейти на страницу</Link>
-                          <hr className="mt-9 border-navyBlue4" />
+                          <hr className="mt-9 border-OUTLINE_VAR" />
                         </div>
                       ))
                     : null}
@@ -171,7 +171,7 @@ export const SearchInput = ({ mob = false }: { mob?: boolean }) => {
                             {item.title}
                           </h3>
                           <Link href={`/news/${item.id}`}>Перейти на страницу</Link>
-                          <hr className="mt-9 border-navyBlue4" />
+                          <hr className="mt-9 border-OUTLINE_VAR" />
                         </div>
                       ))
                     : null}

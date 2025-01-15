@@ -90,7 +90,7 @@ export const sidebarData: MenuType[] = [
         link: '/services/organization',
       },
       {
-        title: 'B2B Встречи и Бизнес-Матчмейкинг',
+        title: 'B2B Встречи и Матчмейкинг',
         titleEn: 'B2B Meetings & Business Matchmaking',
         link: '/services/meetings',
       },
@@ -299,10 +299,11 @@ export const footerMenu2: FooterType[] = [
 export const footerInfo: string[] = [
   'Адрес: 744000, г. Ашхабад, просп. Битарап Туркменистан, 183',
   'Тел.: +99362006200',
-  'E-mail: info@turkmenexpo.com',
+  '+99312454111',
+  'E-mail: contact@turkmenexpo.com',
   'Address: Ashgabat, 183 Bitarap Turkmenistan',
   'ave.,744000',
-  'E-mail: info@turkmenexpo.com',
+  'E-mail: contact@turkmenexpo.com',
 ];
 
 export const topMenu = [

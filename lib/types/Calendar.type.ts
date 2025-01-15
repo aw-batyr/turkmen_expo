@@ -1,16 +1,16 @@
 export interface CalendarType {
-  data: Datum[];
+  data: EventDatum[];
   links: Links;
   meta: Meta;
 }
 
-export interface Datum {
+export interface EventDatum {
   id: number;
   title: string;
   description: string;
   category: string;
   organizers: Organizer[];
-  coorganizers: Organizer[];
+  coorganizers?: Coorganizers[];
   starts_at: string;
   ends_at: string;
   images: CalendarImage[];
@@ -21,6 +21,20 @@ export interface Datum {
   installation_date: string;
   dismantling_date: string;
   event_topic: string;
+}
+
+export interface Coorganizers {
+  id: number;
+  name: string;
+  address: string;
+  phones: Phone[];
+  fax: string;
+  email: string;
+  web_site: string;
+}
+
+export interface Phone {
+  phone: string;
 }
 
 export interface CalendarImage {

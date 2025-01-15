@@ -1,9 +1,9 @@
-"use client";
+'use client';
 
-import { useState } from "react";
-import Image from "next/image";
-import clsx from "clsx";
-import { motion } from "framer-motion";
+import { useState } from 'react';
+import Image from 'next/image';
+import clsx from 'clsx';
+import { motion } from 'framer-motion';
 
 interface IProps {
   title: string;
@@ -30,22 +30,21 @@ export const SelectRules = ({ ...props }: IProps) => {
       <motion.div
         onClick={() => onTitle(title)}
         className={clsx(
-          "w-full flex items-center justify-between border-t-[1px] border-y-navyBlue cursor-pointer",
+          'w-full flex items-center justify-between border-t-[1px] border-y-OUTLINE cursor-pointer',
           {
-            "border-b-[1px]": openTitles.includes(title || ""),
-          }
-        )}
-      >
+            'border-b-[1px]': openTitles.includes(title || ''),
+          },
+        )}>
         <h2 className="sm:text-[21px] text-[16px] sm:leading-[100%] leading-[120%] sm:font-semibold font-[400] py-4 sm:py-5">
           {title}
         </h2>
         <Image
-          src={"/assets/icons/contact-arrow.svg"}
+          src={'/assets/icons/contact-arrow.svg'}
           width={30}
           height={30}
           alt="arrow"
-          className={clsx("rotate-[180deg] transition-all gap-4", {
-            "rotate-[360deg]": openTitles.includes(title || ""),
+          className={clsx('rotate-[180deg] transition-all gap-4', {
+            'rotate-[360deg]': openTitles.includes(title || ''),
           })}
         />
       </motion.div>
@@ -57,20 +56,16 @@ export const SelectRules = ({ ...props }: IProps) => {
           paddingBottom: 0,
         }}
         animate={
-          openTitles.includes(title || "")
-            ? { height: "100%", paddingTop: 32, paddingBottom: 32 }
+          openTitles.includes(title || '')
+            ? { height: '100%', paddingTop: 32, paddingBottom: 32 }
             : {}
         }
         transition={{ duration: 0.3 }}
         className={clsx(
-          "flex flex-col gap-6 last:border-b-[1px] last:border-b-navyBlue overflow-hidden"
-        )}
-      >
-        {openTitles.includes(title || "") ? (
-          <div
-            className="select-inner"
-            dangerouslySetInnerHTML={{ __html: content }}
-          />
+          'flex flex-col gap-6 last:border-b-[1px] last:border-b-OUTLINE overflow-hidden',
+        )}>
+        {openTitles.includes(title || '') ? (
+          <div className="select-inner" dangerouslySetInnerHTML={{ __html: content }} />
         ) : null}
       </motion.div>
     </motion.div>

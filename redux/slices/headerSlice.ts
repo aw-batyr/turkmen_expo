@@ -13,7 +13,7 @@ interface HeaderState {
 
 const initialState: HeaderState = {
   activeLang: {
-    title: 'Ру',
+    title: 'Русский',
     localization: 'ru',
   },
   showInput: false,

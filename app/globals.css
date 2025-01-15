@@ -16,6 +16,7 @@
 
 body {
   height: 100%;
+  color: #171c1b;
 }
 
 .main-abs-bg::before {
@@ -29,7 +30,7 @@ body {
 }
 
 .custom-shadow {
-  box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.5);
+  box-shadow: 0 2px 6px 0 rgba(0, 0, 0, 0.3);
 }
 
 .greenBtnShadow {
@@ -137,6 +138,14 @@ p img {
     @apply w-full mx-auto max-w-[1290px] lg:px-10 md:px-6 px-4;
   }
 
+  .text_24 {
+    @apply text-[24px] leading-[130%] font-medium;
+  }
+
+  .text_16 {
+    @apply text-[16px] leading-[140%] text-ON_SURFACE_VAR;
+  }
+
   .page-container {
     @apply w-full mr-auto ml-[20px] max-w-[853px] pr-[20px];
   }
@@ -150,7 +159,7 @@ p img {
   }
 
   .border-btn {
-    @apply font-medium text-bgWhite rounded-[2px] text-sm border-[1px] border-navyBlue4 hover:border-bgWhite hover:bg-bgWhite hover:text-blueBg transition-all;
+    @apply font-medium text-bgWhite rounded-[2px] text-sm border-[1px] border-OUTLINE_VAR hover:border-bgWhite hover:bg-bgWhite hover:text-blueBg transition-all;
   }
 
   :disabled {
@@ -170,19 +179,15 @@ p img {
   }
 
   .bid-input {
-    @apply focus:outline-none bg-transparent border-[1px] border-navyBlue rounded-[2px] py-[12px] pl-[15px] pr-10;
+    @apply focus:outline-none bg-transparent border-[1px] border-OUTLINE rounded-[2px] py-[12px] pl-[15px] pr-10;
   }
 
   .bid-drop {
-    @apply focus:outline-none bg-transparent border-[1px] border-navyBlue rounded-[2px] py-[12px] px-[15px];
-  }
-
-  .bid-option {
-    @apply bg-navyBlue3 py-[15px] px-[12px] w-full;
+    @apply focus:outline-none bg-transparent border-[1px] border-OUTLINE rounded-[2px] py-[12px] px-[15px];
   }
 
   .radio {
-    @apply w-[16px] h-[16px] p-[3px] border-[1px] border-navyBlue4 rounded-full;
+    @apply w-[16px] h-[16px] p-[3px] border-[1px] border-OUTLINE_VAR rounded-full;
   }
 
   .flex-centers {
@@ -199,6 +204,22 @@ p img {
 
   .radio-btn:hover + .radio-hover {
     @apply text-black;
+  }
+
+  .event-block hr {
+    @apply border-OUTLINE_VAR;
+  }
+
+  .event-block h4 {
+    @apply text_24 flex-[0_0_50%];
+  }
+
+  .event-block h5 {
+    @apply text_16 flex-[0_0_50%];
+  }
+
+  .full-btn {
+    @apply h-12 w-full flex items-center font-medium justify-center text-[14px] leading-[130%] rounded-[4px];
   }
 
   .list-decor {

@@ -1,18 +1,14 @@
-import { EventCard } from "@/components/cards/EventCard";
-import { BreadCrumbs } from "@/components/ui/BreadCrumbs";
-import { Title } from "@/components/home/Title";
-import { getCalendar } from "@/services/calendar";
+import { EventCard } from '@/components/cards/EventCard';
+import { BreadCrumbs } from '@/components/ui/BreadCrumbs';
+import { Title } from '@/components/home/Title';
+import { getCalendar } from '@/services/calendar';
 
-export default async function CalendarPage({
-  searchParams,
-}: {
-  searchParams: { lang: string };
-}) {
+export default async function CalendarPage({ searchParams }: { searchParams: { lang: string } }) {
   const lang = searchParams.lang;
 
   const data = await getCalendar(lang);
 
-  const title = lang === "en" ? "Calendar of events" : "Календарь мероприятий";
+  const title = lang === 'en' ? 'Calendar of events' : 'Календарь мероприятий';
   return (
     <div className="section-mb">
       <div className="container flex flex-col items-start pt-[20px] gap-10 md:gap-12">

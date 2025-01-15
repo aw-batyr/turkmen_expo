@@ -15,7 +15,7 @@ export const Card = ({ img, date, grid, id, title }: Props) => {
   const small = useMediaQuery('(min-width: 630px)');
 
   return grid || !small ? (
-    <div className="border-[1px] border-navyBlue">
+    <div className="border border-OUTLINE/20">
       <Image
         width={430}
         height={210}
@@ -31,7 +31,7 @@ export const Card = ({ img, date, grid, id, title }: Props) => {
       </Link>
     </div>
   ) : (
-    <div className="flex w-full border-y-[1px] border-r-[1px] border-y-navyBlue border-r-navyBlue">
+    <div className="flex w-full border border-OUTLINE/20 ">
       <Image
         src={img}
         alt=""

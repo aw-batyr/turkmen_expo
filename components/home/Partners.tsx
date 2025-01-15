@@ -1,16 +1,16 @@
-"use client";
+'use client';
 
-import React, { useEffect, useState } from "react";
-import Image from "next/image";
-import { Swiper, SwiperSlide } from "swiper/react";
+import React, { useEffect, useState } from 'react';
+import Image from 'next/image';
+import { Swiper, SwiperSlide } from 'swiper/react';
 
-import { Title } from "./Title";
-import { Autoplay, Pagination } from "swiper/modules";
-import { useAppSelector } from "@/redux/hooks";
-import { selectHeader } from "@/redux/slices/headerSlice";
-import { PartnersType } from "@/lib/types/PartnersData.type";
-import { baseAPI } from "@/lib/API";
-import { useLang } from "@/utils/useLang";
+import { Title } from './Title';
+import { Autoplay, Pagination } from 'swiper/modules';
+import { useAppSelector } from '@/redux/hooks';
+import { selectHeader } from '@/redux/slices/headerSlice';
+import { PartnersType } from '@/lib/types/PartnersData.type';
+import { baseAPI } from '@/lib/API';
+import { useLang } from '@/utils/useLang';
 
 export const Partners = () => {
   const { activeLang } = useAppSelector(selectHeader);
@@ -20,7 +20,7 @@ export const Partners = () => {
     try {
       const res = await fetch(`${baseAPI}partners`, {
         headers: {
-          "Accept-Language": activeLang.localization,
+          'Accept-Language': activeLang.localization,
         },
       });
 
@@ -37,11 +37,9 @@ export const Partners = () => {
   }, [activeLang.localization]);
 
   return (
-    <div className="container">
+    <section className="container">
       <div className="mb-[40px]">
-        <Title
-          text={useLang("Partners", "Партнёры", activeLang.localization)}
-        />
+        <Title text={useLang('Partners', 'Партнёры', activeLang.localization)} />
       </div>
 
       <div className="flex items-center">
@@ -57,8 +55,7 @@ export const Partners = () => {
             768: { slidesPerView: 4.5 },
             630: { slidesPerView: 3.5 },
             300: { slidesPerView: 2 },
-          }}
-        >
+          }}>
           {partnersData &&
             partnersData.data.map((logo, i) => (
               <SwiperSlide key={i} className="h-[63px] w-fit overflow-hidden">
@@ -75,6 +72,6 @@ export const Partners = () => {
             ))}
         </Swiper>
       </div>
-    </div>
+    </section>
   );
 };

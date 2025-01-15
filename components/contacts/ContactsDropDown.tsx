@@ -38,7 +38,7 @@ export const ContactsDropDown = ({ title, subtitle, phone, email, site, openCont
     <motion.div className="w-full">
       <div
         onClick={() => onTitle(title)}
-        className="cursor-pointer flex items-center justify-between sm:py-5 py-4 border-t-navyBlue5 border-b-navyBlue border-y-[1px]">
+        className="cursor-pointer flex items-center justify-between sm:py-5 py-4 border-t-OUTLINE_VAR border-b-OUTLINE border-y-[1px]">
         <h3 className="sm:text-[21px] text-[16px] sm:font-semibold font-normal sm:leading-[100%] leading-[120%]">
           {title}
         </h3>
@@ -75,7 +75,7 @@ export const ContactsDropDown = ({ title, subtitle, phone, email, site, openCont
             <div className="mt-[30px]">
               {innerContactData.map((item) => (
                 <div
-                  className="py-[30px] border-t-[1px] last:border-b-[1px] border-navyBlue5"
+                  className="py-[30px] border-t-[1px] last:border-b-[1px] border-OUTLINE_VAR"
                   key={v4()}>
                   <h4 className="font-medium text-[18px] mb-[30px] leading-[150%]">
                     {item.subtitle}

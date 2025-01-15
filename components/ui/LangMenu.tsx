@@ -13,7 +13,7 @@ import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 
 export const lang: activeLangType[] = [
   {
-    title: 'Ру',
+    title: 'Русский',
     localization: 'ru',
   },
   // {
@@ -21,7 +21,7 @@ export const lang: activeLangType[] = [
   //   localization: 'tm',
   // },
   {
-    title: 'En',
+    title: 'English',
     localization: 'en',
   },
 ];
@@ -30,14 +30,13 @@ export const LangMenu = () => {
   const { activeLang } = useAppSelector(selectHeader);
   const searchParams = useSearchParams();
   const pathname = usePathname();
-  const { replace, refresh } = useRouter();
+  const { replace } = useRouter();
   const [active, setActive] = useState(false);
   const dispatch = useAppDispatch();
   const menuRef = useRef<HTMLDivElement>(null);
   const params = new URLSearchParams(searchParams as any);
 
   useEffect(() => {
-    // Проверяем, есть ли язык в URL
     if (!params.get('lang') || params.get('lang') !== activeLang.localization) {
       params.set('lang', activeLang.localization);
       replace(`${pathname}?${params.toString()}`);
@@ -66,7 +65,7 @@ export const LangMenu = () => {
   return (
     <div
       ref={menuRef}
-      className="relative  cursor-pointer flex items-center gap-x-[20px]"
+      className="relative w-[90px] cursor-pointer  flex items-center gap-x-[20px]"
       onClick={() => {
         setActive(!active);
       }}>
@@ -95,15 +94,15 @@ export const LangMenu = () => {
             transition={{
               duration: 0.2,
             }}
-            className="absolute overflow-hidden z-10 flex flex-col top-[27px] bg-[#059784] transition-all duration-300">
+            className="absolute rounded-[4px] w-[112px] overflow-hidden custom-shadow z-10 flex flex-col top-[27px] bg-[#EEF1F0] transition-all duration-300">
             {lang
               .filter((item) => item.title !== activeLang.title)
               .map((item, i) => (
                 <div
                   key={i}
                   onClick={() => setLang(item)}
-                  className={clsx('p-3 pr-[22px] text-extraSm text-bgWhite transition-all', {
-                    'hover:bg-[#7e9996]/50': item.title === item.title,
+                  className={clsx('p-3 pr-[22px] py-4  text-extraSm  transition-all', {
+                    'hover:bg-ON_SECONDARY_CONTAINER/[8%]': item.title === item.title,
                   })}>
                   {item.title}
                 </div>

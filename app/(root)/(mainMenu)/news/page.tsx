@@ -78,7 +78,7 @@ const News = () => {
         <div>
           <div className="flex flex-col">
             <div className="flex flex-col">
-              <div className="hidden sm:flex justify-between items-center pb-[5px] mb-12">
+              <div className="hidden sm:flex justify-between items-center pb-[5px] ">
                 <div className="pointer-events-none opacity-0 flex items-center gap-5">
                   {menu.map((item, i) => (
                     <p key={i} className="cursor-pointer leading-[130%]">
@@ -86,12 +86,6 @@ const News = () => {
                     </p>
                   ))}
                 </div>
-                <Image
-                  onClick={() => setGrid(!grid)}
-                  className="cursor-pointer"
-                  src={!grid ? gridIco : col}
-                  alt="сетка"
-                />
               </div>
 
               <div
@@ -123,7 +117,7 @@ const News = () => {
                   </div>
                 )}
 
-                {newsData?.meta ? (
+                {newsData?.meta && (
                   <Pagination
                     current={current}
                     setCurrent={setCurrent}
@@ -131,7 +125,7 @@ const News = () => {
                     lastPage={newsData?.meta.last_page}
                     currentPage={newsData?.meta.current_page}
                   />
-                ) : null}
+                )}
               </div>
             </div>
           </div>
