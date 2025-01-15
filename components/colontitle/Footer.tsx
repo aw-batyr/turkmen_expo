@@ -48,7 +48,7 @@ export const Footer = () => {
           <div className="flex flex-col lg:flex-row lg:justify-between justify-center text-center lg:text-left lg:items-end items-center gap-6">
             <div className="flex flex-col justify-end w-full">
               {localization === "ru" ? (
-                <div className="flex flex-col md:gap-y-[10px] gap-0">
+                <div className="flex flex-col md:gap-y-[10px] gap-2">
                   {footerInfo.slice(0, 3).map((item, i) => (
                     <p className="text-[12px] leading-[130%]" key={i}>
                       {item}
