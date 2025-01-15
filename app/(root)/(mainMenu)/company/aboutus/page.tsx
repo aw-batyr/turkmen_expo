@@ -1,62 +1,26 @@
-'use client';
+import { LayoutWithSidebar } from "@/components/page/LayoutWithSidebar";
+import { getAbout } from "@/services/about";
 
-import React, { useEffect, useState } from 'react';
+export default async function AboutPage({
+  searchParams,
+}: {
+  searchParams: { lang: string };
+}) {
+  const lang = searchParams.lang;
+  const data = await getAbout(lang);
 
-import { LayoutWithSidebar } from '@/components/page/LayoutWithSidebar';
-import { baseAPI } from '@/lib/API';
-import { useAppDispatch, useAppSelector } from '@/redux/hooks';
-import { selectHeader } from '@/redux/slices/headerSlice';
-import { fetchAbout } from '@/redux/slices/aboutus';
-import { useLang } from '@/utils/useLang';
-import Loader from '@/components/ui/Loader';
+  console.log(data);
 
-const About = () => {
-  const dispatch = useAppDispatch();
-  const [aboutDatas, setAboutData] = useState<string>();
-  const { activeLang } = useAppSelector(selectHeader);
-
-  // const aboutData = useAppSelector((state) => state.aboutSlice.aboutData);
-  const fecthAboutData = async () => {
-    try {
-      dispatch(fetchAbout({ activeLang }));
-      const res = await fetch(`${baseAPI}settings/about_us`, {
-        headers: {
-          'Accept-Language': activeLang.localization,
-        },
-      });
-
-      if (!res.ok) {
-        throw new Error('Error');
-      }
-
-      const data = await res.json();
-
-      setAboutData(data);
-    } catch (error) {
-      console.error(error);
-    }
-  };
-
-  useEffect(() => {
-    fecthAboutData();
-  }, [activeLang.localization]);
+  const aboutText = lang === "en" ? "About us" : "Коротко о нас";
 
   return (
-    <LayoutWithSidebar
-      second={useLang('About us', 'Коротко о нас', activeLang.localization)}
-      title={useLang('About us', 'Коротко о нас', activeLang.localization)}>
-      {aboutDatas ? (
-        <div
-          dangerouslySetInnerHTML={{
-            __html: aboutDatas,
-          }}
-          className="text-[16px] aboutus  text-p flex flex-col items-start gap-6 leading-[150%] pb-10"
-        />
-      ) : (
-        <Loader className="w-full" />
-      )}
+    <LayoutWithSidebar second={aboutText} title={aboutText}>
+      <div
+        dangerouslySetInnerHTML={{
+          __html: data,
+        }}
+        className="text-[16px] aboutus  text-p flex flex-col items-start gap-6 leading-[150%] pb-10"
+      />
     </LayoutWithSidebar>
   );
-};
-
-export default About;
+}

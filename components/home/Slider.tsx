@@ -54,25 +54,29 @@ export const Slider = ({ lang }: { lang: string }) => {
   if (loading) return <Loader />;
 
   return (
-    <Swiper
-      modules={[Autoplay, Pagination]}
-      loop
-      autoplay={{ delay: 3000 }}
-      speed={5000}
-      slidesPerView={1}
-      slidesPerGroup={1}
-      className="max-h-[600px] min-h-[320px] max-w-[1800px]"
-    >
-      {sliderData &&
-        sliderData?.data.banner_items.map((item, i) => (
-          <SwiperSlide key={i} className="w-full h-full">
-            <img
-              src={item.image}
-              alt="Баннер"
-              className="size-full object-contain object-center"
-            />
-          </SwiperSlide>
-        ))}
-    </Swiper>
+    <section className="max-h-[600px] min-h-[320px]">
+      <Swiper
+        modules={[Autoplay, Pagination]}
+        loop
+        autoplay={{ delay: 3000 }}
+        speed={5000}
+        slidesPerView={1}
+        slidesPerGroup={1}
+        className="size-full"
+      >
+        {sliderData &&
+          sliderData?.data.banner_items.map((item, i) => (
+            <SwiperSlide key={i} className="size-full">
+              <Image
+                height={320}
+                width={1920}
+                src={item.image}
+                alt="Баннер"
+                className="object-cover size-full"
+              />
+            </SwiperSlide>
+          ))}
+      </Swiper>
+    </section>
   );
 };
