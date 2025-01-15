@@ -1,11 +1,11 @@
 import { LayoutWithSidebar } from "@/components/page/LayoutWithSidebar";
 import { getAbout } from "@/services/about";
 
-export default async function AboutPage({
+const AboutPage = async ({
   searchParams,
 }: {
   searchParams: { lang: string };
-}) {
+}) => {
   const lang = searchParams.lang;
   const data = await getAbout(lang);
 
@@ -23,4 +23,6 @@ export default async function AboutPage({
       />
     </LayoutWithSidebar>
   );
-}
+};
+
+export default AboutPage;
