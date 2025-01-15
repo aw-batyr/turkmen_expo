@@ -33,6 +33,17 @@ export const burgerMenu = [
         link: "/services/organization",
       },
       {
+        title: "B2B Встречи и Бизнес-Матчмейкинг",
+        titleEn: "B2B Meetings & Business Matchmaking",
+        link: "/services/meetings",
+      },
+      {
+        title: "Бизнес-Миссии",
+        titleEn: "Business Missions",
+        link: "/services/missions",
+      },
+
+      {
         title: "Рекламная деятельность",
         titleEn: "Advertising activity",
         link: "/services/advertising",
