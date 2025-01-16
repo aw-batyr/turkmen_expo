@@ -7,7 +7,7 @@ import './styles/events.css';
 import { useLang } from '@/utils/useLang';
 import { FC } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
-import { EventCard } from '../cards/EventCard';
+import { EventCard } from '../cards/event-card';
 import { CalendarType } from '@/lib/types/Calendar.type';
 import { useAppSelector } from '@/redux/hooks';
 

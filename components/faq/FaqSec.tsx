@@ -6,12 +6,12 @@ import { v4 } from 'uuid';
 import { useAppSelector } from '@/redux/hooks';
 
 import { Radio } from '../ui/Radio';
-import { Title } from '../home/Title';
+import { Title } from '../home/title';
 import { baseAPI } from '@/lib/API';
 import { selectHeader } from '@/redux/slices/headerSlice';
 import { FaqDataType, RadioDataType } from '@/lib/types/FaqData.type';
 import { Select } from './Select';
-import { BreadCrumbs } from '../ui/BreadCrumbs';
+import { BreadCrumbs } from '../ui/bread-crumbs';
 import { useLang } from '@/utils/useLang';
 
 export const radio = [

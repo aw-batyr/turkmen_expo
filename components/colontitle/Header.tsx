@@ -10,10 +10,10 @@ import logo from '@/public/assets/icons/logo.svg';
 import search from '@/public/assets/icons/header/search.svg';
 import searchMob from '@/public/assets/icons/header/mob-search.svg';
 
-import { LangMenu } from '../ui/LangMenu';
+import { LangMenu } from '../ui/lang-menu';
 import { SearchInput } from '../home/search-input';
 import { headerMenu2 } from '@/lib/database/pathnames';
-import { BurgerMenu } from '../ui/BurgerMenu';
+import { BurgerMenu } from '../ui/burger-menu';
 import { useAppDispatch, useAppSelector } from '@/redux/hooks';
 import { selectHeader, setShowInput } from '@/redux/slices/headerSlice';
 import { selectBurger, setBurgerOpen } from '@/redux/slices/burgerSlice';

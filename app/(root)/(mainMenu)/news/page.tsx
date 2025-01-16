@@ -2,21 +2,18 @@
 
 import React, { useEffect, useState } from 'react';
 
-import col from '@/public/assets/icons/news/col.svg';
-import gridIco from '@/public/assets/icons/news/grid.svg';
-
 import { LayoutWithSidebar } from '@/components/page/LayoutWithSidebar';
 import { useLang } from '@/utils/useLang';
 import { useAppSelector } from '@/redux/hooks';
 import { selectHeader } from '@/redux/slices/headerSlice';
 import { NewsData } from '@/lib/types/NewsData.type';
 import { baseAPI } from '@/lib/API';
-import Loader from '@/components/ui/Loader';
+import Loader from '@/components/ui/loader';
 import Image from 'next/image';
 import clsx from 'clsx';
 import { Card } from '@/components/news/Card';
-import { BorderBtn } from '@/components/ui/Buttons';
-import { Pagination } from '@/components/ui/Pagination';
+import { BorderBtn } from '@/components/ui/buttons';
+import { Pagination } from '@/components/ui/pagination';
 
 const News = () => {
   const { activeLang } = useAppSelector(selectHeader);

@@ -2,15 +2,15 @@
 
 import React, { useEffect, useState } from 'react';
 
-import { Title } from '@/components/home/Title';
-import { BreadCrumbs } from '@/components/ui/BreadCrumbs';
+import { Title } from '@/components/home/title';
+import { BreadCrumbs } from '@/components/ui/bread-crumbs';
 import { useAppSelector } from '@/redux/hooks';
 import { selectHeader } from '@/redux/slices/headerSlice';
 import { baseAPI } from '@/lib/API';
 import { v4 } from 'uuid';
 import { ContactsDataType } from '@/lib/types/Contacts.type';
 import { useLang } from '@/utils/useLang';
-import Loader from '@/components/ui/Loader';
+import Loader from '@/components/ui/loader';
 
 const Contacts = () => {
   const [contactsData, setContactsData] = useState<ContactsDataType>();

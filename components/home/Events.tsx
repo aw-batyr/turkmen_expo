@@ -1,6 +1,6 @@
-import { EventCard } from '../cards/EventCard';
+import { EventCard } from '../cards/event-card';
 
-import { Title } from './Title';
+import { Title } from './title';
 import { getEvents } from '@/services/home';
 import { EventsMobile } from './events-mobile';
 import { LinkButton } from '../ui/link-button';

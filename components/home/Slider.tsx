@@ -1,24 +1,24 @@
-"use client";
+'use client';
 
-import "swiper/css";
-import "swiper/css/navigation";
-import "swiper/css/pagination";
-import "swiper/css/scrollbar";
+import 'swiper/css';
+import 'swiper/css/navigation';
+import 'swiper/css/pagination';
+import 'swiper/css/scrollbar';
 
-import React, { useEffect, useState } from "react";
-import Image from "next/image";
-import { Swiper, SwiperSlide } from "swiper/react";
-import { SliderType } from "@/lib/types/SliderData.type";
-import { useSliderBanner } from "@/hooks/use-slider";
-import { useAppSelector } from "@/redux/hooks";
-import { useMediaQuery } from "usehooks-ts";
-import { Autoplay, Pagination } from "swiper/modules";
-import Loader from "../ui/Loader";
-import { baseAPI } from "@/lib/API";
+import React, { useEffect, useState } from 'react';
+import Image from 'next/image';
+import { Swiper, SwiperSlide } from 'swiper/react';
+import { SliderType } from '@/lib/types/SliderData.type';
+import { useSliderBanner } from '@/hooks/use-slider';
+import { useAppSelector } from '@/redux/hooks';
+import { useMediaQuery } from 'usehooks-ts';
+import { Autoplay, Pagination } from 'swiper/modules';
+import Loader from '../ui/loader';
+import { baseAPI } from '@/lib/API';
 
 export const Slider = ({ lang }: { lang: string }) => {
-  const isTab = useMediaQuery("(min-width: 1024px)");
-  const isMd = useMediaQuery("(min-width: 700px)");
+  const isTab = useMediaQuery('(min-width: 1024px)');
+  const isMd = useMediaQuery('(min-width: 700px)');
 
   const [sliderData, setData] = useState<SliderType>();
   const [loading, setLoading] = useState(true);
@@ -29,12 +29,12 @@ export const Slider = ({ lang }: { lang: string }) => {
       setLoading(true);
       const res = await fetch(`${baseAPI}banners/${size}`, {
         headers: {
-          "Accept-Language": lang,
+          'Accept-Language': lang,
         },
       });
 
       if (!res.ok) {
-        throw new Error("Ошибка при загрузке данных");
+        throw new Error('Ошибка при загрузке данных');
       }
 
       const data: SliderType = await res.json();
@@ -62,8 +62,7 @@ export const Slider = ({ lang }: { lang: string }) => {
         speed={5000}
         slidesPerView={1}
         slidesPerGroup={1}
-        className="size-full"
-      >
+        className="size-full">
         {sliderData &&
           sliderData?.data.banner_items.map((item, i) => (
             <SwiperSlide key={i} className="size-full">

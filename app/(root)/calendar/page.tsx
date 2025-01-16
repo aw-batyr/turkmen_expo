@@ -1,7 +1,12 @@
-import { EventCard } from '@/components/cards/EventCard';
-import { BreadCrumbs } from '@/components/ui/BreadCrumbs';
-import { Title } from '@/components/home/Title';
+import { EventCard } from '@/components/cards/event-card';
+import { BreadCrumbs } from '@/components/ui/bread-crumbs';
+import { Title } from '@/components/home/title';
 import { getCalendar } from '@/services/calendar';
+import { Metadata } from 'next';
+
+const metadata: Metadata = {
+  title: 'TurkmenExpo | calendar'
+}
 
 export default async function CalendarPage({ searchParams }: { searchParams: { lang: string } }) {
   const lang = searchParams.lang;

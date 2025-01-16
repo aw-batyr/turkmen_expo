@@ -4,10 +4,10 @@ import { useEffect, useState } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation } from 'swiper/modules';
 
-import { NewsCard } from '../cards/NewsCard';
+import { NewsCard } from '../cards/news-card';
 import { NavBtn } from './ui/NavBtn';
-import { GreenBtn } from '../ui/Buttons';
-import { Title } from './Title';
+import { GreenBtn } from '../ui/buttons';
+import { Title } from './title';
 
 import { useAppSelector } from '@/redux/hooks';
 import { selectHeader } from '@/redux/slices/headerSlice';
@@ -21,7 +21,7 @@ import 'swiper/css/pagination';
 import 'swiper/css/scrollbar';
 import Link from 'next/link';
 import { useLang } from '@/utils/useLang';
-import Loader from '../ui/Loader';
+import Loader from '../ui/loader';
 
 export const News = () => {
   const [newsData, setNewsData] = useState<NewsData>();

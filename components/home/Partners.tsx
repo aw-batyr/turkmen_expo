@@ -4,7 +4,7 @@ import React, { useEffect, useState } from 'react';
 import Image from 'next/image';
 import { Swiper, SwiperSlide } from 'swiper/react';
 
-import { Title } from './Title';
+import { Title } from './title';
 import { Autoplay, Pagination } from 'swiper/modules';
 import { useAppSelector } from '@/redux/hooks';
 import { selectHeader } from '@/redux/slices/headerSlice';

@@ -1,6 +1,6 @@
-import { EventPageButtons } from "@/components/calendar/event-page-buttons";
-import { getEventPage } from "@/services/calendar";
-import Image from "next/image";
+import { EventPageButtons } from '@/components/calendar/event-page-buttons';
+import { getEventPage } from '@/services/calendar';
+import Image from 'next/image';
 
 export default async function EventPage({
   params,
@@ -18,7 +18,7 @@ export default async function EventPage({
   return (
     <div className="flex flex-col container gap-20 pt-16 section-mb">
       <h1 className="text-[48px] text-ON_SURFACE leading-[115%] font-medium">
-        {data.title}
+        {data.title ? data.title : null}
       </h1>
 
       <div className="flex justify-between gap-6">
@@ -40,10 +40,14 @@ export default async function EventPage({
               </>
             )}
 
-            <div className="flex justify-between items-center">
-              <h4>Организатор</h4>
-              <h5>{data.organizers[0].name}</h5>
-            </div>
+            {data.organizers.length > 0 && (
+              <>
+                <div className="flex justify-between items-center">
+                  <h4>Организатор</h4>
+                  <h5>{data.organizers[0].name}</h5>
+                </div>
+              </>
+            )}
 
             {data.coorganizers.length > 0 && (
               <>

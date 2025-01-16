@@ -1,9 +1,9 @@
-import { Events } from '@/components/home/Events';
-import { News } from '@/components/home/News';
-import { Partners } from '@/components/home/Partners';
-import { Slider } from '@/components/home/Slider';
-import { Video } from '@/components/home/Video';
-import Loader from '@/components/ui/Loader';
+import { Events } from '@/components/home/events';
+import { News } from '@/components/home/news';
+import { Partners } from '@/components/home/partners';
+import { Slider } from '@/components/home/slider';
+import { Video } from '@/components/home/video';
+import Loader from '@/components/ui/loader';
 import { Suspense } from 'react';
 
 export default async function HomePage({ searchParams }: { searchParams: { lang: string } }) {
