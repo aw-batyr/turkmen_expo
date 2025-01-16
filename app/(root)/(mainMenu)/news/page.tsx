@@ -9,9 +9,9 @@ import { NewsData } from "@/lib/types/NewsData.type";
 import { baseAPI } from "@/lib/API";
 import Loader from "@/components/ui/Loader";
 import clsx from "clsx";
-import { Card } from "@/components/news/card";
+import { Card } from "@/components/news/Card";
 import { BorderBtn } from "@/components/ui/Buttons";
-import { Pagination } from "@/components/ui/pagination";
+import { Pagination } from "@/components/ui/Pagination";
 import { LayoutWithSidebar } from "@/components/page/layout-with-sidebar";
 
 const News = () => {
