@@ -2,7 +2,7 @@
 
 import React, { useEffect, useState } from "react";
 
-import { Title } from "@/components/home/Title";
+import { Title } from "@/components/ui/Title";
 import { BreadCrumbs } from "@/components/ui/bread-crumbs";
 import { useAppSelector } from "@/redux/hooks";
 import { selectHeader } from "@/redux/slices/headerSlice";
