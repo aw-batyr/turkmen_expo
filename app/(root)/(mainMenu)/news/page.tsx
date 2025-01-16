@@ -9,7 +9,7 @@ import { NewsData } from "@/lib/types/NewsData.type";
 import { baseAPI } from "@/lib/API";
 import Loader from "@/components/ui/loader";
 import clsx from "clsx";
-import { Card } from "@/components/news/Card";
+import { Card } from "@/components/news/card";
 import { BorderBtn } from "@/components/ui/buttons";
 import { Pagination } from "@/components/ui/pagination";
 import { LayoutWithSidebar } from "@/components/page/layout-with-sidebar";
