@@ -3,7 +3,7 @@ import { EventCard } from "../cards/event-card";
 import { getEvents } from "@/services/home";
 import { EventsMobile } from "./events-mobile";
 import { LinkButton } from "../ui/link-button";
-import { Title } from "./Title";
+import { Title } from "../ui/title";
 
 export const Events = async ({ lang }: { lang: string }) => {
   const data = await getEvents(lang);
