@@ -6,7 +6,7 @@ import { Navigation } from "swiper/modules";
 
 import { NewsCard } from "../cards/news-card";
 import { NavBtn } from "./ui/NavBtn";
-import { Title } from "./title";
+import { Title } from "./Title";
 
 import { useAppSelector } from "@/redux/hooks";
 import { selectHeader } from "@/redux/slices/headerSlice";
