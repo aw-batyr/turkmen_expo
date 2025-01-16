@@ -1,4 +1,4 @@
-import { Events } from "@/components/home/events";
+import { Events } from "@/components/home/Vvents";
 import { News } from "@/components/home/News";
 import { Partners } from "@/components/home/Partners";
 import { Slider } from "@/components/home/Slider";

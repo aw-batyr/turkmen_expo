@@ -4,7 +4,7 @@ import { Title } from "@/components/ui/Title";
 import { getCalendar } from "@/services/calendar";
 import { Metadata } from "next";
 
-const metadata: Metadata = {
+export const metadata: Metadata = {
   title: "TurkmenExpo | calendar",
 };
 
