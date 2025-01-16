@@ -1,30 +1,32 @@
-'use client';
+"use client";
 
-import React from 'react';
-import Link from 'next/link';
+import React from "react";
+import Link from "next/link";
 
-import { footerInfo, headerMenu2 } from '@/lib/database/pathnames';
-import { useAppSelector } from '@/redux/hooks';
-import clsx from 'clsx';
+import { footerInfo, headerMenu2 } from "@/lib/database/pathnames";
+import { useAppSelector } from "@/redux/hooks";
+import clsx from "clsx";
 
 export const socials = [
-  { href: 'https://www.linkedin.com/company/turkmen-expo', icon: 'linkedin' },
+  { href: "https://www.linkedin.com/company/turkmen-expo", icon: "linkedin" },
   {
-    href: 'https://www.facebook.com/profile.php?id=61567254728028',
-    icon: 'facebook',
+    href: "https://www.facebook.com/profile.php?id=61567254728028",
+    icon: "facebook",
   },
   {
-    href: 'https://www.instagram.com/turkmenexpo_tm?igsh=bnhkOWpmNWcwcHBq',
-    icon: 'instagram',
+    href: "https://www.instagram.com/turkmenexpo_tm?igsh=bnhkOWpmNWcwcHBq",
+    icon: "instagram",
   },
   {
-    href: 'https://x.com/turkmenexpo?t=D-XSa8d0AC8GAv5peAzteA&s=09',
-    icon: 'x',
+    href: "https://x.com/turkmenexpo?t=D-XSa8d0AC8GAv5peAzteA&s=09",
+    icon: "x",
   },
 ];
 
 export const Footer = () => {
-  const localization = useAppSelector((state) => state.headerSlice.activeLang.localization);
+  const localization = useAppSelector(
+    (state) => state.headerSlice.activeLang.localization
+  );
 
   return (
     <footer className="bg-PRIMARY text-white pt-6 pb-5 mob:py-[40px]">
@@ -35,7 +37,7 @@ export const Footer = () => {
 
             <div className="flex flex-col mt-8 lg:flex-row items-center font-medium gap-12">
               {headerMenu2
-                .filter((item) => (localization === 'en' ? item.en : !item.en))
+                .filter((item) => (localization === "en" ? item.en : !item.en))
                 .map((item, i) => (
                   <Link key={i} href={item.link} className="cursor-pointer">
                     {item.title}
@@ -46,15 +48,20 @@ export const Footer = () => {
 
           <div className="flex flex-col lg:flex-row lg:justify-between justify-center text-center lg:text-left lg:items-end items-center gap-6">
             <div className="flex flex-col justify-end w-full">
-              {localization === 'ru' ? (
+              {localization === "ru" ? (
                 <div className="flex flex-col md:gap-y-[10px] gap-2">
                   {footerInfo.slice(0, 4).map((item, i) => (
-                    <p className={clsx('text-[12px] leading-[130%]', { 'ml-8': i === 2 })} key={i}>
+                    <p
+                      className={clsx("text-[12px] leading-[130%]", {
+                        "ml-8": i === 2,
+                      })}
+                      key={i}
+                    >
                       {item}
                     </p>
                   ))}
                 </div>
-              ) : localization === 'en' ? (
+              ) : localization === "en" ? (
                 <div className="flex flex-col md:gap-y-[10px] gap-0">
                   {footerInfo.slice(3, 7).map((item, i) => (
                     <p className="text-[12px] leading-[130%]" key={i}>
@@ -67,7 +74,12 @@ export const Footer = () => {
 
             <div className="flex items-center gap-6">
               {socials.map((item, i) => (
-                <a key={i} href={item.href} target="_blank" className="size-8 p-1">
+                <a
+                  key={i}
+                  href={item.href}
+                  target="_blank"
+                  className="size-8 p-1"
+                >
                   <img
                     src={`/assets/icons/${item.icon}.svg`}
                     alt="social"

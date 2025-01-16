@@ -1,4 +1,4 @@
-import { LayoutWithSidebar } from "@/components/page/LayoutWithSidebar";
+import { LayoutWithSidebar } from "@/components/page/layout-with-sidebar";
 import { baseAPI } from "@/lib/API";
 import { ServicesType } from "@/lib/types/Services.data";
 import { getServices } from "@/services/services";

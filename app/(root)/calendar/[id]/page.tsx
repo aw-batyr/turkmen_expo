@@ -1,6 +1,6 @@
-import { EventPageButtons } from '@/components/calendar/event-page-buttons';
-import { getEventPage } from '@/services/calendar';
-import Image from 'next/image';
+import { EventPageButtons } from "@/components/calendar/event-page-buttons";
+import { getEventPage } from "@/services/calendar";
+import Image from "next/image";
 
 export default async function EventPage({
   params,
@@ -13,15 +13,13 @@ export default async function EventPage({
 
   const data = await getEventPage(id, searchParams.lang);
 
-  console.log(data);
-
   return (
     <div className="flex flex-col container gap-20 pt-16 section-mb">
       <h1 className="text-[48px] text-ON_SURFACE leading-[115%] font-medium">
         {data.title ? data.title : null}
       </h1>
 
-      <div className="flex justify-between gap-6">
+      <div className="flex flex-col lg:flex-row justify-between gap-6">
         <div className="flex flex-col gap-20 w-full">
           <div className="flex flex-col gap-8 event-block ">
             <div className="flex justify-between items-center">
@@ -61,7 +59,7 @@ export default async function EventPage({
             )}
           </div>
 
-          <EventPageButtons />
+          {/* <EventPageButtons /> */}
         </div>
 
         <Image
@@ -74,8 +72,8 @@ export default async function EventPage({
       </div>
 
       <div className="flex flex-col gap-8">
-        <div className="flex gap-6">
-          <h4 className="text_24 flex-[0_0_392px]">Описание</h4>
+        <div className="flex flex-col lg:flex-row gap-6">
+          <h4 className="text_24 lg:flex-[0_0_392px]">Описание</h4>
           <p className="flex-1 text_16">{data.description}</p>
         </div>
 
@@ -83,8 +81,10 @@ export default async function EventPage({
           <>
             <hr className="border-OUTLINE_VAR" />
 
-            <div className="flex gap-6">
-              <h4 className="text_24 flex-[0_0_392px]">Тематика мероприятия</h4>
+            <div className="flex flex-col lg:flex-row gap-6">
+              <h4 className="text_24 lg:flex-[0_0_392px]">
+                Тематика мероприятия
+              </h4>
               <div
                 className="flex-1 text_16"
                 dangerouslySetInnerHTML={{ __html: data.event_topic }}
