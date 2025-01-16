@@ -1,6 +1,6 @@
 import { EventCard } from "@/components/cards/event-card";
 import { BreadCrumbs } from "@/components/ui/bread-crumbs";
-import { Title } from "@/components/ui/Title";
+import { Title } from "@/components/ui/title";
 import { getCalendar } from "@/services/calendar";
 import { Metadata } from "next";
 

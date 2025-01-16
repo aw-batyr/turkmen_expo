@@ -10,7 +10,7 @@ import { selectHeader } from "@/redux/slices/headerSlice";
 import { PartnersType } from "@/lib/types/PartnersData.type";
 import { baseAPI } from "@/lib/API";
 import { useLang } from "@/utils/useLang";
-import { Title } from "../ui/Title";
+import { Title } from "../ui/title";
 
 export const Partners = () => {
   const { activeLang } = useAppSelector(selectHeader);

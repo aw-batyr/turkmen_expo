@@ -4,7 +4,7 @@ import React from "react";
 import { BreadCrumbs } from "../ui/bread-crumbs";
 import { usePathname } from "next/navigation";
 import { useAppSelector } from "@/redux/hooks";
-import { Title } from "../ui/Title";
+import { Title } from "../ui/title";
 
 interface Props {
   title: string;

@@ -12,7 +12,7 @@ import { NewsPageType } from "@/lib/types/NewsPage.type";
 import Link from "next/link";
 import { BreadCrumbs } from "@/components/ui/bread-crumbs";
 import Loader from "@/components/ui/Loader";
-import { Title } from "@/components/ui/Title";
+import { Title } from "@/components/ui/title";
 
 const page = ({ params }: { params: { id: string } }) => {
   const dispatch = useAppDispatch();
