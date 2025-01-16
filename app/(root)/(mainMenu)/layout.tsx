@@ -1,4 +1,4 @@
-import { Sidebar } from "@/components/ui/sidebar";
+import { Sidebar } from "@/components/ui/Sidebar";
 import React from "react";
 
 const CompanyLayout = ({ children }: { children: React.ReactNode }) => {
