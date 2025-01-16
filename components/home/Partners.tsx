@@ -4,13 +4,13 @@ import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import { Swiper, SwiperSlide } from "swiper/react";
 
-import { Title } from "./Title";
 import { Autoplay, Pagination } from "swiper/modules";
 import { useAppSelector } from "@/redux/hooks";
 import { selectHeader } from "@/redux/slices/headerSlice";
 import { PartnersType } from "@/lib/types/PartnersData.type";
 import { baseAPI } from "@/lib/API";
 import { useLang } from "@/utils/useLang";
+import { Title } from "../ui/Title";
 
 export const Partners = () => {
   const { activeLang } = useAppSelector(selectHeader);

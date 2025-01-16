@@ -1,10 +1,10 @@
 "use client";
 
 import React from "react";
-import { Title } from "../home/Title";
 import { BreadCrumbs } from "../ui/bread-crumbs";
 import { usePathname } from "next/navigation";
 import { useAppSelector } from "@/redux/hooks";
+import { Title } from "../ui/Title";
 
 interface Props {
   title: string;

@@ -6,7 +6,6 @@ import { Navigation } from "swiper/modules";
 
 import { NewsCard } from "../cards/news-card";
 import { NavBtn } from "./ui/NavBtn";
-import { Title } from "./Title";
 
 import { useAppSelector } from "@/redux/hooks";
 import { selectHeader } from "@/redux/slices/headerSlice";
@@ -22,6 +21,7 @@ import Link from "next/link";
 import { useLang } from "@/utils/useLang";
 import Loader from "../ui/Loader";
 import { GreenBtn } from "../ui/Buttons";
+import { Title } from "../ui/Title";
 
 export const News = () => {
   const [newsData, setNewsData] = useState<NewsData>();
