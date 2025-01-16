@@ -2,7 +2,7 @@
 import React from "react";
 import Image from "next/image";
 
-import { GreenBtn } from "@/components/ui/buttons";
+import { GreenBtn } from "@/components/ui/Buttons";
 
 import { useAppDispatch, useAppSelector } from "@/redux/hooks";
 import { selectHeader, setShowInput } from "@/redux/slices/headerSlice";
@@ -10,7 +10,7 @@ import { baseAPI } from "@/lib/API";
 import { NewsPageType } from "@/lib/types/NewsPage.type";
 import Link from "next/link";
 import { BreadCrumbs } from "@/components/ui/bread-crumbs";
-import Loader from "@/components/ui/loader";
+import Loader from "@/components/ui/Loader";
 import { Title } from "@/components/home/title";
 
 const page = ({ params }: { params: { id: string } }) => {
