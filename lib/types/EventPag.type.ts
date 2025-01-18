@@ -21,6 +21,10 @@ export interface Data {
   event_topic: string;
   installation_date: string;
   dismantling_date: string;
+  url_registration?: string;
+  url_web?: string;
+  url_detailed?: string;
+  our: number;
 }
 
 export interface Image {
