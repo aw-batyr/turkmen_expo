@@ -88,7 +88,7 @@ export const EventCard = ({
 
         <div className="flex md:flex-nowrap flex-wrap items-start lg:gap-x-[33px] gap-[10px]">
           <Image
-            src={images?.[0].path || ""}
+            src={images?.[0]?.path || ""}
             width={228}
             height={228}
             alt="Event Image"

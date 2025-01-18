@@ -59,11 +59,11 @@ export default async function EventPage({
             )}
           </div>
 
-          {/* <EventPageButtons /> */}
+          <EventPageButtons />
         </div>
 
         <Image
-          src={data.images[0].path}
+          src={data.images?.[0]?.path || ""}
           width={392}
           height={392}
           alt="event image"
