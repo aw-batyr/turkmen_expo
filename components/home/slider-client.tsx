@@ -5,7 +5,7 @@ import Image from "next/image";
 import { useMediaQuery } from "usehooks-ts";
 import { useAppSelector } from "@/redux/hooks";
 import { useSliderBanner } from "@/hooks/use-slider";
-import Loader from "../ui/loader";
+import Loader from "../ui/Loader";
 
 export const SliderClient = () => {
   const isTab = useMediaQuery("(min-width: 1024px)");

@@ -12,7 +12,7 @@ import { SliderType } from "@/lib/types/SliderData.type";
 import { useSliderBanner } from "@/hooks/use-slider";
 import { useMediaQuery } from "usehooks-ts";
 import { Autoplay, Pagination } from "swiper/modules";
-import Loader from "../ui/loader";
+import Loader from "../ui/Loader";
 import { baseAPI } from "@/lib/API";
 
 export const Slider = ({ lang }: { lang: string }) => {

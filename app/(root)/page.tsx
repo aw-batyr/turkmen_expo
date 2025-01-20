@@ -1,7 +1,7 @@
 import { Events } from "@/components/home/Events";
 import { News } from "@/components/home/News";
 import { Partners } from "@/components/home/Partners";
-import { Slider } from "@/components/home/slider";
+import { Slider } from "@/components/home/Slider";
 import { Video } from "@/components/home/video";
 import Loader from "@/components/ui/Loader";
 import { Suspense } from "react";
