@@ -3,7 +3,7 @@ import { News } from "@/components/home/News";
 import { Partners } from "@/components/home/Partners";
 import { Slider } from "@/components/home/slider";
 import { Video } from "@/components/home/video";
-import Loader from "@/components/ui/loader";
+import Loader from "@/components/ui/Loader";
 import { Suspense } from "react";
 
 export default async function HomePage({

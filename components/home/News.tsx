@@ -21,7 +21,7 @@ import Link from "next/link";
 import { useLang } from "@/utils/useLang";
 import { GreenBtn } from "../ui/Buttons";
 import { Title } from "../ui/title";
-import Loader from "@/components/ui/loader";
+import Loader from "@/components/ui/Loader";
 
 export const News = () => {
   const [newsData, setNewsData] = useState<NewsData>();

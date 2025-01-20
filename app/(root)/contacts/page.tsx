@@ -10,7 +10,7 @@ import { baseAPI } from "@/lib/API";
 import { v4 } from "uuid";
 import { ContactsDataType } from "@/lib/types/Contacts.type";
 import { useLang } from "@/utils/useLang";
-import Loader from "@/components/ui/loader";
+import Loader from "@/components/ui/Loader";
 
 const Contacts = () => {
   const [contactsData, setContactsData] = useState<ContactsDataType>();
