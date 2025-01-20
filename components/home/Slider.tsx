@@ -10,7 +10,6 @@ import Image from "next/image";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { SliderType } from "@/lib/types/SliderData.type";
 import { useSliderBanner } from "@/hooks/use-slider";
-import { useAppSelector } from "@/redux/hooks";
 import { useMediaQuery } from "usehooks-ts";
 import { Autoplay, Pagination } from "swiper/modules";
 import Loader from "../ui/loader";
