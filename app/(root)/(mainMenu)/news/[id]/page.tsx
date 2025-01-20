@@ -11,10 +11,10 @@ import { baseAPI } from "@/lib/API";
 import { NewsPageType } from "@/lib/types/NewsPage.type";
 import Link from "next/link";
 import { BreadCrumbs } from "@/components/ui/bread-crumbs";
-import Loader from "@/components/ui/loader";
 import { Title } from "@/components/ui/title";
+import Loader from "@/components/ui/loader";
 
-const page = ({ params }: { params: { id: string } }) => {
+export default function SingleNewsPage({ params }: { params: { id: string } }) {
   const dispatch = useAppDispatch();
 
   const { activeLang } = useAppSelector(selectHeader);
@@ -70,7 +70,7 @@ const page = ({ params }: { params: { id: string } }) => {
         />
       )}
       <div className="mb-[50px]">
-        {newsItemData ? (
+        {newsItemData && (
           <>
             <div
               dangerouslySetInnerHTML={{
@@ -80,7 +80,7 @@ const page = ({ params }: { params: { id: string } }) => {
             />
             <br />
           </>
-        ) : null}
+        )}
       </div>
 
       <Link href="/news" className="flex justify-center">
@@ -88,6 +88,4 @@ const page = ({ params }: { params: { id: string } }) => {
       </Link>
     </div>
   );
-};
-
-export default page;
+}
