@@ -25,7 +25,7 @@ export const Events = async ({ lang }: { lang: string }) => {
             }
           />
         </div>
-        <div className="mb-[158px] w-full flex flex-col items-center gap-8">
+        <div className="w-full flex flex-col items-center gap-8">
           {data.data.slice(0, 2).map((item, i) => (
             <EventCard
               coorganizers={item.coorganizers}

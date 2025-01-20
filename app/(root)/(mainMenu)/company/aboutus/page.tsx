@@ -9,8 +9,6 @@ export default async function AboutPage({
   const lang = searchParams.lang;
   const data = await getAbout(lang);
 
-  console.log(data);
-
   const aboutText = lang === "en" ? "About us" : "Коротко о нас";
 
   return (

@@ -19,7 +19,7 @@ import "swiper/css/pagination";
 import "swiper/css/scrollbar";
 import Link from "next/link";
 import { useLang } from "@/utils/useLang";
-import Loader from "../ui/Loader";
+import Loader from "../ui/loader";
 import { GreenBtn } from "../ui/Buttons";
 import { Title } from "../ui/title";
 

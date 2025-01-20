@@ -13,7 +13,7 @@ import { useSliderBanner } from "@/hooks/use-slider";
 import { useAppSelector } from "@/redux/hooks";
 import { useMediaQuery } from "usehooks-ts";
 import { Autoplay, Pagination } from "swiper/modules";
-import Loader from "../ui/Loader";
+import Loader from "../ui/loader";
 import { baseAPI } from "@/lib/API";
 
 export const Slider = ({ lang }: { lang: string }) => {

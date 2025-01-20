@@ -1,18 +1,18 @@
-'use client';
+"use client";
 
-import React from 'react';
-import Image from 'next/image';
+import React from "react";
+import Image from "next/image";
 
-import { GreenBtn } from '@/components/ui/Buttons';
+import { GreenBtn } from "@/components/ui/Buttons";
 
-import { useAppDispatch, useAppSelector } from '@/redux/hooks';
-import { selectHeader, setShowInput } from '@/redux/slices/headerSlice';
-import { baseAPI } from '@/lib/API';
-import { NewsPageType } from '@/lib/types/NewsPage.type';
-import Link from 'next/link';
-import { BreadCrumbs } from '@/components/ui/bread-crumbs';
-import Loader from '@/components/ui/Loader';
-import { Title } from '@/components/ui/title';
+import { useAppDispatch, useAppSelector } from "@/redux/hooks";
+import { selectHeader, setShowInput } from "@/redux/slices/headerSlice";
+import { baseAPI } from "@/lib/API";
+import { NewsPageType } from "@/lib/types/NewsPage.type";
+import Link from "next/link";
+import { BreadCrumbs } from "@/components/ui/bread-crumbs";
+import Loader from "@/components/ui/loader";
+import { Title } from "@/components/ui/title";
 
 const page = ({ params }: { params: { id: string } }) => {
   const dispatch = useAppDispatch();
@@ -24,12 +24,12 @@ const page = ({ params }: { params: { id: string } }) => {
     try {
       const response = await fetch(`${baseAPI}news/${params.id}`, {
         headers: {
-          'Accept-Language': activeLang.localization,
+          "Accept-Language": activeLang.localization,
         },
       });
 
       if (!response.ok) {
-        throw new Error('error');
+        throw new Error("error");
       }
 
       const data = await response.json();
@@ -64,7 +64,7 @@ const page = ({ params }: { params: { id: string } }) => {
         <Image
           height={480}
           width={833}
-          src={newsItemData?.data.featured_images[0]?.path || ''}
+          src={newsItemData?.data.featured_images[0]?.path || ""}
           alt="картинка"
           className="mb-6 max-h-[480px] object-cover w-full"
         />
