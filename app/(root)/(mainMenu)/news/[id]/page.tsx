@@ -3,7 +3,7 @@ import React from 'react';
 import Image from 'next/image';
 
 import { Title } from '@/components/home/title';
-import { BorderBtn, GreenBtn } from '@/components/ui/buttons';
+import { GreenBtn } from '@/components/ui/buttons';
 
 import { useAppDispatch, useAppSelector } from '@/redux/hooks';
 import { selectHeader, setShowInput } from '@/redux/slices/headerSlice';

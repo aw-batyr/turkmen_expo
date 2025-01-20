@@ -1,6 +1,6 @@
 import { baseAPI } from '@/lib/API';
 import { CalendarType } from '@/lib/types/Calendar.type';
-import { EventPageType } from '@/lib/types/EventPag.type';
+import { EventPageType } from '@/lib/types/event-page.type';
 
 export const getCalendar = async (lang: string) => {
   const res = await fetch(`${baseAPI}expoevents?per_page=100`, {

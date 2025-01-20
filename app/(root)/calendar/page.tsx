@@ -4,9 +4,9 @@ import { Title } from '@/components/home/title';
 import { getCalendar } from '@/services/calendar';
 import { Metadata } from 'next';
 
-const metadata: Metadata = {
-  title: 'TurkmenExpo | calendar'
-}
+export const metadata: Metadata = {
+  title: 'TurkmenExpo | calendar',
+};
 
 export default async function CalendarPage({ searchParams }: { searchParams: { lang: string } }) {
   const lang = searchParams.lang;
@@ -14,6 +14,7 @@ export default async function CalendarPage({ searchParams }: { searchParams: { l
   const data = await getCalendar(lang);
 
   const title = lang === 'en' ? 'Calendar of events' : 'Календарь мероприятий';
+
   return (
     <div className="section-mb">
       <div className="container flex flex-col items-start pt-[20px] gap-10 md:gap-12">

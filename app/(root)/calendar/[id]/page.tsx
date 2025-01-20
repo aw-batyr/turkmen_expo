@@ -13,8 +13,6 @@ export default async function EventPage({
 
   const data = await getEventPage(id, searchParams.lang);
 
-  console.log(data);
-
   return (
     <div className="flex flex-col container gap-20 pt-16 section-mb">
       <h1 className="text-[48px] text-ON_SURFACE leading-[115%] font-medium">
@@ -61,7 +59,12 @@ export default async function EventPage({
             )}
           </div>
 
-          <EventPageButtons />
+          <EventPageButtons
+            once={Boolean(data.our)}
+            web={data.url_web}
+            register={data.url_registration}
+            details={data.url_detailed}
+          />
         </div>
 
         <Image

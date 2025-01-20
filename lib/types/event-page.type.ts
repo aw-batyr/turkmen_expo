@@ -8,7 +8,7 @@ export interface Data {
   description: string;
   category: string;
   organizers: Organizer[];
-  coorganizers: Organizer[];
+  coorganizers: any[];
   starts_at: Date;
   ends_at: Date;
   images: Image[];
@@ -19,6 +19,18 @@ export interface Data {
   installation_date: string;
   dismantling_date: string;
   event_topic: string;
+  url_registration: string;
+  url_web: string;
+  url_detailed: string;
+  our: number;
+}
+
+export interface Image {
+  id: number;
+  disk_name: string;
+  file_name: string;
+  path: string;
+  extension: string;
 }
 
 export interface Organizer {
@@ -33,14 +45,6 @@ export interface Organizer {
 
 export interface Phone {
   phone: string;
-}
-
-export interface Image {
-  id: number;
-  disk_name: string;
-  file_name: string;
-  path: string;
-  extension: string;
 }
 
 export interface Timing {
