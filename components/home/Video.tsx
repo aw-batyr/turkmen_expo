@@ -1,11 +1,11 @@
-import clsx from 'clsx';
+import clsx from "clsx";
 
 export const Video = () => {
   return (
     <section className="relative">
       <video
         className={clsx(
-          'w-full opacity-100 lg:h-[565px] sm:h-[375px] h-[250px] object-cover mx-auto',
+          "w-full opacity-100 lg:h-[565px] sm:h-[375px] h-[250px] object-cover mx-auto"
         )}
         id="vid"
         autoPlay
@@ -16,7 +16,8 @@ export const Video = () => {
       />
       <div
         id="spinner"
-        className="hidden border-[8px] border-solid border-l-red h-[60px] w-[60px] rounded-full z-[100] absolute top-[100px] left-[100px] "></div>
+        className="hidden border-[8px] border-solid border-l-red h-[60px] w-[60px] rounded-full z-[100] absolute top-[100px] left-[100px] "
+      ></div>
     </section>
   );
 };
