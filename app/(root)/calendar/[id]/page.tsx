@@ -19,7 +19,7 @@ export default async function EventPage({
         {data.title ? data.title : null}
       </h1>
 
-      <div className="flex justify-between gap-6">
+      <div className="flex flex-col lg:flex-row justify-between gap-6">
         <div className="flex flex-col gap-20 w-full">
           <div className="flex flex-col gap-8 event-block ">
             <div className="flex justify-between items-center">
@@ -61,14 +61,14 @@ export default async function EventPage({
 
           <EventPageButtons
             once={Boolean(data.our)}
-            web={data.url_web}
-            register={data.url_registration}
             details={data.url_detailed}
+            register={data.url_registration}
+            visit={data.url_web}
           />
         </div>
 
         <Image
-          src={data.images[0].path}
+          src={data.images?.[0]?.path || ''}
           width={392}
           height={392}
           alt="event image"
@@ -77,8 +77,8 @@ export default async function EventPage({
       </div>
 
       <div className="flex flex-col gap-8">
-        <div className="flex gap-6">
-          <h4 className="text_24 flex-[0_0_392px]">Описание</h4>
+        <div className="flex flex-col lg:flex-row gap-6">
+          <h4 className="text_24 lg:flex-[0_0_392px]">Описание</h4>
           <p className="flex-1 text_16">{data.description}</p>
         </div>
 
@@ -86,8 +86,8 @@ export default async function EventPage({
           <>
             <hr className="border-OUTLINE_VAR" />
 
-            <div className="flex gap-6">
-              <h4 className="text_24 flex-[0_0_392px]">Тематика мероприятия</h4>
+            <div className="flex flex-col lg:flex-row gap-6">
+              <h4 className="text_24 lg:flex-[0_0_392px]">Тематика мероприятия</h4>
               <div
                 className="flex-1 text_16"
                 dangerouslySetInnerHTML={{ __html: data.event_topic }}

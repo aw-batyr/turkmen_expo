@@ -1,31 +1,30 @@
-'use client';
+"use client";
 
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState } from "react";
 
-import { LayoutWithSidebar } from '@/components/page/LayoutWithSidebar';
-import { useLang } from '@/utils/useLang';
-import { useAppSelector } from '@/redux/hooks';
-import { selectHeader } from '@/redux/slices/headerSlice';
-import { NewsData } from '@/lib/types/NewsData.type';
-import { baseAPI } from '@/lib/API';
-import Loader from '@/components/ui/loader';
-import Image from 'next/image';
-import clsx from 'clsx';
-import { Card } from '@/components/news/Card';
-import { BorderBtn } from '@/components/ui/buttons';
-import { Pagination } from '@/components/ui/pagination';
+import { useLang } from "@/utils/useLang";
+import { useAppSelector } from "@/redux/hooks";
+import { selectHeader } from "@/redux/slices/headerSlice";
+import { NewsData } from "@/lib/types/NewsData.type";
+import { baseAPI } from "@/lib/API";
+import Loader from "@/components/ui/Loader";
+import clsx from "clsx";
+import { Card } from "@/components/news/Card";
+import { BorderBtn } from "@/components/ui/Buttons";
+import { Pagination } from "@/components/ui/Pagination";
+import { LayoutWithSidebar } from "@/components/page/layout-with-sidebar";
 
 const News = () => {
   const { activeLang } = useAppSelector(selectHeader);
 
-  const menu = ['Новости', 'СМИ о нас'];
+  const menu = ["Новости", "СМИ о нас"];
   const [current, setCurrent] = React.useState<number>(1);
   const [perPage, setPerPage] = React.useState<number>(6);
   const [totalNews, setTotalNews] = React.useState<number>(0);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    window.scrollTo({ behavior: 'smooth', top: 0 });
+    window.scrollTo({ behavior: "smooth", top: 0 });
   }, [current]);
 
   const [grid, setGrid] = React.useState(true);
@@ -34,11 +33,14 @@ const News = () => {
   const fetchNews = async () => {
     try {
       setLoading(true);
-      const response = await fetch(`${baseAPI}news?page=${current}&per_page=${perPage}`, {
-        headers: {
-          'Accept-Language': activeLang.localization,
-        },
-      });
+      const response = await fetch(
+        `${baseAPI}news?page=${current}&per_page=${perPage}`,
+        {
+          headers: {
+            "Accept-Language": activeLang.localization,
+          },
+        }
+      );
 
       if (!response.ok) {
         throw new Error(`Fetch failed with status ${response.status}`);
@@ -48,7 +50,7 @@ const News = () => {
       setNewsData(data);
       setTotalNews(data.meta.total);
     } catch (error) {
-      console.error('Fetch error:', error);
+      console.error("Fetch error:", error);
     } finally {
       setLoading(false);
     }
@@ -69,9 +71,10 @@ const News = () => {
   return (
     <div>
       <LayoutWithSidebar
-        title={useLang('News', 'Новости', activeLang.localization)}
-        second={useLang('News', 'Новости', activeLang.localization)}
-        cursor={false}>
+        title={useLang("News", "Новости", activeLang.localization)}
+        second={useLang("News", "Новости", activeLang.localization)}
+        cursor={false}
+      >
         <div>
           <div className="flex flex-col">
             <div className="flex flex-col">
@@ -86,14 +89,15 @@ const News = () => {
               </div>
 
               <div
-                className={clsx('mb-[48px] lg:mb-[108px]', {
-                  'flex flex-col gap-6': !grid,
-                  'grid grid-cols-1 sm:grid-cols-2 gap-5 sm:gap-8 lg:gap-y-10': grid,
-                })}>
+                className={clsx("mb-[48px] lg:mb-[108px]", {
+                  "flex flex-col gap-6": !grid,
+                  "grid grid-cols-1 sm:grid-cols-2 gap-5 sm:gap-8 lg:gap-y-10":
+                    grid,
+                })}
+              >
                 {newsData &&
                   newsData.data.map((item, i) => (
                     <Card
-                      grid={grid}
                       key={i}
                       id={item.id}
                       title={item.title}
@@ -110,7 +114,7 @@ const News = () => {
               <div className="hidden sm:flex flex-col gap-6 w-full max-w-[180px] mx-auto justify-center items-center">
                 {newsData && totalNews > perPage && perPage >= totalNews && (
                   <div onClick={handleOnClickButton}>
-                    <BorderBtn px text={'Показать ещё'} />
+                    <BorderBtn px text={"Показать ещё"} />
                   </div>
                 )}
 

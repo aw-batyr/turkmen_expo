@@ -1,4 +1,4 @@
-import { LayoutWithSidebar } from "@/components/page/LayoutWithSidebar";
+import { LayoutWithSidebar } from "@/components/page/layout-with-sidebar";
 import { getAbout } from "@/services/about";
 
 export default async function AboutPage({

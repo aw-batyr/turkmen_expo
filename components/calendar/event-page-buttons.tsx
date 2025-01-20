@@ -2,33 +2,32 @@
 
 import Link from 'next/link';
 import { FC } from 'react';
-import { PrimaryButton } from '../ui/primary-button';
-import { SecondaryButton } from '../ui/secondary-button';
 
 interface Props {
   className?: string;
   once?: boolean;
   register?: string;
-  web?: string;
-
+  visit?: string;
   details?: string;
 }
 
-export const EventPageButtons: FC<Props> = ({ once = false, web, register, details }) => {
+export const EventPageButtons: FC<Props> = ({ once = false, register, visit, details }) => {
   return (
     <div className="flex items-center gap-6">
-      {!once ? (
+      {once ? (
         <>
-          <Link href={register || ''} className="w-full">
-            <PrimaryButton className="w-full">Зарегистрироваться</PrimaryButton>
+          <Link href={register || ''} className="w-full" target="_blank">
+            <button className="full-btn bg-PRIMARY py-2.5 text-white">Зарегистрироваться</button>
           </Link>
-          <Link href={web || ''} className="w-full">
-            <SecondaryButton className="w-full">Посетить сайт</SecondaryButton>
+          <Link href={visit || ''} className="w-full" target="_blank">
+            <button className="full-btn bg-SECONDARY_CONTAINER py-2.5 text-ON_SECONDARY_CONTAINER">
+              Посетить сайт
+            </button>
           </Link>
         </>
       ) : (
-        <Link href={details || ''} className="w-full">
-          <PrimaryButton className="w-full">Подробнее</PrimaryButton>
+        <Link href={details || ''} className="w-full" target="_blank">
+          <button className="full-btn w-full bg-PRIMARY py-2.5 text-white">Подробнее</button>
         </Link>
       )}
     </div>

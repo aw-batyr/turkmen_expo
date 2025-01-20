@@ -1,13 +1,18 @@
-'use client';
+"use client";
 
-import React from 'react';
-import Image from 'next/image';
-import clsx from 'clsx';
+import React from "react";
+import Image from "next/image";
+import clsx from "clsx";
 
-import { CalendarImage, Coorganizers, Organizer, Timing } from '@/lib/types/Calendar.type';
-import { useAppSelector } from '@/redux/hooks';
-import { useLang } from '@/utils/useLang';
-import Link from 'next/link';
+import {
+  CalendarImage,
+  Coorganizers,
+  Organizer,
+  Timing,
+} from "@/lib/types/Calendar.type";
+import { useAppSelector } from "@/redux/hooks";
+import { useLang } from "@/utils/useLang";
+import Link from "next/link";
 
 interface Props {
   id: number;
@@ -39,43 +44,51 @@ export const EventCard = ({
   dark = false,
 }: Props) => {
   const formatDate = (dateString: string) => {
-    const dateParts = dateString?.split(' ');
+    const dateParts = dateString?.split(" ");
     const date = dateParts?.[0];
-    const parts = date?.split('-');
+    const parts = date?.split("-");
     const formattedDate = `${parts?.[2]}.${parts?.[1]}.${parts?.[0]}`;
 
     return formattedDate;
   };
 
-  console.log(Boolean(coorganizers));
-
-  const lang = useAppSelector((state) => state.headerSlice.activeLang.localization);
+  const lang = useAppSelector(
+    (state) => state.headerSlice.activeLang.localization
+  );
 
   return (
     <Link className="w-full cursor-default" href={`/calendar/${id}`}>
       <div
         className={clsx(
-          'cursor-pointer overflow-hidden transition-all w-full lg:h-[228px] lg:p-0 p-4 rounded-[4px]',
+          "cursor-pointer overflow-hidden transition-all w-full lg:h-[228px] lg:p-0 p-4 rounded-[4px]",
           {
-            'bg-white': dark,
-          },
-        )}>
+            "bg-white": dark,
+          }
+        )}
+      >
         <div
           className={clsx(
-            'md:hidden flex flex-col gap-8 border-b-[1px] border-opacity-10 mb-5 pb-5 md:gap-y-[20px] min-w-[200px]',
+            "md:hidden flex flex-col gap-8 border-b-[1px] border-opacity-10 mb-5 pb-5 md:gap-y-[20px] min-w-[200px]",
             {
-              'border-gray3': dark,
-              'border-lightCyan': !dark,
-            },
-          )}>
-          <div className={clsx('text-[16px] flex leading-[150%] md:text-[18px] font-semibold', {})}>
-            <p className="mr-5">{formatDate(starts_at)}</p> <p>{formatDate(ends_at)}</p>
+              "border-gray3": dark,
+              "border-lightCyan": !dark,
+            }
+          )}
+        >
+          <div
+            className={clsx(
+              "text-[16px] flex leading-[150%] md:text-[18px] font-semibold",
+              {}
+            )}
+          >
+            <p className="mr-5">{formatDate(starts_at)}</p>{" "}
+            <p>{formatDate(ends_at)}</p>
           </div>
         </div>
 
         <div className="flex md:flex-nowrap flex-wrap items-start lg:gap-x-[33px] gap-[10px]">
           <Image
-            src={images?.[0].path || ''}
+            src={images?.[0]?.path || ""}
             width={228}
             height={228}
             alt="Event Image"
@@ -84,12 +97,15 @@ export const EventCard = ({
 
           {/* CENTER */}
           <div className="flex flex-col gap-[10px] md:gap-4 max-w-[683px] py-6  w-full">
-            <p className="text-[12px] text-[#6B7674]  font-normal leading-none">{category}</p>
+            <p className="text-[12px] text-[#6B7674]  font-normal leading-none">
+              {category}
+            </p>
             <div className="flex flex-col gap-[10px] md:gap-[15px]">
               <h3
                 className={clsx(
-                  'text-[20px] font-medium line leading-[115%] lg:leading-8 md:leading-[100%]',
-                )}>
+                  "text-[20px] font-medium line leading-[115%] lg:leading-8 md:leading-[100%]"
+                )}
+              >
                 {title}
               </h3>
               {/* <p className={clsx('text-base line-clamp-2 leading-[130%] md:leading-[150%]', {})}>
@@ -98,7 +114,7 @@ export const EventCard = ({
             </div>
             <div className="flex flex-col gap-[10px]">
               <p className="text-[#6B7674] uppercase font-normal leading-none text-[10px]">
-                {useLang('Organiser:', 'Организатор:', lang)}
+                {useLang("Organiser:", "Организатор:", lang)}
               </p>
               <p className="text-[#6B7674] font-normal text-[13px] leading-[125%]">
                 {organizers ? organizers[0]?.name : null}
@@ -107,7 +123,7 @@ export const EventCard = ({
             {coorganizers && coorganizers?.length > 0 && (
               <div className="flex flex-col gap-[10px]">
                 <p className="text-[#6B7674] uppercase font-normal leading-none text-[10px]">
-                  {useLang('Co-organiser:', 'Со-организатор:', lang)}
+                  {useLang("Co-organiser:", "Со-организатор:", lang)}
                 </p>
                 <p className="text-[#6B7674] font-normal text-[13px] leading-[125%]">
                   {coorganizers ? coorganizers[0]?.name : null}

@@ -1,6 +1,6 @@
 import { EventCard } from '@/components/cards/event-card';
 import { BreadCrumbs } from '@/components/ui/bread-crumbs';
-import { Title } from '@/components/home/title';
+import { Title } from '@/components/ui/title';
 import { getCalendar } from '@/services/calendar';
 import { Metadata } from 'next';
 
@@ -14,7 +14,6 @@ export default async function CalendarPage({ searchParams }: { searchParams: { l
   const data = await getCalendar(lang);
 
   const title = lang === 'en' ? 'Calendar of events' : 'Календарь мероприятий';
-
   return (
     <div className="section-mb">
       <div className="container flex flex-col items-start pt-[20px] gap-10 md:gap-12">

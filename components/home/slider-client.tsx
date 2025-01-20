@@ -1,27 +1,29 @@
-'use client';
+"use client";
 
-import { useEffect, useState } from 'react';
-import Image from 'next/image';
-import { useMediaQuery } from 'usehooks-ts';
-import { useAppSelector } from '@/redux/hooks';
-import { useSliderBanner } from '@/hooks/use-slider';
-import Loader from '../ui/loader';
+import { useEffect, useState } from "react";
+import Image from "next/image";
+import { useMediaQuery } from "usehooks-ts";
+import { useAppSelector } from "@/redux/hooks";
+import { useSliderBanner } from "@/hooks/use-slider";
+import Loader from "../ui/Loader";
 
 export const SliderClient = () => {
-  const isTab = useMediaQuery('(min-width: 1024px)');
-  const isMd = useMediaQuery('(min-width: 700px)');
+  const isTab = useMediaQuery("(min-width: 1024px)");
+  const isMd = useMediaQuery("(min-width: 700px)");
 
   const [data, setData] = useState<any>(null);
   const [loading, setLoading] = useState(true);
   const bannerType = useSliderBanner(isTab, isMd);
-  const lang = useAppSelector((state) => state.headerSlice.activeLang.localization);
+  const lang = useAppSelector(
+    (state) => state.headerSlice.activeLang.localization
+  );
 
   const fetchData = async () => {
     try {
       setLoading(true);
       const res = await fetch(`/api/banners?bannerType=${bannerType}`, {
         headers: {
-          'Accept-Language': lang,
+          "Accept-Language": lang,
         },
       });
       const json = await res.json();
@@ -40,7 +42,7 @@ export const SliderClient = () => {
 
   return (
     <Image
-      src={data.data.banner_items?.[0]?.image || ''}
+      src={data.data.banner_items?.[0]?.image || ""}
       alt="Баннер"
       width={1920}
       height={600}
