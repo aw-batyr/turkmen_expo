@@ -14,6 +14,7 @@ import { useMediaQuery } from "usehooks-ts";
 import { Autoplay, Pagination } from "swiper/modules";
 import Loader from "../ui/Loader";
 import { baseAPI } from "@/lib/API";
+import Link from "next/link";
 
 export const Slider = ({ lang }: { lang: string }) => {
   const isTab = useMediaQuery("(min-width: 1024px)");
@@ -52,6 +53,8 @@ export const Slider = ({ lang }: { lang: string }) => {
 
   if (loading) return <Loader />;
 
+  console.log(sliderData);
+
   return (
     <section className="max-h-[600px] min-h-[320px]">
       <Swiper
@@ -65,14 +68,16 @@ export const Slider = ({ lang }: { lang: string }) => {
       >
         {sliderData &&
           sliderData?.data.banner_items.map((item, i) => (
-            <SwiperSlide key={i} className="size-full">
-              <Image
-                height={320}
-                width={1920}
-                src={item.image}
-                alt="Баннер"
-                className="object-cover size-full"
-              />
+            <SwiperSlide key={i} className="size-full cursor-pointer">
+              <Link href={item.link ? item.link : ""} target="_blank">
+                <Image
+                  height={320}
+                  width={1920}
+                  src={item.image}
+                  alt="Баннер"
+                  className="object-cover size-full"
+                />
+              </Link>
             </SwiperSlide>
           ))}
       </Swiper>
