@@ -11,6 +11,7 @@ export interface Data {
   coorganizers: any[];
   starts_at: Date;
   ends_at: Date;
+  date: string;
   images: Image[];
   background_images: any[];
   web_site: string;
