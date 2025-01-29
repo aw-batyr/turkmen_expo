@@ -19,6 +19,7 @@ interface Props {
   description: string;
   starts_at: string;
   ends_at: string;
+  date: string;
   title: string;
   web_site: string | null;
   location: string | null;
@@ -38,6 +39,7 @@ export const EventCard = ({
   starts_at,
   ends_at,
   title,
+  date,
   organizers,
   category,
   images,
@@ -133,9 +135,8 @@ export const EventCard = ({
           </div>
           {/* CENTER */}
 
-          <div className="hidden md:flex text-2xl flex-col text-white leading- none h-[228px] min-w-[245px] items-center justify-center bg-[#31A898]">
-            <div>{formatDate(starts_at)}</div>
-            <div>{formatDate(ends_at)}</div>
+          <div className="hidden md:flex text-2xl flex-col text-white leading- none h-[228px] min-w-[245px] items-center justify-center bg-[#31A898] px-12 text-center">
+            {date}
           </div>
         </div>
       </div>
