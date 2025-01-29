@@ -7,10 +7,10 @@ import { BreadCrumbs } from "@/components/ui/bread-crumbs";
 import { useAppSelector } from "@/redux/hooks";
 import { selectHeader } from "@/redux/slices/headerSlice";
 import { baseAPI } from "@/lib/API";
-import { v4 } from "uuid";
 import { ContactsDataType } from "@/lib/types/Contacts.type";
 import { useLang } from "@/utils/useLang";
 import Loader from "@/components/ui/Loader";
+import { ContactsForm } from "@/components/contacts/contacts-form";
 
 const Contacts = () => {
   const [contactsData, setContactsData] = useState<ContactsDataType>();
@@ -22,9 +22,7 @@ const Contacts = () => {
       setLoading(true);
 
       const res = await fetch(`${baseAPI}contacts`, {
-        headers: {
-          "Accept-Language": activeLang.localization,
-        },
+        headers: { "Accept-Language": activeLang.localization },
       });
 
       if (!res.ok) {
@@ -52,34 +50,29 @@ const Contacts = () => {
             second={useLang("Contacts", "Контакты", activeLang.localization)}
           />
         </div>
-        <div className="mb-4">
+        {/* <div className="mb-4">
           <Title
             text={useLang("Contacts", "Контакты", activeLang.localization)}
           />
         </div>
-        {contactsData ? (
-          contactsData.data.map((item, i) => (
-            <div
-              className="py-10 sm:py-[30px] border-b-[1px] border-OUTLINE_VAR w-full"
-              key={v4()}
-            >
-              {/* <h4 className="leading-[120%] sm:leading-[100%] text-[16px] sm:text-[21px] mb-6">
-                {item.header}
-              </h4> */}
-              <div className="flex flex-col items-start leading-[150%] text-[14px] sm:text-[16px]">
-                {item.services.map((service, i) => (
-                  <div key={i}>
-                    <p>{service.phone}</p>
-                    <p>{service.email}</p>
-                    <p>{service.web_site}</p>
-                  </div>
-                ))}
-              </div>
-            </div>
-          ))
-        ) : (
-          <Loader className="h-[300px] w-full" />
-        )}
+        {contactsData
+          ? contactsData.data.map((item, i) => (
+              <div
+                className="py-10 sm:py-[30px] border-b-[1px] border-OUTLINE_VAR w-full"
+                key={i}
+              >
+                <div className="flex flex-col items-start leading-[150%] text-[14px] sm:text-[16px]">
+                  {item.services.map((service, i) => (
+                    <div key={i}>
+                      <p>{service.phone}</p>
+                      <p>{service.email}</p>
+                      <p>{service.web_site}</p>
+                    </div>
+                  ))}
+                </div>
+              </div> */}
+
+        <ContactsForm />
       </div>
 
       <div className="relative w-full h-[728px] mb-12 google-map">
@@ -91,7 +84,6 @@ const Contacts = () => {
           loading="lazy"
         />
       </div>
-      <div className="container section-mb">{/* <ContactsSec /> */}</div>
     </main>
   );
 };
