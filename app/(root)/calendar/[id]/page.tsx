@@ -1,6 +1,6 @@
-import { EventPageButtons } from '@/components/calendar/event-page-buttons';
-import { getEventPage } from '@/services/calendar';
-import Image from 'next/image';
+import { EventPageButtons } from "@/components/calendar/event-page-buttons";
+import { getEventPage } from "@/services/calendar";
+import Image from "next/image";
 
 export default async function EventPage({
   params,
@@ -24,7 +24,7 @@ export default async function EventPage({
           <div className="flex flex-col gap-8 event-block ">
             <div className="flex justify-between items-center">
               <h4>Дата</h4>
-              <h5>29 — 30 апреля 2025 года</h5>
+              <h5>{data.date}</h5>
             </div>
 
             <hr />
@@ -68,7 +68,7 @@ export default async function EventPage({
         </div>
 
         <Image
-          src={data.images?.[0]?.path || ''}
+          src={data.images?.[0]?.path || ""}
           width={392}
           height={392}
           alt="event image"
@@ -87,7 +87,9 @@ export default async function EventPage({
             <hr className="border-OUTLINE_VAR" />
 
             <div className="flex flex-col lg:flex-row gap-6">
-              <h4 className="text_24 lg:flex-[0_0_392px]">Тематика мероприятия</h4>
+              <h4 className="text_24 lg:flex-[0_0_392px]">
+                Тематика мероприятия
+              </h4>
               <div
                 className="flex-1 text_16"
                 dangerouslySetInnerHTML={{ __html: data.event_topic }}

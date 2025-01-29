@@ -13,6 +13,7 @@ export interface EventDatum {
   coorganizers?: Coorganizers[];
   starts_at: string;
   ends_at: string;
+  date: string;
   images: CalendarImage[];
   background_images: CalendarImage[];
   web_site: string;
@@ -46,9 +47,9 @@ export interface CalendarImage {
 }
 
 export enum Extension {
-  ExtensionJPG = 'JPG',
-  Jpg = 'jpg',
-  PNG = 'png',
+  ExtensionJPG = "JPG",
+  Jpg = "jpg",
+  PNG = "png",
 }
 
 export interface Organizer {
@@ -66,9 +67,9 @@ export interface PhoneElement {
 }
 
 export enum PhoneEnum {
-  The99312398881 = '(+99312) 39 88 81',
-  The99312398981 = '(+99312) 39 89 81',
-  The99362006200 = '+993 62 006200',
+  The99312398881 = "(+99312) 39 88 81",
+  The99312398981 = "(+99312) 39 89 81",
+  The99362006200 = "+993 62 006200",
 }
 
 export interface Timing {
