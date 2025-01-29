@@ -136,7 +136,8 @@ export const EventCard = ({
           {/* CENTER */}
 
           <div className="hidden md:flex text-2xl flex-col text-white leading- none h-[228px] min-w-[245px] items-center justify-center bg-[#31A898] px-12 text-center">
-            {date}
+            <p className="">{formatDate(starts_at)}</p>{" "}
+            <p>{formatDate(ends_at)}</p>
           </div>
         </div>
       </div>
