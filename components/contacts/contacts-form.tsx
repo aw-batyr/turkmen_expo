@@ -68,7 +68,7 @@ export const ContactsForm: FC<Props> = ({ className }) => {
           <div className="flex flex-col lg:flex-row gap-6 items-center">
             <div className="flex flex-col relative">
               <label htmlFor="email" className="label">
-                Имя
+                E-mail
               </label>
               <input
                 type="text"
@@ -81,7 +81,7 @@ export const ContactsForm: FC<Props> = ({ className }) => {
 
             <div className="flex flex-col relative">
               <label htmlFor="phone" className="label">
-                Имя
+                Номер
               </label>
               <input
                 type="text"
@@ -94,7 +94,7 @@ export const ContactsForm: FC<Props> = ({ className }) => {
           </div>
 
           <div className="flex flex-col">
-            <label htmlFor="phone" className="label">
+            <label htmlFor="company_name" className="label">
               Название компании
             </label>
             <input
@@ -115,12 +115,12 @@ export const ContactsForm: FC<Props> = ({ className }) => {
             <textarea
               rows={3}
               id="message"
-              className="input !h-20 resize-none"
-              {...register("phone")}
+              className="input !h-28 resize-none"
+              {...register("message")}
             />
             <span className="error">{formState.errors.message?.message}</span>
           </div>
-          <button className="bg-[#A4FFF3] text-ON_PRIMARY_CONTAINER h-10 rounded-[2px]">
+          <button className="bg-[#A4FFF3] text-sm text-ON_PRIMARY_CONTAINER h-10 rounded-[2px]">
             Отправить
           </button>
         </div>

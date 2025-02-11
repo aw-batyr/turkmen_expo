@@ -415,4 +415,8 @@ p img {
   .body-scroll-lock {
     overflow: hidden;
   }
+
+  .input {
+    @apply flex h-14 rounded-[2px]  p-4 focus:ring-[3px] focus:outline-none focus:ring-white transition-all hover:ring-white ring-slate-300 ring-1 bg-[#E3E8E5] text-base file:border-0 file:bg-SECONDARY_CONTAINER file:outline-none file:text-sm file:w-fit file:text-ON_SECONDARY_CONTAINER file:font-medium  focus-visible:outline-none disabled:cursor-not-allowed disabled:opacity-50;
+  }
 }
