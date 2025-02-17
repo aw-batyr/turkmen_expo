@@ -1,58 +1,32 @@
-"use client";
+import React from "react";
 
-import React, { useEffect, useState } from "react";
-
-import { Title } from "@/components/ui/title";
 import { BreadCrumbs } from "@/components/ui/bread-crumbs";
-import { useAppSelector } from "@/redux/hooks";
-import { selectHeader } from "@/redux/slices/headerSlice";
-import { baseAPI } from "@/lib/API";
-import { ContactsDataType } from "@/lib/types/Contacts.type";
-import { useLang } from "@/utils/useLang";
-import Loader from "@/components/ui/Loader";
 import { ContactsForm } from "@/components/contacts/contacts-form";
+import { getContacts } from "@/services/contacts";
 
-const Contacts = () => {
-  const [contactsData, setContactsData] = useState<ContactsDataType>();
-  const { activeLang } = useAppSelector(selectHeader);
-  const [loading, setLoading] = useState(true);
-
-  const fecthContactsData = async () => {
-    try {
-      setLoading(true);
-
-      const res = await fetch(`${baseAPI}contacts`, {
-        headers: { "Accept-Language": activeLang.localization },
-      });
-
-      if (!res.ok) {
-        throw new Error("Error");
-      }
-
-      const data = await res.json();
-
-      setContactsData(data);
-      setLoading(false);
-    } catch (error) {
-      console.error(error);
-    }
+export default async function ContactsPage({
+  searchParams,
+}: {
+  searchParams: {
+    lang: string;
   };
+}) {
+  const lang = searchParams.lang;
 
-  useEffect(() => {
-    fecthContactsData();
-  }, [activeLang.localization]);
+  const { data } = await getContacts(searchParams.lang);
+
+  console.log(data);
 
   return (
-    <main className="bg-blueBg h-full">
+    <main className="bg-blueBg h-full w-full">
       <div className="container flex flex-col items-start">
         <div className="mt-5">
-          <BreadCrumbs
-            second={useLang("Contacts", "Контакты", activeLang.localization)}
-          />
+          <BreadCrumbs second={lang === "ru" ? "Контакты" : "Contacts"} />
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 w-full">
           <ContactsForm />
+
           <div className="p-6 bg-bg_surface_container rounded-[8px]">
             <h2 className="h2 mb-10 xl:mb-8 text-3xl font-normal">Контакты</h2>
 
@@ -79,7 +53,7 @@ const Contacts = () => {
               </div>
 
               <div className="flex items-center gap-6">
-                <img src="/assets/icons/contacts/email.svg" alt="email" />
+                <img src="/assets/icons/contacts/mail.svg" alt="email" />
 
                 <div>
                   <h3 className="text-xl mb-2">Email:</h3>
@@ -102,6 +76,4 @@ const Contacts = () => {
       </div>
     </main>
   );
-};
-
-export default Contacts;
+}

@@ -1,8 +1,11 @@
+"use client";
+
 import { FC, useState } from "react";
 import { Form, useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import clsx from "clsx";
+import { postContacts } from "@/services/contacts";
 
 interface Props {
   className?: string;
@@ -12,8 +15,8 @@ const formSchema = z.object({
   name: z.string().min(2, "Имя необходимо"),
   email: z.string().email("Email необходим"),
   phone: z.string().min(8, "Номер телефона необходим"),
-  company_name: z.string().min(2, "Название компании необходимо"),
-  message: z.string().min(5, "Сообщение необходимо"),
+  company: z.string().min(2, "Название компании необходимо"),
+  msg: z.string().min(5, "Сообщение необходимо"),
 });
 
 export type FormType = z.infer<typeof formSchema>;
@@ -27,14 +30,16 @@ export const ContactsForm: FC<Props> = ({ className }) => {
       name: "",
       email: "",
       phone: "",
-      company_name: "",
-      message: "",
+      company: "",
+      msg: "",
     },
   });
 
   async function onSubmit(data: FormType) {
     try {
-      setStatus(status);
+      const res = await postContacts(data);
+
+      setStatus(res);
 
       console.log(data);
     } catch (error) {
@@ -52,7 +57,7 @@ export const ContactsForm: FC<Props> = ({ className }) => {
         </h2>
 
         <div className="flex flex-col gap-8">
-          <div className="flex flex-col">
+          <div className="flex flex-col relative">
             <label htmlFor="name" className="label">
               Имя
             </label>
@@ -65,7 +70,7 @@ export const ContactsForm: FC<Props> = ({ className }) => {
             <span className="error">{formState.errors.name?.message}</span>
           </div>
 
-          <div className="flex flex-col lg:flex-row gap-6 items-center">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 items-center">
             <div className="flex flex-col relative">
               <label htmlFor="email" className="label">
                 E-mail
@@ -93,32 +98,30 @@ export const ContactsForm: FC<Props> = ({ className }) => {
             </div>
           </div>
 
-          <div className="flex flex-col">
-            <label htmlFor="company_name" className="label">
+          <div className="flex flex-col relative">
+            <label htmlFor="company" className="label">
               Название компании
             </label>
             <input
               type="text"
-              id="company_name"
+              id="company"
               className="input"
-              {...register("company_name")}
+              {...register("company")}
             />
-            <span className="error">
-              {formState.errors.company_name?.message}
-            </span>
+            <span className="error">{formState.errors.company?.message}</span>
           </div>
 
-          <div className="flex flex-col">
-            <label htmlFor="message" className="label">
+          <div className="flex flex-col relative">
+            <label htmlFor="msg" className="label">
               Сообщение
             </label>
             <textarea
               rows={3}
-              id="message"
+              id="msg"
               className="input !h-28 resize-none"
-              {...register("message")}
+              {...register("msg")}
             />
-            <span className="error">{formState.errors.message?.message}</span>
+            <span className="error">{formState.errors.msg?.message}</span>
           </div>
           <button className="bg-[#A4FFF3] text-sm text-ON_PRIMARY_CONTAINER h-10 rounded-[2px]">
             Отправить
