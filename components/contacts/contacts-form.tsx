@@ -15,7 +15,7 @@ const formSchema = z.object({
   name: z.string().min(2, "Имя необходимо"),
   email: z.string().email("Email необходим"),
   phone: z.string().min(8, "Номер телефона необходим"),
-  company: z.string().min(2, "Название компании необходимо"),
+  company: z.string().optional(),
   msg: z.string().min(5, "Сообщение необходимо"),
 });
 
@@ -24,7 +24,7 @@ export type FormType = z.infer<typeof formSchema>;
 export const ContactsForm: FC<Props> = ({ className }) => {
   const [status, setStatus] = useState(false);
 
-  const { register, handleSubmit, formState } = useForm({
+  const { register, handleSubmit, formState, reset } = useForm({
     resolver: zodResolver(formSchema),
     defaultValues: {
       name: "",
@@ -39,15 +39,12 @@ export const ContactsForm: FC<Props> = ({ className }) => {
     try {
       const res = await postContacts(data);
 
+      reset();
       setStatus(res);
-
-      console.log(data);
     } catch (error) {
       console.error("POST contact", error);
     }
   }
-
-  console.log(status);
 
   return (
     <div className={clsx("bg-PRIMARY rounded-[8px] py-8 px-6", className)}>
@@ -123,8 +120,11 @@ export const ContactsForm: FC<Props> = ({ className }) => {
             />
             <span className="error">{formState.errors.msg?.message}</span>
           </div>
-          <button className="bg-[#A4FFF3] text-sm text-ON_PRIMARY_CONTAINER h-10 rounded-[2px]">
-            Отправить
+          <button
+            disabled={formState.isSubmitting || status}
+            className="bg-[#A4FFF3] text-sm text-ON_PRIMARY_CONTAINER h-10 rounded-[2px]"
+          >
+            {!status ? "Отправить" : "Форма отправлена"}
           </button>
         </div>
       </form>

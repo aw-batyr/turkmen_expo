@@ -22,6 +22,9 @@ export const postContacts = async (data: FormType) => {
   const res = fetch(`${baseAPI}contact_form`, {
     method: "POST",
     body: JSON.stringify(data),
+    headers: {
+      "Content-Type": "application/json",
+    },
   });
 
   return (await res).status === 201;
