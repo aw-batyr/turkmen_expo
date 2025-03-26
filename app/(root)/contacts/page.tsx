@@ -2,20 +2,10 @@ import React from "react";
 
 import { BreadCrumbs } from "@/components/ui/bread-crumbs";
 import { ContactsForm } from "@/components/contacts/contacts-form";
-import { getContacts } from "@/services/contacts";
+import { cookies } from "next/headers";
 
-export default async function ContactsPage({
-  searchParams,
-}: {
-  searchParams: {
-    lang: string;
-  };
-}) {
-  const lang = searchParams.lang;
-
-  const { data } = await getContacts(searchParams.lang);
-
-  console.log(data);
+export default async function ContactsPage() {
+  const lang = cookies().get("lang")?.value;
 
   return (
     <main className="bg-blueBg h-full w-full">

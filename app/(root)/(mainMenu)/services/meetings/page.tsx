@@ -1,14 +1,8 @@
 import { LayoutWithSidebar } from "@/components/page/layout-with-sidebar";
-import { baseAPI } from "@/lib/API";
-import { ServicesType } from "@/lib/types/Services.data";
 import { getServices } from "@/services/services";
 
-export default async function MeetingsPage({
-  searchParams,
-}: {
-  searchParams: { lang: string };
-}) {
-  const data = await getServices(searchParams.lang);
+export default async function MeetingsPage() {
+  const data = await getServices();
 
   return (
     <LayoutWithSidebar

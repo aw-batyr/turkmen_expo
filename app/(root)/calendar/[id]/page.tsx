@@ -1,17 +1,16 @@
 import { EventPageButtons } from "@/components/calendar/event-page-buttons";
 import { getEventPage } from "@/services/calendar";
+import { cookies } from "next/headers";
 import Image from "next/image";
 
 export default async function EventPage({
   params,
-  searchParams,
 }: {
   params: { id: string };
-  searchParams: { lang: string };
 }) {
   const { id } = params;
 
-  const { lang } = searchParams;
+  const lang = cookies().get("lang")?.value ?? "ru";
 
   const data = await getEventPage(id, lang);
 

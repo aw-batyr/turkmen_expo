@@ -1,12 +1,8 @@
 import { LayoutWithSidebar } from "@/components/page/layout-with-sidebar";
 import { getServices } from "@/services/services";
 
-export default async function OrganizationPage({
-  searchParams,
-}: {
-  searchParams: { lang: string };
-}) {
-  const data = await getServices(searchParams.lang);
+export default async function OrganizationPage() {
+  const data = await getServices();
 
   return (
     <LayoutWithSidebar

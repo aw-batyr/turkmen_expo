@@ -4,10 +4,10 @@ import StoreProvider from "./StoreProvider";
 
 import "./globals.css";
 
-const roboto = Roboto({
-  subsets: ["latin"],
-  weight: ["300", "400", "500", "700"],
-});
+// const roboto = Roboto({
+//   subsets: ["latin"],
+//   weight: ["300", "400", "500", "700"],
+// });
 
 export const metadata: Metadata = {
   title: "TurkmenExpo",
@@ -23,7 +23,7 @@ export default function RootLayout({
   return (
     <html>
       <StoreProvider>
-        <body className={`${roboto.className}`}>{children}</body>
+        <body className={``}>{children}</body>
       </StoreProvider>
     </html>
   );

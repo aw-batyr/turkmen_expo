@@ -1,12 +1,10 @@
 import { LayoutWithSidebar } from "@/components/page/layout-with-sidebar";
 import { getAbout } from "@/services/about";
+import { cookies } from "next/headers";
 
-export default async function AboutPage({
-  searchParams,
-}: {
-  searchParams: { lang: string };
-}) {
-  const lang = searchParams.lang;
+export default async function AboutPage() {
+  const lang = cookies().get("lang")?.value ?? "ru";
+
   const data = await getAbout(lang);
 
   const aboutText = lang === "en" ? "About us" : "Коротко о нас";

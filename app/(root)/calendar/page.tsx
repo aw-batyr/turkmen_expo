@@ -3,17 +3,14 @@ import { BreadCrumbs } from "@/components/ui/bread-crumbs";
 import { Title } from "@/components/ui/title";
 import { getCalendar } from "@/services/calendar";
 import { Metadata } from "next";
+import { cookies } from "next/headers";
 
 export const metadata: Metadata = {
   title: "TurkmenExpo | Calendar",
 };
 
-export default async function CalendarPage({
-  searchParams,
-}: {
-  searchParams: { lang: string };
-}) {
-  const lang = searchParams.lang;
+export default async function CalendarPage() {
+  const lang = cookies().get("lang")?.value ?? "ru";
 
   const data = await getCalendar(lang);
 

@@ -27,7 +27,6 @@ const News = () => {
     window.scrollTo({ behavior: "smooth", top: 0 });
   }, [current]);
 
-  const [grid, setGrid] = React.useState(true);
   const [newsData, setNewsData] = React.useState<NewsData>();
 
   const fetchNews = async () => {
@@ -89,11 +88,10 @@ const News = () => {
               </div>
 
               <div
-                className={clsx("mb-[48px] lg:mb-[108px]", {
-                  "flex flex-col gap-6": !grid,
-                  "grid grid-cols-1 sm:grid-cols-2 gap-5 sm:gap-8 lg:gap-y-10":
-                    grid,
-                })}
+                className={clsx(
+                  "mb-[48px] lg:mb-[108px]",
+                  "grid grid-cols-1 sm:grid-cols-2 gap-5 sm:gap-8 lg:gap-y-10"
+                )}
               >
                 {newsData &&
                   newsData.data.map((item, i) => (
