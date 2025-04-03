@@ -1,6 +1,6 @@
 "use client";
 
-import React, { Suspense, useEffect } from "react";
+import React, { Suspense, useEffect, useState } from "react";
 import clsx from "clsx";
 import Link from "next/link";
 import Image from "next/image";
@@ -18,12 +18,15 @@ import { useAppDispatch, useAppSelector } from "@/redux/hooks";
 import { selectHeader, setShowInput } from "@/redux/slices/headerSlice";
 import { selectBurger, setBurgerOpen } from "@/redux/slices/burgerSlice";
 import { useStorage } from "@/hooks/useStorage";
+import { usePathname, useRouter } from "next/navigation";
 
 export const Header = () => {
   const dispatch = useAppDispatch();
   const { showInput } = useAppSelector(selectHeader);
   const { burgerOpen } = useAppSelector(selectBurger);
   const { activeLang } = useAppSelector(selectHeader);
+  const [activeLink, setActiveLink] = useState("");
+  const pathname = usePathname();
 
   const toggleMenu = () => {
     dispatch(setBurgerOpen(!burgerOpen));
@@ -147,7 +150,11 @@ export const Header = () => {
                   activeLang.localization === "en" ? item.en : !item.en
                 )
                 .map((item, i) => (
-                  <Link key={i} href={item.link} className="cursor-pointer">
+                  <Link
+                    key={i}
+                    href={item.link}
+                    onClick={() => setActiveLink(item.link)}
+                  >
                     {item.title}
                   </Link>
                 ))}

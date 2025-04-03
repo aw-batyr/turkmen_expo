@@ -3,16 +3,18 @@ import { Roboto } from "next/font/google";
 import StoreProvider from "./StoreProvider";
 
 import "./globals.css";
+import clsx from "clsx";
 
-// const roboto = Roboto({
-//   subsets: ["latin"],
-//   weight: ["300", "400", "500", "700"],
-// });
+const roboto = Roboto({
+  subsets: ["latin"],
+  weight: ["300", "400", "500", "700"],
+  variable: "--font-roboto",
+});
 
 export const metadata: Metadata = {
   title: "TurkmenExpo",
   description: "",
-  icons: "/logo.svg",
+  icons: "/assets/logo.svg",
 };
 
 export default function RootLayout({
@@ -23,7 +25,9 @@ export default function RootLayout({
   return (
     <html>
       <StoreProvider>
-        <body className={``}>{children}</body>
+        <body className={clsx("antialiased font-roboto", roboto.variable)}>
+          {children}
+        </body>
       </StoreProvider>
     </html>
   );
