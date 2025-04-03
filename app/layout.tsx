@@ -14,6 +14,7 @@ const roboto = Roboto({
 export const metadata: Metadata = {
   title: "TurkmenExpo",
   description: "",
+  icons: { icon: "/assets/icons/logo.svg" },
 };
 
 export default function RootLayout({
