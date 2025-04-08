@@ -1,5 +1,5 @@
-import { Footer } from "@/components/colontitle/Footer";
-import { Header } from "@/components/colontitle/Header";
+import { Footer } from "@/components/shared/Footer";
+import { Header } from "@/components/shared/Header";
 import { PropsWithChildren } from "react";
 
 const layout = ({ children }: PropsWithChildren) => {

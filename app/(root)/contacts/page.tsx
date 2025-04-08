@@ -1,7 +1,7 @@
 import React from "react";
 
 import { BreadCrumbs } from "@/components/ui/bread-crumbs";
-import { ContactsForm } from "@/components/contacts/contacts-form";
+import { ContactsForm } from "@/components/shared/contacts-form";
 import { cookies } from "next/headers";
 
 export default async function ContactsPage() {

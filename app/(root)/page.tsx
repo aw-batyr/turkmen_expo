@@ -1,8 +1,8 @@
-import { Events } from "@/components/home/Events";
-import { News } from "@/components/home/News";
-import { Partners } from "@/components/home/Partners";
-import { Slider } from "@/components/home/Slider";
-import { Video } from "@/components/home/Video";
+import { Events } from "@/components/shared/Events";
+import { News } from "@/components/shared/News";
+import { Partners } from "@/components/shared/Partners";
+import { Slider } from "@/components/shared/Slider";
+import { Video } from "@/components/shared/Video";
 import Loader from "@/components/ui/Loader";
 import { cookies } from "next/headers";
 import { Suspense } from "react";

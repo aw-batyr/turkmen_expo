@@ -4,7 +4,6 @@ import React from "react";
 import Link from "next/link";
 
 import { topMenu } from "@/lib/database/pathnames";
-import { v4 } from "uuid";
 
 export const Pathnames = ({ sort }: { sort: string }) => {
   return (
@@ -12,8 +11,8 @@ export const Pathnames = ({ sort }: { sort: string }) => {
       <Link href={"/"}>{"Главная "}</Link>
       {topMenu
         .filter((item) => item.path === sort)
-        .map((obj) =>
-          obj.links.map((item) => <p key={v4()}>{item.default}</p>)
+        .map((obj, i) =>
+          obj.links.map((item) => <p key={i}>{item.default}</p>)
         )}
     </div>
   );

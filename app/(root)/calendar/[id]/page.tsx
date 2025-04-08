@@ -1,4 +1,4 @@
-import { EventPageButtons } from "@/components/calendar/event-page-buttons";
+import { EventPageButtons } from "@/components/shared/event-page-buttons";
 import { getEventPage } from "@/services/calendar";
 import { cookies } from "next/headers";
 import Image from "next/image";

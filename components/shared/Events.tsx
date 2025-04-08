@@ -1,4 +1,4 @@
-import { EventCard } from "../cards/event-card";
+import { EventCard } from "./event-card";
 
 import { getEvents } from "@/services/home";
 import { EventsMobile } from "./events-mobile";

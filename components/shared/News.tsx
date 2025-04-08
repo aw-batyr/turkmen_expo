@@ -4,8 +4,8 @@ import { useEffect, useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation } from "swiper/modules";
 
-import { NewsCard } from "../cards/news-card";
-import { NavBtn } from "./ui/NavBtn";
+import { NewsCard } from "./news-card";
+import { NavBtn } from "../home/ui/NavBtn";
 
 import { useAppSelector } from "@/redux/hooks";
 import { selectHeader } from "@/redux/slices/headerSlice";

@@ -1,4 +1,4 @@
-import { FormType } from "@/components/contacts/contacts-form";
+import { FormType } from "@/components/shared/contacts-form";
 import { baseAPI } from "@/lib/API";
 import { ContactsDataType } from "@/lib/types/Contacts.type";
 

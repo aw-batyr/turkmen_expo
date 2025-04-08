@@ -28,7 +28,6 @@ export const lang: activeLangType[] = [
 
 export const LangMenu = () => {
   const { activeLang } = useAppSelector(selectHeader);
-  const searchParams = useSearchParams();
   const { refresh } = useRouter();
   const [active, setActive] = useState(false);
   const dispatch = useAppDispatch();
