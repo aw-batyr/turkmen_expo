@@ -2,7 +2,7 @@
 
 import "swiper/css";
 import "swiper/css/pagination";
-import "./styles/events.css";
+// import "./styles/events.css";
 
 import { useLang } from "@/utils/useLang";
 import { FC } from "react";
