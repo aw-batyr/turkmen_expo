@@ -16,7 +16,7 @@ interface Props {
   className?: string;
 }
 
-export const EventsMobile: FC<Props> = ({ className, data }) => {
+export const EventsMobile: FC<Props> = ({ data }) => {
   const lang = useAppSelector(
     (state) => state.headerSlice.activeLang.localization
   );
