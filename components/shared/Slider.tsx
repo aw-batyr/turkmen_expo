@@ -5,7 +5,7 @@ import "swiper/css/navigation";
 import "swiper/css/pagination";
 import "swiper/css/scrollbar";
 
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { SliderType } from "@/lib/types/SliderData.type";
@@ -15,6 +15,7 @@ import { Autoplay, Pagination } from "swiper/modules";
 import Loader from "../ui/Loader";
 import { baseAPI } from "@/lib/API";
 import Link from "next/link";
+import clsx from "clsx";
 
 export const Slider = ({ lang }: { lang: string }) => {
   const isTab = useMediaQuery("(min-width: 1024px)");
@@ -45,18 +46,16 @@ export const Slider = ({ lang }: { lang: string }) => {
     }
   };
 
+  const imgRef = useRef<HTMLImageElement>(null);
+
   useEffect(() => {
     fetchData();
   }, [size, lang]);
 
-  console.log(sliderData);
-
-  if (!loading) return <Loader />;
-
-  console.log(sliderData);
+  if (loading) return <Loader className="bg-white" />;
 
   return (
-    <section className="max-h-[600px] min-h-[320px]">
+    <section className={clsx("h-full bg-white")}>
       <Swiper
         modules={[Autoplay, Pagination]}
         loop
@@ -69,13 +68,18 @@ export const Slider = ({ lang }: { lang: string }) => {
         {sliderData &&
           sliderData?.data.banner_items.map((item, i) => (
             <SwiperSlide key={i} className="size-full cursor-pointer">
-              <Link href={item.link ? item.link : ""} target="_blank">
+              <Link
+                href={item.link ? item.link : ""}
+                target="_blank"
+                className="size-full"
+              >
                 <Image
+                  ref={imgRef}
                   height={600}
                   width={1920}
-                  src={item.image}
-                  alt="Баннер"
-                  className="object-cover size-full"
+                  src={item?.image}
+                  alt={item?.title}
+                  className="object-contain size-full"
                 />
               </Link>
             </SwiperSlide>
