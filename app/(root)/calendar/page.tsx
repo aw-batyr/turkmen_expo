@@ -17,7 +17,7 @@ export default async function CalendarPage() {
   const title = lang === "en" ? "Calendar of events" : "Календарь мероприятий";
   return (
     <div className="section-mb">
-      <div className="container flex flex-col items-start pt-[20px] gap-10 md:gap-12">
+      <div className="container flex flex-col items-start pt-5 gap-10 md:gap-12">
         <div>
           <div className="mb-[24px]">
             <BreadCrumbs second={title} />

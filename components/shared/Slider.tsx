@@ -51,7 +51,7 @@ export const Slider = ({ lang }: { lang: string }) => {
 
   console.log(sliderData);
 
-  if (loading) return <Loader />;
+  if (!loading) return <Loader />;
 
   console.log(sliderData);
 
@@ -71,7 +71,7 @@ export const Slider = ({ lang }: { lang: string }) => {
             <SwiperSlide key={i} className="size-full cursor-pointer">
               <Link href={item.link ? item.link : ""} target="_blank">
                 <Image
-                  height={320}
+                  height={600}
                   width={1920}
                   src={item.image}
                   alt="Баннер"

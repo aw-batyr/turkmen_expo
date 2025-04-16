@@ -11,7 +11,7 @@ export default async function HomePage() {
   const lang = cookies().get("lang")?.value ?? "ru";
 
   return (
-    <div className="bg-blueBg flex flex-col gap-[60px] md:gap-[80px] pb-[80px]">
+    <div className="bg-blueBg flex flex-col gap-[60px] md:gap-20 pb-20">
       <Slider lang={lang} />
 
       <Suspense fallback={<Loader />}>

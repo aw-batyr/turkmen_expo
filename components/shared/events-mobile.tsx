@@ -34,7 +34,7 @@ export const EventsMobile: FC<Props> = ({ data }) => {
           <Swiper slidesPerView={1} spaceBetween={20}>
             {data &&
               data.map((item, i) => (
-                <SwiperSlide key={i} className="mb-[72px]">
+                <SwiperSlide key={i} className="md:mb-[72px]">
                   <EventCard dark {...item} />
                 </SwiperSlide>
               ))}

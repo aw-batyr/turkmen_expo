@@ -11,7 +11,7 @@ import { activeLangType, selectHeader } from "@/redux/slices/headerSlice";
 import { setActiveLang } from "@/redux/slices/headerSlice";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 
-export const lang: activeLangType[] = [
+export const lang = [
   {
     title: "Русский",
     localization: "ru",
@@ -51,7 +51,7 @@ export const LangMenu = () => {
     }
   }, [dispatch]);
 
-  React.useEffect(() => {
+  useEffect(() => {
     const handleClick = (e: MouseEvent) => {
       if (menuRef.current && !menuRef.current.contains(e.target as Node)) {
         setActive(false);
@@ -66,7 +66,7 @@ export const LangMenu = () => {
   return (
     <div
       ref={menuRef}
-      className="relative w-[90px] cursor-pointer  flex items-center gap-x-[20px]"
+      className="relative w-[90px] cursor-pointer  flex items-center gap-x-5"
       onClick={() => {
         setActive(!active);
       }}
@@ -105,7 +105,7 @@ export const LangMenu = () => {
                   key={i}
                   onClick={() => setLang(item)}
                   className={clsx(
-                    "p-3 pr-[22px] py-4  text-extraSm  transition-all",
+                    "p-3 pr-[22px] py-4 text-extraSm transition-all",
                     {
                       "hover:bg-ON_SECONDARY_CONTAINER/[8%]":
                         item.title === item.title,

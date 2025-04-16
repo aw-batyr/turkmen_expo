@@ -5,7 +5,7 @@ export const Video = () => {
     <section className="relative">
       <video
         className={clsx(
-          "w-full opacity-100 lg:h-[565px] sm:h-[375px] h-[250px] object-cover mx-auto"
+          "w-full opacity-100 lg:h-[565px] sm:h-[375px] h-[200px] object-cover mx-auto"
         )}
         id="vid"
         autoPlay

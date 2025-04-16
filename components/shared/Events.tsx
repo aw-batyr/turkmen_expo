@@ -14,7 +14,7 @@ export const Events = async ({ lang }: { lang: string }) => {
   return (
     <section>
       <div className="container hidden md:block">
-        <div className="mb-10">
+        <div className="sm:mb-10">
           <Title
             text={
               lang === "en"

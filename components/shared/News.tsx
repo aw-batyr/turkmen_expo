@@ -71,7 +71,7 @@ export const News = () => {
           </div>
         </header>
 
-        <div className="mb-[35px]">
+        <div className="sm:mb-[35px]">
           <Swiper
             modules={[Navigation]}
             spaceBetween={20}

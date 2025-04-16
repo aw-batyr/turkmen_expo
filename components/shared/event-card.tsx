@@ -70,7 +70,7 @@ export const EventCard = ({
       >
         <div
           className={clsx(
-            "md:hidden flex flex-col gap-8 border-b-[1px] border-opacity-10 mb-5 pb-5 md:gap-y-[20px] min-w-[200px]",
+            "md:hidden flex flex-col gap-8 border-b-[1px] border-opacity-10 mb-5 pb-5 md:gap-y-5 min-w-[200px]",
             {
               "border-gray3": dark,
               "border-lightCyan": !dark,
@@ -105,7 +105,7 @@ export const EventCard = ({
             <div className="flex flex-col gap-[10px] md:gap-[15px]">
               <h3
                 className={clsx(
-                  "text-[20px] font-medium line leading-[115%] lg:leading-8 md:leading-[100%]"
+                  "text-5 font-medium line leading-[115%] lg:leading-8 md:leading-[100%]"
                 )}
               >
                 {title}

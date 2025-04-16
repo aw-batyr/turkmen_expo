@@ -159,11 +159,11 @@ p img {
   }
 
   .page-container {
-    @apply w-full mr-auto ml-[20px] max-w-[853px] pr-[20px];
+    @apply w-full mr-auto ml-5 max-w-[853px] pr-5;
   }
 
   .main-container {
-    @apply w-full ml-[auto] mr-[120px] max-w-[195px] pl-[20px];
+    @apply w-full ml-[auto] mr-[120px] max-w-[195px] pl-5;
   }
 
   .btn {
@@ -211,7 +211,7 @@ p img {
   }
 
   .link-border-bottom {
-    @apply after:content-[''] after:absolute after:top-[20px] after:left-0 after:h-[2px] after:bg-green after:w-full hover:text-bgWhite;
+    @apply after:content-[''] after:absolute after:top-5 after:left-0 after:h-[2px] after:bg-green after:w-full hover:text-bgWhite;
   }
 
   .radio-btn:hover + .radio-hover {
