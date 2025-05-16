@@ -18,7 +18,7 @@ export default async function HomePage() {
         <Events lang={lang} />
       </Suspense>
       <News />
-      <Video />
+      {/* <Video /> */}
       <Partners />
     </div>
   );
