@@ -348,6 +348,21 @@ p img {
     }
   }
 
+  .dot {
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background-color: #d1d5db;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin: 0 4px;
+  }
+
+  .dot-active {
+    @apply bg-PRIMARY;
+    transform: scale(1.2);
+  }
   .real-checkbox {
     width: 16px;
     height: 16px;

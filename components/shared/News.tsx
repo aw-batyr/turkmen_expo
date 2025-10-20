@@ -12,7 +12,6 @@ import { selectHeader } from "@/redux/slices/headerSlice";
 import { NewsData } from "@/lib/types/NewsData.type";
 
 import "swiper/css/bundle";
-
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
