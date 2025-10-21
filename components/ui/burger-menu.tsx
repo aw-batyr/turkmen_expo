@@ -2,7 +2,6 @@
 
 import Link from "next/link";
 import { useEffect, useState } from "react";
-import { v4 } from "uuid";
 import { motion } from "framer-motion";
 
 import { useAppDispatch, useAppSelector } from "@/redux/hooks";
@@ -226,9 +225,9 @@ export const BurgerMenu = () => {
           burgerMenu2
             .filter((item) => item.company)
             .map((obj) =>
-              obj.dropDown?.map((item) => (
+              obj.dropDown?.map((item, i) => (
                 <Link
-                  key={v4()}
+                  key={i}
                   href={item.link}
                   onClick={() => {
                     dispatch(setBurgerOpen(false));

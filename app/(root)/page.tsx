@@ -15,7 +15,9 @@ export default async function HomePage() {
     <div className="bg-blueBg flex flex-col gap-[60px] md:gap-20 pb-20">
       <Slider lang={lang} />
 
-      <Suspense fallback={<Loader />}>{/* <Events lang={lang} /> */}</Suspense>
+      <Suspense fallback={<Loader />}>
+        <Events lang={lang} />
+      </Suspense>
       <News />
       <Reviews />
       {/* <Video /> */}
