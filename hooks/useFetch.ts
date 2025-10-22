@@ -1,6 +1,8 @@
 "use client";
 
 import { baseAPI } from "@/lib/API";
+import { useAppSelector } from "@/redux/hooks";
+import { selectHeader } from "@/redux/slices/headerSlice";
 import { useState, useEffect } from "react";
 
 interface FetchState<T> {
@@ -19,12 +21,20 @@ export const useFetch = <T>(
     error: null,
   });
 
+  const {
+    activeLang: { localization },
+  } = useAppSelector(selectHeader);
+
   useEffect(() => {
     const fetchData = async () => {
       try {
         setState((prev) => ({ ...prev, loading: true, error: null }));
 
-        const response = await fetch(baseAPI + url, options);
+        const response = await fetch(baseAPI + url, {
+          headers: {
+            "Accept-Language": localization,
+          },
+        });
 
         if (!response.ok) {
           throw new Error(`HTTP error! status: ${response.status}`);
@@ -47,7 +57,7 @@ export const useFetch = <T>(
     };
 
     fetchData();
-  }, [url, options]); // Добавьте options в зависимости, если они динамические
+  }, [url, localization]); // Добавьте options в зависимости, если они динамические
 
   return state;
 };
